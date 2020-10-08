@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = null;
+
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/plugins/fontawesome-free/css/all.min.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/dist/css/adminlte.min.css")">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+
+<body class="hold-transition login-page">
+
+    <div class="login-box" style="width:30%">
+        <div class="login-logo">
+            <h3 class="text-dark font-weight-bold">@ViewBag.Message</h3>
+        </div>
+
+        <div class="card ">
+
+            <div class="card-body login-card-body mb-3">
+                <h5 class="login-box-msg ">Inicie sesión para continuar.</h5>
+
+                <form class="m-4">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Usuario">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user-tie"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-4">
+                        <input type="password" class="form-control" placeholder="Contraseña">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="icon-bar fas fa-lock"></span>
+                            </div> 
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row mt-4">
+                        <a class="btn btn-block btn-primary" href="@Url.Action("Sesion", "Login")">Ingresar</a>
+
+                    </div>
+                </form>
+
+            </div>
+
+
+
+
+        </div>
+    </div>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    
+</body>
+</html>
+
