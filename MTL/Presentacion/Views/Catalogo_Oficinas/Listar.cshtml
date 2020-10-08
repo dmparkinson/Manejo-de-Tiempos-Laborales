@@ -1,0 +1,212 @@
+﻿
+@{
+    ViewBag.Title = "Catálogo Oficinas";
+}
+
+<div class="container">
+
+    <div class="row mt-2">
+        <h3>@ViewBag.Message</h3>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-12">
+            <div class="d-flex justify-content-between mt-3">
+                <div class="col-6">
+                    <input type="search" id="search" placeholder="Buscar" class="form-control form-control-sm">
+                </div>
+                <div>
+                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-agregar"><i class="fa fa-plus-square"></i> </button>
+                </div>
+            </div>
+            <table id="example1" class="table table-bordered table-hover">
+                <thead class="thead-dark text-center">
+                    <tr>
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th>Circuito</th>
+                        <th>Estado</th>
+                        <th>Inicio de vigencia</th>
+                        <th>Final de vigencia</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1231</td>
+                        <td>Nombre 1</td>
+                        <td>Circuito 1</td>
+                        <td>Activo</td>
+                        <td>08/9/2020</td>
+                        <td>08/9/2020</td>
+                        <td class="d-flex justify-content-center">
+                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-pen-square"></i> </button>
+                            <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1231</td>
+                        <td>Nombre 2</td>
+                        <td>Circuito 2</td>
+                        <td>Activo</td>
+                        <td>08/9/2020</td>
+                        <td>08/9/2020</td>
+                        <td class="d-flex justify-content-center">
+                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-pen-square"></i> </button>
+                            <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>12313</td>
+                        <td>Nombre 3</td>
+                        <td>Circuito 3</td>
+                        <td>Activo</td>
+                        <td>08/9/2020</td>
+                        <td>08/9/2020</td>
+                        <td class="d-flex justify-content-center">
+                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-pen-square"></i> </button>
+                            <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <!-- Modal de agregar -->
+
+
+    <div class="modal fade" id="modal-agregar">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Añadir nueva oficina</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label class="font-weight-normal" for="codigo">Código:</label>
+                            <input type="text" class="form-control form-control-sm" id="codigo" placelaceholder="Ingrese codigo">
+                        </div>
+                        <div class="form-group">
+                            <label class="font-weight-normal" for="nombre">Nombre:</label>
+                            <input type="text" class="form-control form-control-sm" id="nombre" placelaceholder="Ingrese nombre">
+                        </div>
+                        <div class="form-group">
+                            <label class="font-weight-normal" for="estado">Estado:</label>
+                            <select class="form-control form-control-sm" id="estado">
+                                <option>Activo</option>
+                                <option>Inactivo</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="font-weight-normal" for="circuito">Circuito:</label>
+                            <select class="form-control form-control-sm" id="circuito">
+                                <option>Circuito 1</option>
+                                <option>Circuito 2</option>
+                            </select>
+                        </div>
+                        <div class="form-group ">
+                            <label class="font-weight-normal" for="initV">Inicio de vigencia:</label>
+                            <input type="date" class="form-control form-control-sm" id="initV">
+                        </div>
+                        <div class="form-group">
+                            <label class="font-weight-normal" for="initF">Fin de vigencia:</label>
+                            <input type="date" class="form-control form-control-sm" id="initF">
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <div>
+                        <button type="button" class="btn btn-info">Editar</button>
+                        <button type="button" class="btn btn-danger">Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Modal de editar -->
+
+
+    <div class="modal fade" id="modal-editar">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Modificar Oficina</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label class="font-weight-normal" for="codigo">Código:</label>
+                            <input type="text" class="form-control form-control-sm" id="codigo" placelaceholder="Ingrese codigo">
+                        </div>
+                        <div class="form-group">
+                            <label class="font-weight-normal" for="nombre">Nombre:</label>
+                            <input type="text" class="form-control form-control-sm" id="nombre" placelaceholder="Ingrese nombre">
+                        </div>
+                        <div class="form-group">
+                            <label class="font-weight-normal" for="estado">Estado:</label>
+                            <select class="form-control form-control-sm" id="estado">
+                                <option>Activo</option>
+                                <option>Inactivo</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="font-weight-normal" for="circuito">Circuito:</label>
+                            <select class="form-control form-control-sm" id="circuito">
+                                <option>Circuito 1</option>
+                                <option>Circuito 2</option>
+                            </select>
+                        </div>
+                        <div class="form-group ">
+                            <label class="font-weight-normal" for="initV">Inicio de vigencia:</label>
+                            <input type="date" class="form-control form-control-sm" id="initV">
+                        </div>
+                        <div class="form-group">
+                            <label class="font-weight-normal" for="initF">Fin de vigencia:</label>
+                            <input type="date" class="form-control form-control-sm" id="initF">
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <div>
+                        <button type="button" class="btn btn-info">Editar</button>
+                        <button type="button" class="btn btn-danger">Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
