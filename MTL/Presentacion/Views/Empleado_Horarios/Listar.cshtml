@@ -11,10 +11,10 @@
     <h5 class="text-secondary">@ViewBag.Message</h5>
 </div>
 
-<div class="row justify-content-between mt-2 ">
+<div class="row justify-content-around ">
 
-    <div>
-        <div class="card" style="background-color: #FAFAFA">
+    <div class="container mt-5 col-3">
+        <div class="card" >
             <div class="card-header">
                 <h5 class="card-tittle">Marcar Horario</h5>
             </div>
@@ -26,7 +26,7 @@
                 </div>
                 <div>
                     <label class="font-weight-normal">Seleccione un tiempo:</label>
-                    <div class="border border-secondary" style="background-color: #CCCCCC">
+                    <div class="border border-secondary nav-pills" style="background-color: #f6f6f6">
                         <div class="form-check">
                             <label class="form-check-label">
                                 <input type="radio" class="form-check-input" name="optradio">Entrada
@@ -72,14 +72,14 @@
                 </div>
 
                 <div class="row justify-content-center mt-2">
-                    <input type="button" value="Guardar" id="searchInput" class="btn btn-primary btn-sm">
+                    <button type="button" class="btn btn-primary btn-sm" onclick="alertDatosValidos()">Guardar</button>
                 </div>
             </div>
         </div>
     </div>
 
 
-    <div class="container" >
+    <div class="container col-6" >
         <div class=" row justify-content-center">
         <div class="flex-column">
             <div class="d-flex flex-wrap">
@@ -99,16 +99,13 @@
                     </select>
                 </div>
             </div>
-            <div class="row justify-content-center">
-                <input type="button" value="Filtrar" class="btn btn-info btn-sm">
-                <input type="button" value="Limpiar" class="btn btn-danger btn-sm">
-            </div>
         </div>
     </div>
-        <div class="col-12">
+        <div >
             <div class="d-flex justify-content-between mt-3">
                 <div class="col-6">
-                    <input type="search" id="searchInput" placeholder="Buscar" class="form-control form-control-sm">
+                    <input type="button" value="Filtrar" class="btn btn-info btn-sm">
+                    <input type="button" value="Limpiar" class="btn btn-danger btn-sm">
                 </div>
                 <div>
                     <input type="button" value="Reporte" class="btn btn-secondary">
@@ -130,7 +127,7 @@
                         <td>06-09-2020</td>
                         <td class="d-flex justify-content-center">
                             <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-pen-square"></i> </button>
-                            <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </button>
+                            <button class="btn btn-danger btn-sm" onclick="alertAdvertenciaEliminar()"><i class="fa fa-trash"></i> </button>
                         </td>
                     </tr>
                     <tr>
@@ -139,7 +136,7 @@
                         <td>06-09-2020</td>
                         <td class="d-flex justify-content-center">
                             <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-pen-square"></i> </button>
-                            <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </button>
+                            <button class="btn btn-danger btn-sm" onclick="alertAdvertenciaEliminar()"><i class="fa fa-trash"></i> </button>
                         </td>
                     </tr>
                     <tr>
@@ -148,7 +145,7 @@
                         <td>06-09-2020</td>
                         <td class="d-flex justify-content-center">
                             <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-pen-square"></i> </button>
-                            <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </button>
+                            <button class="btn btn-danger btn-sm" onclick="alertAdvertenciaEliminar()"><i class="fa fa-trash"></i> </button>
                         </td>
                     </tr>
                     <tr>
@@ -157,7 +154,7 @@
                         <td>06-09-2020</td>
                         <td class="d-flex justify-content-center">
                             <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-pen-square"></i> </button>
-                            <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </button>
+                            <button class="btn btn-danger btn-sm" onclick="alertAdvertenciaEliminar()"><i class="fa fa-trash"></i> </button>
                         </td>
                     </tr>
                     <tr>
@@ -166,7 +163,7 @@
                         <td>06-09-2020</td>
                         <td class="d-flex justify-content-center">
                             <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-pen-square"></i> </button>
-                            <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </button>
+                            <button class="btn btn-danger btn-sm" onclick="alertAdvertenciaEliminar()"><i class="fa fa-trash"></i> </button>
                         </td>
                     </tr>
                 </tbody>
@@ -187,39 +184,41 @@
 
     <div class="modal fade" id="modal-editar">
         <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Modificar Ausencia</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
-                <div class="modal-body">
-                    <div class="form-group ">
-                        <label class="font-weight-normal" for="salida">Fecha de salida:</label>
-                        <input type="date" class="form-control form-control-sm" id="salida">
-                    </div>
-                    <div class="form-group">
-                        <label class="font-weight-normal" for="regreso">Fecha de regreso:</label>
-                        <input type="date" class="form-control form-control-sm" id="regreso">
-                    </div>
-                    <div class="form-group">
-                        <label class="font-weight-normal" for="motivo">Motivo:</label>
-                        <select class="form-control form-control-sm" id="motivo">
-                            <option selected="selected">Enfermedad</option>
-                        </select>
+            <form>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Modificar Ausencia</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
 
-                </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <div>
-                        <button type="button" class="btn btn-info">Editar</button>
-                        <button type="button" class="btn btn-danger">Eliminar</button>
+                    <div class="modal-body">
+                        <div class="form-group ">
+                            <label class="font-weight-normal" for="salida">Fecha de salida:</label>
+                            <input type="date" class="form-control form-control-sm" id="salida" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="font-weight-normal" for="regreso">Fecha de regreso:</label>
+                            <input type="date" class="form-control form-control-sm" id="regreso" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="font-weight-normal" for="motivo">Motivo:</label>
+                            <select class="form-control form-control-sm" id="motivo">
+                                <option selected="selected">Enfermedad</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <div>
+                            <input type="submit" value="Editar" class="btn btn-info" />
+                            <button type="button" class="btn btn-danger" onclick="alertDatosInvalidos()">Eliminar</button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 
