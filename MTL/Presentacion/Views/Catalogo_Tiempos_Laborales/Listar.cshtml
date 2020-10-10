@@ -17,16 +17,14 @@
                 </div>
 
                 <div class="card-body">
-                    <form>
                         <div class="form-group d-flex justify-content-between">
                             <label class="font-weight-normal" for="tipo">Tipo:</label>
-                            <input type="text" class="form-control form-control-sm" id="tiop" placeholder="Ingrese el tipo de tiempo">
+                            <input type="text" class="form-control form-control-sm" id="tiop" placeholder="Ingrese el tipo de tiempo" required>
                         </div>
 
                         <div class="row justify-content-center mt-2">
-                            <input type="button" value="Guardar" class="btn btn-primary btn-sm">
+                            <button class="btn btn-primary btn-sm" onclick="alertDatosInvalidos()">Guardar</button>
                         </div>
-                    </form>
                 </div>
             </div>
         </div>
@@ -39,11 +37,13 @@
 
     <div class="row mt-3">
         <div class="col-12">
-            <div class="col-6">
-                <input type="search" id="search" placeholder="Buscar" class="form-control form-control-sm">
-            </div>
-            <div>
-                <input type="button" value="Reporte" class="btn btn-secondary">
+            <div class="d-flex justify-content-between mt-3">
+                <div class="col-6">
+                    <input type="search" id="search" placeholder="Buscar" class="form-control form-control-sm">
+                </div>
+                <div>
+                    <input type="button" value="Reporte" class="btn btn-secondary btn-sm">
+                </div>
             </div>
             <table id="example1" class="table table-bordered table-hover">
                 <thead class="thead-dark text-center">
@@ -57,35 +57,35 @@
                         <td>Entrada</td>
                         <td class="d-flex justify-content-center">
                             <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-pen-square"></i> </button>
-                            <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </button>
+                            <button class="btn btn-danger btn-sm" onclick="alertAdvertenciaEliminar()"><i class="fa fa-trash"></i> </button>
                         </td>
                     </tr>
                     <tr>
                         <td>Café mañana entrada</td>
                         <td class="d-flex justify-content-center">
                             <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-pen-square"></i> </button>
-                            <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </button>
+                            <button class="btn btn-danger btn-sm" onclick="alertAdvertenciaEliminar()"><i class="fa fa-trash"></i> </button>
                         </td>
                     </tr>
                     <tr>
                         <td>Café mañana salida</td>
                         <td class="d-flex justify-content-center">
                             <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-pen-square"></i> </button>
-                            <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </button>
+                            <button class="btn btn-danger btn-sm" onclick="alertAdvertenciaEliminar()"><i class="fa fa-trash"></i> </button>
                         </td>
                     </tr>
                     <tr>
                         <td>Almuerzo entrada</td>
                         <td class="d-flex justify-content-center">
                             <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-pen-square"></i> </button>
-                            <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </button>
+                            <button class="btn btn-danger btn-sm" onclick="alertAdvertenciaEliminar()"><i class="fa fa-trash"></i> </button>
                         </td>
                     </tr>
                     <tr>
                         <td>Almuerzo salida</td>
                         <td class="d-flex justify-content-center">
                             <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-pen-square"></i> </button>
-                            <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </button>
+                            <button class="btn btn-danger btn-sm" onclick="alertAdvertenciaEliminar()"><i class="fa fa-trash"></i> </button>
                         </td>
                     </tr>
                 </tbody>
@@ -108,27 +108,29 @@
     <div class="modal fade" id="modal-editar">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Modificar tiempo laboral</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
-                <div class="modal-body">
-                    <div class="form-group ">
-                        <label class="font-weight-normal" for="tipoM">Tipo:</label>
-                        <input type="text" class="form-control form-control-sm" id="tipoM" value="Entrada">
+                <form>
+                    <div class="modal-header">
+                        <h4 class="modal-title">Modificar tiempo laboral</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
 
-                </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <div>
-                        <button type="button" class="btn btn-info">Editar</button>
-                        <button type="button" class="btn btn-danger">Eliminar</button>
+                    <div class="modal-body">
+                        <div class="form-group ">
+                            <label class="font-weight-normal" for="tipoM">Tipo:</label>
+                            <input type="text" class="form-control form-control-sm" id="tipoM" required>
+                        </div>
+
                     </div>
-                </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <div>
+                            <input type="submit" class="btn btn-info" value="Editar">
+                            <button class="btn btn-danger" onclick="alertDatosInvalidos()">Eliminar</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
