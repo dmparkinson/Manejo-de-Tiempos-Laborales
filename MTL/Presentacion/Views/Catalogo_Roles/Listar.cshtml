@@ -15,18 +15,15 @@
                 <div class="card-header">
                     <h5 class="card-tittle">Añadir nuevo rol</h5>
                 </div>
-
                 <div class="card-body">
-                    <form>
                         <div class="form-group d-flex justify-content-between">
                             <label class="font-weight-normal" for="nombre">Nombre:</label>
-                            <input type="text" class="form-control form-control-sm" id="nombre" placelaceholder="Ingrese nombre rol">
+                            <input type="text" class="form-control form-control-sm" id="nombre" placelaceholder="Ingrese nombre rol" required>
                         </div>
 
                         <div class="row justify-content-center mt-2">
-                            <input type="button" value="Guardar" class="btn btn-primary btn-sm">
+                            <button class="btn btn-primary btn-sm" onclick="alertDatosValidos()">Guardar</button>
                         </div>
-                    </form>
                 </div>
             </div>
         </div>
@@ -39,11 +36,13 @@
 
     <div class="row mt-3">
         <div class="col-12">
-            <div class="col-6">
-                <input type="search" id="search" placeholder="Buscar" class="form-control form-control-sm">
-            </div>
-            <div>
-                <input type="button" value="Reporte" class="btn btn-secondary">
+            <div class="d-flex justify-content-between mt-3">
+                <div class="col-6">
+                    <input type="search" id="search" placeholder="Buscar" class="form-control form-control-sm">
+                </div>
+                <div>
+                    <input type="button" value="Reporte" class="btn btn-secondary btn-sm">
+                </div>
             </div>
             <table id="example1" class="table table-bordered table-hover">
                 <thead class="thead-dark text-center">
@@ -57,35 +56,35 @@
                         <td>Rol 1</td>
                         <td class="d-flex justify-content-center">
                             <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-pen-square"></i> </button>
-                            <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </button>
+                            <button class="btn btn-danger btn-sm" onclick="alertAdvertenciaEliminar()"><i class="fa fa-trash"></i> </button>
                         </td>
                     </tr>
                     <tr>
                         <td>Rol 2</td>
                         <td class="d-flex justify-content-center">
                             <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-pen-square"></i> </button>
-                            <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </button>
+                            <button class="btn btn-danger btn-sm" onclick="alertAdvertenciaEliminar()"><i class="fa fa-trash"></i> </button>
                         </td>
                     </tr>
                     <tr>
                         <td>Rol 3</td>
                         <td class="d-flex justify-content-center">
                             <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-pen-square"></i> </button>
-                            <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </button>
+                            <button class="btn btn-danger btn-sm" onclick="alertAdvertenciaEliminar()"><i class="fa fa-trash"></i> </button>
                         </td>
                     </tr>
                     <tr>
                         <td>Rol 4</td>
                         <td class="d-flex justify-content-center">
                             <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-pen-square"></i> </button>
-                            <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </button>
+                            <button class="btn btn-danger btn-sm" onclick="alertAdvertenciaEliminar()"><i class="fa fa-trash"></i> </button>
                         </td>
                     </tr>
                     <tr>
                         <td>Rol 5</td>
                         <td class="d-flex justify-content-center">
                             <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-pen-square"></i> </button>
-                            <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </button>
+                            <button class="btn btn-danger btn-sm" onclick="alertAdvertenciaEliminar()"><i class="fa fa-trash"></i> </button>
                         </td>
                     </tr>
                 </tbody>
@@ -108,27 +107,27 @@
     <div class="modal fade" id="modal-editar">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Modificar Rol</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
-                <div class="modal-body">
-                    <div class="form-group ">
-                        <label class="font-weight-normal" for="nombreM">Nombre:</label>
-                        <input type="text" class="form-control form-control-sm" id="nombreM" value="Rol 1">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Modificar Rol</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
 
-                </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <div>
-                        <button type="button" class="btn btn-info">Editar</button>
-                        <button type="button" class="btn btn-danger">Eliminar</button>
+                    <div class="modal-body">
+                        <div class="form-group ">
+                            <label class="font-weight-normal" for="nombreM">Nombre:</label>
+                            <input type="text" class="form-control form-control-sm" id="nombreM" value="Rol 1" required>
+                        </div>
+
                     </div>
-                </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <div>
+                            <button type="button" class="btn btn-info" onclick="alertDatosValidos()">Editar</button>
+                            <button type="button" class="btn btn-danger" onclick="alertDatosInvalidos()">Eliminar</button>
+                        </div>
+                    </div>
             </div>
         </div>
     </div>

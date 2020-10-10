@@ -13,16 +13,16 @@
             <div class="d-flex flex-wrap">
                 <div class="form-group ">
                     <label class="font-weight-normal" for="salida">Fecha salida:</label>
-                    <input type="date" class="form-control form-control-sm" id="salida">
+                    <input type="date" class="form-control form-control-sm" id="salida" required>
                 </div>
                 <div class="form-group">
                     <label class="font-weight-normal" for="regreso">Fecha regreso:</label>
-                    <input type="date" class="form-control form-control-sm" id="regreso">
+                    <input type="date" class="form-control form-control-sm" id="regreso" required>
                 </div>
                 <div class="form-group">
                     <label class="font-weight-normal" for="motivo">Motivo:</label>
 
-                    <select class="form-control form-control-sm" id="motivo">
+                    <select class="form-control form-control-sm" id="motivo" required>
                         <option>Enfermedad</option>
                     </select>
                 </div>
@@ -39,13 +39,15 @@
 
     <div class="row mt-3">
         <div class="col-12">
-            <div class="col-6">
-                <input type="search" id="search" placeholder="Buscar" class="form-control form-control-sm">
+            <div class="d-flex justify-content-between mt-3">
+                <div class="col-6">
+                    <input type="search" id="search" placeholder="Buscar" class="form-control form-control-sm">
+                </div>
+                <div>
+                    <input type="button" value="Reporte" class="btn btn-secondary btn-sm">
+                </div>
             </div>
-            <div>
-                <input type="button" value="Reporte" class="btn btn-secondary">
-            </div>
-            <table id="example1" class="table table-bordered table-hover">
+            <table id="table" class="table table-bordered table-hover">
                 <thead class="thead-dark text-center">
                     <tr>
                         <th>Cédula</th>
@@ -69,7 +71,7 @@
                         <td>06-09-2020</td>
                         <td class="d-flex justify-content-center">
                             <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-pen-square"></i> </button>
-                            <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </button>
+                            <button class="btn btn-danger btn-sm" onclick="alertAdvertenciaEliminar()"><i class="fa fa-trash"></i> </button>
                         </td>
                     </tr>
                     <tr>
@@ -82,7 +84,7 @@
                         <td>06-09-2020</td>
                         <td class="d-flex justify-content-center">
                             <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-pen-square"></i> </button>
-                            <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </button>
+                            <button class="btn btn-danger btn-sm" onclick="alertAdvertenciaEliminar()"><i class="fa fa-trash"></i> </button>
                         </td>
                     </tr>
                     <tr>
@@ -95,7 +97,7 @@
                         <td>06-09-2020</td>
                         <td class="d-flex justify-content-center">
                             <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-pen-square"></i> </button>
-                            <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </button>
+                            <button class="btn btn-danger btn-sm" onclick="alertAdvertenciaEliminar()"><i class="fa fa-trash"></i> </button>
                         </td>
                     </tr>
                     <tr>
@@ -108,7 +110,7 @@
                         <td>06-09-2020</td>
                         <td class="d-flex justify-content-center">
                             <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-pen-square"></i> </button>
-                            <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </button>
+                            <button class="btn btn-danger btn-sm" onclick="alertAdvertenciaEliminar()"><i class="fa fa-trash"></i> </button>
                         </td>
                     </tr>
                     <tr>
@@ -121,7 +123,7 @@
                         <td>06-09-2020</td>
                         <td class="d-flex justify-content-center">
                             <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-pen-square"></i> </button>
-                            <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </button>
+                            <button class="btn btn-danger btn-sm" onclick="alertAdvertenciaEliminar()"><i class="fa fa-trash"></i> </button>
                         </td>
                     </tr>
                 </tbody>
@@ -144,37 +146,39 @@
     <div class="modal fade" id="modal-editar">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Modificar Ausencia</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
-                <div class="modal-body">
-                    <div class="form-group ">
-                        <label class="font-weight-normal" for="salida">Fecha de salida:</label>
-                        <input type="date" class="form-control form-control-sm" id="salida">
-                    </div>
-                    <div class="form-group">
-                        <label class="font-weight-normal" for="regreso">Fecha de regreso:</label>
-                        <input type="date" class="form-control form-control-sm" id="regreso">
-                    </div>
-                    <div class="form-group">
-                        <label class="font-weight-normal" for="motivo">TMotivo:</label>
-                        <select class="form-control form-control-sm" id="motivo">
-                            <option selected="selected">Enfermedad</option>
-                        </select>
+                <form onsubmit="return false">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Modificar Ausencia</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
 
-                </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <div>
-                        <button type="button" class="btn btn-info">Editar</button>
-                        <button type="button" class="btn btn-danger">Eliminar</button>
+                    <div class="modal-body">
+                        <div class="form-group ">
+                            <label class="font-weight-normal" for="salida">Fecha de salida:</label>
+                            <input type="date" class="form-control form-control-sm" id="salida" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="font-weight-normal" for="regreso">Fecha de regreso:</label>
+                            <input type="date" class="form-control form-control-sm" id="regreso" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="font-weight-normal" for="motivo">TMotivo:</label>
+                            <select class="form-control form-control-sm" id="motivo">
+                                <option selected="selected">Enfermedad</option>
+                            </select>
+                        </div>
+
                     </div>
-                </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <div>
+                            <button type="submit" class="btn btn-info" >Editar</button>
+                            <button class="btn btn-danger" onclick="alertDatosInvalidos()">Eliminar</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
