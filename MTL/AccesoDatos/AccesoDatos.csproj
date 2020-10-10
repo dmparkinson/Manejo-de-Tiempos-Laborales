@@ -74,7 +74,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConexionAD\ConexionAD.cs" />
-    <Compile Include="Implementaciones\TiposAusencia.cs" />
+    <Compile Include="Implementaciones\AusenciaAD.cs" />
+    <Compile Include="Implementaciones\TiposAusenciaAD.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
