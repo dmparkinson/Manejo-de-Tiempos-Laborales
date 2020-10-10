@@ -20,6 +20,11 @@ namespace AccesoDatos.Implementaciones
             return ejecutar($"exec sp_eliminar_horario '{horario.TC_Horario}'");
         }
 
+        public int actualizarHorario(Horario horario)
+        {
+            return ejecutar($"exec sp_actualizar_horario '{horario.TC_Horario}', {horario.TH_Duracion}");
+        }
+
         public string consultarHorario(Horario horario) {
             Horario h = new Horario();
             SqlDataReader dataReader = consultar($"exec sp_consultar_horario '{horario.TC_Horario}', {horario.TH_Duracion}");

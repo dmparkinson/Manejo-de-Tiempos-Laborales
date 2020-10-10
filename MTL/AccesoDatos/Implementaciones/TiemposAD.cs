@@ -14,10 +14,14 @@ namespace AccesoDatos.Implementaciones
             return ejecutar($"exec sp_registrar_tiempo_usuario '{tiempo.TC_Tipo}', '{tiempo.TC_Horario}', {tiempo.TN_Id_Usuario}");
         }
 
-        public int eliminarEmpleado(int idTiempo){
+        public int eliminarTiempo(int idTiempo){
             return ejecutar($"exec sp_eliminar_tiempo_usuario {idTiempo}");
         }
 
+        public int actualizarTiempo(Tiempo tiempo)
+        {
+            return ejecutar($"exec sp_eliminar_tiempo_usuario '{tiempo.TC_Tipo}', '{tiempo.TC_Horario}', {tiempo.TN_Id_Usuario}");
+        }
 
         //lista todos los tiempos de un solo usuario
         public string consultarTiemposUsuario(int idEmpleado)

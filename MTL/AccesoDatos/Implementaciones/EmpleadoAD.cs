@@ -23,6 +23,13 @@ namespace AccesoDatos.Implementaciones
             return ejecutar($"exec sp_eliminar_empleado {idEmpleado}");
         }
 
+        public int actualizarEmpleado(Empleado empleado) {
+            return ejecutar($"exec sp_actualizar_empleado '{empleado.TC_Usuario}', " +
+                $"'{empleado.TC_Contrasena}', '{empleado.TC_Identificacion}', '{empleado.TC_Nombre_Usuario}', " +
+                    $"'{empleado.TC_Primer_Apellido}', '{empleado.TC_Segundo_Apellido}', '{empleado.TC_Tipo_Usuario}', '{empleado.TC_Correo}', " +
+                        $"{empleado.TB_Activo}, {empleado.TN_Id_Puesto}, {empleado.TN_Id_Oficina}, {empleado.TB_Eliminado}");
+        } 
+
         public string consultarEmpleado(int idEmpleado)
         {
             Empleado emp = new Empleado();
