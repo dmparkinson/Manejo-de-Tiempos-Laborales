@@ -19,25 +19,26 @@
 <body>
 
     <div class="container-fluid ">
-        <nav class="navbar navbar-expand-sm nav-tabs justify-content-between">
+        <nav class=" navbar navbar-expand-sm nav-tabs justify-content-between" style="padding:0px ">
 
             <ul class="nav">
                 <li class="navbar-brand">
-                    LOGO
+                    <img src="~/Content/images/Escudo OIJ.png" alt="logo" style="width:38px" />
                 </li>
-                <li class="nav-item">
+                <li class="nav-item navbar-brand">
                     <a class="nav-link" href="@Url.Action("Listar", "Empleado_Horarios")">Horarios</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item navbar-brand">
                     <a class="nav-link" href="@Url.Action("Listar", "Empleado_Ausencias")">Ausencias</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item navbar-brand">
                     <a class="nav-link" href="#">Ayuda</a>
                 </li>
             </ul>
             <a class="btn btn-light btn-lg" href="#">
                 <i class="fas fa-sign-out-alt"></i>
             </a>
+
         </nav>
 
     </div>
@@ -58,6 +59,10 @@
     <script src="@Url.Content("~/plugins/datatables-responsive/js/responsive.bootstrap4.min.js")"></script>
     <script src="@Url.Content("~/dist/js/adminlte.min.js")"></script>
     <script src="@Url.Content("~/Scripts/scriptsTables.js")"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    <script src="@Url.Content("~/Scripts/scriptsAlert.js")"></script>
 
     @RenderSection("scripts", required: false)
 

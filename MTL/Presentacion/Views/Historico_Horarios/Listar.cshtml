@@ -45,7 +45,7 @@
                     <input type="search" id="search" placeholder="Buscar" class="form-control form-control-sm">
                 </div>
                 <div>
-                    <input type="button" value="Reporte" class="btn btn-secondary">
+                    <input type="button" value="Reporte" class="btn btn-secondary btn-sm">
                 </div>
             </div>
 
@@ -70,8 +70,8 @@
                         <td>8:00 am</td>
                         <td>Entrada</td>
                         <td class="d-flex justify-content-center">
-                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-pen-square"></i> </button>
-                            <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </button>
+                            <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-pen-square"></i> </button>
+                            <button class="btn btn-danger btn-sm" onclick="alertAdvertenciaEliminar()"><i class="fa fa-trash"></i> </button>
                         </td>
                     </tr>
                     <tr>
@@ -82,8 +82,8 @@
                         <td>8:02 am</td>
                         <td>Entrada</td>
                         <td class="d-flex justify-content-center">
-                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-pen-square"></i> </button>
-                            <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </button>
+                            <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-pen-square"></i> </button>
+                            <button class="btn btn-danger btn-sm" onclick="alertAdvertenciaEliminar()"><i class="fa fa-trash"></i> </button>
                         </td>
                     </tr>
                     <tr>
@@ -94,8 +94,8 @@
                         <td>8:03 am</td>
                         <td>Entrada</td>
                         <td class="d-flex justify-content-center">
-                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-pen-square"></i> </button>
-                            <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </button>
+                            <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-pen-square"></i> </button>
+                            <button class="btn btn-danger btn-sm" onclick="alertAdvertenciaEliminar()"><i class="fa fa-trash"></i> </button>
                         </td>
                     </tr>
                     <tr>
@@ -106,8 +106,8 @@
                         <td>8:04 am</td>
                         <td>Entrada</td>
                         <td class="d-flex justify-content-center">
-                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-pen-square"></i> </button>
-                            <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </button>
+                            <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-pen-square"></i> </button>
+                            <button class="btn btn-danger btn-sm" onclick="alertAdvertenciaEliminar()"><i class="fa fa-trash"></i> </button>
                         </td>
                     </tr>
                     <tr>
@@ -118,8 +118,8 @@
                         <td>8:05 am</td>
                         <td> Entrada</td>
                         <td class="d-flex justify-content-center">
-                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-pen-square"></i> </button>
-                            <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </button>
+                            <button  class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-pen-square"></i> </button>
+                            <button class="btn btn-danger btn-sm"  onclick="alertAdvertenciaEliminar()"><i class="fa fa-trash"></i> </button>
                         </td>
                     </tr>
                 </tbody>
@@ -133,49 +133,47 @@
 
 
 
-
-
-
     <!-- Modal de editar -->
 
 
     <div class="modal fade" id="modal-editar">
         <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Modificar Horario</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
-                <div class="modal-body">
-                    <div class="form-group ">
-                        <label class="font-weight-normal" for="fecha">Fecha:</label>
-                        <input type="date" class="form-control form-control-sm" id="fecha">
-                    </div>
-                    <div class="form-group">
-                        <label class="font-weight-normal" for="hora">Hora:</label>
-                        <input type="time" class="form-control form-control-sm" id="hora">
-                    </div>
-                    <div class="form-group">
-                        <label class="font-weight-normal" for="tiempo">Tiempo laboral:</label>
-                        <select class="form-control form-control-sm" id="tiempo">
-                            <option selected="selected">Entrada</option>
-                            <option>Almuerzo</option>
-                            <option>Salida</option>
-                        </select>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Modificar Horario</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
 
-                </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <div>
-                        <button type="button" class="btn btn-info">Editar</button>
-                        <button type="button" class="btn btn-danger">Eliminar</button>
+
+                    <div class="modal-body">
+                        <div class="form-group ">
+                            <label class="font-weight-normal" for="fecha">Fecha:</label>
+                            <input type="date" class="form-control form-control-sm" id="fecha" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="font-weight-normal" for="hora">Hora:</label>
+                            <input type="time" class="form-control form-control-sm" id="hora" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="font-weight-normal" for="tiempo">Tiempo laboral:</label>
+                            <select class="form-control form-control-sm" id="tiempo" required>
+                                <option selected="selected">Entrada</option>
+                                <option>Almuerzo</option>
+                                <option>Salida</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <div>
+                            <button class="btn btn-info" onclick="alertDatosValidos()">Editar</button>
+                            <button class="btn btn-danger" onclick="alertDatosInvalidos()">Eliminar</button>
+                        </div>
                     </div>
                 </div>
-            </div>
         </div>
     </div>
 

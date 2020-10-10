@@ -21,7 +21,7 @@ namespace Presentacion.Controllers
         public ActionResult Sesion()
         {
 
-            Session["usser"] = 3;
+            Session["usser"] = 1;
             int num = (int)Session["usser"];
 
             if (num  == 1)
