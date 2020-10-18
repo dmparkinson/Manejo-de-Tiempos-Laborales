@@ -8,16 +8,10 @@ $(document).ready(function () {
     //listado = localStorage.getItme("Listado");
 
 
-    $("#searchInput").on("keyup", function () {
-        console.log("Entro");
-        var value = $(this).val().toLowerCase();
-        $("#contenidoTabla tr").filter(function () {
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-        });
-    });
+    
 
 
-    /*
+    
     var table = $('#table').DataTable({
         "searching": false,
         "paging": true,
@@ -26,12 +20,37 @@ $(document).ready(function () {
         "responsive": true,
         "autoWidth": false,
     });
-    */
+    
 
 });
 
 
+$("#searchInput").on("keyup", function () {
+    console.log("Entro");
+    filter();
+});
 
+function Somefilter() {
+    let fecha = "";
+    let hora = "";
+    let select = "";
+    if (fecha) {// A,B,C
+
+    }
+    if (hora) {//A,B,D
+
+    }
+    if (select) {//C,D
+
+    }
+    filter();
+}
+function filter() {
+    var value = $("#searchInput").val().toLowerCase();
+    $("#contenidoTabla tr").filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+}
 
 /*$(function () {
     $("#example1").DataTable({
