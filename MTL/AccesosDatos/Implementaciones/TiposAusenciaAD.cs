@@ -1,21 +1,55 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 
 namespace AccesosDatos.Implementaciones
 {
     public class TiposAusenciaAD : ConexionAD.ConexionAD
     {
+
+        
+
+        public List<string> listarTiposAusencia()
+        {
+            List<string> data = new List<string>();
+
+            try
+            {
+                SqlDataReader dr = consultar($"EXEC sp_listar_Tipo_Ausencias");
+                if (dr != null)
+                {
+                    while (dr.Read())
+                    {
+                        string json = JsonConvert.SerializeObject(new
+                        {
+                            tAusencia = dr["TC_Tipo_Ausencia"].ToString()
+                    });
+                        data.Add(json);
+                    }
+                }
+                else
+                {
+                    data.Add("vacio");
+                }
+            }
+            catch (SqlException e)
+            {
+                data.Add("error");
+            }
+            return data;
+        }
+
+
+
+
+
         public List<string> getTiposAusencia(string busqueda)
         {
             List<string> data = new List<string>();
 
             try
             {
-                SqlDataReader dr = consultar("EXEC get_tipos_ausencia '%"+busqueda+"%'");
+                SqlDataReader dr = consultar("EXEC get_tipos_ausencia '%" + busqueda + "%'");
                 if (dr != null)
                 {
                     while (dr.Read())
@@ -23,7 +57,7 @@ namespace AccesosDatos.Implementaciones
                         string json = JsonConvert.SerializeObject(new
                         {
                             tipoAusencia = dr[0].ToString()
-                        }) ;
+                        });
                         data.Add(json);
                     }
                 }
@@ -39,13 +73,14 @@ namespace AccesosDatos.Implementaciones
             return data;
         }
 
+
+
         public int insertTiposAusencia(string nombre)
         {
             int salida = 0;
-
             try
             {
-                SqlDataReader dr = consultar("EXEC insert_tipo_ausencia '"+nombre+"'");
+                SqlDataReader dr = consultar("EXEC insert_tipo_ausencia '" + nombre + "'");
                 dr.Read();
                 salida = int.Parse(dr[0].ToString());
             }
@@ -63,7 +98,7 @@ namespace AccesosDatos.Implementaciones
 
             try
             {
-                SqlDataReader dr = consultar("EXEC update_tipo_ausencia '"+nombre+"', '"+nuevo+"'");
+                SqlDataReader dr = consultar("EXEC update_tipo_ausencia '" + nombre + "', '" + nuevo + "'");
                 dr.Read();
                 salida = int.Parse(dr[0].ToString());
             }
@@ -81,13 +116,13 @@ namespace AccesosDatos.Implementaciones
 
             try
             {
-                SqlDataReader dr = consultar("EXEC delete_tipo_ausencia '"+nombre+"'");
+                SqlDataReader dr = consultar("EXEC delete_tipo_ausencia '" + nombre + "'");
                 dr.Read();
                 salida = int.Parse(dr[0].ToString());
             }
             catch (SqlException e)
             {
-                salida = 0;
+                salida = -1;
             }
             return salida;
         }

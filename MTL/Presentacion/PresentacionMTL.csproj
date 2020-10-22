@@ -329,13 +329,22 @@
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Entidades\Entidad.csproj">
+      <Project>{9b17d60c-852a-4838-b4ce-419a951b7f54}</Project>
+      <Name>Entidad</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ReglasNegocios\ReglasNegocio.csproj">
+      <Project>{41fde04b-cdf2-40ef-9192-9d6034e1799f}</Project>
+      <Name>ReglasNegocio</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\AccesosDatos\AccesosDatos.csproj">
       <Project>{9763b80a-0fe5-4187-8dbc-ef5a53b1bd49}</Project>
       <Name>AccesosDatos</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Entidades\Entidades.csproj">
-      <Project>{9B17D60C-852A-4838-B4CE-419A951B7F54}</Project>
-      <Name>Entidades</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

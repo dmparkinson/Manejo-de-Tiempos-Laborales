@@ -10,6 +10,10 @@ namespace ReglasNegocios
     {
 
 
+        public void LoginUsser(string names, string password) { 
+        }
+
+
 
     }
 }
