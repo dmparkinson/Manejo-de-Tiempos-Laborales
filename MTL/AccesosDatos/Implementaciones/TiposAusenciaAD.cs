@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
-namespace AccesoDatos.Implementaciones
+namespace AccesosDatos.Implementaciones
 {
     public class TiposAusenciaAD : ConexionAD.ConexionAD
     {

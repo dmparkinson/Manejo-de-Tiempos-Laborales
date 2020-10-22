@@ -1,4 +1,4 @@
-﻿using Entidad;
+﻿using Entidades;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
-namespace AccesoDatos.Implementaciones
+namespace AccesosDatos.Implementaciones
 {
     public class EmpleadoAD : ConexionAD.ConexionAD
     {

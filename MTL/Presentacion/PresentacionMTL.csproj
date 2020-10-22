@@ -328,6 +328,16 @@
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AccesosDatos\AccesosDatos.csproj">
+      <Project>{9763b80a-0fe5-4187-8dbc-ef5a53b1bd49}</Project>
+      <Name>AccesosDatos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entidades\Entidades.csproj">
+      <Project>{9B17D60C-852A-4838-B4CE-419A951B7F54}</Project>
+      <Name>Entidades</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
