@@ -9,12 +9,17 @@ namespace Presentacion.Controllers
     public class Historico_AusenciasController : Controller
     {
         // GET: Historico_Ausencias
-        public ActionResult Listar()
+        public ActionResult Listar_de_Admin()
         {
 
             ViewBag.Message = "Histórico de Ausencias";
             return View();
         }
+        public ActionResult Listar_de_Jefatura()
+        {
 
+            ViewBag.Message = "Histórico de Ausencias";
+            return View();
+        }
     }
 }

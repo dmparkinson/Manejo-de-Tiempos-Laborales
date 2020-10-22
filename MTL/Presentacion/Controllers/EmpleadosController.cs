@@ -9,11 +9,17 @@ namespace Presentacion.Controllers
     public class EmpleadosController : Controller
     {
         // GET: Empleados
-        public ActionResult Listar()
+        public ActionResult Listar_de_Admin()
         {
             ViewBag.Message = "Empleados";
             return View();
         }
+        public ActionResult Listar_de_Jefatura()
+        {
+            ViewBag.Message = "Empleados";
+            return View();
+        }
+
 
         // GET: Empleados/Details/5
         public ActionResult Detallar(int id)

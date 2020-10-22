@@ -12,28 +12,31 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
-    <link rel="stylesheet" type="text/css" href="@Url.Content("~/plugins/fontawesome-free/css/all.min.css")">
-    <link rel="stylesheet" type="text/css" href="@Url.Content("~/dist/css/adminlte.min.css")">
+
+    @Styles.Render("~/Content/adminltecss")
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/sweetalert2")
+    @Styles.Render("~/Content/fontawesome")
+
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
-    @Scripts.Render("~/bundles/modernizr")
+
 </head>
 
 <body class="hold-transition login-page">
 
-    <div class="login-box" style="width:30%">
+    <div class="login-box">
         <div class="login-logo">
             <h3 class="text-dark font-weight-bold">@ViewBag.Message</h3>
         </div>
 
-        <div class="card ">
+        <div class="card">
 
-            <div class="card-body login-card-body mb-3">
+            <div class="card-body login-card-body mb-4">
                 <h5 class="login-box-msg ">Inicie sesión para continuar.</h5>
-
-                <form class="m-4" action="@Url.Action("Sesion", "Login")">
+                <form class="m-3" onsubmit="return login(this)">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Usuario" required >
+                        <input type="text" class="form-control" id="usser" name="usser" placeholder="Usuario" required maxlength="20">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user-tie"></span>
@@ -41,7 +44,7 @@
                         </div>
                     </div>
                     <div class="input-group mb-4">
-                        <input type="password" class="form-control" placeholder="Contraseña" required>
+                        <input type="password" class="form-control" id="passw" name="passw" placeholder="Contraseña" required maxlength="20">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="icon-bar fas fa-lock"></span>
@@ -55,16 +58,22 @@
                 </form>
 
             </div>
-
         </div>
     </div>
 
 
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-    <script src="@Url.Content("~/Scripts/scriptsAlert.js")"></script>
+    @Scripts.Render("~/bundles/adminltejs")
+    @Scripts.Render("~/bundles/sweetalert2")
+    @Scripts.Render("~/bundles/ajax")
+    <script src="@Url.Content("~/Scripts/js/scriptsLogin.js")"></script>
 
 </body>
 </html>
+
+
+
+
+
+
 

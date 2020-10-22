@@ -75,6 +75,9 @@
   <ItemGroup>
     <Compile Include="ConexionAD\ConexionAD.cs" />
     <Compile Include="Implementaciones\AusenciaAD.cs" />
+    <Compile Include="Implementaciones\EmpleadoAD.cs" />
+    <Compile Include="Implementaciones\HorarioAD.cs" />
+    <Compile Include="Implementaciones\TiemposAD.cs" />
     <Compile Include="Implementaciones\TiposAusenciaAD.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

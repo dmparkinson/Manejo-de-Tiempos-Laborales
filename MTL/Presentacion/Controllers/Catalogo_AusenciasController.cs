@@ -14,6 +14,7 @@ namespace Presentacion.Controllers
             ViewBag.Message = "Catálogo de Ausencias";
             return View();
         }
+        
     }
         
 }

@@ -1,7 +1,15 @@
 ﻿@{
 
-    // varios layouts aqui, dependera de la variable de sesion el Layout que se obtenga con IF
-    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+    string type = (string)Session["usserType"];
+
+    if (type == "admin")
+    {
+        Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+    }
+    else if (type == "jefatura")
+    {
+        Layout = "~/Views/Shared/_Layout_Jefatura.cshtml";
+    }
 }
 
 

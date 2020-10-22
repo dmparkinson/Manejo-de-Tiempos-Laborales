@@ -1,8 +1,66 @@
-﻿
-
+﻿<!DOCTYPE html>
 <html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+
+
+    @Styles.Render("~/Content/adminltecss")
+    @Scripts.Render("~/bundles/modernizr")
+
+
+    @Styles.Render("~/Content/dataTables")
+    @Styles.Render("~/Content/responsive.datatables")
+
+    @Styles.Render("~/Content/sweetalert2")
+    @Styles.Render("~/Content/fontawesome")
+    <link rel="stylesheet" href="@Url.Content("https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css")">
+</head>
+
 <body>
-    <h1>Bienvenido al apartado de la jefatura</h1>
-    <p>The time is @DateTime.Now</p>
+
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-between">
+        <ul class="navbar-nav">
+            <li class="navbar-brand">
+                <img src="~/Content/images/Escudo OIJ.png" alt="logo" style="width:32px" />
+            </li>
+            <li class="nav-item dropdown ">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Históricos</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="@Url.Action("Listar_de_Jefatura", "Historico_Horarios")">Horarios </a>
+                    <a class="dropdown-item" href="@Url.Action("Listar_de_Jefatura", "Historico_Ausencias")">Ausencias</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Listar_de_Jefatura", "Empleados")">Empleados</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Ayuda</a>
+            </li>
+        </ul>
+        <div class="nav-item">
+            <a class="nav-link text-white" href="@Url.Action("Logout", "Login")">Cerrar Sesión</a>
+        </div>
+
+    </nav>
+
+
+
+    @RenderBody()
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/pooper")
+    @Scripts.Render("~/bundles/adminltejs")
+    @Scripts.Render("~/bundles/datatable")
+    @Scripts.Render("~/bundles/ajax")
+    @Scripts.Render("~/bundles/sweetalert2")
+    @Scripts.Render("~/bundles/alerts-sweetalert")
+
+    @RenderSection("scripts", required: false)
+
 </body>
 </html>
