@@ -2,25 +2,39 @@
 function login(btn) {
 
 
+    var dataUsser = {
+                    "name": $("#usser").val(),
+                    "password": $("#passw").val()
+                    };
 
-
-    std.usserName = $("#usser").val();
-    std.usserPass = $("#passw").val();
     $.ajax({
+        url: "Login/ValidateUsser",    // Nombre del controlador/ accion del controlador
         type: "POST",
-        url: '@Url.Action("("Sesion", "Login")',
-        data: '{std: ' + JSON.stringify(std) + '}',
+        data: JSON.stringify(dataUsser),
         dataType: "json",
-        contentType: "application/json; charset=utf-8",
-        success: function () {
-            alert("Data has been added successfully.");  
-           // LoadData();
+        contentType: "application/json",
+        success: function (response) {
+            if (response.success == true) { 
+                window.location.href = response.url;
+            }
+            else{
+                Swal.fire({
+                    title: 'Usuario no encontrado',
+                    text: 'El usuario o contraseña son incorrectos.',
+                    icon: 'warning'
+                })
+            }
         },
         error: function () {
-            alert("Error while inserting data");
-        }  
-    }); 
+            Swal.fire({
+                icon: 'error',
+                title: "Error inesperado",
+                text: "Ocurrio un error en el inicio de sesion, intente denuevo"
+            })
+        }
 
 
+        
+    });
     return false; //IMPORTANTE!!!!! no borrar, esto funciona para utilizar validaciones html5 junto a sweetalert
 }

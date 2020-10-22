@@ -17,14 +17,14 @@
                 </div>
 
                 <div class="card-body">
-                        <div class="form-group d-flex justify-content-between">
-                            <label class="font-weight-normal" for="tipo">Tipo:</label>
-                            <input type="text" class="form-control form-control-sm" id="tiop" placeholder="Ingrese el tipo de tiempo" required>
-                        </div>
+                    <div class="form-group d-flex justify-content-between">
+                        <label class="font-weight-normal" for="tipo">Tipo:</label>
+                        <input type="text" class="form-control form-control-sm" id="tiop" placeholder="Ingrese el tipo de tiempo" required>
+                    </div>
 
-                        <div class="row justify-content-center mt-2">
-                            <button class="btn btn-primary btn-sm" onclick="alertDatosInvalidos()">Guardar</button>
-                        </div>
+                    <div class="row justify-content-center mt-2">
+                        <button class="btn btn-primary btn-sm" onclick="alertDatosInvalidos()">Guardar</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -39,7 +39,7 @@
         <div class="col-12">
             <div class="d-flex justify-content-between mt-3">
                 <div class="col-6">
-                    <input type="search" id="search" placeholder="Buscar" class="form-control form-control-sm">
+                    <input type="search" id="searchInput" placeholder="Buscar" class="form-control form-control-sm">
                 </div>
                 <div>
                     <input type="button" value="Reporte" class="btn btn-secondary btn-sm">
@@ -52,40 +52,40 @@
                         <th>Acciones</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="contenidoTabla">
                     <tr>
                         <td>Entrada</td>
                         <td class="d-flex justify-content-center">
-                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-pen-square"></i> </button>
-                            <button class="btn btn-danger btn-sm" onclick="alertAdvertenciaEliminar()"><i class="fa fa-trash"></i> </button>
+                            <<a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
+                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
                         </td>
                     </tr>
                     <tr>
                         <td>Café mañana entrada</td>
                         <td class="d-flex justify-content-center">
-                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-pen-square"></i> </button>
-                            <button class="btn btn-danger btn-sm" onclick="alertAdvertenciaEliminar()"><i class="fa fa-trash"></i> </button>
+                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
+                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
                         </td>
                     </tr>
                     <tr>
                         <td>Café mañana salida</td>
                         <td class="d-flex justify-content-center">
-                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-pen-square"></i> </button>
-                            <button class="btn btn-danger btn-sm" onclick="alertAdvertenciaEliminar()"><i class="fa fa-trash"></i> </button>
+                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
+                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
                         </td>
                     </tr>
                     <tr>
                         <td>Almuerzo entrada</td>
                         <td class="d-flex justify-content-center">
-                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-pen-square"></i> </button>
-                            <button class="btn btn-danger btn-sm" onclick="alertAdvertenciaEliminar()"><i class="fa fa-trash"></i> </button>
+                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
+                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
                         </td>
                     </tr>
                     <tr>
                         <td>Almuerzo salida</td>
                         <td class="d-flex justify-content-center">
-                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-pen-square"></i> </button>
-                            <button class="btn btn-danger btn-sm" onclick="alertAdvertenciaEliminar()"><i class="fa fa-trash"></i> </button>
+                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
+                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
                         </td>
                     </tr>
                 </tbody>
@@ -102,36 +102,39 @@
 
 
 
-    <!-- Modal de editar -->
+<!-- Modal de editar -->
 
 
-    <div class="modal fade" id="modal-editar">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <form>
-                    <div class="modal-header">
-                        <h4 class="modal-title">Modificar tiempo laboral</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+<div class="modal fade" id="modal-editar">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form>
+                <div class="modal-header">
+                    <h4 class="modal-title">Modificar tiempo laboral</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="form-group ">
+                        <label class="font-weight-normal" for="tipoM">Tipo:</label>
+                        <input type="text" class="form-control form-control-sm" id="tipoM" required>
                     </div>
 
-                    <div class="modal-body">
-                        <div class="form-group ">
-                            <label class="font-weight-normal" for="tipoM">Tipo:</label>
-                            <input type="text" class="form-control form-control-sm" id="tipoM" required>
-                        </div>
-
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <div>
+                        <input type="submit" class="btn btn-info" value="Editar">
                     </div>
-                    <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <div>
-                            <input type="submit" class="btn btn-info" value="Editar">
-                            <button class="btn btn-danger" onclick="alertDatosInvalidos()">Eliminar</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
+</div>
+
+
+<script src="@Url.Content("~/Scripts/js/scriptsCatalogoTiempoL.js")"></script>
+
 

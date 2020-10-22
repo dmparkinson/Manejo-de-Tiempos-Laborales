@@ -9,7 +9,20 @@ namespace Presentacion.Controllers
     public class Empleado_HorariosController : Controller
     {
         // GET: Empleados_Horarios
-        public ActionResult Listar()
+        public ActionResult Listar_de_Admin()
+        {
+
+            ViewBag.Message = "Horarios de Empleado";
+            return View();
+        }
+
+        public ActionResult Listar_de_Jefatura()
+        {
+
+            ViewBag.Message = "Horarios de Empleado";
+            return View();
+        }
+        public ActionResult Listar_de_Empleado()
         {
 
             ViewBag.Message = "Horarios de Empleado";

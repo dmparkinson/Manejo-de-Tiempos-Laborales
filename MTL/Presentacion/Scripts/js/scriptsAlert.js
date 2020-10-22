@@ -1,38 +1,54 @@
-﻿
+﻿/* 
+ * 
+ * 
+ * 
+ * Script para plantilla de alertas
+ * 
+ * 
+ * 
+ */
 
 
-function alertErrorLogin() {
+// Alerta para advertencias en operaciones
+function alertWarning(titleText, message) {
     Swal.fire({
-        type: 'error',
-        title: 'Usuario inválido. ',
-        text: 'El usuario o la contraseña son incorrectas'
+        type: 'warning',
+        title: titleText,
+        text: message
     })
 }
 
 
 
-function alertDatosInvalidos() {
+// Alerta para errores en operaciones o del sistema
+function alertError(titleText, message) {
     Swal.fire({
         type: 'error',
-        title: 'Datos inválido. ',
-        text: 'Los datos que desea ingresar no son válidos.'
+        title: titleText,
+        text: message
     })
 }
 
 
-function alertDatosValidos() {
+
+
+// Alerta para datos ingresados correctamente, no posee botones
+function alertValid(titleText) {
     Swal.fire({
         position: 'top-end',
         type: 'success',
-        title: 'Datos ingresados correctamente.',
+        title: titleText,
         showConfirmButton: false,
-        timer: 3500
+        timer: 1500
     })
 }
 
 
 
-function alertAdvertenciaEliminar() {
+
+
+// Plantilla para eliminacion de datos
+function alertDeleted(titleText, message) {
     const swalWithBootstrapButtons = Swal.mixin({
         customClass: {
             confirmButton: 'btn btn-success',
@@ -42,8 +58,8 @@ function alertAdvertenciaEliminar() {
     })
 
     swalWithBootstrapButtons.fire({
-        title: '¿Seguro?',
-        text: "¿Desea eliminar los datos permanentemente?",
+        title: titleText,
+        text: message,
         type: 'warning',
         showCancelButton: true,
         confirmButtonText: 'Si',
