@@ -1,8 +1,12 @@
-﻿using System;
+﻿using Entidad;
+using AccesosDatos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AccesosDatos.Implementaciones;
+using Newtonsoft.Json;
 
 namespace Presentacion.Controllers
 {
@@ -24,7 +28,13 @@ namespace Presentacion.Controllers
         }
         public ActionResult Listar_de_Empleado()
         {
+            //debo listar el catalogo de tiempos
+            List<Horario> lista = new List<Horario>();
+            string listaH = new HorarioAD().listarHorarios();
+            lista = JsonConvert.DeserializeObject<List<Horario>>(listaH);
 
+
+            ViewBag.listaHorario = lista;
             ViewBag.Message = "Horarios de Empleado";
             return View();
         }

@@ -5,7 +5,7 @@
     string formatHour = "HH:mm:ss";
 }
 
-
+@model Entidad.Horario
 <div class="container flex-column">
     <h3>@ViewBag.Title</h3>
     <h5 class="text-secondary">@ViewBag.Message</h5>
@@ -27,52 +27,20 @@
                 <div>
                     <label class="font-weight-normal">Seleccione un tiempo:</label>
                     <div class="border border-secondary nav-pills" style="background-color: #f6f6f6">
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="optradio">Entrada
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="optradio">Salida café mañana
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="optradio">Regreso café mañana
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="optradio">Salida Almuerzo
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="optradio">Regreso Almuerzo
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="optradio">Salida café tarde
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="optradio">Regreso café tarde
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="optradio">Salida
-                            </label>
-                        </div>
+                        @foreach (Entidad.Horario temp in ViewBag.listaHorario)
+                        {
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" id="@temp.TC_Horario" value="@temp.TC_Horario" class="form-check-input" name="optradio">@temp.TC_Horario
+                                </label>
+                            </div>
+                        }
                     </div>
 
                 </div>
 
                 <div class="row justify-content-center mt-2">
-                    <button type="button" class="btn btn-primary btn-sm" onclick="alertDatosValidos()">Guardar</button>
+                    <button type="button" class="btn btn-primary btn-sm" onclick="registrarTiemposEmpleado()">Guardar</button>
                 </div>
             </div>
         </div>

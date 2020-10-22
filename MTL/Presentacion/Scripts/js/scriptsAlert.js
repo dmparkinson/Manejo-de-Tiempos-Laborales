@@ -84,5 +84,3 @@ function alertDeleted(titleText, message) {
         }
     })
 }
-
-

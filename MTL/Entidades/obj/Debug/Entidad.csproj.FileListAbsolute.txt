@@ -3,3 +3,9 @@ D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\MTL\Enti
 D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\MTL\Entidades\obj\Debug\Entidad.csproj.CoreCompileInputs.cache
 D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\MTL\Entidades\obj\Debug\Entidades.dll
 D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\MTL\Entidades\obj\Debug\Entidades.pdb
+C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\MTL\Entidades\bin\Debug\Entidades.dll
+C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\MTL\Entidades\bin\Debug\Entidades.pdb
+C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\MTL\Entidades\obj\Debug\Entidad.csprojAssemblyReference.cache
+C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\MTL\Entidades\obj\Debug\Entidad.csproj.CoreCompileInputs.cache
+C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\MTL\Entidades\obj\Debug\Entidades.dll
+C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\MTL\Entidades\obj\Debug\Entidades.pdb
