@@ -35,14 +35,11 @@
 
 
 
-
-
-
     <div class="row mt-3">
         <div class="col-12">
             <div class="d-flex justify-content-between mt-3">
                 <div class="col-6">
-                    <input type="search"  id="searchInput" placeholder="Buscar" class="form-control form-control-sm">
+                    <input type="search" id="searchInput" placeholder="Buscar" class="form-control form-control-sm">
                 </div>
                 <div>
                     <input type="button" value="Reporte" class="btn btn-secondary btn-sm">
@@ -56,42 +53,17 @@
                     </tr>
                 </thead>
                 <tbody id="contenidoTabla">
-                    <tr>
-                        <td>Enferdedad</td>
-                        <td class="d-flex justify-content-center">
-                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
-                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Embarazo</td>
-                        <td class="d-flex justify-content-center">
-                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
-                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Discapacidad</td>
-                        <td class="d-flex justify-content-center">
-                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
-                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Vacaciones</td>
-                        <td class="d-flex justify-content-center">
-                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
-                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Injustificada</td>
-                        <td class="d-flex justify-content-center">
-                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
-                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
-                        </td>
-                    </tr>
-                </tbody>
+
+                    @foreach (var item in ViewBag.ListaCatalogoAusencias) { 
+                        <tr>
+                            <td>@item</td>
+                            <td class="d-flex justify-content-center">
+                                <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
+                                <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
             </table>
         </div>
     </div>
@@ -137,4 +109,4 @@
         </div>
     </div>
 
-    <script src="@Url.Content("~/Scripts/js/scriptsCatalogoAusencias.js")"></script>
+ 

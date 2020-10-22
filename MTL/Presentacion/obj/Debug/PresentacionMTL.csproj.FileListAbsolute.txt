@@ -84,3 +84,9 @@ D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\MTL\Pres
 D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\MTL\Presentacion\obj\Debug\PresentacionMTL.csproj.CopyComplete
 D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\MTL\Presentacion\obj\Debug\Presentacion.dll
 D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\MTL\Presentacion\obj\Debug\Presentacion.pdb
+D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\MTL\Presentacion\bin\Entidades.dll
+D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\MTL\Presentacion\bin\ReglasNegocios.dll
+D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\MTL\Presentacion\bin\AccesosDatos.dll
+D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\MTL\Presentacion\bin\Entidades.pdb
+D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\MTL\Presentacion\bin\ReglasNegocios.pdb
+D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\MTL\Presentacion\bin\AccesosDatos.pdb

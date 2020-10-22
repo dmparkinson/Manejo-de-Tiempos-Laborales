@@ -22,15 +22,18 @@ namespace Presentacion.Controllers
 
 
         [HttpPost]
-        public JsonResult ValidateUsser(string name, string password)
+        public JsonResult LogIn(string name, string password)
         {
-            if (name == "admin" || name == "jefatura" || name == "empleado") // Si el usuario existe
+
+
+
+            if (name == "administrador" || name == "jefatura" || name == "estandar") // Si el usuario existe
             {
 
                 Session["usserName"] = name;
                 Session["usserType"] = name;
 
-                if (Session["usserType"].ToString() == "admin")
+                if (Session["usserType"].ToString() == "administrador")
                 {
                     return Json(new { success = true, url = Url.Action("Listar_de_Admin", "Historico_Horarios") });
                 }

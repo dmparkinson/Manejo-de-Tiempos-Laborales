@@ -71,6 +71,22 @@ namespace Presentacion
             bundles.Add(new StyleBundle("~/Content/fontawesome").Include(
                       "~/plugins/fontawesome-free/css/all.min.css"));
 
+
+            bundles.Add(new ScriptBundle("~/bundles/scripts").Include(
+                      "~/Scripts/js/scriptsCatalogoAusencias.js",
+                      "~/Scripts/js/scriptsCatalogoCircuitos.js",
+                      "~/Scripts/js/scriptsCatalogoOficina.js",
+                      "~/Scripts/js/scriptsCatalogoPuesto.js", 
+                      "~/Scripts/js/scriptsCatalogoRoles.js",
+                      "~/Scripts/js/scriptsCatalogoTiempoL.js",
+                      "~/Scripts/js/scriptsAusencias.js",
+                      "~/Scripts/js/scriptsHorarios.js",
+                      "~/Scripts/js/scriptsEmpleados.js",
+                      "~/Scripts/js/scriptsHistoricoAusencias.js",
+                      "~/Scripts/js/scriptsHistoricoHorarios.js"));
+
+
+            
         }
     }
 }
