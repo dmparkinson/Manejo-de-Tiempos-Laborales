@@ -42,7 +42,7 @@
         <div class="col-12">
             <div class="d-flex justify-content-between mt-3">
                 <div class="col-6">
-                    <input type="search" id="search" placeholder="Buscar" class="form-control form-control-sm">
+                    <input type="search"  id="searchInput" placeholder="Buscar" class="form-control form-control-sm">
                 </div>
                 <div>
                     <input type="button" value="Reporte" class="btn btn-secondary btn-sm">
@@ -55,40 +55,40 @@
                         <th>Acciones</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="contenidoTabla">
                     <tr>
                         <td>Enferdedad</td>
                         <td class="d-flex justify-content-center">
-                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-pen-square"></i> </button>
-                            <button class="btn btn-danger btn-sm" onclick="alertAdvertenciaEliminar()"><i class="fa fa-trash"></i> </button>
+                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
+                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
                         </td>
                     </tr>
                     <tr>
                         <td>Embarazo</td>
                         <td class="d-flex justify-content-center">
-                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-pen-square"></i> </button>
-                            <button class="btn btn-danger btn-sm" onclick="alertAdvertenciaEliminar()"><i class="fa fa-trash"></i> </button>
+                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
+                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
                         </td>
                     </tr>
                     <tr>
                         <td>Discapacidad</td>
                         <td class="d-flex justify-content-center">
-                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-pen-square"></i> </button>
-                            <button class="btn btn-danger btn-sm" onclick="alertAdvertenciaEliminar()"><i class="fa fa-trash"></i> </button>
+                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
+                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
                         </td>
                     </tr>
                     <tr>
                         <td>Vacaciones</td>
                         <td class="d-flex justify-content-center">
-                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-pen-square"></i> </button>
-                            <button class="btn btn-danger btn-sm" onclick="alertAdvertenciaEliminar()"><i class="fa fa-trash"></i> </button>
+                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
+                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
                         </td>
                     </tr>
                     <tr>
                         <td>Injustificada</td>
                         <td class="d-flex justify-content-center">
-                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-pen-square"></i> </button>
-                            <button class="btn btn-danger btn-sm" onclick="alertAdvertenciaEliminar()"><i class="fa fa-trash"></i> </button>
+                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
+                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
                         </td>
                     </tr>
                 </tbody>
@@ -130,7 +130,6 @@
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         <div>
                             <input type="submit" class="btn btn-info" value="Editar">
-                            <button class="btn btn-danger" onclick="alertDatosInvalidos()">Eliminar</button>
                         </div>
                     </div>
                 </form>
@@ -138,3 +137,4 @@
         </div>
     </div>
 
+    <script src="@Url.Content("~/Scripts/js/scriptsCatalogoAusencias.js")"></script>

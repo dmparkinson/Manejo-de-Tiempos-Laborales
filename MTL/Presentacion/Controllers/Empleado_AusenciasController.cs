@@ -9,7 +9,19 @@ namespace Presentacion.Controllers
     public class Empleado_AusenciasController : Controller
     {
         // GET: Empleado_Ausencias
-        public ActionResult Listar()
+        public ActionResult Listar_de_Admin()
+        {
+
+            ViewBag.Message = "Nombre empleado";
+            return View();
+        }
+        public ActionResult Listar_de_Jefatura()
+        {
+
+            ViewBag.Message = "Nombre empleado";
+            return View();
+        }
+        public ActionResult Listar_de_Empleado()
         {
 
             ViewBag.Message = "Nombre empleado";

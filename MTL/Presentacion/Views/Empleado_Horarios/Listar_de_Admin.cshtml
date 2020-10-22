@@ -1,0 +1,228 @@
+﻿@{
+    ViewBag.Title = "Horarios de";
+
+    string formatDay = "dd-MM-yyyy";
+    string formatHour = "HH:mm:ss";
+}
+
+
+<div class="container flex-column">
+    <h3>@ViewBag.Title</h3>
+    <h5 class="text-secondary">@ViewBag.Message</h5>
+</div>
+
+<div class="row justify-content-around ">
+
+    <div class="container mt-5 col-3">
+        <div class="card" >
+            <div class="card-header">
+                <h5 class="card-tittle">Marcar Horario</h5>
+            </div>
+
+            <div class="card-body">
+                <div>
+                    <label class="font-weight-normal"><i class="far fa-calendar-alt"></i>Fecha actual: @DateTime.Now.ToString(formatDay) &nbsp </label>&nbsp
+                    <label class="font-weight-normal"><i class="far fa-clock"></i> Hora actual:  @DateTime.Now.ToString(formatHour) </label>
+                </div>
+                <div>
+                    <label class="font-weight-normal">Seleccione un tiempo:</label>
+                    <div class="border border-secondary nav-pills" style="background-color: #f6f6f6">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="optradio">Entrada
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="optradio">Salida café mañana
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="optradio">Regreso café mañana
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="optradio">Salida Almuerzo
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="optradio">Regreso Almuerzo
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="optradio">Salida café tarde
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="optradio">Regreso café tarde
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="optradio">Salida
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row justify-content-center mt-2">
+                    <button type="button" class="btn btn-primary btn-sm" onclick="alertDatosValidos()">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container col-6" >
+        <div class=" row justify-content-center">
+        <div class="flex-column">
+            <div class="d-flex flex-wrap">
+                <div class="form-group ">
+                    <label class="font-weight-normal" for="salida">Fecha salida:</label>
+                    <input type="date" class="form-control form-control-sm" id="salida">
+                </div>
+                <div class="form-group">
+                    <label class="font-weight-normal" for="regreso">Fecha regreso:</label>
+                    <input type="date" class="form-control form-control-sm" id="regreso">
+                </div>
+                <div class="form-group">
+                    <label class="font-weight-normal" for="motivo">Motivo:</label>
+
+                    <select class="form-control form-control-sm" id="motivo">
+                        <option>Enfermedad</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div >
+            <div class="d-flex justify-content-between mt-3">
+                <div class="col-6">
+                    <input type="button" value="Filtrar" class="btn btn-info btn-sm">
+                    <input type="button" value="Limpiar" class="btn btn-danger btn-sm">
+                </div>
+                <div>
+                    <input type="button" value="Reporte" class="btn btn-secondary">
+                </div>
+            </div>
+            <table id="table" class="table table-bordered table-hover">
+                <thead class="thead-dark text-center">
+                    <tr>
+                        <th>Motivo</th>
+                        <th>Fecha salida</th>
+                        <th>Fecha regreso</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="contenidoTabla">
+                    <tr>
+                        <td>Motivo</td>
+                        <td>06-08-2020</td>
+                        <td>06-09-2020</td>
+                        <td class="d-flex justify-content-center">
+                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
+                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
+                        </td>
+                    </tr>
+                    <tr id="contenidoTabla">
+                        <td>Enfermedad</td>
+                        <td> 06-08-2020</td>
+                        <td>06-09-2020</td>
+                        <td class="d-flex justify-content-center">
+                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
+                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Enfermedad</td>
+                        <td>06-08-2020</td>
+                        <td>06-09-2020</td>
+                        <td class="d-flex justify-content-center">
+                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
+                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Enfermedad</td>
+                        <td>06-08-2020</td>
+                        <td>06-09-2020</td>
+                        <td class="d-flex justify-content-center">
+                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
+                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> Enfermedad</td>
+                        <td>06-08-2020</td>
+                        <td>06-09-2020</td>
+                        <td class="d-flex justify-content-center">
+                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
+                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+    <!-- Modal de editar -->
+
+
+    <div class="modal fade" id="modal-editar">
+        <div class="modal-dialog">
+            <form>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Modificar Ausencia</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="form-group ">
+                            <label class="font-weight-normal" for="salida">Fecha de salida:</label>
+                            <input type="date" class="form-control form-control-sm" id="salida" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="font-weight-normal" for="regreso">Fecha de regreso:</label>
+                            <input type="date" class="form-control form-control-sm" id="regreso" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="font-weight-normal" for="motivo">Motivo:</label>
+                            <select class="form-control form-control-sm" id="motivo">
+                                <option selected="selected">Enfermedad</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <div>
+                            <input type="submit" value="Editar" class="btn btn-info" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
+
+<script src="@Url.Content("~/Scripts/js/scriptsHorarios.js")"></script>
