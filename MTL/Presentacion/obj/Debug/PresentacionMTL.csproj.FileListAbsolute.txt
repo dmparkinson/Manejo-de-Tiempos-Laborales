@@ -174,3 +174,5 @@ C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\MTL\Prese
 C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\MTL\Presentacion\bin\Entidades.dll
 C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\MTL\Presentacion\bin\AccesosDatos.pdb
 C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\MTL\Presentacion\bin\Entidades.pdb
+C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\MTL\Presentacion\bin\ReglasNegocios.dll
+C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\MTL\Presentacion\bin\ReglasNegocios.pdb

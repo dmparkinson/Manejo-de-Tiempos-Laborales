@@ -15,7 +15,7 @@ namespace AccesosDatos.Implementaciones
 
             try
             {
-                SqlDataReader dr = consultar($"EXEC sp_listar_Tipo_Ausencias");
+                SqlDataReader dr = consultar($"exec sp_listar_Tipo_Ausencias");
                 if (dr != null)
                 {
                     while (dr.Read())

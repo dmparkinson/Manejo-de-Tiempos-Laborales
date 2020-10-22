@@ -38,7 +38,7 @@ namespace AccesosDatos.Implementaciones
             return JsonConvert.SerializeObject(h);
         }
 
-        public string listarHorarios(Horario horario)
+        public string listarHorarios()
         {
             List<Horario> lista = new List<Horario>();
             SqlDataReader dataReader = consultar($"exec sp_listar_horarios");
@@ -47,7 +47,7 @@ namespace AccesosDatos.Implementaciones
             {
                 Horario h = new Horario();
                 h.TC_Horario = dataReader["TC_Horario"].ToString();
-                h.TH_Duracion = int.Parse(dataReader["TH_Duracion"].ToString());
+                //h.TH_Duracion = int.Parse(dataReader["TH_Duracion"].ToString());
                 lista.Add(h);
             }
 

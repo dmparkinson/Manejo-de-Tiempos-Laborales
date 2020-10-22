@@ -5,7 +5,7 @@
     string formatHour = "HH:mm:ss";
 }
 
-@model Entidades.Horario
+@model Entidad.Horario
 <div class="container flex-column">
     <h3>@ViewBag.Title</h3>
     <h5 class="text-secondary">@ViewBag.Message</h5>
@@ -27,7 +27,7 @@
                 <div>
                     <label class="font-weight-normal">Seleccione un tiempo:</label>
                     <div class="border border-secondary nav-pills" style="background-color: #f6f6f6">
-                        @foreach (Entidades.Horario temp in ViewBag.listaHorario)
+                        @foreach (Entidad.Horario temp in ViewBag.listaHorario)
                         {
                             <div class="form-check">
                                 <label class="form-check-label">
@@ -40,7 +40,7 @@
                 </div>
 
                 <div class="row justify-content-center mt-2">
-                    <button type="button" class="btn btn-primary btn-sm" onclick="alertDatosValidos()">Guardar</button>
+                    <button type="button" class="btn btn-primary btn-sm" onclick="registrarTiemposEmpleado()">Guardar</button>
                 </div>
             </div>
         </div>

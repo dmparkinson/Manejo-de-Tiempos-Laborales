@@ -35,3 +35,9 @@
     })
 }
 
+
+function registrarTiemposEmpleado() {
+    if (document.getElementById("Entrada").checked) {
+        
+    }
+}

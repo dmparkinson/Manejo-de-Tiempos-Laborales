@@ -1,4 +1,4 @@
-﻿using Entidades;
+﻿using Entidad;
 using AccesosDatos;
 using System;
 using System.Collections.Generic;
