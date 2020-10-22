@@ -8,7 +8,7 @@ function login(btn) {
                     };
 
     $.ajax({
-        url: "Login/ValidateUsser",    // Nombre del controlador/ accion del controlador
+        url: "Login/LogIn",    // Nombre del controlador/ accion del controlador
         type: "POST",
         data: JSON.stringify(dataUsser),
         dataType: "json",
@@ -29,7 +29,7 @@ function login(btn) {
             Swal.fire({
                 icon: 'error',
                 title: "Error inesperado",
-                text: "Ocurrio un error en el inicio de sesion, intente denuevo"
+                text: "Ocurrio un error en el inicio de sesion, intente denuevo."
             })
         }
 

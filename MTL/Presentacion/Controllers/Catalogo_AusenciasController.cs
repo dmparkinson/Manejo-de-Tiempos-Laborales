@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ReglasNegocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,10 +12,35 @@ namespace Presentacion.Controllers
         // GET: Catalogo_Ausencias
         public ActionResult Listar()
         {
-            ViewBag.Message = "Catálogo de Ausencias";
+            TipoAusenciaLN tAusencia = new TipoAusenciaLN();
+
+            List<string> lista = tAusencia.ListarTipoAusencia();
+            ViewBag.ListaCatalogoAusencias = lista;
+            ViewBag.Respuesta = "";
             return View();
         }
-        
+
+
+
+        [HttpPost]
+        public JsonResult  Insertar()
+        {
+            return Json(new { success = false });
+        }
+
+        [HttpPost]
+        public JsonResult  Editar()
+        {
+            return Json(new { success = false });
+        }
+
+
+        [HttpPost]
+        public JsonResult  Eliminar()
+        {
+            return Json(new { success = false });
+        }
+
     }
         
 }

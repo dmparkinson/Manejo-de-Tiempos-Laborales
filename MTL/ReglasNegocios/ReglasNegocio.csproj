@@ -43,6 +43,17 @@
   <ItemGroup>
     <Compile Include="Login.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TipoAusenciaLN.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AccesosDatos\AccesosDatos.csproj">
+      <Project>{9763b80a-0fe5-4187-8dbc-ef5a53b1bd49}</Project>
+      <Name>AccesosDatos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entidades\Entidad.csproj">
+      <Project>{9b17d60c-852a-4838-b4ce-419a951b7f54}</Project>
+      <Name>Entidad</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
