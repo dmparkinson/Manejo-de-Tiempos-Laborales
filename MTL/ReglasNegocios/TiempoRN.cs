@@ -9,6 +9,7 @@ namespace ReglasNegocios
 {
     class TiempoRN
     {
+        public TiempoRN() {}
         public void verificarRegistro(string tiempo)
         {
             TiemposAD data = new TiemposAD();

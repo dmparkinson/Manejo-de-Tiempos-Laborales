@@ -1,5 +1,6 @@
 ﻿using Entidad;
 using AccesosDatos;
+using ReglasNegocios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,6 +55,7 @@ namespace Presentacion.Controllers
             t.TN_Id_Usuario = int.Parse(Session["UsserID"].ToString());
 
             //acá hay que aplicar las reglas de negocio
+            //TiempoRN rn = new TiempoRN();
             
             //si las reglas de negocio dan el aval para registrar
             //se llama al acceso de datos
