@@ -33,18 +33,31 @@ namespace Presentacion.Controllers
             string listaH = new HorarioAD().listarHorarios();
             lista = JsonConvert.DeserializeObject<List<Horario>>(listaH);
 
+            List<Tiempo> listaT = new List<Tiempo>();
+            string lisT = new TiemposAD().listarTiempoUsuario();
+            listaT = JsonConvert.DeserializeObject<List<Tiempo>>(lisT);
+
 
             ViewBag.listaHorario = lista;
+            ViewBag.listaTiempo = listaT;
             ViewBag.Message = Session["UsserName"].ToString() +" "+ Session["UsserSurname1"].ToString() + " " + Session["UsserSurname2"].ToString();
             return View();
         }
 
 
         //registramos el tiempo de un empleado
-        public void registrarTiemposEmpleado(string fecha, string hora, string tiempo) {
+        public int registrarTiemposEmpleado(string tiempo) {
             char[] tipo = tiempo.ToCharArray();
+            Tiempo t = new Tiempo();
+            t.TC_Horario = tiempo;
+            t.TC_Tipo = tipo[0].ToString();
+            t.TN_Id_Usuario = int.Parse(Session["UsserID"].ToString());
 
-
+            //acá hay que aplicar las reglas de negocio
+            
+            //si las reglas de negocio dan el aval para registrar
+            //se llama al acceso de datos
+            return new TiemposAD().registrarTiempo(t);
         }
 
 

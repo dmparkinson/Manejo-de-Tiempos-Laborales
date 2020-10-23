@@ -35,26 +35,6 @@
     })
 }
 
-
-function registrarTiemposEmpleado() {
-
-    var data = "";
-
-    
-
-    if (document.getElementById("Entrada").checked) {
-        
-    } else {
-        Swal.fire({
-            position: 'center',
-            type: 'warning',
-            title: 'Seleccione uno',
-            showConfirmButton: false,
-            timer: 4000
-        })
-    }
-}
-
 function registrarTiemposEmpleado() {
     var i
     var select = "";
@@ -67,20 +47,16 @@ function registrarTiemposEmpleado() {
 
     if (select == "") {
         Swal.fire({
-            position: 'center',
             type: 'warning',
-            title: 'Debe seleccionar un elemento',
-            showConfirmButton: false,
-            timer: 4000
+            title: 'Seleccione un tiempo',
+            text: message
         })
     } else {
-        var fecha = document.getElementById('fechaA').value;
-        var hora = document.getElementById('horaA').value;
-        parametros = { "horario": button.id };
+        parametros = { "tiempo": select };
         $.ajax(
             {
                 data: parametros,
-                url: '/Empleado_Horarios/lista_tiempos_for_js',
+                url: '/Empleado_Horarios/registrarTiemposEmpleado',
                 type: 'post',
                 beforeSend: function () {
                     var div = document.createElement('div');
@@ -93,7 +69,7 @@ function registrarTiemposEmpleado() {
 
                     var newSpan = document.createElement('strong');
                     //newSpan.setAttribute('class', 'sr-only');
-                    newSpan.innerHTML = 'Confirmando...';
+                    newSpan.innerHTML = 'Registrando...';
 
                     div.appendChild(divSpin);
                     div.appendChild(newSpan);
@@ -101,8 +77,20 @@ function registrarTiemposEmpleado() {
                     document.getElementById('respuesta').appendChild(div);
                 }, //antes de enviar
                 success: function (response) {
-
-
+                    document.getElementById('respuesta').innerHTML = "";
+                    if (response == 1) {
+                        Swal.fire({
+                            type: 'success',
+                            title: 'Registrado',
+                            text: 'Registro realizado correctamente, recargue la página para ver los cambios'
+                        })
+                    } else {
+                        Swal.fire({
+                            type: 'warning',
+                            title: 'Error',
+                            text: 'Ha ocurrido un error, asegúrese que el registro no existe'
+                        })
+                    }
 
                 } //se ha enviado
             }
