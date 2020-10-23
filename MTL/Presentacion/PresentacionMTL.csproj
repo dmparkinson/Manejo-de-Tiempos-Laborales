@@ -164,7 +164,7 @@
     <Content Include="Scripts\js\scriptsCatalogoRoles.js" />
     <Content Include="Scripts\js\scriptsCatalogoPuesto.js" />
     <Content Include="Scripts\js\scriptsCatalogoOficina.js" />
-    <Content Include="Scripts\js\scriptsCatalogoAusencia.js" />
+    <Content Include="Scripts\js\scriptsCatalogoAusencias.js" />
     <Content Include="Scripts\js\scriptsCatalogoCircuitos.js" />
     <Content Include="Scripts\js\scriptsHistoricoHorarios.js" />
     <Content Include="Scripts\js\scriptsLogin.js" />
