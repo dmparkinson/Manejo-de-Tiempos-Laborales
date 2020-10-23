@@ -39,6 +39,16 @@ namespace Presentacion.Controllers
             return View();
         }
 
+
+        //registramos el tiempo de un empleado
+        public void registrarTiemposEmpleado(string fecha, string hora, string tiempo) {
+            char[] tipo = tiempo.ToCharArray();
+
+
+        }
+
+
+
         // GET: Empleados_Horarios/Details/5
         public ActionResult Details(int id)
         {
