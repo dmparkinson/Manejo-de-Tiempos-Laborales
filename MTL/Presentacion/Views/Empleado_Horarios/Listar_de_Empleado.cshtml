@@ -21,27 +21,30 @@
 
             <div class="card-body">
                 <div>
-                    <label class="font-weight-normal"><i class="far fa-calendar-alt"></i>Fecha actual: @DateTime.Now.ToString(formatDay) &nbsp </label>&nbsp
-                    <label class="font-weight-normal"><i class="far fa-clock"></i> Hora actual:  @DateTime.Now.ToString(formatHour) </label>
+                    <label class="font-weight-normal"><i class="far fa-calendar-alt"></i>Fecha actual: <span id="fechaA">@DateTime.Now.ToString(formatDay)</span> &nbsp </label>&nbsp
+                    <label class="font-weight-normal"><i class="far fa-clock"></i> Hora actual:  <span id="horaA">@DateTime.Now.ToString(formatHour)</span> </label>
                 </div>
                 <div>
                     <label class="font-weight-normal">Seleccione un tiempo:</label>
                     <div class="border border-secondary nav-pills" style="background-color: #f6f6f6">
-                        @foreach (Entidad.Horario temp in ViewBag.listaHorario)
-                        {
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="radio" id="@temp.TC_Horario" value="@temp.TC_Horario" class="form-check-input" name="optradio">@temp.TC_Horario
-                                </label>
-                            </div>
-                        }
+                        <form name="tiemposF">
+                            @foreach (Entidad.Horario temp in ViewBag.listaHorario)
+                            {
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="radio" id="@temp.TC_Horario" value="@temp.TC_Horario" class="form-check-input" name="optradio">@temp.TC_Horario
+                                    </label>
+                                </div>
+                            }
+                        </form>
                     </div>
 
                 </div>
 
                 <div class="row justify-content-center mt-2">
-                    <button type="button" class="btn btn-primary btn-sm" onclick="registrarTiemposEmpleado()">Guardar</button>
+                    <button id="botonG" type="button" class="btn btn-primary btn-sm" onclick="registrarTiemposEmpleado()">Guardar</button>
                 </div>
+                <br /> <span id="respuesta"></span>
             </div>
         </div>
     </div>
