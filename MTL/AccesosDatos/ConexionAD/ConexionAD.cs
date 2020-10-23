@@ -69,5 +69,34 @@ namespace AccesosDatos.ConexionAD
             }
             return salida;
         }
+
+        public int executing(string sentencia) {
+            int salida = 0;
+            SqlDataReader dr = null;
+            try
+            {
+                conectar();
+                con.Open();
+                SqlCommand cmd = new SqlCommand(sentencia, con);
+                dr = cmd.ExecuteReader();
+
+                if (dr == null){
+                    salida = 0;
+                }
+                else {
+                    while (dr.Read()) {
+                        salida = int.Parse(dr[0].ToString());
+                    }
+                }
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine("Error en ejecutar " + e);
+                salida = 0;
+                con.Close();
+            }
+
+            return salida;
+        }
     }
 }

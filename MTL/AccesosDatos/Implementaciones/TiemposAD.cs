@@ -11,16 +11,16 @@ namespace AccesosDatos.Implementaciones
     public class TiemposAD : ConexionAD.ConexionAD
     {
         public int registrarTiempo(Tiempo tiempo) {
-            return ejecutar($"exec sp_registrar_tiempo_usuario '{tiempo.TC_Tipo}', '{tiempo.TC_Horario}', {tiempo.TN_Id_Usuario}");
+            return executing($"exec sp_registrar_tiempo_usuario '{tiempo.TC_Tipo}', '{tiempo.TC_Horario}', {tiempo.TN_Id_Usuario}");
         }
 
         public int eliminarTiempo(int idTiempo){
-            return ejecutar($"exec sp_eliminar_tiempo_usuario {idTiempo}");
+            return executing($"exec sp_eliminar_tiempo_usuario {idTiempo}");
         }
 
         public int actualizarTiempo(Tiempo tiempo)
         {
-            return ejecutar($"exec sp_eliminar_tiempo_usuario '{tiempo.TC_Tipo}', '{tiempo.TC_Horario}', {tiempo.TN_Id_Usuario}");
+            return executing($"exec sp_eliminar_tiempo_usuario '{tiempo.TC_Tipo}', '{tiempo.TC_Horario}', {tiempo.TN_Id_Usuario}");
         }
 
         //lista todos los tiempos de un solo usuario
@@ -64,7 +64,7 @@ namespace AccesosDatos.Implementaciones
 
 
         //lista todos los tiempos de todos los usuarios
-        public string listarTiempoUsuario(Tiempo tiempo)
+        public string listarTiempoUsuario()
         {
             List<Tiempo> lista = new List<Tiempo>();
             SqlDataReader dataReader = consultar($"exec sp_listar_tiempo_usuario");
@@ -72,7 +72,8 @@ namespace AccesosDatos.Implementaciones
             while (dataReader.Read())
             {
                 Tiempo t = new Tiempo();
-                t.TF_Fecha = dataReader["TF_Fecha"].ToString();
+                string[] fechas = dataReader["TF_Fecha"].ToString().Split(' ');
+                t.TF_Fecha = fechas[0];
                 t.TH_Hora = dataReader["TH_Hora"].ToString();
                 t.TC_Tipo = dataReader["TC_Tipo"].ToString();
                 t.TC_Horario = dataReader["TC_Horario"].ToString();
@@ -82,6 +83,12 @@ namespace AccesosDatos.Implementaciones
             }
 
             return JsonConvert.SerializeObject(lista);
+        }
+
+        public string listarPorFechaTiempoUsuario(int idEmpleado, string fechaActual) {
+
+
+            return "";
         }
     }
 }
