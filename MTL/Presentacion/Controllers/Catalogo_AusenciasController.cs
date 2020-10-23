@@ -41,6 +41,9 @@ namespace Presentacion.Controllers
         }
 
 
+
+
+
         [HttpPost]
         public JsonResult  Eliminar(string tipoAusencia)
         {
@@ -48,12 +51,19 @@ namespace Presentacion.Controllers
             TipoAusenciaLN tAusencia = new TipoAusenciaLN();
             int respuesta = tAusencia.EliminarTipoAusencia(tipoAusencia);
 
-            if (respuesta == -1)
+            if (respuesta == 0) // El tipo de ausencia no se encuentra en el sistema
             {
-                return Json(new { success = false });
+                return Json(new { success = false, deleted = false });
             }
-            else {
-                return Json(new { success = true });
+            else if(respuesta == 1)  // El tipo de ausencia si se encontro y se elimino exitosamente
+            {
+
+
+                return Json(new { success = true, deleted = true});
+            }
+            else  // El tipo de ausencia si se encontro pero se encuentra relacionado asi que no se elimino
+            {
+                return Json(new { success = true, deleted = false  });
             }
         }
 

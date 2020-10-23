@@ -6,11 +6,6 @@ var listadoBuscar = []; // Datos del buscador, buscan en la listaFiltro
 $(document).ready(function () {
     
     //listado = localStorage.getItme("Listado");
-
-
-    
-
-
     
     var table = $('#table').DataTable({
         "searching": false,
@@ -26,7 +21,7 @@ $(document).ready(function () {
 
 
 $("#searchInput").on("keyup", function () {
-    console.log("Entro");
+ 
     filter();
 });
 
@@ -45,6 +40,8 @@ function Somefilter() {
     }
     filter();
 }
+
+
 function filter() {
     var value = $("#searchInput").val().toLowerCase();
     $("#contenidoTabla tr").filter(function () {

@@ -95,13 +95,15 @@ namespace AccesosDatos.Implementaciones
             return salida;
         }
 
-        public int deleteTipoAusencia(string nombre)
+
+
+
+        public int deleteTipoAusencia(string _nombre)
         {
             int salida = 0;
-
             try
             {
-                SqlDataReader dr = consultar("EXEC delete_tipo_ausencia '" + nombre + "'");
+                SqlDataReader dr = consultar($"EXEC delete_tipo_ausencia '{_nombre }'");
                 dr.Read();
                 salida = int.Parse(dr[0].ToString());
             }

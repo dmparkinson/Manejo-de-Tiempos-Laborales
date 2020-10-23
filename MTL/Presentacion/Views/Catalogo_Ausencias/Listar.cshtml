@@ -18,14 +18,14 @@
                 </div>
 
                 <div class="card-body">
-                    <form>
+                    <form >
                         <div class="form-group d-flex justify-content-between">
                             <label class="font-weight-normal" for="motivoA">Motivo:</label>
-                            <input type="text" class="form-control form-control-sm" id="motivoA" placeholder="Ingrese motivo de ausencia" required>
+                            <input type="text" class="form-control form-control-sm" id="motivoA" placeholder="Ingrese motivo de ausencia" required pattern="[A-Za-z/n]">
                         </div>
 
                         <div class="row justify-content-center mt-2">
-                            <button type="submit" class="btn btn-primary btn-sm">Guardar</button>
+                            <button type="submit" class="btn btn-primary btn-sm" onclick="agregarTipoAusencia()">Guardar</button>
                         </div>
                     </form>
                 </div>
@@ -33,6 +33,7 @@
         </div>
     </div>
 
+    <div id="prueba"></div>
 
 
     <div class="row mt-3">
@@ -45,7 +46,7 @@
                     <input type="button" value="Reporte" class="btn btn-secondary btn-sm">
                 </div>
             </div>
-            <table id="example1" class="table table-bordered table-hover">
+            <table id="table" class="table table-bordered table-hover">
                 <thead class="thead-dark text-center">
                     <tr>
                         <th>Motivo</th>
@@ -57,9 +58,12 @@
                     @foreach (var item in ViewBag.ListaCatalogoAusencias) { 
                         <tr>
                             <td>@item.TC_Tipo_Ausencia</td>
-                            <td class="d-flex justify-content-center">
-                                <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
-                                <a onclick="eliminar('@item.TC_Tipo_Ausencia')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
+                            <td>
+                                <div class="d-flex justify-content-center">
+                                    <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
+                                    <a onclick="eliminarTipoAusencia('@item.TC_Tipo_Ausencia', this)" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
+                                </div>
+                               
                             </td>
                         </tr>
                         }
