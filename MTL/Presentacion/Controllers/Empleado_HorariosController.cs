@@ -35,7 +35,7 @@ namespace Presentacion.Controllers
 
 
             ViewBag.listaHorario = lista;
-            ViewBag.Message = "Horarios de Empleado";
+            ViewBag.Message = Session["UsserName"].ToString() +" "+ Session["UsserSurname1"].ToString() + " " + Session["UsserSurname2"].ToString();
             return View();
         }
 
