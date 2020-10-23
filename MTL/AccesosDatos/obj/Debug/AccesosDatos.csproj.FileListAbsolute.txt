@@ -9,3 +9,14 @@ C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\MTL\Acces
 C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\MTL\AccesosDatos\obj\Debug\AccesosDatos.csproj.CopyComplete
 C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\MTL\AccesosDatos\obj\Debug\AccesosDatos.dll
 C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\MTL\AccesosDatos\obj\Debug\AccesosDatos.pdb
+D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\MTL\AccesosDatos\bin\Debug\AccesosDatos.dll
+D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\MTL\AccesosDatos\bin\Debug\AccesosDatos.pdb
+D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\MTL\AccesosDatos\bin\Debug\Entidades.dll
+D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\MTL\AccesosDatos\bin\Debug\Newtonsoft.Json.dll
+D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\MTL\AccesosDatos\bin\Debug\Entidades.pdb
+D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\MTL\AccesosDatos\bin\Debug\Newtonsoft.Json.xml
+D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\MTL\AccesosDatos\obj\Debug\AccesosDatos.csprojAssemblyReference.cache
+D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\MTL\AccesosDatos\obj\Debug\AccesosDatos.csproj.CoreCompileInputs.cache
+D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\MTL\AccesosDatos\obj\Debug\AccesosDatos.csproj.CopyComplete
+D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\MTL\AccesosDatos\obj\Debug\AccesosDatos.dll
+D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\MTL\AccesosDatos\obj\Debug\AccesosDatos.pdb

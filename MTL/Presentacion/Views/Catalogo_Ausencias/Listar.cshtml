@@ -56,10 +56,10 @@
 
                     @foreach (var item in ViewBag.ListaCatalogoAusencias) { 
                         <tr>
-                            <td>@item</td>
+                            <td>@item.TC_Tipo_Ausencia</td>
                             <td class="d-flex justify-content-center">
                                 <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
-                                <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
+                                <a onclick="eliminar('@item.TC_Tipo_Ausencia')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
                             </td>
                         </tr>
                         }

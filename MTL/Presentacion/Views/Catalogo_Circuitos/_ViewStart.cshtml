@@ -2,11 +2,11 @@
 
     string type = (string)Session["usserType"];
 
-    if (type == "administrador")
+    if (type == "Administración")
     {
         Layout = "~/Views/Shared/_Layout_Admin.cshtml";
     }
-    else if (type == "jefatura")
+    else if (type == "Jefatura")
     {
         Layout = "~/Views/Shared/_Layout_Jefatura.cshtml";
     }

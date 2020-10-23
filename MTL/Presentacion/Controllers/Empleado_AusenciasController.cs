@@ -12,19 +12,17 @@ namespace Presentacion.Controllers
         public ActionResult Listar_de_Admin()
         {
 
-            ViewBag.Message = "Nombre empleado";
             return View();
         }
         public ActionResult Listar_de_Jefatura()
         {
 
-            ViewBag.Message = "Nombre empleado";
             return View();
         }
         public ActionResult Listar_de_Empleado()
         {
 
-            ViewBag.Message = "Nombre empleado";
+            ViewBag.Message = Session["UsserName"].ToString() + " " + Session["UsserSurname1"].ToString() + " " + Session["UsserSurname2"].ToString();
             return View();
         }
 

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Entidad;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 
@@ -9,34 +10,18 @@ namespace AccesosDatos.Implementaciones
 
         
 
-        public List<string> listarTiposAusencia()
+        public string listarTiposAusencia()
         {
-            List<string> data = new List<string>();
-
-            try
+            List<TipoAusencia> lista = new List<TipoAusencia>();
+            SqlDataReader dataReader = consultar($"exec sp_listar_Tipo_Ausencias");
+            while (dataReader.Read())
             {
-                SqlDataReader dr = consultar($"exec sp_listar_Tipo_Ausencias");
-                if (dr != null)
-                {
-                    while (dr.Read())
-                    {
-                        string json = JsonConvert.SerializeObject(new
-                        {
-                            tAusencia = dr["TC_Tipo_Ausencia"].ToString()
-                    });
-                        data.Add(json);
-                    }
-                }
-                else
-                {
-                    data.Add("vacio");
-                }
+                TipoAusencia tAusencia = new TipoAusencia();
+                tAusencia.TC_Tipo_Ausencia = dataReader["TC_Tipo_Ausencia"].ToString();
+                lista.Add(tAusencia);
             }
-            catch (SqlException e)
-            {
-                data.Add("error");
-            }
-            return data;
+            return JsonConvert.SerializeObject(lista);
+            
         }
 
 

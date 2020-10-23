@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Entidad;
+using Newtonsoft.Json;
+using ReglasNegocios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -25,19 +28,28 @@ namespace Presentacion.Controllers
         public JsonResult LogIn(string name, string password)
         {
 
+            // Llamado a negocio
+
+            LoginLN login = new LoginLN();
+
+            Empleado empleado =  JsonConvert.DeserializeObject<Empleado>(login.LoginUsser(name, password));
 
 
-            if (name == "administrador" || name == "jefatura" || name == "estandar") // Si el usuario existe
+            if (empleado.TC_Tipo_Usuario == "Administración" || empleado.TC_Tipo_Usuario == "Jefatura" || empleado.TC_Tipo_Usuario == "Estándar") // Si el usuario existe
             {
 
-                Session["usserName"] = name;
-                Session["usserType"] = name;
+                Session["UsserName"] = empleado.TC_Nombre_Usuario;
+                Session["UsserSurname1"] = empleado.TC_Primer_Apellido;
+                Session["UsserSurname2"] = empleado.TC_Segundo_Apellido;
+                Session["UsserID"] = empleado.TN_Id_Usuario;
+                Session["UsserPassword"] = empleado.TC_Contrasena;
+                Session["UsserType"] = empleado.TC_Tipo_Usuario;
 
-                if (Session["usserType"].ToString() == "administrador")
+                if (Session["UsserType"].ToString() == "Administración")
                 {
                     return Json(new { success = true, url = Url.Action("Listar_de_Admin", "Historico_Horarios") });
                 }
-                else if (Session["usserType"].ToString() == "jefatura")
+                else if (Session["usserType"].ToString() == "Jefatura")
                 {
                     return Json(new { success = true, url = Url.Action("Listar_de_Jefatura", "Historico_Horarios") });
                 }
@@ -46,11 +58,17 @@ namespace Presentacion.Controllers
                     return Json(new { success = true, url = Url.Action("Listar_de_Empleado", "Empleado_Horarios") });
 
                 }
+
+
             }
-            else   // Si el usuario no existe
-            {
+            else
+            {// Si el usuario no existe
                 return Json(new { success = false });
             }
+
+
+
+
         }
 
 
