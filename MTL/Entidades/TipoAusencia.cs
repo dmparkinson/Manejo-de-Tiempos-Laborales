@@ -4,16 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ReglasNegocios
+namespace Entidad
 {
-    public class Login
+    public class TipoAusencia
     {
-
-
-        public void LoginUsser(string names, string password) { 
-        }
-
-
-
+        public string TC_Tipo_Ausencia { set; get; }
     }
 }

@@ -1,6 +1,9 @@
-﻿using ReglasNegocio;
+﻿using Entidad;
+using Newtonsoft.Json;
+using ReglasNegocio;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -14,9 +17,12 @@ namespace Presentacion.Controllers
         {
             TipoAusenciaLN tAusencia = new TipoAusenciaLN();
 
-            List<string> lista = tAusencia.ListarTipoAusencia();
+
+            List<TipoAusencia> lista = JsonConvert.DeserializeObject<List<TipoAusencia>>(tAusencia.ListarTipoAusencia());
+
             ViewBag.ListaCatalogoAusencias = lista;
             ViewBag.Respuesta = "";
+
             return View();
         }
 
@@ -36,10 +42,26 @@ namespace Presentacion.Controllers
 
 
         [HttpPost]
-        public JsonResult  Eliminar()
+        public JsonResult  Eliminar(string tipoAusencia)
         {
-            return Json(new { success = false });
+
+            TipoAusenciaLN tAusencia = new TipoAusenciaLN();
+            int respuesta = tAusencia.EliminarTipoAusencia(tipoAusencia);
+
+            if (respuesta == -1)
+            {
+                return Json(new { success = false });
+            }
+            else {
+                return Json(new { success = true });
+            }
         }
+
+        
+
+
+
+
 
     }
         

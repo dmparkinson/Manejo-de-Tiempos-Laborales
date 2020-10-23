@@ -18,14 +18,15 @@ namespace ReglasNegocio
 
 
         // Listado de las categorais/tipos de ausencias disponibles
-        public List<string> ListarTipoAusencia()
+        public string ListarTipoAusencia()
         {
-            List<string> respuesta = null;
+            string respuesta = null;
 
             //Llamado a accedo de datos
             try
             {
                 respuesta = tAusenciaAD.listarTiposAusencia(); // Resultado de la operacion
+
                 Console.WriteLine(respuesta);
             }
             catch (Exception ex)
@@ -91,7 +92,7 @@ namespace ReglasNegocio
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
+                respuesta = -1;
             }
             return respuesta;
         }

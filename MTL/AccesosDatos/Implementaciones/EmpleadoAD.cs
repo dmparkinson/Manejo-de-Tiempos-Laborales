@@ -54,6 +54,35 @@ namespace AccesosDatos.Implementaciones
             return JsonConvert.SerializeObject(emp);
         }
 
+
+
+        public string loguearEmpeado(string _usuario, string _contrasenia)
+        {
+            Empleado empleado = new Empleado();
+            SqlDataReader dataReader = consultar($"exec sp_login_usuario '{_usuario}','{_contrasenia}' ");
+            while (dataReader.Read())
+            {
+                empleado.TN_Id_Usuario = int.Parse(dataReader["TN_Id_Usuario"].ToString());
+                empleado.TC_Usuario = dataReader["TC_Usuario"].ToString();
+                empleado.TC_Contrasena = dataReader["TC_Contrasena"].ToString();
+                empleado.TC_Identificacion = dataReader["TC_Identificacion"].ToString();
+                empleado.TC_Nombre_Usuario = dataReader["TC_Nombre_Usuario"].ToString();
+                empleado.TC_Primer_Apellido = dataReader["TC_Primer_Apellido"].ToString();
+                empleado.TC_Segundo_Apellido = dataReader["TC_Segundo_Apellido"].ToString();
+                empleado.TC_Tipo_Usuario = dataReader["TC_Tipo_Usuario"].ToString();
+                empleado.TC_Correo = dataReader["TC_Correo"].ToString();
+                empleado.TC_Usuario = dataReader["TC_Usuario"].ToString();
+                empleado.TB_Activo = int.Parse(dataReader["TB_Activo"].ToString());
+                empleado.TN_Id_Puesto = int.Parse(dataReader["TN_Id_Puesto"].ToString());
+                empleado.TN_Id_Oficina = int.Parse(dataReader["TN_Id_Oficina"].ToString());
+                empleado.TB_Eliminado = int.Parse(dataReader["TB_Eliminado"].ToString());
+            }
+
+            return JsonConvert.SerializeObject(empleado);
+        }
+
+
+
         public string listarEmpleados()
         {
             List<Empleado> lista = new List<Empleado>();
