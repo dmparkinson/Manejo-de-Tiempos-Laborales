@@ -78,6 +78,7 @@ namespace AccesosDatos.Implementaciones
                 empleado.TB_Eliminado = int.Parse(dataReader["TB_Eliminado"].ToString());
             }
 
+            this.closeCon();
             return JsonConvert.SerializeObject(empleado);
         }
 
