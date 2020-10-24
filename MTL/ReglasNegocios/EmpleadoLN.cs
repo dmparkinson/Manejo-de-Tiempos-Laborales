@@ -7,28 +7,19 @@ using System.Threading.Tasks;
 
 namespace ReglasNegocios
 {
-    public class TiempoRN
+    public class EmpleadoLN
     {
-        public TiempoRN() {}
-        public void verificarRegistro(string tiempo)
+
+
+        public string ListarEmpleados()
         {
-            TiemposAD data = new TiemposAD();
-
-            //primero debemos hacer una lista de los registros que hay
-            string lista = data.listarTiempoUsuario();
-        }
-
-
-
-        public string ListarHistoricoTiempos()
-        {
-            TiemposAD data = new TiemposAD();
+            EmpleadoAD data = new EmpleadoAD();
             string respuesta = null;
 
             //Llamado a accedo de datos
             try
             {
-                respuesta = data.listarTiempoUsuario();
+                respuesta = data.listarEmpleados(); // Resultado de la operacion
 
                 Console.WriteLine(respuesta);
             }
