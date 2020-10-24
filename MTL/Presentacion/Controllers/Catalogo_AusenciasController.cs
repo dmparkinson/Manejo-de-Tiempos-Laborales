@@ -29,15 +29,40 @@ namespace Presentacion.Controllers
 
 
         [HttpPost]
-        public JsonResult  Insertar()
+        public JsonResult  Insertar(TipoAusencia tausencia)
         {
-            return Json(new { success = false });
+
+            TipoAusenciaLN tAusencia = new TipoAusenciaLN();
+            int respuesta = tAusencia.InsertarTipoAusencia(tausencia);
+
+            if (respuesta == 1) // El tipo de ausencia se agregoexitosamente 
+            {
+                return Json(new { success = true });
+            }
+            else  // El tipo de ausencia no se registro en el sistema
+            {
+                return Json(new { success = false });
+            }
         }
 
+
+
+
         [HttpPost]
-        public JsonResult  Editar()
+        public JsonResult  Editar(string anterior, string nuevo)
         {
-            return Json(new { success = false });
+            TipoAusenciaLN tAusencia = new TipoAusenciaLN();
+
+            int respuesta = tAusencia.EditarTipoAusencia(anterior, nuevo);
+
+            if (respuesta == 1) // El tipo de ausencia se modifico exitosamente 
+            {
+                return Json(new { success = true });
+            }
+            else  // El tipo de ausencia no se modifico 
+            {
+                return Json(new { success = false });
+            }
         }
 
 
