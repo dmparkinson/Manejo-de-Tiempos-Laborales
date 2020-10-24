@@ -44,12 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AusenciaLN.cs" />
-    <Compile Include="EmpleadoLN.cs" />
-    <Compile Include="LoginLN.cs" />
+    <Compile Include="AusenciaRN.cs" />
+    <Compile Include="EmpleadoRN.cs" />
+    <Compile Include="LoginRN.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TiempoRN.cs" />
-    <Compile Include="TipoAusenciaLN.cs" />
+    <Compile Include="TipoAusenciaRN.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AccesosDatos\AccesosDatos.csproj">

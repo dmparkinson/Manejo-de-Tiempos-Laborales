@@ -7,19 +7,19 @@ using System.Threading.Tasks;
 
 namespace ReglasNegocios
 {
-    public class AusenciaLN
+    public class EmpleadoRN
     {
 
 
-        public string ListarHistoricoAusencias()
+        public string ListarEmpleados()
         {
-            AusenciaAD data = new AusenciaAD();
+            EmpleadoAD data = new EmpleadoAD();
             string respuesta = null;
 
             //Llamado a accedo de datos
             try
             {
-                respuesta = data.getHistoricoAusencias();
+                respuesta = data.listarEmpleados(); // Resultado de la operacion
 
                 Console.WriteLine(respuesta);
             }

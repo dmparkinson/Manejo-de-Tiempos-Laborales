@@ -40,15 +40,14 @@ namespace ReglasNegocio
 
 
         // Insercion de un nuevo tipo/categoria de ausencia de usuarios
-        public int InsertarTipoAusencia(TipoAusencia _tausencia)
+        public int InsertarTipoAusencia(string _nombreAusencia)
         {
             int respuesta = 0;
-            string nombre = _tausencia.TC_Tipo_Ausencia;
-
+            TipoAusencia tAusencia = new TipoAusencia(_nombreAusencia);
             //Llamado a accedo de datos
             try
             {
-                respuesta = tAusenciaAD.insertTiposAusencia(nombre); // Resultado de la operacion
+                respuesta = tAusenciaAD.insertTiposAusencia(tAusencia); // Resultado de la operacion
                 Console.WriteLine(respuesta);
             }
             catch (Exception ex)
@@ -62,15 +61,16 @@ namespace ReglasNegocio
 
 
         // Editar el catalogo/tipo de ausencia
-        public int EditarTipoAusencia(string anterior, string nuevo)
+        public int EditarTipoAusencia(string _anterior, string _nuevo)
         {
             int respuesta = 0;
-
+            TipoAusencia tAusenciaAnterior = new TipoAusencia(_anterior);
+            TipoAusencia tAusenciaNueva = new TipoAusencia(_nuevo);
 
             //Llamado a accedo de datos
             try
             {
-                respuesta = tAusenciaAD.updateTiposAusencia(anterior, nuevo); // Resultado de la operacion
+                respuesta = tAusenciaAD.updateTiposAusencia(tAusenciaAnterior, tAusenciaNueva); // Resultado de la operacion
                 Console.WriteLine(respuesta);
             }
             catch (Exception ex)
