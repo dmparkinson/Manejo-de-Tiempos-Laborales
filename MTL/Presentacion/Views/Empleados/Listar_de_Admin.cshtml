@@ -35,7 +35,7 @@
                         <th>Tipo de usuario</th>
                         <th>Puesto</th>
                         <th>Oficina</th>
-                        <th></th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody id="contenidoTabla">
@@ -50,10 +50,10 @@
                         <td>Puesto 1</td>
                         <td>Oficina 1</td>
                         <td class="d-flex justify-content-center">
-                            <a onclick="location.href='@Url.Action("Listar_de_Admin", "Empleado_Horarios")'"> <i class="fas fa-business-time text-dark" style="font-size: 1.2em;"></i></a>
-                            <a onclick="location.href='@Url.Action("Listar_de_Admin", "Empleado_Ausencias")'"> <i class="fas fa-calendar-times text-dark" style="font-size: 1.2em;"></i></a>
-                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
-                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
+                            <a class="ml-1" onclick="location.href='@Url.Action("Listar_de_Admin", "Empleado_Horarios")'" title="Tiempo de horarios" href="#"> <i class="fas fa-business-time text-dark" style="font-size: 1.2em;"></i></a>
+                            <a class="ml-1" onclick="location.href='@Url.Action("Listar_de_Admin", "Empleado_Ausencias")'" title="Tiempo de ausencias" href="#"> <i class="fas fa-calendar-times text-dark" style="font-size: 1.2em;"></i></a>
+                            <a class="ml-1" data-toggle="modal" data-target="#modal-editar" href="#" title="Editar empleado"> <i class="fas fa-edit text-info" style="font-size: 1.2em;"></i></a>
+                            <a class="ml-1" onclick="eliminar('¿Seguro?','Está acción es irreversible'") title="Eliminar empleado" href="#"> <i class="fas fa-trash text-red" style="font-size: 1.2em;"></i></a>
                         </td>
                     </tr>
                     <tr>
@@ -67,10 +67,10 @@
                         <td>Puesto 1</td>
                         <td>Oficina 1</td>
                         <td class="d-flex justify-content-center">
-                            <a onclick="location.href='@Url.Action("Listar_de_Admin", "Empleado_Horarios")'"> <i class="fas fa-business-time text-dark" style="font-size: 1.2em;"></i></a>
-                            <a onclick="location.href='@Url.Action("Listar_de_Admin", "Empleado_Ausencias")'"> <i class="fas fa-calendar-times text-dark" style="font-size: 1.2em;"></i></a>
-                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
-                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
+                            <a class="ml-1" onclick="location.href='@Url.Action("Listar_de_Admin", "Empleado_Horarios")'" title="Tiempo de horarios" href="#"> <i class="fas fa-business-time text-dark" style="font-size: 1.2em;"></i></a>
+                            <a class="ml-1" onclick="location.href='@Url.Action("Listar_de_Admin", "Empleado_Ausencias")'" title="Tiempo de ausencias" href="#"> <i class="fas fa-calendar-times text-dark" style="font-size: 1.2em;"></i></a>
+                            <a class="ml-1" data-toggle="modal" data-target="#modal-editar" href="#" title="Editar empleado"> <i class="fas fa-edit text-info" style="font-size: 1.2em;"></i></a>
+                            <a class="ml-1" onclick="eliminar('¿Seguro?','Está acción es irreversible'" ) title="Eliminar empleado" href="#"> <i class="fas fa-trash text-red" style="font-size: 1.2em;"></i></a>
                         </td>
                     </tr>
                     <tr>
@@ -84,10 +84,10 @@
                         <td>Puesto 1</td>
                         <td>Oficina 1</td>
                         <td class="d-flex justify-content-center">
-                            <a onclick="location.href='@Url.Action("Listar_de_Admin", "Empleado_Horarios")'"> <i class="fas fa-business-time text-dark" style="font-size: 1.2em;"></i></a>
-                            <a onclick="location.href='@Url.Action("Listar_de_Admin", "Empleado_Ausencias")'"> <i class="fas fa-calendar-times text-dark" style="font-size: 1.2em;"></i></a>
-                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
-                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
+                            <a class="ml-1" onclick="location.href='@Url.Action("Listar_de_Admin", "Empleado_Horarios")'" title="Tiempo de horarios" href="#"> <i class="fas fa-business-time text-dark" style="font-size: 1.2em;"></i></a>
+                            <a class="ml-1" onclick="location.href='@Url.Action("Listar_de_Admin", "Empleado_Ausencias")'" title="Tiempo de ausencias" href="#"> <i class="fas fa-calendar-times text-dark" style="font-size: 1.2em;"></i></a>
+                            <a class="ml-1" data-toggle="modal" data-target="#modal-editar" href="#" title="Editar empleado"> <i class="fas fa-edit text-info" style="font-size: 1.2em;"></i></a>
+                            <a class="ml-1" onclick="eliminar('¿Seguro?','Está acción es irreversible'" ) title="Eliminar empleado" href="#"> <i class="fas fa-trash text-red" style="font-size: 1.2em;"></i></a>
                         </td>
                     </tr>
                 </tbody>

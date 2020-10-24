@@ -57,75 +57,28 @@
                         <th>Motivo</th>
                         <th>Fecha salida</th>
                         <th>Fecha regreso</th>
-                        <th></th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody id="contenidoTabla">
+                    @foreach (var item in ViewBag.ListaHistoricAusencias)
+                    {
                     <tr>
-                        <td>xxxxxxxxx</td>
-                        <td>Juanito</td>
-                        <td>Montero</td>
-                        <td>Peréz</td>
-                        <td>Enfermedad</td>
-                        <td>06-08-2020</td>
-                        <td>06-09-2020</td>
-                        <td class="d-flex justify-content-center">
-                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
-                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
+                        <td>@item.empleado.TC_Identificacion</td>
+                        <td>@item.empleado.TC_Nombre_Usuario</td>
+                        <td>@item.empleado.TC_Primer_Apellido </td>
+                        <td>@item.empleado.TC_Segundo_Apellido</td>
+                        <td>@item.TC_Tipo_Ausencia</td>
+                        <td>@item.TF_Fecha_Salida</td>
+                        <td>@item.TF_Fecha_Regreso</td>
+                        <td>
+                            <div class="d-flex justify-content-center">
+                                <a data-toggle="modal" data-target="#modal-editar" href="#" onclick="cargarEditHAusencia('@item.TC_Tipo_Ausencia','@item.TF_Fecha_Salida','@item.TF_Fecha_Regreso', this)"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
+                                <a onclick="eliminarHAusencia('@item.TN_Id_Ausencia', this)" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
+                            </div>
                         </td>
                     </tr>
-                    <tr>
-                        <td>xxxxxxxxx</td>
-                        <td>Ana</td>
-                        <td>Peréz</td>
-                        <td>Mendéz</td>
-                        <td>Enfermedad</td>
-                        <td> 06-08-2020</td>
-                        <td>06-09-2020</td>
-                        <td class="d-flex justify-content-center">
-                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
-                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>xxxxxxxxx</td>
-                        <td>Juanito</td>
-                        <td>Montero</td>
-                        <td>Villalobos</td>
-                        <td>Enfermedad</td>
-                        <td>06-08-2020</td>
-                        <td>06-09-2020</td>
-                        <td class="d-flex justify-content-center">
-                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
-                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>xxxxxxxxx</td>
-                        <td>Diego</td>
-                        <td>Mendéz</td>
-                        <td>Peréz</td>
-                        <td>Enfermedad</td>
-                        <td>06-08-2020</td>
-                        <td>06-09-2020</td>
-                        <td class="d-flex justify-content-center">
-                            <<a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
-                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>xxxxxxxxx</td>
-                        <td>Pedro</td>
-                        <td>Villalobos</td>
-                        <td>Montero</td>
-                        <td> Enfermedad</td>
-                        <td>06-08-2020</td>
-                        <td>06-09-2020</td>
-                        <td class="d-flex justify-content-center">
-                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
-                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
-                        </td>
-                    </tr>
+                    }
                 </tbody>
             </table>
         </div>
@@ -146,7 +99,7 @@
 <div class="modal fade" id="modal-editar">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form onsubmit="return false">
+            <form onsubmit="editarHHorario()">
                 <div class="modal-header">
                     <h4 class="modal-title">Modificar Ausencia</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -157,15 +110,15 @@
                 <div class="modal-body">
                     <div class="form-group ">
                         <label class="font-weight-normal" for="salida">Fecha de salida:</label>
-                        <input type="date" class="form-control form-control-sm" id="salida" required>
+                        <input type="date" class="form-control form-control-sm" id="salidaE" required>
                     </div>
                     <div class="form-group">
                         <label class="font-weight-normal" for="regreso">Fecha de regreso:</label>
-                        <input type="date" class="form-control form-control-sm" id="regreso" required>
+                        <input type="date" class="form-control form-control-sm" id="regresoE" required>
                     </div>
                     <div class="form-group">
                         <label class="font-weight-normal" for="motivo">TMotivo:</label>
-                        <select class="form-control form-control-sm" id="motivo">
+                        <select class="form-control form-control-sm" id="motivoE">
                             <option selected="selected">Enfermedad</option>
                         </select>
                     </div>

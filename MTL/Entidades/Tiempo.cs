@@ -12,5 +12,7 @@ namespace Entidad
         public string TC_Tipo { set; get; }
         public string TC_Horario { set; get; }
         public int TN_Id_Usuario { set; get; }
+        public Empleado empleado { set; get; }
+
     }
 }
