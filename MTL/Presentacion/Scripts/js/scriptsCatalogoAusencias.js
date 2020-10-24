@@ -19,7 +19,7 @@ function eliminarTipoAusencia(idAusencia, btn) {
             // Proceso de eliminacion de datos
 
             var dataTAusencia = {
-                "_tipoAusencia": idAusencia
+                _tipoAusencia: idAusencia
             };  
             $.ajax({
                 url: "/Catalogo_Ausencias/Eliminar",    // Nombre del controlador/ accion del controlador
@@ -100,7 +100,7 @@ function agregarTipoAusencia() {
     var tAusencia = document.getElementById("motivoAusencia").value;
 
     var tipoAusencia = {
-        "nombre": tAusencia
+        nombre: tAusencia
     };
     $.ajax({
         url: "/Catalogo_Ausencias/Insertar",    // Nombre del controlador/ accion del controlador
@@ -115,7 +115,6 @@ function agregarTipoAusencia() {
                     showConfirmButton: false,
                     timer: 1500
                 })
-                alert(response.dato);
 
                 var table = $('#table').DataTable(); // Obtener la tabla
 

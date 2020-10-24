@@ -37,7 +37,7 @@ namespace Presentacion.Controllers
 
             if (respuesta == 1) // El tipo de ausencia se agregoexitosamente 
             {
-                return Json(new { success = true, dato = nombre });
+                return Json(new { success = true });
             }
             else  // El tipo de ausencia no se registro en el sistema
             {
