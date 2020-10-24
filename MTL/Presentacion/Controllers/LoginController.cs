@@ -1,5 +1,6 @@
 ﻿using Entidad;
 using Newtonsoft.Json;
+using ReglasNegocio;
 using ReglasNegocios;
 using System;
 using System.Collections.Generic;

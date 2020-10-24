@@ -35,7 +35,7 @@ namespace Presentacion.Controllers
             lista = JsonConvert.DeserializeObject<List<Horario>>(listaH);
 
             List<Tiempo> listaT = new List<Tiempo>();
-            string lisT = new TiemposAD().listarTiempoUsuario();
+            string lisT = new TiemposAD().listarPorFechaTiempoUsuario(int.Parse(Session["UsserID"].ToString()), DateTime.Now.ToString("dd-MM-yyyy"));
             listaT = JsonConvert.DeserializeObject<List<Tiempo>>(lisT);
 
 
@@ -55,11 +55,16 @@ namespace Presentacion.Controllers
             t.TN_Id_Usuario = int.Parse(Session["UsserID"].ToString());
 
             //acá hay que aplicar las reglas de negocio
-            //TiempoRN rn = new TiempoRN();
-            
+            TiempoRN tiempoRN = new TiempoRN();
+
+            int res = tiempoRN.verificarRegistro(tiempo, t.TN_Id_Usuario);
+            if (res == 1) {
+                return new TiemposAD().registrarTiempo(t);
+            }
+
             //si las reglas de negocio dan el aval para registrar
             //se llama al acceso de datos
-            return new TiemposAD().registrarTiempo(t);
+            return res;
         }
 
 
