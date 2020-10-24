@@ -32,7 +32,8 @@ namespace AccesosDatos.Implementaciones
             while (dataReader.Read())
             {
                 Tiempo t = new Tiempo();
-                t.TF_Fecha = dataReader["TF_Fecha"].ToString();
+                string[] fechas = dataReader["TF_Fecha"].ToString().Split(' ');
+                t.TF_Fecha = fechas[0];
                 t.TH_Hora = dataReader["TH_Hora"].ToString();
                 t.TC_Tipo = dataReader["TC_Tipo"].ToString();
                 t.TC_Horario = dataReader["TC_Horario"].ToString();
@@ -86,9 +87,24 @@ namespace AccesosDatos.Implementaciones
         }
 
         public string listarPorFechaTiempoUsuario(int idEmpleado, string fechaActual) {
+            List<Tiempo> lista = new List<Tiempo>();
+            SqlDataReader dataReader = consultar($"exec sp_listar_tiempo_usuario_byFecha {idEmpleado}, '{fechaActual}'");
 
+            while (dataReader.Read())
+            {
+                Tiempo t = new Tiempo();
+                string[] fechas = dataReader["TF_Fecha"].ToString().Split(' ');
+                t.TF_Fecha = fechas[0];
+                t.TH_Hora = dataReader["TH_Hora"].ToString();
+                t.TC_Tipo = dataReader["TC_Tipo"].ToString();
+                t.TC_Horario = dataReader["TC_Horario"].ToString();
+                t.TN_Id_Usuario = int.Parse(dataReader["TN_Id_Usuario"].ToString());
 
-            return "";
+                lista.Add(t);
+            }
+
+            this.closeCon();
+            return JsonConvert.SerializeObject(lista);
         }
     }
 }

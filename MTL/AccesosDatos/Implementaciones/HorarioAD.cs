@@ -50,7 +50,7 @@ namespace AccesosDatos.Implementaciones
                 //h.TH_Duracion = int.Parse(dataReader["TH_Duracion"].ToString());
                 lista.Add(h);
             }
-
+            this.conectar();
             return JsonConvert.SerializeObject(lista);
         }
 

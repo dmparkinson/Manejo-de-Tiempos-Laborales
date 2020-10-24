@@ -12,14 +12,14 @@ namespace AccesosDatos.ConexionAD
         private SqlConnection con;
         public ConexionAD()
         {
-            conexion = "Data Source=163.178.107.10;Initial Catalog=Manejo_Tiempos_Laborales;Persist Security Info=True;User ID=laboratorios;Password=KmZpo.2796";
+            this.conexion = "Data Source=163.178.107.10;Initial Catalog=Manejo_Tiempos_Laborales;Persist Security Info=True;User ID=laboratorios;Password=KmZpo.2796";
         }
 
         public void conectar()
         {
-            con = new SqlConnection(conexion);
+            this.con = new SqlConnection(conexion);
 
-            if (con != null)
+            if (this.con != null)
             {
                 Console.WriteLine("Conexion establecida");
             }
@@ -36,13 +36,13 @@ namespace AccesosDatos.ConexionAD
             try
             {
                 conectar();
-                con.Open();
+                this.con.Open();
                 SqlCommand cmd = new SqlCommand(sentencia, con);
                 dr = cmd.ExecuteReader();
             }
             catch
             {
-                con.Close();
+                this.con.Close();
                 Console.WriteLine("Error en consultar");
             }
             return dr;
@@ -54,7 +54,7 @@ namespace AccesosDatos.ConexionAD
             try
             {
                 conectar();
-                con.Open();
+                this.con.Open();
                 SqlCommand cmd = new SqlCommand(sentencia, con);
                 cmd.ExecuteNonQuery();
                 Console.WriteLine("Ejecución exitosa");
@@ -76,7 +76,7 @@ namespace AccesosDatos.ConexionAD
             try
             {
                 conectar();
-                con.Open();
+                this.con.Open();
                 SqlCommand cmd = new SqlCommand(sentencia, con);
                 dr = cmd.ExecuteReader();
 
@@ -93,10 +93,14 @@ namespace AccesosDatos.ConexionAD
             {
                 Console.WriteLine("Error en ejecutar " + e);
                 salida = 0;
-                con.Close();
+                this.con.Close();
             }
 
             return salida;
+        }
+
+        public void closeCon() { 
+            this.con.Close();
         }
     }
 }
