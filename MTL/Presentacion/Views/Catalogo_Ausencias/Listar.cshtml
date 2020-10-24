@@ -18,14 +18,14 @@
                 </div>
 
                 <div class="card-body">
-                    <form>
+                    <form onsubmit="return agregarTipoAusencia(this)">
                         <div class="form-group d-flex justify-content-between">
                             <label class="font-weight-normal" for="motivoA">Motivo:</label>
-                            <input type="text" class="form-control form-control-sm" id="motivoA" placeholder="Ingrese motivo de ausencia" required>
+                            <input type="text" class="form-control form-control-sm" id="motivoAusencia" placeholder="Ingrese motivo de ausencia" required  minlength="2" maxlength="20" pattern="[A-Za-z\s]+">
                         </div>
 
                         <div class="row justify-content-center mt-2">
-                            <button type="submit" class="btn btn-primary btn-sm">Guardar</button>
+                            <input type="submit" class="btn btn-primary btn-sm" value="Guardar">
                         </div>
                     </form>
                 </div>
@@ -35,63 +35,38 @@
 
 
 
-
-
-
     <div class="row mt-3">
         <div class="col-12">
             <div class="d-flex justify-content-between mt-3">
                 <div class="col-6">
-                    <input type="search" id="search" placeholder="Buscar" class="form-control form-control-sm">
+                    <input type="search" id="searchInput" placeholder="Buscar" class="form-control form-control-sm">
                 </div>
                 <div>
                     <input type="button" value="Reporte" class="btn btn-secondary btn-sm">
                 </div>
             </div>
-            <table id="example1" class="table table-bordered table-hover">
+            <table id="table" class="table table-bordered table-hover">
                 <thead class="thead-dark text-center">
                     <tr>
                         <th>Motivo</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>Enferdedad</td>
-                        <td class="d-flex justify-content-center">
-                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-pen-square"></i> </button>
-                            <button class="btn btn-danger btn-sm" onclick="alertAdvertenciaEliminar()"><i class="fa fa-trash"></i> </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Embarazo</td>
-                        <td class="d-flex justify-content-center">
-                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-pen-square"></i> </button>
-                            <button class="btn btn-danger btn-sm" onclick="alertAdvertenciaEliminar()"><i class="fa fa-trash"></i> </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Discapacidad</td>
-                        <td class="d-flex justify-content-center">
-                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-pen-square"></i> </button>
-                            <button class="btn btn-danger btn-sm" onclick="alertAdvertenciaEliminar()"><i class="fa fa-trash"></i> </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Vacaciones</td>
-                        <td class="d-flex justify-content-center">
-                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-pen-square"></i> </button>
-                            <button class="btn btn-danger btn-sm" onclick="alertAdvertenciaEliminar()"><i class="fa fa-trash"></i> </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Injustificada</td>
-                        <td class="d-flex justify-content-center">
-                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-pen-square"></i> </button>
-                            <button class="btn btn-danger btn-sm" onclick="alertAdvertenciaEliminar()"><i class="fa fa-trash"></i> </button>
-                        </td>
-                    </tr>
-                </tbody>
+                <tbody id="contenidoTabla">
+
+                    @foreach (var item in ViewBag.ListaCatalogoAusencias) { 
+                        <tr>
+                            <td>@item.TC_Tipo_Ausencia</td>
+                            <td>
+                                <div class="d-flex justify-content-center">
+                                    <a data-toggle="modal" data-target="#modal-editar" href="#" onclick="cargarEditCAusencia('@item.TC_Tipo_Ausencia', this)"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
+                                    <a onclick="eliminarTipoAusencia('@item.TC_Tipo_Ausencia', this)" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
+                                </div>
+                               
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
             </table>
         </div>
     </div>
@@ -111,7 +86,7 @@
     <div class="modal fade" id="modal-editar">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form>
+                <form onsubmit="return editarTipoAusencia(this)">
                     <div class="modal-header">
                         <h4 class="modal-title">Modificar Ausencia</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -122,7 +97,7 @@
                     <div class="modal-body">
                         <div class="form-group ">
                             <label class="font-weight-normal" for="motivo">Motivo:</label>
-                            <input type="text" class="form-control form-control-sm" id="motivo" required>
+                            <input type="text" class="form-control form-control-sm" id="motivoEdit"  required minlength="2" maxlength="20" pattern="[A-Za-z\s]+">
                         </div>
 
                     </div>
@@ -130,7 +105,6 @@
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         <div>
                             <input type="submit" class="btn btn-info" value="Editar">
-                            <button class="btn btn-danger" onclick="alertDatosInvalidos()">Eliminar</button>
                         </div>
                     </div>
                 </form>
@@ -138,3 +112,4 @@
         </div>
     </div>
 
+ 

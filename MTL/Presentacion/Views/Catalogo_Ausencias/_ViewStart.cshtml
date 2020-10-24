@@ -1,6 +1,17 @@
 ﻿@{
 
-    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+    string type = (string)Session["UsserType"];
+
+    if (type == "Administración")
+    {
+        Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+    }
+    else if (type == "Jefatura")
+    {
+        Layout = "~/Views/Shared/_Layout_Jefatura.cshtml";
+    }
+    
+
 }
 
 

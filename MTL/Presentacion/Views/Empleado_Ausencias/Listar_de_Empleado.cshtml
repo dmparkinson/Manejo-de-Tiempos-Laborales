@@ -1,0 +1,99 @@
+﻿
+@{
+    ViewBag.Title = "Ausencias de";
+}
+
+
+<div class="container">
+    <div class="row mt-2 flex-column">
+        <h3>@ViewBag.Title</h3>
+        <h5 class="text-secondary">@ViewBag.Message</h5>
+    </div>
+
+
+
+    <div class="container mt-2 row justify-content-center">
+        <div class="flex-column">
+            <div class="d-flex flex-wrap">
+                <div class="form-group ">
+                    <label class="font-weight-normal" for="salida">Fecha salida:</label>
+                    <input type="date" class="form-control form-control-sm" id="salida">
+                </div>
+                <div class="form-group">
+                    <label class="font-weight-normal" for="regreso">Fecha regreso:</label>
+                    <input type="date" class="form-control form-control-sm" id="regreso">
+                </div>
+                <div class="form-group">
+                    <label class="font-weight-normal" for="motivo">Motivo:</label>
+
+                    <select class="form-control form-control-sm" id="motivo">
+                        <option>Enfermedad</option>
+                    </select>
+                </div>
+            </div>
+ 
+        </div>
+    </div>
+
+
+
+
+    <div class="row mt-3">
+        <div class="col-12">
+            <div class="d-flex justify-content-between mt-3">
+                <div class="col-6">
+                    <input type="button" value="Filtrar" class="btn btn-info btn-sm">
+                    <input type="button" value="Limpiar" class="btn btn-danger btn-sm">
+                </div>
+                <div>
+                    <input type="button" value="Reporte" class="btn btn-secondary btn-sm">
+                </div>
+            </div>
+            <table id="table" class="table table-bordered table-hover">
+                <thead class="thead-dark text-center">
+                    <tr>
+                        <th>Motivo</th>
+                        <th>Fecha salida</th>
+                        <th>Fecha regreso</th>
+                    </tr>
+                </thead>
+                <tbody id="contenidoTabla">
+                    <tr>
+                        <td>Enfermedad</td>
+                        <td>06-08-2020</td>
+                        <td>06-09-2020</td>
+                    </tr>
+                    <tr>
+                        <td>Enfermedad</td>
+                        <td> 06-08-2020</td>
+                        <td>06-09-2020</td>
+                    </tr>
+                    <tr>
+                        <td>Enfermedad</td>
+                        <td>06-08-2020</td>
+                        <td>06-09-2020</td>
+                    </tr>
+                    <tr>
+                        <td>Enfermedad</td>
+                        <td>06-08-2020</td>
+                        <td>06-09-2020</td>
+                    </tr>
+                    <tr>
+                        <td> Enfermedad</td>
+                        <td>06-08-2020</td>
+                        <td>06-09-2020</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+

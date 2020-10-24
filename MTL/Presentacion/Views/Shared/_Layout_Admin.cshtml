@@ -5,75 +5,93 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
-    <link rel="stylesheet" type="text/css" href="@Url.Content("~/plugins/fontawesome-free/css/all.min.css")">
-    <link rel="stylesheet" href="@Url.Content("https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css")">
-    <link rel="stylesheet" href="@Url.Content("~/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css")">
-    <link rel="stylesheet" href="@Url.Content("~/plugins/datatables-responsive/css/responsive.bootstrap4.min.css")">
 
-    <link rel="stylesheet" type="text/css" href="@Url.Content("~/dist/css/adminlte.min.css")">
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
+    @Styles.Render("~/Content/adminltecss")
     @Scripts.Render("~/bundles/modernizr")
+
+
+    @Styles.Render("~/Content/dataTables")
+    @Styles.Render("~/Content/responsive.datatables")
+
+    @Styles.Render("~/Content/sweetalert2")
+    @Styles.Render("~/Content/fontawesome")
+    <link rel="stylesheet" href="@Url.Content("https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css")">
 </head>
 
 <body>
 
-    <div class="container-fluid ">
-        <nav class="navbar navbar-expand-sm nav-tabs justify-content-between" style="padding:0px ">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-between">
+        <ul class="navbar-nav">
+            <li class="navbar-brand">
+                <img src="~/Content/images/Escudo OIJ.png" alt="logo" style="width:32px" />
+            </li>
+            <li class="nav-item dropdown ">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Históricos</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="@Url.Action("Listar_de_Admin", "Historico_Horarios")">Horarios </a>
+                    <a class="dropdown-item" href="@Url.Action("Listar_de_Admin", "Historico_Ausencias")">Ausencias</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Catálogos</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="@Url.Action("Listar", "Catalogo_Ausencias")">Ausencias</a>
+                    <a class="dropdown-item" href="@Url.Action("Listar", "Catalogo_Tiempos_Laborales")">Tiempos Laborales</a>
+                    <a class="dropdown-item" href="@Url.Action("Listar", "Catalogo_Roles")">Roles</a>
+                    <a class="dropdown-item" href="@Url.Action("Listar", "Catalogo_Puestos")">Puestos</a>
+                    <a class="dropdown-item" href="@Url.Action("Listar", "Catalogo_Circuitos")">Circuitos</a>
+                    <a class="dropdown-item" href="@Url.Action("Listar", "Catalogo_Oficinas")">Oficinas</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Listar_de_Admin", "Empleados")">Empleados</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Listar_de_Empleado", "Empleado_Horarios")">Horarios</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Listar_de_Empleado", "Empleado_Ausencias")">Ausencias</a>
+            </li>
+            <li class="nav-item">
+                <a cl
+            <li class="nav-item">
+                <a class="nav-link" href="#">Ayuda</a>
+            </li>
+        </ul>
+        <div class="nav-item">
+            <a class="nav-link text-white" href="@Url.Action("Logout", "Login")">Cerrar Sesión</a>
+        </div>
 
-            <ul class="nav">
-                <li class="navbar-brand">
-                    <img src="~/Content/images/Escudo OIJ.png" alt="logo" style="width:38px" />
-                </li>
-                <li class="nav-item dropdown navbar-brand">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Históricos</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="@Url.Action("Listar", "Historico_Horarios")">Horarios </a>
-                        <a class="dropdown-item" href="@Url.Action("Listar", "Historico_Ausencias")">Ausencias</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown navbar-brand">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Catálogos</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="@Url.Action("Listar", "Catalogo_Ausencias")">Ausencias</a>
-                        <a class="dropdown-item" href="@Url.Action("Listar", "Catalogo_Tiempos_Laborales")">Tiempos Laborales</a>
-                        <a class="dropdown-item" href="@Url.Action("Listar", "Catalogo_Roles")">Roles</a>
-                        <a class="dropdown-item" href="@Url.Action("Listar", "Catalogo_Puestos")">Puestos</a>
-                        <a class="dropdown-item" href="@Url.Action("Listar", "Catalogo_Circuitos")">Circuitos</a>
-                        <a class="dropdown-item" href="@Url.Action("Listar", "Catalogo_Oficinas")">Oficinas</a>
-                    </div>
-                </li>
-                <li class="nav-item navbar-brand">
-                    <a class="nav-link" href="@Url.Action("Listar", "Empleados")">Empleados</a>
-                </li>
-                <li class="nav-item navbar-brand">
-                    <a class="nav-link" href="#">Ayuda</a>
-                </li>
-            </ul>
-            <a class="btn btn-light btn-lg" href="#">
-                <i class="fas fa-sign-out-alt"></i>
-            </a>
-        </nav>
+    </nav>
 
-    </div>
 
 
     @RenderBody()
 
 
-    <script src="@Url.Content("~/plugins/jquery/jquery.min.js")"></script>
-    <script src="@Url.Content("~/plugins/bootstrap/js/bootstrap.bundle.min.js")"></script>
-    <script src="@Url.Content("~/plugins/datatables/jquery.dataTables.min.js")"></script>
-    <script src="@Url.Content("~/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js")"></script>
-    <script src="@Url.Content("~/plugins/datatables-responsive/js/dataTables.responsive.min.js")"></script>
-    <script src="@Url.Content("~/plugins/datatables-responsive/js/responsive.bootstrap4.min.js")"></script>
-    <script src="@Url.Content("~/dist/js/adminlte.min.js")"></script>
-    <script src="@Url.Content("~/Scripts/scriptsTables.js")"></script>
+    <!-- Footer -->
+    <footer class="page-footer font-small">
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-    <script src="@Url.Content("~/Scripts/scriptsAlert.js")"></script>
+        <div class="footer-copyright text-center py-3">
+            Copyright ©Plataforma de información judicial, 2020
+        </div>
+
+    </footer>
+    <!-- Footer -->
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/pooper")
+    @Scripts.Render("~/bundles/adminltejs")
+    @Scripts.Render("~/bundles/datatable")
+    @Scripts.Render("~/bundles/ajax")
+    @Scripts.Render("~/bundles/sweetalert2")
+    @Scripts.Render("~/bundles/scripts")
 
     @RenderSection("scripts", required: false)
+    
 
 </body>
 </html>

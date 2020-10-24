@@ -75,6 +75,9 @@
   <ItemGroup>
     <Compile Include="ConexionAD\ConexionAD.cs" />
     <Compile Include="Implementaciones\AusenciaAD.cs" />
+    <Compile Include="Implementaciones\EmpleadoAD.cs" />
+    <Compile Include="Implementaciones\HorarioAD.cs" />
+    <Compile Include="Implementaciones\TiemposAD.cs" />
     <Compile Include="Implementaciones\TiposAusenciaAD.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -86,6 +89,12 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Entidades\Entidad.csproj">
+      <Project>{9b17d60c-852a-4838-b4ce-419a951b7f54}</Project>
+      <Name>Entidad</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

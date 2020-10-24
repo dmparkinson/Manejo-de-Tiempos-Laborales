@@ -1,0 +1,196 @@
+﻿@{
+    ViewBag.Title = "Ausencias de";
+}
+
+
+<div class="container">
+    <div class="row mt-2 flex-column">
+        <h3>@ViewBag.Title</h3>
+        <h5 class="text-secondary">@ViewBag.Message</h5>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-9 mt-2 ">
+            <div class="card" style="background-color: #FAFAFA">
+                <div class="card-header">
+                    <h5 class="card-tittle">Añadir nueva ausencia</h5>
+                </div>
+
+                <div class="card-body">
+                    <div class="row justify-content-between">
+                        <div class="form-group d-flex justify-content-between">
+                            <label class="font-weight-normal" for="salida">Fecha salida:</label>
+                            <input type="date" class="form-control form-control-sm" id="salida" required>
+                        </div>
+                        <div class="form-group d-flex justify-content-between">
+                            <label class="font-weight-normal" for="regreso">Fecha regreso:</label>
+                            <input type="date" class="form-control form-control-sm" id="regreso" required>
+                        </div>
+                        <div class="form-group d-flex justify-content-between">
+                            <label class="font-weight-normal" for="motivo">Motivo:</label>
+                            <select class="form-control form-control-sm" id="motivo">
+                                <option>Enfermedad</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center mt-2">
+                        <button type="button" class="btn btn-primary btn-sm" onclick="alertDatosInvalidos()">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="container mt-2 row justify-content-center">
+        <div class="flex-column">
+            <div class="d-flex flex-wrap">
+                <div class="form-group ">
+                    <label class="font-weight-normal" for="salida">Fecha salida:</label>
+                    <input type="date" class="form-control form-control-sm" id="salida">
+                </div>
+                <div class="form-group">
+                    <label class="font-weight-normal" for="regreso">Fecha regreso:</label>
+                    <input type="date" class="form-control form-control-sm" id="regreso">
+                </div>
+                <div class="form-group">
+                    <label class="font-weight-normal" for="motivo">Motivo:</label>
+
+                    <select class="form-control form-control-sm" id="motivo">
+                        <option>Enfermedad</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="row mt-3">
+        <div class="col-12">
+            <div class="d-flex justify-content-between mt-3">
+                <div class="col-6">
+                    <input type="button" value="Filtrar" class="btn btn-info btn-sm">
+                    <input type="button" value="Limpiar" class="btn btn-danger btn-sm">
+                </div>
+                <div>
+                    <input type="button" value="Reporte" class="btn btn-secondary btn-sm">
+                </div>
+            </div>
+            <table id="table" class="table table-bordered table-hover">
+                <thead class="thead-dark text-center">
+                    <tr>
+                        <th>Motivo</th>
+                        <th>Fecha salida</th>
+                        <th>Fecha regreso</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="contenidoTabla">
+                    <tr>
+                        <td>Enfermedad</td>
+                        <td>06-08-2020</td>
+                        <td>06-09-2020</td>
+                        <td class="d-flex justify-content-center">
+                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
+                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Enfermedad</td>
+                        <td> 06-08-2020</td>
+                        <td>06-09-2020</td>
+                        <td class="d-flex justify-content-center">
+                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
+                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Enfermedad</td>
+                        <td>06-08-2020</td>
+                        <td>06-09-2020</td>
+                        <td class="d-flex justify-content-center">
+                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
+                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Enfermedad</td>
+                        <td>06-08-2020</td>
+                        <td>06-09-2020</td>
+                        <td class="d-flex justify-content-center">
+                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
+                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> Enfermedad</td>
+                        <td>06-08-2020</td>
+                        <td>06-09-2020</td>
+                        <td class="d-flex justify-content-center">
+                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
+                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+<!-- Modal de editar -->
+
+
+<div class="modal fade" id="modal-editar">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Modificar Ausencia</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="form-group ">
+                    <label class="font-weight-normal" for="salida">Fecha de salida:</label>
+                    <input type="date" class="form-control form-control-sm" id="salida" required>
+                </div>
+                <div class="form-group">
+                    <label class="font-weight-normal" for="regreso">Fecha de regreso:</label>
+                    <input type="date" class="form-control form-control-sm" id="regreso" required>
+                </div>
+                <div class="form-group">
+                    <label class="font-weight-normal" for="motivo">Motivo:</label>
+                    <select class="form-control form-control-sm" id="motivo">
+                        <option selected="selected">Enfermedad</option>
+                    </select>
+                </div>
+
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <div>
+
+                    <button type="button" class="btn btn-info" onclick="alertDatosValidos()">Editar</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+

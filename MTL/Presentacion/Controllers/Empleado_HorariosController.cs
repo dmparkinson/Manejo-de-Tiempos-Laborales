@@ -1,20 +1,73 @@
-﻿using System;
+﻿using Entidad;
+using AccesosDatos;
+using ReglasNegocios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AccesosDatos.Implementaciones;
+using Newtonsoft.Json;
 
 namespace Presentacion.Controllers
 {
     public class Empleado_HorariosController : Controller
     {
         // GET: Empleados_Horarios
-        public ActionResult Listar()
+        public ActionResult Listar_de_Admin()
         {
 
             ViewBag.Message = "Horarios de Empleado";
             return View();
         }
+
+        public ActionResult Listar_de_Jefatura()
+        {
+
+            ViewBag.Message = "Horarios de Empleado";
+            return View();
+        }
+        public ActionResult Listar_de_Empleado()
+        {
+            //debo listar el catalogo de tiempos
+            List<Horario> lista = new List<Horario>();
+            string listaH = new HorarioAD().listarHorarios();
+            lista = JsonConvert.DeserializeObject<List<Horario>>(listaH);
+
+            List<Tiempo> listaT = new List<Tiempo>();
+            string lisT = new TiemposAD().listarPorFechaTiempoUsuario(int.Parse(Session["UsserID"].ToString()), DateTime.Now.ToString("dd-MM-yyyy"));
+            listaT = JsonConvert.DeserializeObject<List<Tiempo>>(lisT);
+
+
+            ViewBag.listaHorario = lista;
+            ViewBag.listaTiempo = listaT;
+            ViewBag.Message = Session["UsserName"].ToString() +" "+ Session["UsserSurname1"].ToString() + " " + Session["UsserSurname2"].ToString();
+            return View();
+        }
+
+
+        //registramos el tiempo de un empleado
+        public int registrarTiemposEmpleado(string tiempo) {
+            char[] tipo = tiempo.ToCharArray();
+            Tiempo t = new Tiempo();
+            t.TC_Horario = tiempo;
+            t.TC_Tipo = tipo[0].ToString();
+            t.TN_Id_Usuario = int.Parse(Session["UsserID"].ToString());
+
+            //acá hay que aplicar las reglas de negocio
+            TiempoRN tiempoRN = new TiempoRN();
+
+            int res = tiempoRN.verificarRegistro(tiempo, t.TN_Id_Usuario);
+            if (res == 1) {
+                return new TiemposAD().registrarTiempo(t);
+            }
+
+            //si las reglas de negocio dan el aval para registrar
+            //se llama al acceso de datos
+            return res;
+        }
+
+
 
         // GET: Empleados_Horarios/Details/5
         public ActionResult Details(int id)

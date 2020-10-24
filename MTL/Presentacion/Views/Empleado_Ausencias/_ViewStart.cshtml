@@ -1,19 +1,20 @@
 ﻿@{
 
-    int num = (int)Session["usser"];
+    string type = (string)Session["usserType"];
 
-    if (num == 1)
+    if (type == "Administración")
     {
         Layout = "~/Views/Shared/_Layout_Admin.cshtml";
     }
-    else if (num == 2)
+    else if (type == "Jefatura")
     {
         Layout = "~/Views/Shared/_Layout_Jefatura.cshtml";
     }
-    else
+    else if (type == "Estándar")
     {
         Layout = "~/Views/Shared/_Layout_Empleado.cshtml";
     }
+    
 }
 
 
