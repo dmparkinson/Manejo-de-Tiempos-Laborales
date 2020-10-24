@@ -1,8 +1,5 @@
 ﻿
 
-
-
-
 /* 
  * 
  * Eliminar el tipo de ausencia 
@@ -25,11 +22,10 @@ function eliminarTipoAusencia(idAusencia, btn) {
                 "tipoAusencia": idAusencia
             };  
             $.ajax({
-                url: "Eliminar",    // Nombre del controlador/ accion del controlador
+                url: "/Catalogo_Ausencias/Eliminar",    // Nombre del controlador/ accion del controlador
                 type: "POST",
                 data: JSON.stringify(dataTAusencia),
                 dataType: "json",
-                contentType: "application/json",
                 success: function (response) {
                     if (response.success == true) {
 
@@ -42,9 +38,22 @@ function eliminarTipoAusencia(idAusencia, btn) {
                             )
 
                             
-                            deleteRow(btn); // Eliminacion de la fila en la tabla
+                            var row = $(btn).closest('tr'); // Obtener la fila selecionada
+                            row.fadeOut(500, function () {  // Tiempo de desvanecimiento, sin esto no elimina en ajax
+                                row.remove();              // Eliminacion de la fila en la tabla
+                            });
 
-                            reloadDatatable();  // recargar datatable
+
+                            // Recargar la datatable
+                            $('#table').dataTable().fnDestroy();  // Eliminacion del datatable
+                            $('#table').DataTable({                 // Creacion del datatable
+                                "searching": false,
+                                "paging": true,
+                                "info": false,
+                                "lengthChange": false,
+                                "responsive": true,
+                                "autoWidth": false,
+                            });
 
                         }
                         else { // si no se elimino
@@ -66,7 +75,7 @@ function eliminarTipoAusencia(idAusencia, btn) {
                 },
                 error: function () {
                     Swal.fire(
-                        'Error',
+                        'Error inesperado',
                         'Ocurrió un error en la operación.',
                         'error'
                     )
@@ -80,62 +89,142 @@ function eliminarTipoAusencia(idAusencia, btn) {
 
 
 
+
+
+/*
+ *
+ * Agregar un nuevo tipo de ausencia
+ *
+ * */
 function agregarTipoAusencia() {
 
-    Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'Your work has been saved',
-        showConfirmButton: false,
-        timer: 1500
-    })
+    var tAusencia = document.getElementById("motivoAusencia").value;
+
+    var tipoAusencia = {
+        TC_Tipo_Ausencia: $('#motivoAusencia').val(),
+    };
+    $.ajax({
+        url: "/Catalogo_Ausencias/Insertar",    // Nombre del controlador/ accion del controlador
+        type: "POST",
+        data: JSON.stringify(tipoAusencia),
+        dataType: "json",
+        success: function (response) {
+            if (response.success == true) { // Si se elimino
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Datos registrador exitosamente.',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
 
 
+                var table = $('#table').DataTable(); // Obtener la tabla
 
-    var table = $('#table').DataTable();
+                // Construir la nueva fila
+                var info = [tAusencia, '<div class="d-flex justify-content-center">' +
+                    '<a data-toggle="modal" data-target="#modal-editar" href= "#" > <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>' +
+                    '<a onclick="eliminarTipoAusencia(' + tAusencia + ', this)" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>' +
+                    '</div >'];
 
-    var info = ["Prueba", '<div class="d-flex justify-content-center">' +
-                                            '<a data-toggle="modal" data-target="#modal-editar" href= "#" > <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>'+
-                                            '<a onclick="eliminarTipoAusencia("HOLA", this)" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>'+
-                                            '</div >'];
-    
-        table.row.add(info).draw(false);
-
-
-    return false;
-}
-
-
-
-
-
-
-
-
-
-
-
-//Actualizacion del datatable
-
-function reloadDatatable() {
-    $('#table').dataTable().fnDestroy();  // Eliminacion del datatable
-    $('#table').DataTable({                 // Creacion del datatable
-        "searching": false,
-        "paging": true,
-        "info": false,
-        "lengthChange": false,
-        "responsive": true,
-        "autoWidth": false,
+                table.row.add(info).draw(false); // Agregar la nueva fila a la taba
+            }
+            else { // No se se elimino
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Problemas en el registro',
+                    text: 'Los datos no se registraron en el sistema.',
+                })
+            }
+        },
+        error: function () {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error inesperado',
+                text: 'Ocurrió un error en la operación.',
+            })
+        }
     });
+    return false; // Permitir el uso de HTML5
 }
 
 
 
-// Eliminacion de la fila en la tabla
-function deleteRow(btn) {
 
-    var row = $(btn).closest('tr'); // Eliminar una fila de la tabla
-    row.fadeOut(500, function () { // Tiempo de desvanecimiento, sin esto no elimina en ajax
-        row.remove();
+var btnEdit = null;
+var motivoAnterior = null;
+
+
+// Cargar los datos a editar en el modal, y guardar la fila seleccionada
+function cargarEdit(idTAusencia, btn) {
+    $('#motivoEdit').val(idTAusencia);
+    btnEdit = btn;
+    motivoAnterior = idTAusencia;
+}
+
+
+/*
+ *
+ * editar un tipo de ausencia
+ *
+ * */
+function editarTipoAusencia() {
+
+    var tAusencia = document.getElementById("motivoEdit").value; // La nueva ausencia
+
+
+    var envio = {
+        anterior: motivoAnterior,
+        nuevo: $('#motivoEdit').val()
+    }
+
+    $.ajax({
+        url: "/Catalogo_Ausencias/Editar",    // Nombre del controlador/ accion del controlador
+        type: "POST",
+        data: envio,
+        dataType: "json",
+        success: function (response) {
+            if (response.success == true) { // Si se elimino
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Datos modificados exitosamente',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+
+     
+                var row = $(btnEdit).closest('tr'); // Obtener la fila
+                // Editar las columnas de la fila seleccionada
+                row.find("td").eq(0).html(tAusencia); 
+                row.find("td").eq(1).html('<div class="d-flex justify-content-center">' +
+                                         '<a data-toggle="modal" data-target="#modal-editar" href= "#" > <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>' +
+                                         '<a onclick="eliminarTipoAusencia(' + tAusencia + ', this)" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>' +
+                                         '</div >');
+            }
+            else { // No se se elimino
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Problemas en el registro',
+                    text: 'Los datos no se modificaron.',
+                })
+            }
+        },
+        error: function () {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error inesperado',
+                text: 'Ocurrió un error en la operación.',
+            })
+        }
     });
+    return false; // Permitir el uso de HTML5
 }
+
+
+
+
+
+
+
+

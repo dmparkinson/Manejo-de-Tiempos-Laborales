@@ -81,5 +81,26 @@ namespace ReglasNegocios
 
             return 1;
         }
+
+
+
+        public string ListarHistoricoTiempos()
+        {
+            TiemposAD data = new TiemposAD();
+            string respuesta = null;
+
+            //Llamado a accedo de datos
+            try
+            {
+                respuesta = data.listarTiempoUsuario();
+
+                Console.WriteLine(respuesta);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            return respuesta;
+        }
     }
 }

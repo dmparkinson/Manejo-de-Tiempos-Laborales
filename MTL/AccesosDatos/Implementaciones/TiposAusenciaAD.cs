@@ -77,13 +77,13 @@ namespace AccesosDatos.Implementaciones
             return salida;
         }
 
-        public int updateTiposAusencia(string nombre, string nuevo)
+        public int updateTiposAusencia(string anterior, string nuevo)
         {
             int salida = 0;
 
             try
             {
-                SqlDataReader dr = consultar("EXEC update_tipo_ausencia '" + nombre + "', '" + nuevo + "'");
+                SqlDataReader dr = consultar("EXEC update_tipo_ausencia '" + anterior + "', '" + nuevo + "'");
                 dr.Read();
                 salida = int.Parse(dr[0].ToString());
             }
