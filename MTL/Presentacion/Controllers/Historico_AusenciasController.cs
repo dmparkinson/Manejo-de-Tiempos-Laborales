@@ -14,7 +14,7 @@ namespace Presentacion.Controllers
         // GET: Historico_Ausencias
         public ActionResult Listar_de_Admin()
         {
-            AusenciaLN ausencias = new AusenciaLN();
+            AusenciaRN ausencias = new AusenciaRN();
 
             List<Ausencia> lista = JsonConvert.DeserializeObject<List<Ausencia>>(ausencias.ListarHistoricoAusencias());
             ViewBag.ListaHistoricAusencias = lista;
@@ -25,7 +25,7 @@ namespace Presentacion.Controllers
         public ActionResult Listar_de_Jefatura()
         {
 
-            AusenciaLN ausencias = new AusenciaLN();
+            AusenciaRN ausencias = new AusenciaRN();
 
             List<Ausencia> lista = JsonConvert.DeserializeObject<List<Ausencia>>(ausencias.ListarHistoricoAusencias());
             ViewBag.ListaHistoricAusencias = lista;
@@ -48,9 +48,22 @@ namespace Presentacion.Controllers
 
 
         [HttpPost]
-        public JsonResult Eliminar()
+        public JsonResult Eliminar(string _ausencia)
         {
-            return null;
+            AusenciaRN ausenciaRN = new AusenciaRN();
+            int respuesta = ausenciaRN.EliminarAusencia(_ausencia);
+
+            if (respuesta == 1) // El tipo de ausencia no se encuentra en el sistema
+            {
+                return Json(new { success = true, deleted = true });
+            }
+            else  // El tipo de ausencia si se encontro y se elimino exitosamente
+            {
+                return Json(new { success = false, deleted = false });
+
+               
+            }
+ 
         }
 
     }

@@ -77,13 +77,13 @@ namespace AccesosDatos.Implementaciones
             return data;
         }
 
-        public int insertAusencia(string fechaS, string fechaR, string tipoA, int idUsuario)
+        public int insertAusencia(Ausencia _ausencia)
         {
             int salida = 0;
 
             try
             {
-                SqlDataReader dr = consultar("EXEC insert_ausencias '" + fechaS + "','" + fechaR + "','" + tipoA + "'," + idUsuario + "");
+                SqlDataReader dr = consultar("EXEC insert_ausencias '" + _ausencia.TF_Fecha_Salida + "','" + _ausencia.TF_Fecha_Regreso + "','" + _ausencia.TC_Tipo_Ausencia + "'," + _ausencia.TN_Id_Usuario + "");
                 dr.Read();
                 salida = int.Parse(dr[0].ToString());
             }
@@ -95,13 +95,16 @@ namespace AccesosDatos.Implementaciones
             return salida;
         }
 
-        public int updateAusencia(string fechaS, string fechaR, string tipoA, int idUsuario, int idAusencia)
+
+
+
+        public int updateAusencia(Ausencia ausencia)
         {
             int salida = 0;
 
             try
             {
-                SqlDataReader dr = consultar("EXEC update_ausencias '"+fechaS+"','"+fechaR+"','"+tipoA+"',"+idUsuario+","+idAusencia+"");
+                SqlDataReader dr = consultar("EXEC update_ausencias '"+ ausencia.TF_Fecha_Salida+ "','"+ ausencia .TF_Fecha_Regreso+ "','"+ausencia.TC_Tipo_Ausencia+"',"+ausencia.TN_Id_Usuario+","+ausencia.TN_Id_Ausencia+"");
                 dr.Read();
                 salida = int.Parse(dr[0].ToString());
             }

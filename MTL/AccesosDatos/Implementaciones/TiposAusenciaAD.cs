@@ -60,12 +60,12 @@ namespace AccesosDatos.Implementaciones
 
 
 
-        public int insertTiposAusencia(string nombre)
+        public int insertTiposAusencia(TipoAusencia _tAusencia)
         {
             int salida = 0;
             try
             {
-                SqlDataReader dr = consultar("EXEC insert_tipo_ausencia '" + nombre + "'");
+                SqlDataReader dr = consultar("EXEC insert_tipo_ausencia '" + _tAusencia.TC_Tipo_Ausencia + "'");
                 dr.Read();
                 salida = int.Parse(dr[0].ToString());
             }
@@ -77,13 +77,13 @@ namespace AccesosDatos.Implementaciones
             return salida;
         }
 
-        public int updateTiposAusencia(string anterior, string nuevo)
+        public int updateTiposAusencia(TipoAusencia _anterior, TipoAusencia _nuevo)
         {
             int salida = 0;
 
             try
             {
-                SqlDataReader dr = consultar("EXEC update_tipo_ausencia '" + anterior + "', '" + nuevo + "'");
+                SqlDataReader dr = consultar("EXEC update_tipo_ausencia '" + _anterior.TC_Tipo_Ausencia + "', '" + _nuevo.TC_Tipo_Ausencia + "'");
                 dr.Read();
                 salida = int.Parse(dr[0].ToString());
             }

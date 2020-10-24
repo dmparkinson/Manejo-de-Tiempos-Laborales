@@ -18,7 +18,7 @@ function eliminarHAusencia(idAusencia, btn) {
             // Proceso de eliminacion de datos
 
             var dataHorario = {
-                "horario": idHorario
+                "_ausencia": idAusencia
             };
             $.ajax({
                 url: "/Historico_Ausencias/Eliminar",    // Nombre del controlador/ accion del controlador
@@ -28,7 +28,7 @@ function eliminarHAusencia(idAusencia, btn) {
                 success: function (response) {
                     if (response.success == true) {
 
-                        if (response.deleted == true) // Si el tiempo de horario se elimino correctamente
+                        if (response.deleted == true) // Si el tiempo de ausencia se elimino correctamente
                         {
                             Swal.fire(
                                 'Eliminado!',
