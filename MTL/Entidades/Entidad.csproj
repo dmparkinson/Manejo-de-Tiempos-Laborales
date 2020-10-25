@@ -44,6 +44,8 @@
     <Compile Include="Ausencia.cs" />
     <Compile Include="Empleado.cs" />
     <Compile Include="Horario.cs" />
+    <Compile Include="Oficina.cs" />
+    <Compile Include="Puesto.cs" />
     <Compile Include="Respuesta.cs" />
     <Compile Include="Tiempo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -24,3 +24,16 @@ C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\MTL\Regla
 C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\MTL\ReglasNegocios\obj\Debug\ReglasNegocio.csproj.CopyComplete
 C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\MTL\ReglasNegocios\obj\Debug\ReglasNegocios.dll
 C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\MTL\ReglasNegocios\obj\Debug\ReglasNegocios.pdb
+D:\UCR\Análisis\Proyecto MTL\MTL\ReglasNegocios\bin\Debug\ReglasNegocios.dll
+D:\UCR\Análisis\Proyecto MTL\MTL\ReglasNegocios\bin\Debug\ReglasNegocios.pdb
+D:\UCR\Análisis\Proyecto MTL\MTL\ReglasNegocios\bin\Debug\AccesosDatos.dll
+D:\UCR\Análisis\Proyecto MTL\MTL\ReglasNegocios\bin\Debug\Entidades.dll
+D:\UCR\Análisis\Proyecto MTL\MTL\ReglasNegocios\bin\Debug\Newtonsoft.Json.dll
+D:\UCR\Análisis\Proyecto MTL\MTL\ReglasNegocios\bin\Debug\AccesosDatos.pdb
+D:\UCR\Análisis\Proyecto MTL\MTL\ReglasNegocios\bin\Debug\Entidades.pdb
+D:\UCR\Análisis\Proyecto MTL\MTL\ReglasNegocios\bin\Debug\Newtonsoft.Json.xml
+D:\UCR\Análisis\Proyecto MTL\MTL\ReglasNegocios\obj\Debug\ReglasNegocio.csprojAssemblyReference.cache
+D:\UCR\Análisis\Proyecto MTL\MTL\ReglasNegocios\obj\Debug\ReglasNegocio.csproj.CoreCompileInputs.cache
+D:\UCR\Análisis\Proyecto MTL\MTL\ReglasNegocios\obj\Debug\ReglasNegocio.csproj.CopyComplete
+D:\UCR\Análisis\Proyecto MTL\MTL\ReglasNegocios\obj\Debug\ReglasNegocios.dll
+D:\UCR\Análisis\Proyecto MTL\MTL\ReglasNegocios\obj\Debug\ReglasNegocios.pdb

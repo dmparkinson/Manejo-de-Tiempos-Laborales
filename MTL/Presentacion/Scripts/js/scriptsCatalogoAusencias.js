@@ -19,13 +19,12 @@ function eliminarTipoAusencia(idAusencia, btn) {
             // Proceso de eliminacion de datos
 
             var dataTAusencia = {
-                "tipoAusencia": idAusencia
+                _tipoAusencia: idAusencia
             };  
             $.ajax({
                 url: "/Catalogo_Ausencias/Eliminar",    // Nombre del controlador/ accion del controlador
                 type: "POST",
-                data: JSON.stringify(dataTAusencia),
-                dataType: "json",
+                data: dataTAusencia,
                 success: function (response) {
                     if (response.success == true) {
 
@@ -101,13 +100,12 @@ function agregarTipoAusencia() {
     var tAusencia = document.getElementById("motivoAusencia").value;
 
     var tipoAusencia = {
-        TC_Tipo_Ausencia: $('#motivoAusencia').val(),
+        nombre: tAusencia
     };
     $.ajax({
         url: "/Catalogo_Ausencias/Insertar",    // Nombre del controlador/ accion del controlador
-        type: "POST",
-        data: JSON.stringify(tipoAusencia),
-        dataType: "json",
+        type: "post",
+        data: tipoAusencia,
         success: function (response) {
             if (response.success == true) { // Si se elimino
                 Swal.fire({
@@ -117,7 +115,6 @@ function agregarTipoAusencia() {
                     showConfirmButton: false,
                     timer: 1500
                 })
-
 
                 var table = $('#table').DataTable(); // Obtener la tabla
 
@@ -156,7 +153,7 @@ var motivoAnterior = null;
 
 
 // Cargar los datos a editar en el modal, y guardar la fila seleccionada
-function cargarEdit(idTAusencia, btn) {
+function cargarEditCAusencia(idTAusencia, btn) {
     $('#motivoEdit').val(idTAusencia);
     btnEdit = btn;
     motivoAnterior = idTAusencia;

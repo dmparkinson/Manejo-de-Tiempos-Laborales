@@ -73,7 +73,7 @@
                         <td>@item.TF_Fecha_Regreso</td>
                         <td>
                             <div class="d-flex justify-content-center">
-                                <a data-toggle="modal" data-target="#modal-editar" href="#" onclick="cargarEditHAusencia('@item.TC_Tipo_Ausencia','@item.TF_Fecha_Salida','@item.TF_Fecha_Regreso', this)"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
+                                <a data-toggle="modal" data-target="#modal-editar" href="#" onclick="cargarEditHisAusencia('@item.TC_Tipo_Ausencia','@item.TF_Fecha_Salida','@item.TF_Fecha_Regreso','@item.TN_Id_Ausencia','@item.TN_Id_Usuario', this)"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
                                 <a onclick="eliminarHAusencia('@item.TN_Id_Ausencia', this)" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
                             </div>
                         </td>
@@ -99,27 +99,31 @@
 <div class="modal fade" id="modal-editar">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form onsubmit="editarHHorario()">
+            <form onsubmit="return editarHisAusencia()">
                 <div class="modal-header">
                     <h4 class="modal-title">Modificar Ausencia</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-
+                <input type="hidden" id="idAusencia">
+                <input type="hidden" id="idUsuario">
                 <div class="modal-body">
                     <div class="form-group ">
                         <label class="font-weight-normal" for="salida">Fecha de salida:</label>
-                        <input type="date" class="form-control form-control-sm" id="salidaE" required>
+                        <input type="date" class="form-control form-control-sm" id="salidaE" onchange="fechaRegresoValidacion()" required>
                     </div>
                     <div class="form-group">
                         <label class="font-weight-normal" for="regreso">Fecha de regreso:</label>
                         <input type="date" class="form-control form-control-sm" id="regresoE" required>
                     </div>
                     <div class="form-group">
-                        <label class="font-weight-normal" for="motivo">TMotivo:</label>
+                        <label class="font-weight-normal" for="motivo">Motivo:</label>
                         <select class="form-control form-control-sm" id="motivoE">
-                            <option selected="selected">Enfermedad</option>
+                            @foreach (var item in ViewBag.ListaTipoAusencias)
+                            {
+                            <option value="@item.TC_Tipo_Ausencia">@item.TC_Tipo_Ausencia</option>
+                            }
                         </select>
                     </div>
 
