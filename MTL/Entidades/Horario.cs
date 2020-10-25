@@ -8,6 +8,6 @@ namespace Entidad
     public class Horario
     {
         public string TC_Horario { set; get; }
-        public int TH_Duracion { set; get; }
+        public string TH_Duracion { set; get; }
     }
 }
