@@ -12,30 +12,31 @@ namespace AccesosDatos.Implementaciones
     {
 
         public int registrarHorario(Horario horario) {
-            return ejecutar($"exec sp_registrar_horario '{horario.TC_Horario}', {horario.TH_Duracion}");
+            return executing($"exec sp_registrar_horario '{horario.TC_Horario}', {horario.TH_Duracion}");
         }
 
         public int eliminarHorario(Horario horario)
         {
-            return ejecutar($"exec sp_eliminar_horario '{horario.TC_Horario}'");
+            return executing($"exec sp_eliminar_horario '{horario.TC_Horario}'");
         }
 
         public int actualizarHorario(Horario horario)
         {
-            return ejecutar($"exec sp_actualizar_horario '{horario.TC_Horario}', {horario.TH_Duracion}");
+            return executing($"exec sp_actualizar_horario '{horario.TC_Horario}', {horario.TH_Duracion}");
         }
 
-        public string consultarHorario(Horario horario) {
+        public Horario consultarTiempo(Horario horario)
+        {
             Horario h = new Horario();
             SqlDataReader dataReader = consultar($"exec sp_consultar_horario '{horario.TC_Horario}', {horario.TH_Duracion}");
 
             while (dataReader.Read())
             {
                 h.TC_Horario = dataReader["TC_Horario"].ToString();
-                h.TH_Duracion = int.Parse(dataReader["TH_Duracion"].ToString());
+                h.TH_Duracion = dataReader["TH_Duracion"].ToString();
             }
 
-            return JsonConvert.SerializeObject(h);
+            return h;
         }
 
         public string listarHorarios()
