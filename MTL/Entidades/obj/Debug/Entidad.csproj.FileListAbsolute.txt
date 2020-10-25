@@ -10,3 +10,9 @@ C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\MTL\Entid
 C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\MTL\Entidades\obj\Debug\Entidades.dll
 C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\MTL\Entidades\obj\Debug\Entidades.pdb
 D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\MTL\Entidades\obj\Debug\Entidad.csprojAssemblyReference.cache
+D:\UCR\Análisis\Proyecto MTL\MTL\Entidades\bin\Debug\Entidades.dll
+D:\UCR\Análisis\Proyecto MTL\MTL\Entidades\bin\Debug\Entidades.pdb
+D:\UCR\Análisis\Proyecto MTL\MTL\Entidades\obj\Debug\Entidad.csprojAssemblyReference.cache
+D:\UCR\Análisis\Proyecto MTL\MTL\Entidades\obj\Debug\Entidad.csproj.CoreCompileInputs.cache
+D:\UCR\Análisis\Proyecto MTL\MTL\Entidades\obj\Debug\Entidades.dll
+D:\UCR\Análisis\Proyecto MTL\MTL\Entidades\obj\Debug\Entidades.pdb
