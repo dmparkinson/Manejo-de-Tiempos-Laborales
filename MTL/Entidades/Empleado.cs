@@ -19,7 +19,9 @@ namespace Entidad
 		public string TC_Correo { set; get; }
 		public int TB_Activo { set; get; }
 		public int TN_Id_Puesto { set; get; }
+		public string TC_Nombre_Puesto { set; get; }
 		public int TN_Id_Oficina { set; get; }
+		public string TC_Nombre_Oficina { set; get; }
 		public int TB_Eliminado { set; get; }
 	}
 }
