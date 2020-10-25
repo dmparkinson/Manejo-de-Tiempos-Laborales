@@ -13,18 +13,22 @@
         <div class="col-6 mt-2 ">
             <div class="card" style="background-color: #FAFAFA">
                 <div class="card-header">
-                    <h5 class="card-tittle">Añadir nueva tiempo laboral</h5>
+                    <h5 class="card-tittle">Añadir nuevo tiempo laboral</h5>
                 </div>
 
                 <div class="card-body">
-                    <div class="form-group d-flex justify-content-between">
-                        <label class="font-weight-normal" for="tipo">Tipo:</label>
-                        <input type="text" class="form-control form-control-sm" id="tiop" placeholder="Ingrese el tipo de tiempo" required>
-                    </div>
+                    <form action="@Url.Action("Agregar", "Catalogo_Tiempos_Laborales")" method="post">
+                        <div class="form-group d-flex justify-content-between">
+                            <label class="font-weight-normal" for="horario">Tipo:</label>
+                            <input type="text" class="form-control form-control-sm" id="horario" name="horario" placeholder="Ingrese el tipo de tiempo" required>
+                        </div>
 
-                    <div class="row justify-content-center mt-2">
-                        <button class="btn btn-primary btn-sm" onclick="alertDatosInvalidos()">Guardar</button>
-                    </div>
+                        <div class="row justify-content-center mt-2">
+                            <button class="btn btn-primary btn-sm" id="botonHorario" type="submit">Guardar</button>
+                        </div>
+                    </form>
+                    <span>@ViewBag.Respuesta</span>
+                    <span id="respuesta"></span>
                 </div>
             </div>
         </div>
@@ -39,55 +43,42 @@
         <div class="col-12">
             <div class="d-flex justify-content-between mt-3">
                 <div class="col-6">
-                    <input type="search" id="searchInput" placeholder="Buscar" class="form-control form-control-sm">
+                    <input type="search" id="search" placeholder="Buscar" class="form-control form-control-sm">
                 </div>
                 <div>
                     <input type="button" value="Reporte" class="btn btn-secondary btn-sm">
                 </div>
             </div>
-            <table id="table" class="table table-bordered table-hover">
+            <table id="example1" class="table table-bordered table-hover">
                 <thead class="thead-dark text-center">
                     <tr>
                         <th>Tipo</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
-                <tbody id="contenidoTabla">
-                    <tr>
-                        <td>Entrada</td>
-                        <td class="d-flex justify-content-center">
-                            <<a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
-                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Café mañana entrada</td>
-                        <td class="d-flex justify-content-center">
-                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
-                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Café mañana salida</td>
-                        <td class="d-flex justify-content-center">
-                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
-                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Almuerzo entrada</td>
-                        <td class="d-flex justify-content-center">
-                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
-                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Almuerzo salida</td>
-                        <td class="d-flex justify-content-center">
-                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
-                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
-                        </td>
-                    </tr>
+
+                @model Entidad.Horario
+                <tbody>
+                    @foreach (Entidad.Horario temp in ViewBag.ListaTiempos)
+                    {
+
+                        <tr>
+                            <td>@temp.TC_Horario</td>
+                            <td class="d-flex justify-content-center">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <button id="@temp.TC_Horario" type="button" class="btn btn-success btn-sm" onclick="editMyModal(this)" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-pencil-square" style="font-size:36px;"></i> </button>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button id="@temp.TC_Horario" class="btn btn-danger btn-sm" onclick="alertAdvertenciaEliminarTiempos(this)"><i class="fa fa-trash" style="font-size:36px;"></i> </button>
+                                    </div>
+                                </div>
+
+
+                            </td>
+                        </tr>
+
+                    }
                 </tbody>
             </table>
         </div>
