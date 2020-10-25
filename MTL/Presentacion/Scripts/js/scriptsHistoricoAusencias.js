@@ -5,7 +5,7 @@
  * 
  * */
 function eliminarHAusencia(idAusencia, btn) {
-
+    
     Swal.fire({
         title: '¿Seguro?',
         text: 'No se podrán revertir los cambios',
@@ -18,14 +18,14 @@ function eliminarHAusencia(idAusencia, btn) {
             // Proceso de eliminacion de datos
 
             var dataHorario = {
-                "_ausencia": idAusencia
+                ausencia: idAusencia
             };
             $.ajax({
                 url: "/Historico_Ausencias/Eliminar",    // Nombre del controlador/ accion del controlador
-                type: "POST",
-                data: JSON.stringify(dataHorario),
-                dataType: "json",
+                type: "post",
+                data: dataHorario,
                 success: function (response) {
+                    
                     if (response.success == true) {
 
                         if (response.deleted == true) // Si el tiempo de ausencia se elimino correctamente
@@ -36,7 +36,7 @@ function eliminarHAusencia(idAusencia, btn) {
                                 'success'
                             )
 
-
+                            
                             var row = $(btn).closest('tr'); // Obtener la fila selecionada
                             row.fadeOut(500, function () {  // Tiempo de desvanecimiento, sin esto no elimina en ajax
                                 row.remove();              // Eliminacion de la fila en la tabla
@@ -64,6 +64,7 @@ function eliminarHAusencia(idAusencia, btn) {
                         }
                     }
                     else { // No se encontro el tiempo de horario
+                        alert(response.dato);
                         Swal.fire(
                             'No encontrado',
                             'El el tiempo de ausencia no se encuentra registrado.',
@@ -89,39 +90,62 @@ function eliminarHAusencia(idAusencia, btn) {
 
 
 
-var btnEditHorario = null;
-var tipoA = null;
-var fechaSalidaA= null;
-var fechaRegresoA = null;
+var btnFilaAusencia = null;
 
 // Cargar los datos a editar en el modal, y guardar la fila seleccionada
-function cargarEditHAusencia(tipo, fecha_salida, fecha_regreso, btn) {
-    $('#motivoE').val(fecha);
-    $('#salidaE').val(hora);
-    $('#regresoE').val(tiempo);
-    btnEditHorario = btn;
-    tipoA = tipo;
-    fechaSalidaA = fecha_salida;
-    fechaRegresoA = fecha_regreso;
+function cargarEditHisAusencia(tipo, fecha_salida, fecha_regreso, idAusencia, idUsuario, btn) {
+
+    document.getElementById("salidaE").value = fecha_salida.split("/").reverse().join("-");    // Formato de fechea salida;
+    document.getElementById("regresoE").value = fecha_regreso.split("/").reverse().join("-");    // Formato de fecha regreso;
+    $('#motivoE option[value=' + tipo + ']').attr('selected', 'selected');  // Mostrar esa opcion como seleccionada
+    $('#regresoE').attr('min', document.getElementById("salidaE").value.split("/").reverse().join("-"));            // Evitar ingresar una fecha de regreso que este antes de la de salida
+
+    document.getElementById("idUsuario").value = idUsuario;
+    document.getElementById("idAusencia").value = idAusencia;
+
+    btnFilaAusencia = btn;
 }
+
+
+
+
+
+
+
+
+
+// Establece que la fecha limite de regreso es la de salida
+function fechaRegresoValidacion() {
+    $('#regresoE').attr('min', document.getElementById("salidaE").value.split("/").reverse().join("-"));
+    
+}
+
 
 
 /*
  *
  * editar un tipo de ausencia
  *
- * */
-function editarHHorario() {
+ */
 
+function editarHisAusencia() {
 
+    var envio = {
+        // id Datos a cambiar
+        idAusencia : document.getElementById("idAusencia").value,
 
-
+        // Nuevos datos
+        idUsuario: document.getElementById("idUsuario").value,
+        tipoNuevo: document.getElementById("motivoE").value,
+        fechaSalidaNuevo: document.getElementById("salidaE").value ,
+        fechaRegresoNuevo: document.getElementById("regresoE").value
+    };
     $.ajax({
         url: "/Historico_Ausencias/Editar",    // Nombre del controlador/ accion del controlador
-        type: "POST",
+        type: "post",
         data: envio,
-        dataType: "json",
         success: function (response) {
+            console.log(response);
             if (response.success == true) { // Si se elimino
                 Swal.fire({
                     position: 'top-end',
@@ -132,16 +156,24 @@ function editarHHorario() {
                 })
 
 
-                var row = $(btnEdit).closest('tr'); // Obtener la fila
+
+                dateSalida = new Date(document.getElementById("salidaE").value);
+                dateSalidaFinal = (dateSalida.getDate()+1) + "/" + (dateSalida.getMonth()+1) + "/" + dateSalida.getFullYear();
+
+                dateRegreso = new Date(document.getElementById("regresoE").value);
+                dateRegresoFinal = (dateRegreso.getDate()+1) + "/" + (dateRegreso.getMonth()+1) + "/" + dateRegreso.getFullYear();
+                console.log(dateSalidaFinal + "," + dateRegresoFinal);
+
+                var row = $(btnFilaAusencia).closest('tr'); // Obtener la fila
                 // Editar las columnas de la fila seleccionada
-                row.find("td").eq(0).html(tAusencia);
-                row.find("td").eq(1).html('<div class="d-flex justify-content-center">' +
-                    '<a data-toggle="modal" data-target="#modal-editar" href= "#" > <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>' +
-                    '<a onclick="eliminarTipoAusencia(' + tAusencia + ', this)" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>' +
-                    '</div >');
+                row.find("td").eq(4).html(document.getElementById("motivoE").value);
+                row.find("td").eq(5).html(dateSalidaFinal);
+                row.find("td").eq(6).html(dateRegresoFinal);
+
             }
             else { // No se se elimino
                 Swal.fire({
+                    
                     icon: 'error',
                     title: 'Problemas en el registro',
                     text: 'Los datos no se modificaron.',
@@ -149,12 +181,15 @@ function editarHHorario() {
             }
         },
         error: function () {
-            Swal.fire({
+            
+             Swal.fire({
                 icon: 'error',
                 title: 'Error inesperado',
                 text: 'Ocurrió un error en la operación.',
-            })
+            }) 
         }
     });
     return false; // Permitir el uso de HTML5
 }
+
+
