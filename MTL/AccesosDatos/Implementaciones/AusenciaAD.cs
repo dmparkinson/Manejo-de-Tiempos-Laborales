@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Windows;
 
 namespace AccesosDatos.Implementaciones
 {
@@ -22,6 +23,7 @@ namespace AccesosDatos.Implementaciones
                 {
                     while (dr.Read())
                     {
+
                         string json = JsonConvert.SerializeObject(new
                         {
                             idAusencia = int.Parse(dr[0].ToString()),
@@ -104,6 +106,7 @@ namespace AccesosDatos.Implementaciones
 
             try
             {
+                string consulta = "EXEC update_ausencias '" + ausencia.TF_Fecha_Salida + "','" + ausencia.TF_Fecha_Regreso + "','" + ausencia.TC_Tipo_Ausencia + "'," + ausencia.TN_Id_Usuario + "," + ausencia.TN_Id_Ausencia + "";
                 SqlDataReader dr = consultar("EXEC update_ausencias '"+ ausencia.TF_Fecha_Salida+ "','"+ ausencia .TF_Fecha_Regreso+ "','"+ausencia.TC_Tipo_Ausencia+"',"+ausencia.TN_Id_Usuario+","+ausencia.TN_Id_Ausencia+"");
                 dr.Read();
                 salida = int.Parse(dr[0].ToString());
