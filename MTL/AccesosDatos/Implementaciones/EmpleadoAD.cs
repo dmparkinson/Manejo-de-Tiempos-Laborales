@@ -13,22 +13,35 @@ namespace AccesosDatos.Implementaciones
     {
         public int registrarEmpleado(Empleado empleado)
         {
-            return ejecutar($"exec sp_registrar_empleado '{empleado.TC_Usuario}', " +
+            int salida = -1;
+            SqlDataReader dr = consultar($"exec sp_registrar_empleado '{empleado.TC_Usuario}', " +
                 $"'{empleado.TC_Contrasena}', '{empleado.TC_Identificacion}', '{empleado.TC_Nombre_Usuario}', " +
                     $"'{empleado.TC_Primer_Apellido}', '{empleado.TC_Segundo_Apellido}', '{empleado.TC_Tipo_Usuario}', '{empleado.TC_Correo}', " +
                         $"{empleado.TB_Activo}, {empleado.TN_Id_Puesto}, {empleado.TN_Id_Oficina}");
+            dr.Read();
+            salida = int.Parse(dr[0].ToString());
+            closeCon();
+            return salida;
         }
 
-        public int eliminarEmpleado(string idEmpleado)
+        public int eliminarEmpleado(int id)
         {
-            return ejecutar($"exec sp_eliminar_empleado '{idEmpleado}'");
+            int salida = -1;
+            SqlDataReader dr = consultar($"exec sp_eliminar_empleado '{id}'");
+            dr.Read();
+            salida = int.Parse(dr[0].ToString());
+            closeCon();
+            return salida;
         }
 
         public int actualizarEmpleado(Empleado empleado) {
-            return ejecutar($"exec sp_actualizar_empleado '{empleado.TC_Usuario}', " +
-                $"'{empleado.TC_Contrasena}', '{empleado.TC_Identificacion}', '{empleado.TC_Nombre_Usuario}', " +
-                    $"'{empleado.TC_Primer_Apellido}', '{empleado.TC_Segundo_Apellido}', '{empleado.TC_Tipo_Usuario}', '{empleado.TC_Correo}', " +
-                        $"{empleado.TB_Activo}, {empleado.TN_Id_Puesto}, {empleado.TN_Id_Oficina}, {empleado.TB_Eliminado}");
+            int salida = -1;
+            SqlDataReader dr = consultar($"exec sp_actualizar_empleado {empleado.TN_Id_Usuario},'{empleado.TC_Identificacion}','{empleado.TC_Nombre_Usuario}','{empleado.TC_Primer_Apellido}'" +
+                $",'{empleado.TC_Segundo_Apellido}','{empleado.TC_Tipo_Usuario}','{empleado.TC_Correo}',{empleado.TB_Activo},{empleado.TN_Id_Puesto},{empleado.TN_Id_Oficina}");
+            dr.Read();
+            salida = int.Parse(dr[0].ToString());
+            closeCon();
+            return salida;
         } 
 
         public string consultarEmpleado(int idEmpleado)
@@ -109,7 +122,7 @@ namespace AccesosDatos.Implementaciones
 
                 lista.Add(emp);
             }
-
+            closeCon();
             return JsonConvert.SerializeObject(lista);
         }
 
@@ -126,7 +139,7 @@ namespace AccesosDatos.Implementaciones
 
                 lista.Add(o);
             }
-
+            closeCon();
             return JsonConvert.SerializeObject(lista);
         }
 
@@ -143,7 +156,7 @@ namespace AccesosDatos.Implementaciones
 
                 lista.Add(p);
             }
-
+            closeCon();
             return JsonConvert.SerializeObject(lista);
         }
     }

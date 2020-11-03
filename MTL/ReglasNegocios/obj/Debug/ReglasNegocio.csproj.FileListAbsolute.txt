@@ -37,3 +37,16 @@ D:\UCR\Análisis\Proyecto MTL\MTL\ReglasNegocios\obj\Debug\ReglasNegocio.csproj.
 D:\UCR\Análisis\Proyecto MTL\MTL\ReglasNegocios\obj\Debug\ReglasNegocio.csproj.CopyComplete
 D:\UCR\Análisis\Proyecto MTL\MTL\ReglasNegocios\obj\Debug\ReglasNegocios.dll
 D:\UCR\Análisis\Proyecto MTL\MTL\ReglasNegocios\obj\Debug\ReglasNegocios.pdb
+D:\UCR\Documentos\Analisis\Manejo-de-Tiempos-Laborales\MTL\ReglasNegocios\bin\Debug\ReglasNegocios.dll
+D:\UCR\Documentos\Analisis\Manejo-de-Tiempos-Laborales\MTL\ReglasNegocios\bin\Debug\ReglasNegocios.pdb
+D:\UCR\Documentos\Analisis\Manejo-de-Tiempos-Laborales\MTL\ReglasNegocios\bin\Debug\AccesosDatos.dll
+D:\UCR\Documentos\Analisis\Manejo-de-Tiempos-Laborales\MTL\ReglasNegocios\bin\Debug\Entidades.dll
+D:\UCR\Documentos\Analisis\Manejo-de-Tiempos-Laborales\MTL\ReglasNegocios\bin\Debug\Newtonsoft.Json.dll
+D:\UCR\Documentos\Analisis\Manejo-de-Tiempos-Laborales\MTL\ReglasNegocios\bin\Debug\AccesosDatos.pdb
+D:\UCR\Documentos\Analisis\Manejo-de-Tiempos-Laborales\MTL\ReglasNegocios\bin\Debug\Entidades.pdb
+D:\UCR\Documentos\Analisis\Manejo-de-Tiempos-Laborales\MTL\ReglasNegocios\bin\Debug\Newtonsoft.Json.xml
+D:\UCR\Documentos\Analisis\Manejo-de-Tiempos-Laborales\MTL\ReglasNegocios\obj\Debug\ReglasNegocio.csprojAssemblyReference.cache
+D:\UCR\Documentos\Analisis\Manejo-de-Tiempos-Laborales\MTL\ReglasNegocios\obj\Debug\ReglasNegocio.csproj.CoreCompileInputs.cache
+D:\UCR\Documentos\Analisis\Manejo-de-Tiempos-Laborales\MTL\ReglasNegocios\obj\Debug\ReglasNegocio.csproj.CopyComplete
+D:\UCR\Documentos\Analisis\Manejo-de-Tiempos-Laborales\MTL\ReglasNegocios\obj\Debug\ReglasNegocios.dll
+D:\UCR\Documentos\Analisis\Manejo-de-Tiempos-Laborales\MTL\ReglasNegocios\obj\Debug\ReglasNegocios.pdb
