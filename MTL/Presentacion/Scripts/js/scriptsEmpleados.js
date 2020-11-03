@@ -165,36 +165,46 @@ function insertarEmpleado () {
         data: data,
         success: function (response) {
             if (response.success == true) { // Si se elimino
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Datos registrador exitosamente.',
-                    showConfirmButton: false,
-                    timer: 1500
-                })
+                if (response.success == true) { // Si se elimino
+                    if (response.inserted == true) {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Datos registrador exitosamente.',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
 
-                var table = $('#table').DataTable(); // Obtener la tabla
+                        refrescarEmpleados();
 
-                // Construir la nueva fila
-                var info = [cedula, nombre, apUno, apDos, correo, $('#estado').children('option:selected').html(), tipo, $('#puesto').children('option:selected').html(), $('#oficina').children('option:selected').html(), '<div class="d-flex justify-content-center">' +
-                    '<a data-toggle="modal" data-target="#modal-editar" href= "#" > <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>' +
-                    '<a onclick="eliminarEmpleado(' + cedula + ')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>' +
-                    '</div >'];
+                    } else {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: 'Identificación o Usuario existente',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }
 
-                table.row.add(info).draw(false); // Agregar la nueva fila a la taba
-            } else { // No se se elimino
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Problemas en el registro',
-                    text: 'Los datos no se registraron en el sistema.',
-                })
+                } else { // No se se elimino
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'error',
+                        title: 'Error en la Base de Datos',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
             }
         },
         error: function (response) {
             Swal.fire({
+                position: 'top-end',
                 icon: 'error',
-                title: 'Error inesperado',
-                text: 'Ocurrió un error en la operación.',
+                title: 'Error en la conexión',
+                showConfirmButton: false,
+                timer: 1500
             })
         }
     });
@@ -202,7 +212,7 @@ function insertarEmpleado () {
     return false;
 }
 
-function eliminarEmpleado(cedula) {
+function eliminarEmpleado(id) {
 
     Swal.fire({
         title: '¿Seguro?',
@@ -216,7 +226,7 @@ function eliminarEmpleado(cedula) {
             // Proceso de eliminacion de datos
 
             var data = {
-               cedula: cedula
+               id: id
             };
             $.ajax({
                 url: "/Empleados/Eliminar",    // Nombre del controlador/ accion del controlador
@@ -227,46 +237,37 @@ function eliminarEmpleado(cedula) {
 
                         if (response.deleted == true) // Si el tipo de ausencia se elimino correctamente
                         {
-                            Swal.fire(
-                                'Eliminado!',
-                                'El empleado se elimino correctamente.',
-                                'success'
-                            )
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Empleado Eliminado',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
 
 
-                            var row = $(btn).closest('tr'); // Obtener la fila selecionada
-                            row.fadeOut(500, function () {  // Tiempo de desvanecimiento, sin esto no elimina en ajax
-                                row.remove();              // Eliminacion de la fila en la tabla
-                            });
-
-
-                            // Recargar la datatable
-                            $('#table').dataTable().fnDestroy();  // Eliminacion del datatable
-                            $('#table').DataTable({                 // Creacion del datatable
-                                "searching": false,
-                                "paging": true,
-                                "info": false,
-                                "lengthChange": false,
-                                "responsive": true,
-                                "autoWidth": false,
-                            });
+                            refrescarEmpleados();
 
                         }
                         else { // si no se elimino
-                            Swal.fire(
-                                'No eliminado',
-                                'El empleado seleccionado no se puede eliminar.',
-                                'warning'
-                            )
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'error',
+                                title: 'Imposible Eliminar, registros relacionados',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
                         }
 
                     }
                     else { // No se encontro la ausencia
-                        Swal.fire(
-                            'No encontrado',
-                            'El tipo de ausencia no se encuentra registrado.',
-                            'warning'
-                        )
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: 'Empleado Inexistente',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
                     }
                 },
                 error: function () {
@@ -281,3 +282,104 @@ function eliminarEmpleado(cedula) {
         }
     })
 }
+
+function prepararEdit(id) {
+    $('#hiddenID').val(id);
+}
+
+function actualizarEmpleado() {
+
+    var id = document.getElementById("hiddenID").value;
+    var cedula = document.getElementById("acedula").value;
+    var nombre = document.getElementById("anombre").value;
+    var apUno = document.getElementById("aapUno").value;
+    var apDos = document.getElementById("aapDos").value;
+    var correo = document.getElementById("acorreo").value;
+    var tipo = document.getElementById("atipo").value;
+    var estado = document.getElementById("aestado").value;
+    var puesto = document.getElementById("apuesto").value;
+    var oficina = document.getElementById("aoficina").value;
+    var data = { id:id,cedula: cedula, nombre: nombre, apUno: apUno, apDos: apDos, correo: correo, tipo: tipo, estado: estado, puesto: puesto, oficina: oficina };
+    $.ajax({
+        url: '/Empleados/Actualizar',
+        type: 'POST',
+        data: data,
+        success: function (response) {
+            if (response.success == true) { // Si se elimino
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Empleado Actualizado',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+
+
+                refrescarEmpleados();
+
+            } else {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'error',
+                    title: 'Error Actualizando',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
+        },
+        error: function (response) {
+            Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'Error en la conexión',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
+    });
+
+    return false;
+}
+
+function refrescarEmpleados() {
+    $.ajax({
+        url: '/Empleados/Refrescar',
+        type: 'POST',
+        success: function (response) {
+            var array = JSON.parse(response);
+            $('#contenidoTabla').html('');
+            for (i = 0; i < array.length; i++) {
+                $('#contenidoTabla').append('<tr>');
+                $('#contenidoTabla').append('<td>' + array[i].TC_Identificacion + '</td>');
+                $('#contenidoTabla').append('<td>' + array[i].TC_Nombre_Usuario + '</td>');
+                $('#contenidoTabla').append('<td>' + array[i].TC_Primer_Apellido + '</td>');
+                $('#contenidoTabla').append('<td>' + array[i].TC_Segundo_Apellido + '</td>');
+                $('#contenidoTabla').append('<td>' + array[i].TC_Correo + '</td>');
+                if (array[i].TB_Activo == "1") {
+                    $('#contenidoTabla').append('<td>Activo</td>');
+                } else {
+                    $('#contenidoTabla').append('<td>Inactivo</td>');
+                }
+                
+                $('#contenidoTabla').append('<td>' + array[i].TC_Tipo_Usuario + '</td>');
+                $('#contenidoTabla').append('<td>' + array[i].TC_Nombre_Puesto + '</td>');
+                $('#contenidoTabla').append('<td>' + array[i].TC_Nombre_Oficina + '</td>');
+                $('#contenidoTabla').append('<td class="d-flex justify-content-center">\
+                    <a class="ml-1" onclick="location.href=&quot@Url.Action("Listar_de_Admin", "Empleado_Horarios") &quot" title="Tiempo de horarios" href="#">\
+                        <i class="fas fa-business-time text-dark" style="font-size: 1.2em;"></i></a>\
+                    <a class="ml-1" onclick="location.href=&quot@Url.Action("Listar_de_Admin", "Empleado_Ausencias") &quot" title="Tiempo de ausencias" href="#"><i class="fas fa-calendar-times text-dark" style="font-size: 1.2em;"></i></a>\
+                        <a class="ml-1" data-toggle="modal" data-target="#modal-editar" onclick="prepararEdit('+ array[i].TN_Id_Usuario +')" href="#" title="Editar empleado"> <i class="fas fa-edit text-info" style="font-size: 1.2em;"></i></a>\
+                        <a class="ml-1" onclick="eliminarEmpleado('+ array[i].TN_Id_Usuario +')" title="Eliminar empleado" href="#"> <i class="fas fa-trash text-red" style="font-size: 1.2em;"></i></a>\
+                    </td>');
+                $('#contenidoTabla').append('</tr>');
+            }
+        },
+        error: function (response) {
+            alert('Error refrescando empleados')
+        }
+    });
+
+    return false;
+}
+
+
