@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ReglasNegocios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,9 +10,10 @@ namespace Presentacion.Controllers
     public class Empleado_AusenciasController : Controller
     {
         // GET: Empleado_Ausencias
-        public ActionResult Listar_de_Admin()
+        public ActionResult Listar_de_Admin(int idEmpleado)
         {
-
+            AusenciaRN a = new AusenciaRN();
+            ViewBag.Lista = a.ListarAusenciasEmpleado(idEmpleado);
             return View();
         }
         public ActionResult Listar_de_Jefatura()

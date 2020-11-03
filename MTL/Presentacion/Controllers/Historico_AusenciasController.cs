@@ -1,5 +1,4 @@
 ﻿using Entidad;
-using Entidades;
 using Newtonsoft.Json;
 using ReglasNegocio;
 using ReglasNegocios;

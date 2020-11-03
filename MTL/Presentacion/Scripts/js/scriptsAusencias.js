@@ -35,3 +35,13 @@
     })
 }
 
+function ausenciasEmpleado(idEmpleado) {
+    var data = { idEmpleado: idEmpleado }
+    $.ajax({
+        url: 'Url.Action("Empleado_Ausencias","Listar_de_Admin")',
+        type: 'POST',
+        data: data
+    });
+    return false;
+}
+

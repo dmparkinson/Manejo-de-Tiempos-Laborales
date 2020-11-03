@@ -1,5 +1,6 @@
 ﻿using AccesosDatos.Implementaciones;
-using Entidades;
+using Entidad;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -81,6 +82,28 @@ namespace ReglasNegocios
                 respuesta = -1;
             }
             return respuesta;
+        }
+
+        public List<Ausencia> ListarAusenciasEmpleado(int idEmpleado)
+        {
+            AusenciaAD a = new AusenciaAD();
+            string respuesta = null;
+            List<Ausencia> lista = new List<Ausencia>();
+            try
+            {
+                respuesta = a.getAllAusencias(idEmpleado);
+                if (respuesta != null)
+                {
+                    lista = JsonConvert.DeserializeObject<List<Ausencia>>(respuesta);
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            return lista;
         }
     }
 }
