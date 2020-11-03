@@ -1,47 +1,42 @@
 ﻿using Entidad;
-using Entidades;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Windows;
 
 namespace AccesosDatos.Implementaciones
 {
     public class AusenciaAD : ConexionAD.ConexionAD
     {
-        public List<string> getAllAusencias(int idUsuario)
+        public string getAllAusencias(int idUsuario)
         {
-            List<string> data = new List<string>();
+            List<Ausencia> data = new List<Ausencia>();
 
             try
             {
-                SqlDataReader dr = consultar("EXEC get_all_ausencias "+idUsuario+"");
-                if (dr != null)
-                {
+                SqlDataReader dr = consultar($"EXEC get_all_ausencias {idUsuario}");
+                
                     while (dr.Read())
                     {
-                        string json = JsonConvert.SerializeObject(new
-                        {
-                            idAusencia = int.Parse(dr[0].ToString()),
-                            fechaSalida = dr[1].ToString(),
-                            fechaRegreso = dr[2].ToString(),
-                            tipoAusencia = dr[3].ToString()
-                        });
-                        data.Add(json);
+                        Ausencia a = new Ausencia();
+                        a.TN_Id_Ausencia = int.Parse(dr[0].ToString());
+                        a.TF_Fecha_Salida = dr[1].ToString();
+                        a.TF_Fecha_Regreso = dr[2].ToString();
+                        a.TC_Tipo_Ausencia = dr[3].ToString();
+                        
+                        data.Add(a);
                     }
-                }
-                else
-                {
-                    data.Add("Error en la conexion");
-                }
+                
             }
             catch (SqlException e)
             {
-                data.Add("Error en la conexion");
+                Console.WriteLine(e.Message);
             }
-            return data;
+            closeCon();
+            return JsonConvert.SerializeObject(data);
         }
 
         public List<string> getAusencias(string fechaS, string fechaR, string tipoA,int idUsuario)
@@ -104,6 +99,7 @@ namespace AccesosDatos.Implementaciones
 
             try
             {
+                string consulta = "EXEC update_ausencias '" + ausencia.TF_Fecha_Salida + "','" + ausencia.TF_Fecha_Regreso + "','" + ausencia.TC_Tipo_Ausencia + "'," + ausencia.TN_Id_Usuario + "," + ausencia.TN_Id_Ausencia + "";
                 SqlDataReader dr = consultar("EXEC update_ausencias '"+ ausencia.TF_Fecha_Salida+ "','"+ ausencia .TF_Fecha_Regreso+ "','"+ausencia.TC_Tipo_Ausencia+"',"+ausencia.TN_Id_Usuario+","+ausencia.TN_Id_Ausencia+"");
                 dr.Read();
                 salida = int.Parse(dr[0].ToString());

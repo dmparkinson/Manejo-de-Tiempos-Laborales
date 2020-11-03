@@ -1,5 +1,6 @@
 ﻿using AccesosDatos.Implementaciones;
-using Entidades;
+using Entidad;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,10 +40,16 @@ namespace ReglasNegocios
 
 
         // Editar el ausencia
-        public int EditarAusencia(string _id, string _fSalida, string _fRegreso,string _idUsuario,  string _idTipoAusencia)
+        public int EditarAusencia(string idAusencia, string idUsuario, string tipoNuevo, string fechaSalidaNuevo, string fechaRegresoNuevo)
         {
             int respuesta = 0;
-            Ausencia ausenciaNueva = new Ausencia(int.Parse(_id), _fSalida, _fRegreso, _idTipoAusencia, int.Parse(_idUsuario) );
+
+            int id = int.Parse(idAusencia);
+            int usuario = int.Parse(idUsuario);
+            string fechaS = fechaSalidaNuevo + " 00:00:00.000";
+            string fechaR = fechaRegresoNuevo + " 00:00:00.000";
+
+            Ausencia ausenciaNueva = new Ausencia(id, fechaS, fechaR, tipoNuevo, usuario);
 
             //Llamado a accedo de datos
             try
@@ -75,6 +82,28 @@ namespace ReglasNegocios
                 respuesta = -1;
             }
             return respuesta;
+        }
+
+        public List<Ausencia> ListarAusenciasEmpleado(int idEmpleado)
+        {
+            AusenciaAD a = new AusenciaAD();
+            string respuesta = null;
+            List<Ausencia> lista = new List<Ausencia>();
+            try
+            {
+                respuesta = a.getAllAusencias(idEmpleado);
+                if (respuesta != null)
+                {
+                    lista = JsonConvert.DeserializeObject<List<Ausencia>>(respuesta);
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            return lista;
         }
     }
 }
