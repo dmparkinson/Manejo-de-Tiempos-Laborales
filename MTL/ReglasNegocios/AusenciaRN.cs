@@ -3,6 +3,7 @@ using Entidad;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,7 +50,12 @@ namespace ReglasNegocios
             string fechaS = fechaSalidaNuevo + " 00:00:00.000";
             string fechaR = fechaRegresoNuevo + " 00:00:00.000";
 
-            Ausencia ausenciaNueva = new Ausencia(id, fechaS, fechaR, tipoNuevo, usuario);
+            Ausencia ausenciaNueva = new Ausencia();
+            ausenciaNueva.TN_Id_Ausencia = id;
+            ausenciaNueva.TN_Id_Usuario = usuario;
+            ausenciaNueva.TN_Id_Tipo_Ausencia = int.Parse(tipoNuevo);
+            ausenciaNueva.TF_Fecha_Salida = fechaSalidaNuevo;
+            ausenciaNueva.TF_Fecha_Regreso = fechaRegresoNuevo;
 
             //Llamado a accedo de datos
             try
@@ -104,6 +110,26 @@ namespace ReglasNegocios
             }
 
             return lista;
+        }
+
+        public int InsertarAusencia(string fechai, string fechaf, int motivo,int id)
+        {
+            AusenciaAD a = new AusenciaAD();
+            int respuesta = -1;
+            try
+            {
+                Ausencia ausencia = new Ausencia();
+                ausencia.TF_Fecha_Salida = fechai;
+                ausencia.TF_Fecha_Regreso = fechaf;
+                ausencia.TN_Id_Tipo_Ausencia = motivo;
+                ausencia.TN_Id_Usuario = id;
+                respuesta = a.insertAusencia(ausencia);
+            }
+            catch (IOException e)
+            {
+                 respuesta = -1;
+            }
+            return respuesta;
         }
     }
 }

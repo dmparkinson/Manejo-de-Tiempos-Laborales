@@ -17,9 +17,11 @@ namespace AccesosDatos.Implementaciones
             while (dataReader.Read())
             {
                 TipoAusencia tAusencia = new TipoAusencia();
+                tAusencia.TN_Id_Tipo_Ausencia = int.Parse(dataReader["TN_Id_Tipo_Ausencia"].ToString());
                 tAusencia.TC_Tipo_Ausencia = dataReader["TC_Tipo_Ausencia"].ToString();
                 lista.Add(tAusencia);
             }
+            closeCon();
             return JsonConvert.SerializeObject(lista);
             
         }
