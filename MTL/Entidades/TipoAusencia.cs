@@ -17,6 +17,7 @@ namespace Entidad
         {
         }
 
+        public int TN_Id_Tipo_Ausencia { set; get; }
         public string TC_Tipo_Ausencia { set; get; }
     }
 }

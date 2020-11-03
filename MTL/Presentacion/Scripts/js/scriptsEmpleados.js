@@ -281,6 +281,7 @@ function eliminarEmpleado(id) {
 
         }
     })
+    return false;
 }
 
 function prepararEdit(id) {

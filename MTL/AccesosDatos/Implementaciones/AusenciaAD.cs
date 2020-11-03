@@ -23,8 +23,12 @@ namespace AccesosDatos.Implementaciones
                     {
                         Ausencia a = new Ausencia();
                         a.TN_Id_Ausencia = int.Parse(dr[0].ToString());
-                        a.TF_Fecha_Salida = dr[1].ToString();
-                        a.TF_Fecha_Regreso = dr[2].ToString();
+                        int aux = dr[1].ToString().IndexOf(" ");
+                        String aux2 = dr[1].ToString().Substring(0, aux);
+                        a.TF_Fecha_Salida = DateTime.Parse(aux2).ToString("yyyy-MM-dd");
+                        aux = dr[2].ToString().IndexOf(" ");
+                        aux2 = dr[2].ToString().Substring(0, aux);
+                        a.TF_Fecha_Regreso = DateTime.Parse(aux2).ToString("yyyy-MM-dd");
                         a.TC_Tipo_Ausencia = dr[3].ToString();
                         
                         data.Add(a);
@@ -78,7 +82,7 @@ namespace AccesosDatos.Implementaciones
 
             try
             {
-                SqlDataReader dr = consultar("EXEC insert_ausencias '" + _ausencia.TF_Fecha_Salida + "','" + _ausencia.TF_Fecha_Regreso + "','" + _ausencia.TC_Tipo_Ausencia + "'," + _ausencia.TN_Id_Usuario + "");
+                SqlDataReader dr = consultar($"EXEC insert_ausencias '{_ausencia.TF_Fecha_Salida}','{_ausencia.TF_Fecha_Regreso}','{_ausencia.TN_Id_Tipo_Ausencia}',{_ausencia.TN_Id_Usuario}");
                 dr.Read();
                 salida = int.Parse(dr[0].ToString());
             }
@@ -86,7 +90,7 @@ namespace AccesosDatos.Implementaciones
             {
                 salida = -1;
             }
-
+            closeCon();
             return salida;
         }
 
@@ -99,8 +103,8 @@ namespace AccesosDatos.Implementaciones
 
             try
             {
-                string consulta = "EXEC update_ausencias '" + ausencia.TF_Fecha_Salida + "','" + ausencia.TF_Fecha_Regreso + "','" + ausencia.TC_Tipo_Ausencia + "'," + ausencia.TN_Id_Usuario + "," + ausencia.TN_Id_Ausencia + "";
-                SqlDataReader dr = consultar("EXEC update_ausencias '"+ ausencia.TF_Fecha_Salida+ "','"+ ausencia .TF_Fecha_Regreso+ "','"+ausencia.TC_Tipo_Ausencia+"',"+ausencia.TN_Id_Usuario+","+ausencia.TN_Id_Ausencia+"");
+
+                SqlDataReader dr = consultar($"EXEC update_ausencias '{ ausencia.TF_Fecha_Salida}','{ausencia.TF_Fecha_Regreso}',{ausencia.TN_Id_Tipo_Ausencia},{ausencia.TN_Id_Usuario},{ausencia.TN_Id_Ausencia}");
                 dr.Read();
                 salida = int.Parse(dr[0].ToString());
             }
@@ -108,24 +112,25 @@ namespace AccesosDatos.Implementaciones
             {
                 salida = -1;
             }
-
+            closeCon();
             return salida;
         }
 
         public int deleteAusencia(int idAusencia)
         {
-            int salida = 0;
+            int salida = -1;
 
             try
             {
-                SqlDataReader dr = consultar("EXEC delete_ausencias "+idAusencia+"");
+                SqlDataReader dr = consultar($"EXEC delete_ausencias {idAusencia}");
                 dr.Read();
                 salida = int.Parse(dr[0].ToString());
             }
             catch (SqlException e)
             {
-                salida = 0;
+                salida = -1;
             }
+            closeCon();
             return salida;
         }
 
