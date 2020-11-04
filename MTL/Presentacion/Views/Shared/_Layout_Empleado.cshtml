@@ -16,6 +16,8 @@
 
     @Styles.Render("~/Content/sweetalert2")
     @Styles.Render("~/Content/fontawesome")
+    @Styles.Render("~/Content/daterangepicker")
+
     <link rel="stylesheet" href="@Url.Content("https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css")">
 </head>
 
@@ -66,7 +68,8 @@
     @Scripts.Render("~/bundles/ajax")
     @Scripts.Render("~/bundles/sweetalert2")
     @Scripts.Render("~/bundles/alerts-sweetalert")
-    <script src="~/Scripts/js/scriptsEmpleados.js"></script>
+    @Scripts.Render("~/bundles/daterangepicker")
+    @Scripts.Render("~/bundles/scripts")
 
     @RenderSection("scripts", required: false)
 

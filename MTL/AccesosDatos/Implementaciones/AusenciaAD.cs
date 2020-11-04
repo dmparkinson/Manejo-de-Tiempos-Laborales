@@ -152,23 +152,17 @@ namespace AccesosDatos.Implementaciones
                 ausencia.TN_Id_Ausencia = int.Parse(dataReader["TN_Id_Ausencia"].ToString());
                 ausencia.TF_Fecha_Salida = fecha_salida[0];
                 ausencia.TF_Fecha_Regreso = fecha_regreso[0];
-                ausencia.TC_Tipo_Ausencia = dataReader["TC_Tipo_Ausencia"].ToString();
                 ausencia.TN_Id_Usuario = int.Parse(dataReader["TN_Id_Usuario"].ToString());
+
                 ausencia.empleado = new Empleado();
-                ausencia.empleado.TN_Id_Usuario = int.Parse(dataReader["TN_Id_Usuario"].ToString());
-                ausencia.empleado.TC_Usuario = dataReader["TC_Usuario"].ToString();
-                ausencia.empleado.TC_Contrasena = dataReader["TC_Contrasena"].ToString();
                 ausencia.empleado.TC_Identificacion = dataReader["TC_Identificacion"].ToString();
                 ausencia.empleado.TC_Nombre_Usuario = dataReader["TC_Nombre_Usuario"].ToString();
                 ausencia.empleado.TC_Primer_Apellido = dataReader["TC_Primer_Apellido"].ToString();
                 ausencia.empleado.TC_Segundo_Apellido = dataReader["TC_Segundo_Apellido"].ToString();
-                ausencia.empleado.TC_Tipo_Usuario = dataReader["TC_Tipo_Usuario"].ToString();
-                ausencia.empleado.TC_Correo = dataReader["TC_Correo"].ToString();
-                ausencia.empleado.TC_Usuario = dataReader["TC_Usuario"].ToString();
-                ausencia.empleado.TB_Activo = int.Parse(dataReader["TB_Activo"].ToString());
-                ausencia.empleado.TN_Id_Puesto = int.Parse(dataReader["TN_Id_Puesto"].ToString());
-                ausencia.empleado.TN_Id_Oficina = int.Parse(dataReader["TN_Id_Oficina"].ToString());
-                ausencia.empleado.TB_Eliminado = int.Parse(dataReader["TB_Eliminado"].ToString());
+
+                ausencia.tipoAusencia = new TipoAusencia();
+                ausencia.tipoAusencia.TN_Id_Tipo_Ausencia = int.Parse(dataReader["TN_Id_Tipo_Ausencia"].ToString());
+                ausencia.tipoAusencia.TC_Tipo_Ausencia = dataReader["TC_Tipo_Ausencia"].ToString();
 
                 lista.Add(ausencia);
             }
@@ -176,5 +170,36 @@ namespace AccesosDatos.Implementaciones
 
         }
 
+
+
+        // Obtener una ausencia
+        public string getAusencia(Ausencia _ausencia)
+        {
+            Ausencia ausencia= null;
+            try
+            {
+                SqlDataReader dataReader = consultar("EXEC get_ausencia '" + _ausencia.TN_Id_Ausencia + "'");
+                if (dataReader != null)
+                {
+                    while (dataReader.Read())
+                    {
+                        string[] fecha_salida = dataReader["TF_Fecha_Salida"].ToString().Split(' ');
+                        string[] fecha_regreso = dataReader["TF_Fecha_Regreso"].ToString().Split(' ');
+
+                        ausencia.TN_Id_Ausencia = int.Parse(dataReader["TN_Id_Ausencia"].ToString());
+                        ausencia.TF_Fecha_Salida = fecha_salida[0];
+                        ausencia.TF_Fecha_Regreso = fecha_regreso[0];
+                        ausencia.tipoAusencia = new TipoAusencia ();
+                        ausencia.tipoAusencia.TN_Id_Tipo_Ausencia = int.Parse(dataReader["TN_Id_Tipo_Ausencia"].ToString());
+                        ausencia.tipoAusencia.TC_Tipo_Ausencia = dataReader["TC_Tipo_Ausencia"].ToString();
+                    }
+                }
+            }
+            catch (SqlException e)
+            {
+                ausencia = null;
+            }
+            return JsonConvert.SerializeObject(ausencia);
+        }
     }
 }

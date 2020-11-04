@@ -45,10 +45,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AusenciaRN.cs" />
+    <Compile Include="CircuitoRN.cs" />
     <Compile Include="EmpleadoRN.cs" />
     <Compile Include="LoginRN.cs" />
     <Compile Include="OficinaRN.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PuestoRN.cs" />
+    <Compile Include="RolRN.cs" />
     <Compile Include="TiempoRN.cs" />
     <Compile Include="TipoAusenciaRN.cs" />
   </ItemGroup>

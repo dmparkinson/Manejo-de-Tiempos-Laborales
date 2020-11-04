@@ -11,19 +11,18 @@
     <div class="container mt-2 row justify-content-center">
         <div class="flex-column">
             <div class="d-flex flex-wrap">
-                <div class="form-group ">
-                    <label class="font-weight-normal" for="salida">Fecha salida:</label>
-                    <input type="date" class="form-control form-control-sm" id="salida" required>
-                </div>
                 <div class="form-group">
-                    <label class="font-weight-normal" for="regreso">Fecha regreso:</label>
-                    <input type="date" class="form-control form-control-sm" id="regreso" required>
+                    <label class="font-weight-normal" for="regreso">Fecha de ausencai:</label>
+                    <input type="date" class="form-control form-control-sm" id="fechaFomat" required>
                 </div>
                 <div class="form-group">
                     <label class="font-weight-normal" for="motivo">Motivo:</label>
 
                     <select class="form-control form-control-sm" id="motivo" required>
-                        <option>Enfermedad</option>
+                        @foreach (var item in ViewBag.ListaTipoAusencias)
+                        {
+                            <option value="@item.TN_Id_Tipo_Ausencia">@item.TC_Tipo_Ausencia</option>
+                        }
                     </select>
                 </div>
             </div>
@@ -68,12 +67,12 @@
                         <td>@item.empleado.TC_Nombre_Usuario</td>
                         <td>@item.empleado.TC_Primer_Apellido </td>
                         <td>@item.empleado.TC_Segundo_Apellido</td>
-                        <td>@item.TC_Tipo_Ausencia</td>
+                        <td>@item.tipoAusencia.TC_Tipo_Ausencia</td>
                         <td>@item.TF_Fecha_Salida</td>
                         <td>@item.TF_Fecha_Regreso</td>
                         <td>
                             <div class="d-flex justify-content-center">
-                                <a data-toggle="modal" data-target="#modal-editar" href="#" onclick="cargarEditHisAusencia('@item.TC_Tipo_Ausencia','@item.TF_Fecha_Salida','@item.TF_Fecha_Regreso','@item.TN_Id_Ausencia','@item.TN_Id_Usuario', this)"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
+                                <a data-toggle="modal" data-target="#modal-editar" href="#" onclick="cargarEditHisAusencia('@item.TN_Id_Ausencia','@item.tipoAusencia.TN_Id_Tipo_Ausencia')"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
                                 <a onclick="eliminarHAusencia('@item.TN_Id_Ausencia', this)" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
                             </div>
                         </td>
@@ -110,19 +109,15 @@
                 <input type="hidden" id="idUsuario">
                 <div class="modal-body">
                     <div class="form-group ">
-                        <label class="font-weight-normal" for="salida">Fecha de salida:</label>
-                        <input type="date" class="form-control form-control-sm" id="salidaE" onchange="fechaRegresoValidacion()" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="font-weight-normal" for="regreso">Fecha de regreso:</label>
-                        <input type="date" class="form-control form-control-sm" id="regresoE" required>
+                        <label class="font-weight-normal" for="salida">Fecha de ausencia:</label>
+                        <input type="text" class="form-control form-control-sm" id="fechaFomat"  required>
                     </div>
                     <div class="form-group">
                         <label class="font-weight-normal" for="motivo">Motivo:</label>
                         <select class="form-control form-control-sm" id="motivoE">
                             @foreach (var item in ViewBag.ListaTipoAusencias)
                             {
-                            <option value="@item.TC_Tipo_Ausencia">@item.TC_Tipo_Ausencia</option>
+                            <option value="@item.TN_Id_Tipo_Ausencia">@item.TC_Tipo_Ausencia</option>
                             }
                         </select>
                     </div>
