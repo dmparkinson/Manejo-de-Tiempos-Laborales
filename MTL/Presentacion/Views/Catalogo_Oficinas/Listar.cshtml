@@ -55,8 +55,8 @@
                             <td>@o.TF_Inicio_Vigencia</td>
                             <td>@o.TF_Fin_Vigencia</td>
                             <td class="d-flex justify-content-center">
-                                <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
-                                <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
+                                <a data-toggle="modal" data-target="#modal-editar" onclick="prepararEditOficina(@o.TN_Id_Oficina)" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
+                                <a onclick="eliminarOficinas(@o.TN_Id_Oficina)" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
                             </td>
                         </tr>
                     }
@@ -85,26 +85,26 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form>
+            <form onsubmit="return insertarOficina(this)">
                 <div class="modal-body">
                     <div class="form-group">
                         <label class="font-weight-normal" for="codigo">Código:</label>
-                        <input type="text" class="form-control form-control-sm" id="codigo" placelaceholder="Ingrese codigo" required>
+                        <input type="text" class="form-control form-control-sm" id="Ocodigo" placelaceholder="Ingrese codigo" required>
                     </div>
                     <div class="form-group">
                         <label class="font-weight-normal" for="nombre">Nombre:</label>
-                        <input type="text" class="form-control form-control-sm" id="nombre" placelaceholder="Ingrese nombre" required>
+                        <input type="text" class="form-control form-control-sm" id="Onombre" placelaceholder="Ingrese nombre" required>
                     </div>
                     <div class="form-group">
                         <label class="font-weight-normal" for="estado">Estado:</label>
-                        <select class="form-control form-control-sm" id="estado">
-                            <option>Activo</option>
-                            <option>Inactivo</option>
+                        <select class="form-control form-control-sm" id="Oestado">
+                            <option value="1">Activo</option>
+                            <option value="0">Inactivo</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label class="font-weight-normal" for="circuito">Circuito:</label>
-                        <select class="form-control form-control-sm" id="circuito">
+                        <select class="form-control form-control-sm" id="Ocircuito">
                             @foreach (Entidad.Circuito c in ViewBag.Circuitos)
                             {
                                 <option value="@c.TN_Id_Circuito">@c.TC_Desc_Circuito</option>
@@ -113,15 +113,15 @@
                     </div>
                     <div class="form-group ">
                         <label class="font-weight-normal" for="fechaVigencia">Rango de vigencia:</label>
-                        <input type="text" class="form-control form-control-sm" id="fechaVigencia">
+                        <input type="text" class="form-control form-control-sm" id="OfechaVigencia" onkeypress="return false;" required>
                         <script>
-                            $('#fechaVigencia').daterangepicker({
+                            $('#OfechaVigencia').daterangepicker({
                                 locale: {
                                     format: 'YYYY/MM/DD'
                                 }
                             });
-                            $('#fechaVigencia').val('');
-                            $('#fechaVigencia').attr("placeholder", "Rango de Fechas");
+                            $('#OfechaVigencia').val('');
+                            $('#OfechaVigencia').attr("placeholder", "Rango de Fechas");
                         </script>
                     </div>
 
@@ -131,7 +131,7 @@
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <div>
 
-                        <button type="button" class="btn btn-info" onclick="alertDatosInvalidos()">Agregar</button>
+                        <input type="submit" class="btn btn-info" value="Agregar" />
                     </div>
                 </div>
             </form>
@@ -162,54 +162,57 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <form onsubmit="return actualizarOficina(this)">
+                <input type="hidden" id="hiddenIDOf" value=""/>
+                <div class="modal-body">
 
-                <div class="form-group">
-                    <label class="font-weight-normal" for="codigo">Código:</label>
-                    <input type="text" class="form-control form-control-sm" id="codigo" placelaceholder="Ingrese codigo" required>
-                </div>
-                <div class="form-group">
-                    <label class="font-weight-normal" for="nombre">Nombre:</label>
-                    <input type="text" class="form-control form-control-sm" id="nombre" placelaceholder="Ingrese nombre" required>
-                </div>
-                <div class="form-group">
-                    <label class="font-weight-normal" for="estado">Estado:</label>
-                    <select class="form-control form-control-sm" id="estado">
-                        <option>Activo</option>
-                        <option>Inactivo</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="font-weight-normal" for="circuito">Circuito:</label>
-                    <select class="form-control form-control-sm" id="circuito">
-                        @foreach (Entidad.Circuito c in ViewBag.Circuitos)
-                        {
-                            <option value="@c.TN_Id_Circuito">@c.TC_Desc_Circuito</option>
-                        }
-                    </select>
-                </div>
-                <div class="form-group ">
-                    <label class="font-weight-normal" for="afechaVigencia">Rango de vigencia:</label>
-                    <input type="text" class="form-control form-control-sm" id="afechaVigencia">
-                    <script>
-                        $('#afechaVigencia').daterangepicker({
-                            locale: {
-                                format: 'YYYY/MM/DD'
+                    <div class="form-group">
+                        <label class="font-weight-normal" for="codigo">Código:</label>
+                        <input type="text" class="form-control form-control-sm" id="acodigo" placelaceholder="Ingrese codigo" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-normal" for="nombre">Nombre:</label>
+                        <input type="text" class="form-control form-control-sm" id="anombre" placelaceholder="Ingrese nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-normal" for="estado">Estado:</label>
+                        <select class="form-control form-control-sm" id="aestado">
+                            <option value="1">Activo</option>
+                            <option value="0">Inactivo</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-normal" for="circuito">Circuito:</label>
+                        <select class="form-control form-control-sm" id="acircuito">
+                            @foreach (Entidad.Circuito c in ViewBag.Circuitos)
+                            {
+                                <option value="@c.TN_Id_Circuito">@c.TC_Desc_Circuito</option>
                             }
-                        });
-                        $('#afechaVigencia').val('');
-                        $('#afechaVigencia').attr("placeholder", "Rango de Fechas");
-                    </script>
-                </div>
+                        </select>
+                    </div>
+                    <div class="form-group ">
+                        <label class="font-weight-normal" for="afechaVigencia">Rango de vigencia:</label>
+                        <input type="text" class="form-control form-control-sm" id="afechaVigencia">
+                        <script>
+                            $('#afechaVigencia').daterangepicker({
+                                locale: {
+                                    format: 'YYYY/MM/DD'
+                                }
+                            });
+                            $('#afechaVigencia').val('');
+                            $('#afechaVigencia').attr("placeholder", "Rango de Fechas");
+                        </script>
+                    </div>
 
 
-            </div>
-            <div class="modal-footer justify-content-between">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <div>
-                    <button type="button" class="btn btn-info" onclick="alertDatosValidos()">Editar</button>
                 </div>
-            </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <div>
+                        <input type="submit" class="btn btn-info" value="Editar" />
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>
