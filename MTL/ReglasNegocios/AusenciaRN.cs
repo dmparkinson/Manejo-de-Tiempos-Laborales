@@ -37,6 +37,25 @@ namespace ReglasNegocios
 
 
 
+        // Obtener una ausencia solicitada
+        public string ObtenerAusencia(Ausencia _ausencia)
+        {
+            AusenciaAD auseciaAD = new AusenciaAD();
+            string respuesta = null;
+
+            //Llamado a accedo de datos
+            try
+            {
+                respuesta = auseciaAD.getAusencia(_ausencia); // Resultado de la operacion
+
+                Console.WriteLine(respuesta);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            return respuesta;
+        }
 
 
 

@@ -4,7 +4,7 @@
  * Eliminar el tipo de ausencia 
  * 
  * */
-function eliminarHAusencia(idAusencia, btn) {
+function eliminarHAusencia(codigo) {
     
     Swal.fire({
         title: '¿Seguro?',
@@ -35,24 +35,6 @@ function eliminarHAusencia(idAusencia, btn) {
                                 'El tiempo de ausencia se elimino correctamente.',
                                 'success'
                             )
-
-                            
-                            var row = $(btn).closest('tr'); // Obtener la fila selecionada
-                            row.fadeOut(500, function () {  // Tiempo de desvanecimiento, sin esto no elimina en ajax
-                                row.remove();              // Eliminacion de la fila en la tabla
-                            });
-
-
-                            // Recargar la datatable
-                            $('#table').dataTable().fnDestroy();  // Eliminacion del datatable
-                            $('#table').DataTable({                 // Creacion del datatable
-                                "searching": false,
-                                "paging": true,
-                                "info": false,
-                                "lengthChange": false,
-                                "responsive": true,
-                                "autoWidth": false,
-                            });
 
                         }
                         else { // si no se elimino
@@ -90,20 +72,32 @@ function eliminarHAusencia(idAusencia, btn) {
 
 
 
-var btnFilaAusencia = null;
 
-// Cargar los datos a editar en el modal, y guardar la fila seleccionada
-function cargarEditHisAusencia(tipo, fecha_salida, fecha_regreso, idAusencia, idUsuario, btn) {
+// Cargar los datos a editar en el modal,
+function cargarEditHisAusencia(idAusencia) {
+   /* var envio = {
+        codigo: idAusencia
+    };
+    $.ajax({
+        url: "/Historico_Ausencias/Obtener",    // Nombre del controlador/ accion del controlador
+        type: "post",
+        data: envio,
+        success: function (response) {
+            var dato = JSON.parse(response.resultado);
+            $('#idEdit').val(dato.TN_Id_Circuito);
+            $('#nombreEdit').val(dato.TC_Desc_Circuito);
 
-    document.getElementById("salidaE").value = fecha_salida.split("/").reverse().join("-");    // Formato de fechea salida;
-    document.getElementById("regresoE").value = fecha_regreso.split("/").reverse().join("-");    // Formato de fecha regreso;
-    $('#motivoE option[value=' + tipo + ']').attr('selected', 'selected');  // Mostrar esa opcion como seleccionada
-    $('#regresoE').attr('min', document.getElementById("salidaE").value.split("/").reverse().join("-"));            // Evitar ingresar una fecha de regreso que este antes de la de salida
+        },
+        error: function () {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error inesperado',
+                text: 'Ocurrió un error en la operación.',
+            })
+        }
+    });
+    return false; // Permitir el uso de HTML5*/
 
-    document.getElementById("idUsuario").value = idUsuario;
-    document.getElementById("idAusencia").value = idAusencia;
-
-    btnFilaAusencia = btn;
 }
 
 
@@ -193,3 +187,53 @@ function editarHisAusencia() {
 }
 
 
+
+
+
+
+
+
+/*
+ *
+ * Refrescar tabla
+ *
+ * */
+function refrescarHistoricoAusencias() {
+    $.ajax({
+        url: "/Historico_Ausencias/Refrescar",    // Nombre del controlador/ accion del controlador
+        type: "post",
+        success: function (response) {
+
+            var lista = JSON.parse(response.resultado);
+
+            $('#contenidoTabla tr').remove();      // Eliminar contenido de la tabla
+            // Construir la nueva fila
+
+            for (x = 0; x < lista.length; x++) {
+                var info = '<tr> <td>' + lista[x].TC_Desc_Circuito + '</td>' +
+                    ' <td><div class="d-flex justify-content-center">' +
+                    '<a data-toggle="modal" data-target="#modal-editar" href= "#" onclick="cargarEditCircuito(' + lista[x].TN_Id_Circuito + ', this)"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>' +
+                    '<a onclick="eliminarCircuito(' + lista[x].TN_Id_Circuito + ', this)" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>' +
+                    '</div > </td> </tr>';
+
+                $("#contenidoTabla").append(info);
+            }
+        },
+        error: function () {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error inesperado',
+                text: 'Ocurrió un error en la operación. Recargue la página',
+            })
+        }
+    });
+    return false; // Permitir el uso de HTML5
+}
+
+
+
+
+
+
+// Formato del calendario para fecha de salida y fecha de regreso de la ausencia
+$('#fechaFomat').daterangepicker();
