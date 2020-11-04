@@ -37,7 +37,7 @@ function eliminar(titleText, message) {
 }
 
 function ausenciasEmpleado(idEmpleado) {
-    var data = { idEmpleado: idEmpleado }
+    var data = { idEmpleado: idEmpleado} 
     $.ajax({
         url: '/Empleado_Ausencias/EmpleadoAusencia',
         type: 'POST',

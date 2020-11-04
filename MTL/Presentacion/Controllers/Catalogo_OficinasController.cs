@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ReglasNegocios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +12,9 @@ namespace Presentacion.Controllers
         // GET: Catalogo_Oficinas
         public ActionResult Listar()
         {
+            OficinaRN o = new OficinaRN();
+            ViewBag.Lista = o.listarOficinas("");
+            ViewBag.Circuitos = o.listarCircuitosOficinas();
             ViewBag.Message = "Catálogo de Oficinas";
             return View();
         }
