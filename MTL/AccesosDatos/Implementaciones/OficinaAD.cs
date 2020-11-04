@@ -51,5 +51,35 @@ namespace AccesosDatos.Implementaciones
             return JsonConvert.SerializeObject(list);
         }
 
+        public int registrarOficina(Oficina a)
+        {
+            int salida = -1;
+            SqlDataReader dr = consultar($"EXEC sp_registrar_oficina '{a.TC_Codigo}','{a.TC_Nombre_Oficina}',{a.TN_Id_Circuito},{a.TB_Activa},'{a.TF_Inicio_Vigencia}','{a.TF_Fin_Vigencia}'");
+            dr.Read();
+            salida = int.Parse(dr[0].ToString());
+            closeCon();
+            return salida;
+        }
+
+        public int actualizarOficina(Oficina a)
+        {
+            int salida = -1;
+            SqlDataReader dr = consultar($"EXEC sp_actualizar_oficina {a.TN_Id_Oficina},'{a.TC_Codigo}','{a.TC_Nombre_Oficina}',{a.TN_Id_Circuito},{a.TB_Activa},'{a.TF_Inicio_Vigencia}','{a.TF_Fin_Vigencia}'");
+            dr.Read();
+            salida = int.Parse(dr[0].ToString());
+            closeCon();
+            return salida;
+        }
+
+        public int eliminarOficina(int id)
+        {
+            int salida = -1;
+            SqlDataReader dr = consultar($"EXEC sp_delete_oficina {id}");
+            dr.Read();
+            salida = int.Parse(dr[0].ToString());
+            closeCon();
+            return salida;
+        }
+
     }
 }
