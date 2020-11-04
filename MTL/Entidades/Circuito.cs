@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 ﻿using System;
 using System.Collections.Generic;
@@ -14,6 +15,8 @@ namespace Entidad
     }
 }
 =======
+=======
+>>>>>>> Dev_Daniela
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,4 +32,7 @@ namespace Entidades
         public string TC_Desc_Circuito { set; get; }
     }
 }
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> Dev_Daniela
