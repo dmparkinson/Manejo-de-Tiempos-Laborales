@@ -368,7 +368,7 @@ function refrescarEmpleados() {
                 $('#contenidoTabla').append('<td class="d-flex justify-content-center">\
                     <a class="ml-1" onclick="location.href=&quot@Url.Action("Listar_de_Admin", "Empleado_Horarios") &quot" title="Tiempo de horarios" href="#">\
                         <i class="fas fa-business-time text-dark" style="font-size: 1.2em;"></i></a>\
-                    <a class="ml-1" onclick="location.href=&quot@Url.Action("Listar_de_Admin", "Empleado_Ausencias") &quot" title="Tiempo de ausencias" href="#"><i class="fas fa-calendar-times text-dark" style="font-size: 1.2em;"></i></a>\
+                    <a class="ml-1" onclick="ausenciasEmpleado('+ array[i].TN_Id_Usuario +')" title="Tiempo de ausencias" href="#"><i class="fas fa-calendar-times text-dark" style="font-size: 1.2em;"></i></a>\
                         <a class="ml-1" data-toggle="modal" data-target="#modal-editar" onclick="prepararEdit('+ array[i].TN_Id_Usuario +')" href="#" title="Editar empleado"> <i class="fas fa-edit text-info" style="font-size: 1.2em;"></i></a>\
                         <a class="ml-1" onclick="eliminarEmpleado('+ array[i].TN_Id_Usuario +')" title="Eliminar empleado" href="#"> <i class="fas fa-trash text-red" style="font-size: 1.2em;"></i></a>\
                     </td>');

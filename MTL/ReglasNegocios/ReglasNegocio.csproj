@@ -47,6 +47,7 @@
     <Compile Include="AusenciaRN.cs" />
     <Compile Include="EmpleadoRN.cs" />
     <Compile Include="LoginRN.cs" />
+    <Compile Include="OficinaRN.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TiempoRN.cs" />
     <Compile Include="TipoAusenciaRN.cs" />
