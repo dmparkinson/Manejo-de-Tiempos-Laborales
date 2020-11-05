@@ -47,8 +47,20 @@
   <ItemGroup>
     <Compile Include="ConexionAD\ConexionAD.cs" />
     <Compile Include="Implementaciones\AusenciaAD.cs" />
+    <Compile Include="Implementaciones\CircuitoAD.cs" />
     <Compile Include="Implementaciones\EmpleadoAD.cs" />
     <Compile Include="Implementaciones\HorarioAD.cs" />
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+    <Compile Include="Implementaciones\OficinaAD.cs" />
+=======
+    <Compile Include="Implementaciones\PuestoAD.cs" />
+    <Compile Include="Implementaciones\RolAD.cs" />
+>>>>>>> Stashed changes
+=======
+    <Compile Include="Implementaciones\PuestoAD.cs" />
+    <Compile Include="Implementaciones\RolAD.cs" />
+>>>>>>> Dev_Daniela
     <Compile Include="Implementaciones\TiemposAD.cs" />
     <Compile Include="Implementaciones\TiposAusenciaAD.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

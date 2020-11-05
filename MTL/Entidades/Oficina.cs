@@ -10,5 +10,11 @@ namespace Entidad
     {
         public int TN_Id_Oficina { set; get; }
         public string TC_Nombre_Oficina { set; get; }
+        public string TC_Codigo { set; get; }
+        public int TN_Id_Circuito { set; get; }
+        public string TC_Desc_Circuito { set; get; }
+        public int TB_Activa { set; get; }
+        public string TF_Inicio_Vigencia { set; get; }
+        public string TF_Fin_Vigencia { set; get; }
     }
 }

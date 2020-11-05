@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Runtime.InteropServices;
 
 namespace AccesosDatos.Implementaciones
 {
@@ -9,7 +10,7 @@ namespace AccesosDatos.Implementaciones
     {
 
         
-
+        // Listar todos los tipos de ausencia en el sistema
         public string listarTiposAusencia()
         {
             List<TipoAusencia> lista = new List<TipoAusencia>();
@@ -17,6 +18,7 @@ namespace AccesosDatos.Implementaciones
             while (dataReader.Read())
             {
                 TipoAusencia tAusencia = new TipoAusencia();
+                tAusencia.TN_Id_Tipo_Ausencia = int.Parse(dataReader["TN_Id_Tipo_Ausencia"].ToString());
                 tAusencia.TC_Tipo_Ausencia = dataReader["TC_Tipo_Ausencia"].ToString();
                 lista.Add(tAusencia);
             }
@@ -27,39 +29,35 @@ namespace AccesosDatos.Implementaciones
 
 
 
-
-        public List<string> getTiposAusencia(string busqueda)
+        // Obtener un tipo de ausencia
+        public string getTipoAusencia(TipoAusencia _tAusencia)
         {
-            List<string> data = new List<string>();
-
+            TipoAusencia tAusencia = null;
             try
             {
-                SqlDataReader dr = consultar("EXEC get_tipos_ausencia '%" + busqueda + "%'");
+                SqlDataReader dr = consultar("EXEC get_tipo_ausencia '" + _tAusencia.TN_Id_Tipo_Ausencia + "'");
                 if (dr != null)
                 {
                     while (dr.Read())
                     {
-                        string json = JsonConvert.SerializeObject(new
-                        {
-                            tipoAusencia = dr[0].ToString()
-                        });
-                        data.Add(json);
+                        tAusencia = new TipoAusencia();
+                        tAusencia.TN_Id_Tipo_Ausencia = int.Parse(dr["TN_Id_Tipo_Ausencia"].ToString());
+                        tAusencia.TC_Tipo_Ausencia = dr["TC_Tipo_Ausencia"].ToString();
                     }
-                }
-                else
-                {
-                    data.Add("Error en la conexion");
                 }
             }
             catch (SqlException e)
             {
-                data.Add("Error en la conexion");
+                tAusencia = null;
             }
-            return data;
+            return JsonConvert.SerializeObject(tAusencia);
         }
 
 
 
+
+
+        // Registrar un nuevo tipo de ausencia
         public int insertTiposAusencia(TipoAusencia _tAusencia)
         {
             int salida = 0;
@@ -77,13 +75,17 @@ namespace AccesosDatos.Implementaciones
             return salida;
         }
 
-        public int updateTiposAusencia(TipoAusencia _anterior, TipoAusencia _nuevo)
+
+
+
+        // Actualizar los datos de un tipo de ausencia
+        public int updateTiposAusencia(TipoAusencia _tAusencia)
         {
             int salida = 0;
 
             try
             {
-                SqlDataReader dr = consultar("EXEC update_tipo_ausencia '" + _anterior.TC_Tipo_Ausencia + "', '" + _nuevo.TC_Tipo_Ausencia + "'");
+                SqlDataReader dr = consultar("EXEC update_tipo_ausencia '" + _tAusencia.TC_Tipo_Ausencia + "', '" +_tAusencia.TN_Id_Tipo_Ausencia + "'");
                 dr.Read();
                 salida = int.Parse(dr[0].ToString());
             }
@@ -98,12 +100,13 @@ namespace AccesosDatos.Implementaciones
 
 
 
-        public int deleteTipoAusencia(string _nombre)
+        // Eliminar un tipo de ausencia
+        public int deleteTipoAusencia(TipoAusencia _tAusencia)
         {
             int salida = 0;
             try
             {
-                SqlDataReader dr = consultar($"EXEC delete_tipo_ausencia '{_nombre }'");
+                SqlDataReader dr = consultar($"EXEC delete_tipo_ausencia '{_tAusencia.TN_Id_Tipo_Ausencia }'");
                 dr.Read();
                 salida = int.Parse(dr[0].ToString());
             }

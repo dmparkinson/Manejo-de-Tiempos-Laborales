@@ -68,6 +68,14 @@ namespace Presentacion
             bundles.Add(new ScriptBundle("~/bundles/sweetalert2").Include(
                       "~/plugins/sweetalert2/sweetalert2.min.js"));
 
+
+            bundles.Add(new StyleBundle("~/Content/daterangepicker").Include(
+                      "~/plugins/daterangepicker/daterangepicker.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/daterangepicker").Include(
+                      "~/plugins/daterangepicker/moment.min.js",
+                      "~/plugins/daterangepicker/daterangepicker.js"));
+
             bundles.Add(new StyleBundle("~/Content/fontawesome").Include(
                       "~/plugins/fontawesome-free/css/all.min.css"));
 

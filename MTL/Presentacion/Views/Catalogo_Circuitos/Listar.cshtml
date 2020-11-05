@@ -17,18 +17,19 @@
                 </div>
 
                 <div class="card-body">
-                    <div class="form-group d-flex justify-content-between">
-                        <label class="font-weight-normal" for="nombre">Nombre:</label>
-                        <input type="text" class="form-control form-control-sm" id="nombre" placelaceholder="Ingrese nombre" required>
-                    </div>
-                    <div class="row justify-content-center mt-2">
-                        <button class="btn btn-primary btn-sm" onclick="alertDatosInvalidos()">Guardar</button>
-                    </div>
+                    <form onsubmit="return agregarCircuito(this)">
+                        <div class="form-group d-flex justify-content-between">
+                            <label class="font-weight-normal" for="nombre">Nombre:</label>
+                            <input type="text" class="form-control form-control-sm" id="nombre" placelaceholder="Ingrese nombre del circuito" required minlength="2" maxlength="20" pattern="[A-Za-z0-9\s]+">
+                        </div>
+                        <div class="row justify-content-center mt-2">
+                            <input type="submit" class="btn btn-primary btn-sm" value="Guardar">
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-
 
 
 
@@ -52,41 +53,18 @@
                     </tr>
                 </thead>
                 <tbody id="contenidoTabla">
-                    <tr>
-                        <td>Circuito 1</td>
-                        <td class="d-flex justify-content-center">
-                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
-                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Circuito 2</td>
-                        <td class="d-flex justify-content-center">
-                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
-                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Circuito 3</td>
-                        <td class="d-flex justify-content-center">
-                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
-                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Circuito 4</td>
-                        <td class="d-flex justify-content-center">
-                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
-                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Circuito 5</td>
-                        <td class="d-flex justify-content-center">
-                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
-                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
-                        </td>
-                    </tr>
+                    @foreach (var item in ViewBag.ListaCircuitos)
+                    {
+                        <tr>
+                            <td>@item.TC_Desc_Circuito</td>
+                            <td>
+                                <div class="d-flex justify-content-center">
+                                    <a data-toggle="modal" data-target="#modal-editar" href="#" onclick="cargarEditCircuito('@item.TN_Id_Circuito')"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
+                                    <a onclick="eliminarCircuito('@item.TN_Id_Circuito')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>
@@ -107,7 +85,8 @@
 <div class="modal fade" id="modal-editar">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form>
+            <form onsubmit="return editarCircuito()">
+                
                 <div class="modal-header">
                     <h4 class="modal-title">Modificar Circuito</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -118,7 +97,8 @@
                 <div class="modal-body">
                     <div class="form-group ">
                         <label class="font-weight-normal" for="nombreM">Nombre:</label>
-                        <input type="text" class="form-control form-control-sm" id="nombreM" value="Circuito 1" required>
+                        <input type="hidden" id="idEdit">
+                        <input type="text" class="form-control form-control-sm" id="nombreEdit" required minlength="2" maxlength="20" pattern="[A-Za-z0-9\s]+">
                     </div>
 
                 </div>

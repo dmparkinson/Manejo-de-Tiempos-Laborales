@@ -47,7 +47,7 @@
                         <td>@e.TC_Primer_Apellido</td>
                         <td>@e.TC_Segundo_Apellido</td>
                         <td>@e.TC_Correo</td>
-                        @if (e.TC_Tipo_Usuario.Equals("1"))
+                        @if (e.TB_Activo.Equals(1))
                         {
                             <td>Activo</td>
                         }
@@ -63,10 +63,10 @@
                             
                             <a class="ml-1" onclick="location.href='@Url.Action("Listar_de_Admin", "Empleado_Horarios")'" title="Tiempo de horarios" href="#">
                             <i class="fas fa-business-time text-dark" style="font-size: 1.2em;"></i></a>
-                            <a class="ml-1" onclick="location.href='@Url.Action("Listar_de_Admin", "Empleado_Ausencias")'" title="Tiempo de ausencias" href="#"><i class="fas fa-calendar-times text-dark" style="font-size: 1.2em;"></i></a>
+                            <a class="ml-1" onclick="ausenciasEmpleado(@e.TN_Id_Usuario)" title="Tiempo de ausencias" href="#"><i class="fas fa-calendar-times text-dark" style="font-size: 1.2em;"></i></a>
                             
-                            <a class="ml-1" data-toggle="modal" data-target="#modal-editar" href="#" title="Editar empleado"> <i class="fas fa-edit text-info" style="font-size: 1.2em;"></i></a>
-                            <a class="ml-1" onclick="eliminarEmpleado(@e.TC_Identificacion)" title="Eliminar empleado" href="#"> <i class="fas fa-trash text-red" style="font-size: 1.2em;"></i></a>
+                            <a class="ml-1" data-toggle="modal" data-target="#modal-editar" onclick="prepararEdit(@e.TN_Id_Usuario)" href="#" title="Editar empleado"> <i class="fas fa-edit text-info" style="font-size: 1.2em;"></i></a>
+                            <a class="ml-1" onclick="eliminarEmpleado(@e.TN_Id_Usuario)" title="Eliminar empleado" href="#"> <i class="fas fa-trash text-red" style="font-size: 1.2em;"></i></a>
                         </td>
                     </tr>
                     }
@@ -129,8 +129,8 @@
                     <div class="form-group">
                         <label class="font-weight-normal" for="tipo">Tipo de usuario:</label>
                         <select class="form-control form-control-sm" id="tipo" name="tipo">
-                            <option value="Estandar">Estándar </option>
-                            <option value="Administrador">Administrador</option>
+                            <option value="Estándar">Estándar </option>
+                            <option value="Administración">Administrador</option>
                             <option value="Jefatura">Jefatura</option>
                         </select>
                     </div>
@@ -191,54 +191,60 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form>
+            <form onsubmit="return actualizarEmpleado(this)">
+                <input type="hidden" id="hiddenID" value=""/>
                 <div class="modal-body">
                     <div class="form-group">
                         <label class="font-weight-normal" for="cedula">Cédula:</label>
-                        <input type="text" class="form-control form-control-sm" id="cedula" placelaceholder="Ingrese cédula" required>
+                        <input type="text" class="form-control form-control-sm" id="acedula" placelaceholder="Ingrese cédula" required>
                     </div>
                     <div class="form-group">
                         <label class="font-weight-normal" for="nombre">Nombre:</label>
-                        <input type="text" class="form-control form-control-sm" id="nombre" placelaceholder="Ingrese nombre" required>
+                        <input type="text" class="form-control form-control-sm" id="anombre" placelaceholder="Ingrese nombre" required>
                     </div>
                     <div class="form-group">
                         <label class="font-weight-normal" for="apUno">Primer apellido:</label>
-                        <input type="text" class="form-control form-control-sm" id="apUno" placelaceholder="Ingrese primer apellido" required>
+                        <input type="text" class="form-control form-control-sm" id="aapUno" placelaceholder="Ingrese primer apellido" required>
                     </div>
                     <div class="form-group">
                         <label class="font-weight-normal" for="apDos">Segundo apellido:</label>
-                        <input type="text" class="form-control form-control-sm" id="apDos" placelaceholder="Ingrese segundo apellido" required>
+                        <input type="text" class="form-control form-control-sm" id="aapDos" placelaceholder="Ingrese segundo apellido" required>
                     </div>
                     <div class="form-group">
                         <label class="font-weight-normal" for="correo">Correo:</label>
-                        <input type="text" class="form-control form-control-sm" id="correo" placelaceholder="Ingrese correo" required>
+                        <input type="text" class="form-control form-control-sm" id="acorreo" placelaceholder="Ingrese correo" required>
                     </div>
                     <div class="form-group">
                         <label class="font-weight-normal" for="tipo">Tipo de usuario:</label>
-                        <select class="form-control form-control-sm" id="tipo">
-                            <option>Usuario 1</option>
-                            <option>Usuario 2</option>
+                        <select class="form-control form-control-sm" id="atipo">
+                            <option value="Estándar">Estándar </option>
+                            <option value="Administración">Administrador</option>
+                            <option value="Jefatura">Jefatura</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label class="font-weight-normal" for="estado">Estado de usuario:</label>
-                        <select class="form-control form-control-sm" id="estado">
-                            <option>Activo</option>
-                            <option>Inactivo</option>
+                        <select class="form-control form-control-sm" id="aestado">
+                            <option value="1">Activo</option>
+                            <option value="0">Inactivo</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label class="font-weight-normal" for="puesto">Puesto:</label>
-                        <select class="form-control form-control-sm" id="puesto">
-                            <option>Puesto 1</option>
-                            <option>Puesto 2</option>
+                        <select class="form-control form-control-sm" id="apuesto">
+                            @foreach (Entidad.Puesto e in ViewBag.Puestos)
+                            {
+                                <option value="@e.TN_Id_Puesto">@e.TC_Nombre_Puesto</option>
+                            }
                         </select>
                     </div>
                     <div class="form-group">
                         <label class="font-weight-normal" for="oficina">Oficina:</label>
-                        <select class="form-control form-control-sm" id="oficina">
-                            <option>Oficina 1</option>
-                            <option>Oficina 2</option>
+                        <select class="form-control form-control-sm" id="aoficina">
+                            @foreach (Entidad.Oficina o in ViewBag.Oficinas)
+                            {
+                                <option value="@o.TN_Id_Oficina">@o.TC_Nombre_Oficina</option>
+                            }
                         </select>
                     </div>
 

@@ -1,4 +1,5 @@
 ﻿using Microsoft.SqlServer.Server;
+using Newtonsoft.Json;
 using ReglasNegocios;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,12 @@ namespace Presentacion.Controllers
             return View();
         }
 
+        public string Refrescar()
+        {
+            EmpleadoRN e = new EmpleadoRN();
+            return JsonConvert.SerializeObject(e.ListarEmpleados());
+        }
+
         public JsonResult Insertar(string usuario, string password, string cedula, string nombre, string apUno, string apDos, string correo, string tipo, string estado, int puesto, int oficina)
         {
             EmpleadoRN e = new EmpleadoRN();
@@ -33,30 +40,57 @@ namespace Presentacion.Controllers
 
             if (respuesta == 1) // El tipo de ausencia se agregoexitosamente 
             {
-                return Json(new { success = true });
+                return Json(new { success = true, inserted = true });
             }
             else  // El tipo de ausencia no se registro en el sistema
             {
-                return Json(new { success = false });
+                if (respuesta == 0)
+                {
+                    return Json(new { success = true, inserted = false });
+                }
+                else
+                {
+                    return Json(new { success = false, inserted = false });
+                }
+                
             }
         }
 
-        public JsonResult Eliminar(string cedula)
+        public JsonResult Eliminar(int id)
         {
             EmpleadoRN e = new EmpleadoRN();
-            int respuesta = e.Eliminar(cedula);
-            if (respuesta == 0) // El tipo de ausencia no se encuentra en el sistema
+            int respuesta = e.Eliminar(id);
+            if (respuesta == 0) // El empleado no se encuentra en el sistema
             {
                 return Json(new { success = false, deleted = false });
             }
-            if (respuesta == 1)  // El tipo de ausencia si se encontro y se elimino exitosamente
-            {
-                return Json(new { success = true, deleted = true });
-            }               
             else
             {
-                return Json(new { success = true, deleted = false });
+                if (respuesta == 1)  // El empleado si se encontro y se elimino exitosamente
+                {
+                    return Json(new { success = true, deleted = true });
+                }
+                else
+                {
+                    return Json(new { success = true, deleted = false });
+                }
             }
+            
+        }
+
+        public JsonResult Actualizar(int id, string cedula, string nombre, string apUno, string apDos, string correo, string tipo, string estado, int puesto, int oficina)
+        {
+            EmpleadoRN e = new EmpleadoRN();
+            int respuesta = e.Actualizar(id, cedula, nombre, apUno, apDos, correo, tipo, estado, puesto, oficina);
+            if (respuesta == 1) // El empleado no se encuentra en el sistema
+            {
+                return Json(new { success = true});
+            }
+            else
+            {
+                return Json(new { success = false });
+            }
+
         }
 
 

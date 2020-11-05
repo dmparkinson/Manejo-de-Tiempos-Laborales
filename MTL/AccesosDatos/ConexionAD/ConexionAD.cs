@@ -45,6 +45,7 @@ namespace AccesosDatos.ConexionAD
                 this.con.Close();
                 Console.WriteLine("Error en consultar");
             }
+            
             return dr;
         }
 
@@ -67,6 +68,7 @@ namespace AccesosDatos.ConexionAD
                 salida = 0;
                 con.Close();
             }
+            
             return salida;
         }
 
@@ -95,6 +97,7 @@ namespace AccesosDatos.ConexionAD
                 salida = 0;
                 this.con.Close();
             }
+            
 
             return salida;
         }

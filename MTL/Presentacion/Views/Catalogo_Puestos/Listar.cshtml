@@ -17,20 +17,22 @@
                 </div>
 
                 <div class="card-body">
+                    <form onsubmit="return agregarPuesto(this)">
                         <div class="row justify-content-between">
                             <div class="form-group d-flex justify-content-between">
                                 <label class="font-weight-normal" for="nombre">Nombre:</label>
-                                <input type="text" class="form-control form-control-sm" id="nombre" plaeclaceholder="Ingrese nombre" required>
+                                <input type="text" class="form-control form-control-sm" id="nombre" plaeclaceholder="Ingrese nombre del puesto" required minlength="2" maxlength="20" pattern="[A-Za-z0-9\s]+">
                             </div>
                             <div class="form-group d-flex justify-content-between">
                                 <label class="font-weight-normal" for="salario">Salario:</label>
-                                <input type="text" class="form-control form-control-sm" id="salario" plaeclaceholder="Ingrese salario" required>
+                                <input type="text" class="form-control form-control-sm" id="salario" plaeclaceholder="Ingrese salario" required minlength="2" maxlength="20" pattern="[0-9]+">
                             </div>
                         </div>
 
                         <div class="row justify-content-center mt-2">
-                            <button class="btn btn-primary btn-sm" onclick="alertDatosInvalidos()">Guardar</button>
+                            <input type="submit" class="btn btn-primary btn-sm" value="Guardar">
                         </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -55,51 +57,24 @@
                 <thead class="thead-dark text-center">
                     <tr>
                         <th>Nombre</th>
-                        <th>Tipo</th>
-                        <th></th>
+                        <th>Salario</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody id="contenidoTabla">
-                    <tr>
-                        <td>Puesto 1</td>
-                        <td>240.000</td>
-                        <td class="d-flex justify-content-center">
-                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
-                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Puesto 2</td>
-                        <td>240.000</td>
-                        <td class="d-flex justify-content-center">
-                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
-                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Puesto 3</td>
-                        <td>240.000</td>
-                        <td class="d-flex justify-content-center">
-                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
-                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Puesto 4</td>
-                        <td>240.000</td>
-                        <td class="d-flex justify-content-center">
-                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
-                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Puesto 5</td>
-                        <td>240.000</td>
-                        <td class="d-flex justify-content-center">
-                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
-                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
-                        </td>
-                    </tr>
+                    @foreach (var item in ViewBag.ListaCatalogoPuestos)
+                    {
+                        <tr>
+                            <td>@item.TC_Nombre_Puesto</td>
+                            <td>@item.TN_Salario_Horario</td>
+                            <td>
+                                <div class="d-flex justify-content-center">
+                                    <a onclick="cargarEditPuesto('@item.TN_Id_Puesto')" data-toggle="modal" data-target="#modal-editar" href="#" > <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
+                                    <a onclick="eliminarPuesto('@item.TN_Id_Puesto')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>
@@ -114,37 +89,40 @@
 
 
 
-    <!-- Modal de editar -->
+<!-- Modal de editar -->
 
 
-    <div class="modal fade" id="modal-editar">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Modificar Puesto</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+<div class="modal fade" id="modal-editar">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form onsubmit="return editarCircuito()">
+                <div class="modal-header">
+                    <h4 class="modal-title">Modificar Puesto</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <input type="hidden" id="idEdit">
+                    <div class="form-group d-flex justify-content-between">
+                        <label class="font-weight-normal" for="nombreM">Nombre:</label>
+                        <input type="text" class="form-control form-control-sm" id="nombreEdit" required minlength="2" maxlength="20" pattern="[A-Za-z0-9\s]+">
+                    </div>
+                    <div class="form-group d-flex justify-content-between">
+                        <label class="font-weight-normal" for="puestoM">Puesto:</label>
+                        <input type="text" class="form-control form-control-sm" id="salarioEdit" required minlength="2" maxlength="20" pattern="[0-9]+">
                     </div>
 
-                    <div class="modal-body">
-                        <div class="form-group d-flex justify-content-between">
-                            <label class="font-weight-normal" for="nombreM">Nombre:</label>
-                            <input type="text" class="form-control form-control-sm" id="nombreM" required>
-                        </div>
-                        <div class="form-group d-flex justify-content-between">
-                            <label class="font-weight-normal" for="puestoM">Puesto:</label>
-                            <input type="text" class="form-control form-control-sm" id="puestoM" required>
-                        </div>
-
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <div>
+                        <input type="submit" class="btn btn-info" value="Editar" />
                     </div>
-                    <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <div>
-                            <button type="button" class="btn btn-info" onclick="alertDatosValidos()">Editar</button>
-                        </div>
-                    </div>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
+</div>
 

@@ -1,7 +1,12 @@
 ﻿@{
-    ViewBag.Title = "Ausencias de";
+    ViewBag.Title = "Ausencias";
 }
 
+
+<script type="text/javascript" src="~/Scripts/jquery.min.js"></script>
+<script type="text/javascript" src="~/Scripts/moment.min.js"></script>
+<script type="text/javascript" src="~/Scripts/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="~/Scripts/daterangepicker.css" />
 
 <div class="container">
     <div class="row mt-2 flex-column">
@@ -17,26 +22,37 @@
                 </div>
 
                 <div class="card-body">
-                    <div class="row justify-content-between">
-                        <div class="form-group d-flex justify-content-between">
-                            <label class="font-weight-normal" for="salida">Fecha salida:</label>
-                            <input type="date" class="form-control form-control-sm" id="salida" required>
-                        </div>
-                        <div class="form-group d-flex justify-content-between">
-                            <label class="font-weight-normal" for="regreso">Fecha regreso:</label>
-                            <input type="date" class="form-control form-control-sm" id="regreso" required>
-                        </div>
-                        <div class="form-group d-flex justify-content-between">
-                            <label class="font-weight-normal" for="motivo">Motivo:</label>
-                            <select class="form-control form-control-sm" id="motivo">
-                                <option>Enfermedad</option>
-                            </select>
-                        </div>
-                    </div>
+                    <form onsubmit="return InsertarAusencia(this)" autocomplete="off">
+                        <div class="row justify-content-around">
+                            <div class="form-group d-flex justify-content-between">
+                                <label class="font-weight-normal" for="rangoIns">Fechas Ausencia:</label>
+                                <input type="text" class="form-control form-control-sm" id="rangoAusenciasIns" name="rangoIns" onkeypress="return false;" required>
+                                <script>
+                                    $('#rangoAusenciasIns').daterangepicker({
+                                        locale: {
+                                            format: 'YYYY/MM/DD'
+                                        }
+                                    });
+                                    $('#rangoAusenciasIns').val('');
+                                    $('#rangoAusenciasIns').attr("placeholder", "Rango de Fechas");
+                                </script>
+                            </div>
+                            <div class="form-group d-flex justify-content-between">
+                                <label class="font-weight-normal" for="motivoIns">Motivo:</label>
+                                <select class="form-control form-control-sm" id="motivoIns" name="motivoIns">
+                                    @foreach (Entidad.TipoAusencia t in ViewBag.Tipos)
+                                    {
+                                        <option value="@t.TN_Id_Tipo_Ausencia">@t.TC_Tipo_Ausencia</option>
+                                    }
 
-                    <div class="row justify-content-center mt-2">
-                        <button type="button" class="btn btn-primary btn-sm" onclick="alertDatosInvalidos()">Guardar</button>
-                    </div>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row justify-content-center mt-2">
+                            <input type="submit" class="btn btn-primary btn-sm" value="Guardar" />
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -50,18 +66,27 @@
         <div class="flex-column">
             <div class="d-flex flex-wrap">
                 <div class="form-group ">
-                    <label class="font-weight-normal" for="salida">Fecha salida:</label>
-                    <input type="date" class="form-control form-control-sm" id="salida">
+                    <label class="font-weight-normal" for="rango">Fechas Ausencia:</label>
+                    <input type="text" class="form-control form-control-sm" id="rangoAusencias" name="rango" onkeypress="return false;" required>
+                    <script>
+                        $('#rangoAusencias').daterangepicker({
+                            locale: {
+                                format: 'YYYY/MM/DD'
+                            }
+                        });
+                        $('#rangoAusencias').val('');
+                        $('#rangoAusencias').attr("placeholder", "Rango de Fechas");
+                    </script>
                 </div>
-                <div class="form-group">
-                    <label class="font-weight-normal" for="regreso">Fecha regreso:</label>
-                    <input type="date" class="form-control form-control-sm" id="regreso">
-                </div>
+                
                 <div class="form-group">
                     <label class="font-weight-normal" for="motivo">Motivo:</label>
 
                     <select class="form-control form-control-sm" id="motivo">
-                        <option>Enfermedad</option>
+                        @foreach (Entidad.TipoAusencia t in ViewBag.Tipos)
+                        {
+                            <option value="@t.TN_Id_Tipo_Ausencia">@t.TC_Tipo_Ausencia</option>
+                        }
                     </select>
                 </div>
             </div>
@@ -92,51 +117,21 @@
                     </tr>
                 </thead>
                 <tbody id="contenidoTabla">
-                    <tr>
-                        <td>Enfermedad</td>
-                        <td>06-08-2020</td>
-                        <td>06-09-2020</td>
-                        <td class="d-flex justify-content-center">
-                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
-                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Enfermedad</td>
-                        <td> 06-08-2020</td>
-                        <td>06-09-2020</td>
-                        <td class="d-flex justify-content-center">
-                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
-                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Enfermedad</td>
-                        <td>06-08-2020</td>
-                        <td>06-09-2020</td>
-                        <td class="d-flex justify-content-center">
-                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
-                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Enfermedad</td>
-                        <td>06-08-2020</td>
-                        <td>06-09-2020</td>
-                        <td class="d-flex justify-content-center">
-                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
-                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td> Enfermedad</td>
-                        <td>06-08-2020</td>
-                        <td>06-09-2020</td>
-                        <td class="d-flex justify-content-center">
-                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
-                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
-                        </td>
-                    </tr>
+                    @foreach (Entidad.Ausencia a in ViewBag.Lista)
+                    {
+                        <tr>
+                            <td>@a.TC_Tipo_Ausencia</td>
+                            <td>@a.TF_Fecha_Salida</td>
+                            <td>@a.TF_Fecha_Regreso</td>
+
+                            <td class="d-flex justify-content-center">
+                                <a data-toggle="modal" data-target="#modal-editar" onclick="prepararEditAusencia(@a.TN_Id_Ausencia)" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
+                                <a onclick="eliminarAusencia(@a.TN_Id_Ausencia)" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
+                            </td>
+                        </tr>
+
+                    }
+
                 </tbody>
             </table>
         </div>
@@ -163,32 +158,42 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            <form onsubmit="return ActualizarAusencia();">
+                <input type="hidden" id="hiddenAusID" value=""/>
+                <div class="modal-body">
+                    <div class="form-group ">
+                        <label class="font-weight-normal" for="arango">Fecha de salida:</label>
+                        <input type="text" class="form-control form-control-sm" id="arangoAusencias" name="arango" onkeypress="return false;" required>
+                        <script>
+                            $('#arangoAusencias').daterangepicker({
+                                locale: {
+                                    format: 'YYYY/MM/DD'
+                                }
+                            });
+                            $('#arangoAusencias').val('');
+                            $('#arangoAusencias').attr("placeholder", "Rango de Fechas");
+                        </script>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-normal" for="amotivo">Motivo:</label>
+                        <select class="form-control form-control-sm" id="amotivo" required>
+                            @foreach (Entidad.TipoAusencia t in ViewBag.Tipos)
+                            {
+                                <option value="@t.TN_Id_Tipo_Ausencia">@t.TC_Tipo_Ausencia</option>
+                            }
+                        </select>
+                    </div>
 
-            <div class="modal-body">
-                <div class="form-group ">
-                    <label class="font-weight-normal" for="salida">Fecha de salida:</label>
-                    <input type="date" class="form-control form-control-sm" id="salida" required>
-                </div>
-                <div class="form-group">
-                    <label class="font-weight-normal" for="regreso">Fecha de regreso:</label>
-                    <input type="date" class="form-control form-control-sm" id="regreso" required>
-                </div>
-                <div class="form-group">
-                    <label class="font-weight-normal" for="motivo">Motivo:</label>
-                    <select class="form-control form-control-sm" id="motivo">
-                        <option selected="selected">Enfermedad</option>
-                    </select>
                 </div>
 
-            </div>
-            <div class="modal-footer justify-content-between">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <div>
 
-                    <button type="button" class="btn btn-info" onclick="alertDatosValidos()">Editar</button>
+                        <input type="submit" class="btn btn-info" value="Editar"/>
+                    </div>
                 </div>
-            </div>
-
+            </form>
         </div>
     </div>
 </div>

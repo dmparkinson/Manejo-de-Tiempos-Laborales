@@ -1,5 +1,4 @@
 ﻿using Entidad;
-using Entidades;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -12,38 +11,36 @@ namespace AccesosDatos.Implementaciones
 {
     public class AusenciaAD : ConexionAD.ConexionAD
     {
-        public List<string> getAllAusencias(int idUsuario)
+        public string getAllAusencias(int idUsuario)
         {
-            List<string> data = new List<string>();
+            List<Ausencia> data = new List<Ausencia>();
 
             try
             {
-                SqlDataReader dr = consultar("EXEC get_all_ausencias "+idUsuario+"");
-                if (dr != null)
-                {
+                SqlDataReader dr = consultar($"EXEC get_all_ausencias {idUsuario}");
+                
                     while (dr.Read())
                     {
-
-                        string json = JsonConvert.SerializeObject(new
-                        {
-                            idAusencia = int.Parse(dr[0].ToString()),
-                            fechaSalida = dr[1].ToString(),
-                            fechaRegreso = dr[2].ToString(),
-                            tipoAusencia = dr[3].ToString()
-                        });
-                        data.Add(json);
+                        Ausencia a = new Ausencia();
+                        a.TN_Id_Ausencia = int.Parse(dr[0].ToString());
+                        int aux = dr[1].ToString().IndexOf(" ");
+                        String aux2 = dr[1].ToString().Substring(0, aux);
+                        a.TF_Fecha_Salida = DateTime.Parse(aux2).ToString("yyyy-MM-dd");
+                        aux = dr[2].ToString().IndexOf(" ");
+                        aux2 = dr[2].ToString().Substring(0, aux);
+                        a.TF_Fecha_Regreso = DateTime.Parse(aux2).ToString("yyyy-MM-dd");
+                        a.TC_Tipo_Ausencia = dr[3].ToString();
+                        
+                        data.Add(a);
                     }
-                }
-                else
-                {
-                    data.Add("Error en la conexion");
-                }
+                
             }
             catch (SqlException e)
             {
-                data.Add("Error en la conexion");
+                Console.WriteLine(e.Message);
             }
-            return data;
+            closeCon();
+            return JsonConvert.SerializeObject(data);
         }
 
         public List<string> getAusencias(string fechaS, string fechaR, string tipoA,int idUsuario)
@@ -85,7 +82,7 @@ namespace AccesosDatos.Implementaciones
 
             try
             {
-                SqlDataReader dr = consultar("EXEC insert_ausencias '" + _ausencia.TF_Fecha_Salida + "','" + _ausencia.TF_Fecha_Regreso + "','" + _ausencia.TC_Tipo_Ausencia + "'," + _ausencia.TN_Id_Usuario + "");
+                SqlDataReader dr = consultar($"EXEC insert_ausencias '{_ausencia.TF_Fecha_Salida}','{_ausencia.TF_Fecha_Regreso}','{_ausencia.TN_Id_Tipo_Ausencia}',{_ausencia.TN_Id_Usuario}");
                 dr.Read();
                 salida = int.Parse(dr[0].ToString());
             }
@@ -93,7 +90,7 @@ namespace AccesosDatos.Implementaciones
             {
                 salida = -1;
             }
-
+            closeCon();
             return salida;
         }
 
@@ -106,8 +103,8 @@ namespace AccesosDatos.Implementaciones
 
             try
             {
-                string consulta = "EXEC update_ausencias '" + ausencia.TF_Fecha_Salida + "','" + ausencia.TF_Fecha_Regreso + "','" + ausencia.TC_Tipo_Ausencia + "'," + ausencia.TN_Id_Usuario + "," + ausencia.TN_Id_Ausencia + "";
-                SqlDataReader dr = consultar("EXEC update_ausencias '"+ ausencia.TF_Fecha_Salida+ "','"+ ausencia .TF_Fecha_Regreso+ "','"+ausencia.TC_Tipo_Ausencia+"',"+ausencia.TN_Id_Usuario+","+ausencia.TN_Id_Ausencia+"");
+
+                SqlDataReader dr = consultar($"EXEC update_ausencias '{ ausencia.TF_Fecha_Salida}','{ausencia.TF_Fecha_Regreso}',{ausencia.TN_Id_Tipo_Ausencia},{ausencia.TN_Id_Usuario},{ausencia.TN_Id_Ausencia}");
                 dr.Read();
                 salida = int.Parse(dr[0].ToString());
             }
@@ -115,24 +112,25 @@ namespace AccesosDatos.Implementaciones
             {
                 salida = -1;
             }
-
+            closeCon();
             return salida;
         }
 
         public int deleteAusencia(int idAusencia)
         {
-            int salida = 0;
+            int salida = -1;
 
             try
             {
-                SqlDataReader dr = consultar("EXEC delete_ausencias "+idAusencia+"");
+                SqlDataReader dr = consultar($"EXEC delete_ausencias {idAusencia}");
                 dr.Read();
                 salida = int.Parse(dr[0].ToString());
             }
             catch (SqlException e)
             {
-                salida = 0;
+                salida = -1;
             }
+            closeCon();
             return salida;
         }
 
@@ -154,23 +152,17 @@ namespace AccesosDatos.Implementaciones
                 ausencia.TN_Id_Ausencia = int.Parse(dataReader["TN_Id_Ausencia"].ToString());
                 ausencia.TF_Fecha_Salida = fecha_salida[0];
                 ausencia.TF_Fecha_Regreso = fecha_regreso[0];
-                ausencia.TC_Tipo_Ausencia = dataReader["TC_Tipo_Ausencia"].ToString();
                 ausencia.TN_Id_Usuario = int.Parse(dataReader["TN_Id_Usuario"].ToString());
+
                 ausencia.empleado = new Empleado();
-                ausencia.empleado.TN_Id_Usuario = int.Parse(dataReader["TN_Id_Usuario"].ToString());
-                ausencia.empleado.TC_Usuario = dataReader["TC_Usuario"].ToString();
-                ausencia.empleado.TC_Contrasena = dataReader["TC_Contrasena"].ToString();
                 ausencia.empleado.TC_Identificacion = dataReader["TC_Identificacion"].ToString();
                 ausencia.empleado.TC_Nombre_Usuario = dataReader["TC_Nombre_Usuario"].ToString();
                 ausencia.empleado.TC_Primer_Apellido = dataReader["TC_Primer_Apellido"].ToString();
                 ausencia.empleado.TC_Segundo_Apellido = dataReader["TC_Segundo_Apellido"].ToString();
-                ausencia.empleado.TC_Tipo_Usuario = dataReader["TC_Tipo_Usuario"].ToString();
-                ausencia.empleado.TC_Correo = dataReader["TC_Correo"].ToString();
-                ausencia.empleado.TC_Usuario = dataReader["TC_Usuario"].ToString();
-                ausencia.empleado.TB_Activo = int.Parse(dataReader["TB_Activo"].ToString());
-                ausencia.empleado.TN_Id_Puesto = int.Parse(dataReader["TN_Id_Puesto"].ToString());
-                ausencia.empleado.TN_Id_Oficina = int.Parse(dataReader["TN_Id_Oficina"].ToString());
-                ausencia.empleado.TB_Eliminado = int.Parse(dataReader["TB_Eliminado"].ToString());
+
+                ausencia.tipoAusencia = new TipoAusencia();
+                ausencia.tipoAusencia.TN_Id_Tipo_Ausencia = int.Parse(dataReader["TN_Id_Tipo_Ausencia"].ToString());
+                ausencia.tipoAusencia.TC_Tipo_Ausencia = dataReader["TC_Tipo_Ausencia"].ToString();
 
                 lista.Add(ausencia);
             }
@@ -178,5 +170,36 @@ namespace AccesosDatos.Implementaciones
 
         }
 
+
+
+        // Obtener una ausencia
+        public string getAusencia(Ausencia _ausencia)
+        {
+            Ausencia ausencia= null;
+            try
+            {
+                SqlDataReader dataReader = consultar("EXEC get_ausencia '" + _ausencia.TN_Id_Ausencia + "'");
+                if (dataReader != null)
+                {
+                    while (dataReader.Read())
+                    {
+                        string[] fecha_salida = dataReader["TF_Fecha_Salida"].ToString().Split(' ');
+                        string[] fecha_regreso = dataReader["TF_Fecha_Regreso"].ToString().Split(' ');
+
+                        ausencia.TN_Id_Ausencia = int.Parse(dataReader["TN_Id_Ausencia"].ToString());
+                        ausencia.TF_Fecha_Salida = fecha_salida[0];
+                        ausencia.TF_Fecha_Regreso = fecha_regreso[0];
+                        ausencia.tipoAusencia = new TipoAusencia ();
+                        ausencia.tipoAusencia.TN_Id_Tipo_Ausencia = int.Parse(dataReader["TN_Id_Tipo_Ausencia"].ToString());
+                        ausencia.tipoAusencia.TC_Tipo_Ausencia = dataReader["TC_Tipo_Ausencia"].ToString();
+                    }
+                }
+            }
+            catch (SqlException e)
+            {
+                ausencia = null;
+            }
+            return JsonConvert.SerializeObject(ausencia);
+        }
     }
 }

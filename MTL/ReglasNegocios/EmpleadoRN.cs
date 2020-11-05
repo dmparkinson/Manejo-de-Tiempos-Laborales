@@ -1,6 +1,5 @@
 ﻿using AccesosDatos.Implementaciones;
 using Entidad;
-using Entidades;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -115,17 +114,43 @@ namespace ReglasNegocios
             return respuesta;
         }
 
-        public int Eliminar(string idEmpleado)
+        public int Eliminar(int id)
         {
             EmpleadoAD data = new EmpleadoAD();
             int respuesta = 0;
             try
             {
-                respuesta = data.eliminarEmpleado(idEmpleado);
+                respuesta = data.eliminarEmpleado(id);
             }
             catch (IOException e)
             {
                 Console.WriteLine("Error eliminando Empleado");
+            }
+            return respuesta;
+        }
+
+        public int Actualizar(int id, string cedula, string nombre, string apUno, string apDos, string correo, string tipo, string estado, int puesto, int oficina)
+        {
+            EmpleadoAD data = new EmpleadoAD();
+            int respuesta = 0;
+            try
+            {
+                Empleado e = new Empleado();
+                e.TN_Id_Usuario = id;
+                e.TC_Identificacion = cedula;
+                e.TC_Nombre_Usuario = nombre;
+                e.TC_Primer_Apellido = apUno;
+                e.TC_Segundo_Apellido = apDos;
+                e.TC_Correo = correo;
+                e.TC_Tipo_Usuario = tipo;
+                e.TB_Activo = int.Parse(estado);
+                e.TN_Id_Puesto = puesto;
+                e.TN_Id_Oficina = oficina;
+                respuesta = data.actualizarEmpleado(e);
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine("Error actualizando Empleado");
             }
             return respuesta;
         }
