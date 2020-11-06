@@ -59,8 +59,8 @@
                             <td>@item.TC_Tipo_Ausencia</td>
                             <td>
                                 <div class="d-flex justify-content-center">
-                                    <a data-toggle="modal" data-target="#modal-editar" href="#" onclick="cargarEditCAusencia('@item.TC_Tipo_Ausencia', this)"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
-                                    <a onclick="eliminarTipoAusencia('@item.TC_Tipo_Ausencia', this)" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
+                                    <a onclick="cargarEditCAusencia('@item.TN_Id_Tipo_Ausencia')" data-toggle="modal" data-target="#modal-editar" href="#" > <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
+                                    <a onclick="eliminarTipoAusencia('@item.TN_Id_Tipo_Ausencia')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
                                 </div>
                                
                             </td>
@@ -97,6 +97,7 @@
                     <div class="modal-body">
                         <div class="form-group ">
                             <label class="font-weight-normal" for="motivo">Motivo:</label>
+                            <input type="hidden" id="idEdit">
                             <input type="text" class="form-control form-control-sm" id="motivoEdit"  required minlength="2" maxlength="20" pattern="[A-Za-z\s]+">
                         </div>
 

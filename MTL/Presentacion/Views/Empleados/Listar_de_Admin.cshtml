@@ -2,11 +2,14 @@
 @{
     ViewBag.Title = "Empleados";
 }
+<script type="text/javascript" src="~/Scripts/js/jspdf.min.js"></script>
+<script type="text/javascript" src="~/Scripts/js/ReportesPDF.js"></script>
+<script type="text/javascript" src="~/Scripts/js/jspdf.plugin.autotable.min.js"></script>
 
 
-<div class="container">
+<div class="container-fluid">
     <div class="row mt-2">
-        <h3>@ViewBag.Message</h3>
+        <h3 id="tituloReportes">@ViewBag.Message</h3>
     </div>
 
 
@@ -20,7 +23,7 @@
                 </div>
                 <div>
                     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-agregar"><i class="fa fa-plus-square"></i> Nuevo</button>
-                    <input type="button" value="Reporte" class="btn btn-secondary btn-sm">
+                    <input type="button" value="Reporte" class="btn btn-secondary btn-sm" onclick="exportPDF('Empleados')">
                 </div>
             </div>
             <table id="table" class="table table-bordered table-hover">
@@ -218,7 +221,7 @@
                         <label class="font-weight-normal" for="tipo">Tipo de usuario:</label>
                         <select class="form-control form-control-sm" id="atipo">
                             <option value="Estándar">Estándar </option>
-                            <option value="Administración">Administrador</option>
+                            <option value="Administración">Administración</option>
                             <option value="Jefatura">Jefatura</option>
                         </select>
                     </div>

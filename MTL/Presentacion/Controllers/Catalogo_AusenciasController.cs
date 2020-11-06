@@ -15,10 +15,8 @@ namespace Presentacion.Controllers
         // GET: Catalogo_Ausencias
         public ActionResult Listar()
         {
-            TipoAusenciaLN tAusencia = new TipoAusenciaLN();
-
-
-            List<TipoAusencia> lista = JsonConvert.DeserializeObject<List<TipoAusencia>>(tAusencia.ListarTipoAusencia());
+            TipoAusenciaRN tAusenciaNR = new TipoAusenciaRN();
+            List<TipoAusencia> lista = JsonConvert.DeserializeObject<List<TipoAusencia>>(tAusenciaNR.ListarTiposAusencia());
 
             ViewBag.ListaCatalogoAusencias = lista;
             ViewBag.Respuesta = "";
@@ -28,12 +26,29 @@ namespace Presentacion.Controllers
 
 
 
+
+        [HttpPost]
+        public JsonResult Obtener(int codigo)
+        {
+            TipoAusenciaRN tAusenciaNR = new TipoAusenciaRN();
+            TipoAusencia buscar = new TipoAusencia();
+            buscar.TN_Id_Tipo_Ausencia = codigo; 
+
+            return Json(new { resultado = tAusenciaNR.ObtenerTipoAusencia(buscar) }); // Retornar el dato solicitado
+        }
+
+
+
+
+
         [HttpPost]
         public JsonResult  Insertar(string nombre)
         {
-            TipoAusenciaLN tAusenciaNR = new TipoAusenciaLN();
+            TipoAusenciaRN tAusenciaNR = new TipoAusenciaRN();
+            TipoAusencia tAusencia = new TipoAusencia();
+            tAusencia.TC_Tipo_Ausencia = nombre;
 
-            int respuesta = tAusenciaNR.InsertarTipoAusencia(nombre);
+            int respuesta = tAusenciaNR.InsertarTipoAusencia(tAusencia);
 
             if (respuesta == 1) // El tipo de ausencia se agregoexitosamente 
             {
@@ -49,11 +64,16 @@ namespace Presentacion.Controllers
 
 
         [HttpPost]
-        public JsonResult  Editar(string anterior, string nuevo)
+        public JsonResult  Editar(string nombre, int codigo)
         {
-            TipoAusenciaLN tAusencia = new TipoAusenciaLN();
+            TipoAusenciaRN tAusenciaNR = new TipoAusenciaRN();
+            TipoAusencia tAusencia = new TipoAusencia();
 
-            int respuesta = tAusencia.EditarTipoAusencia(anterior, nuevo);
+
+            tAusencia.TC_Tipo_Ausencia = nombre;
+            tAusencia.TN_Id_Tipo_Ausencia = codigo;
+
+            int respuesta = tAusenciaNR.EditarTipoAusencia(tAusencia);
 
             if (respuesta == 1) // El tipo de ausencia se modifico exitosamente 
             {
@@ -70,11 +90,13 @@ namespace Presentacion.Controllers
 
 
         [HttpPost]
-        public JsonResult  Eliminar(string _tipoAusencia)
+        public JsonResult  Eliminar(int codigo)
         {
 
-            TipoAusenciaLN tAusencia = new TipoAusenciaLN();
-            int respuesta = tAusencia.EliminarTipoAusencia(_tipoAusencia);
+            TipoAusenciaRN tAusenciaNR = new TipoAusenciaRN();
+            TipoAusencia tAusencia = new TipoAusencia();
+            tAusencia.TN_Id_Tipo_Ausencia = codigo;
+            int respuesta = tAusenciaNR.EliminarTipoAusencia(tAusencia);
 
             if (respuesta == 0) // El tipo de ausencia no se encuentra en el sistema
             {
@@ -90,11 +112,21 @@ namespace Presentacion.Controllers
             }
         }
 
+
+
+
+
+        [HttpPost]
+        public JsonResult Refrescar()
+        {
+            TipoAusenciaRN tAusenciaNR = new TipoAusenciaRN();
+
+            return Json(new {resultado = tAusenciaNR.ListarTiposAusencia() });          
+        }
+
+
+
         
-
-
-
-
 
     }
         

@@ -50,7 +50,7 @@ namespace Presentacion.Controllers
         public int registrarTiemposEmpleado(string tiempo) {
             char[] tipo = tiempo.ToCharArray();
             Tiempo t = new Tiempo();
-            t.TC_Horario = tiempo;
+            t.horario.TC_Horario= tiempo;
             t.TC_Tipo = tipo[0].ToString();
             t.TN_Id_Usuario = int.Parse(Session["UsserID"].ToString());
 

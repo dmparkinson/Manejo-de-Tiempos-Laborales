@@ -4,7 +4,7 @@
  * Eliminar el tipo de ausencia 
  * 
  * */
-function eliminarHAusencia(idAusencia, btn) {
+function eliminarHAusencia(codigo) {
     
     Swal.fire({
         title: '¿Seguro?',
@@ -17,13 +17,13 @@ function eliminarHAusencia(idAusencia, btn) {
         if (result.value) {
             // Proceso de eliminacion de datos
 
-            var dataHorario = {
-                ausencia: idAusencia
+            var envio = {
+                codigo: codigo
             };
             $.ajax({
                 url: "/Historico_Ausencias/Eliminar",    // Nombre del controlador/ accion del controlador
                 type: "post",
-                data: dataHorario,
+                data: envio,
                 success: function (response) {
                     
                     if (response.success == true) {
@@ -35,24 +35,7 @@ function eliminarHAusencia(idAusencia, btn) {
                                 'El tiempo de ausencia se elimino correctamente.',
                                 'success'
                             )
-
-                            
-                            var row = $(btn).closest('tr'); // Obtener la fila selecionada
-                            row.fadeOut(500, function () {  // Tiempo de desvanecimiento, sin esto no elimina en ajax
-                                row.remove();              // Eliminacion de la fila en la tabla
-                            });
-
-
-                            // Recargar la datatable
-                            $('#table').dataTable().fnDestroy();  // Eliminacion del datatable
-                            $('#table').DataTable({                 // Creacion del datatable
-                                "searching": false,
-                                "paging": true,
-                                "info": false,
-                                "lengthChange": false,
-                                "responsive": true,
-                                "autoWidth": false,
-                            });
+                            refrescarHistoricoAusencias();
 
                         }
                         else { // si no se elimino
@@ -90,35 +73,17 @@ function eliminarHAusencia(idAusencia, btn) {
 
 
 
-var btnFilaAusencia = null;
 
-// Cargar los datos a editar en el modal, y guardar la fila seleccionada
-function cargarEditHisAusencia(tipo, fecha_salida, fecha_regreso, idAusencia, idUsuario, btn) {
+// Cargar los datos a editar en el modal,
+function cargarEditHisAusencia(codigoA, codigoTipo, codigoEmpleado) {
+    $('#idAusencia').val(codigoA);
+    $('#idEmpleado').val(codigoEmpleado);
+    $("#motivoE option[value=" + codigoTipo + "]").attr("selected", true);
+    $('#fechaFomat').val('');
+    $('#fechaFomat').attr("placeholder", "Rango de Fechas");
 
-    document.getElementById("salidaE").value = fecha_salida.split("/").reverse().join("-");    // Formato de fechea salida;
-    document.getElementById("regresoE").value = fecha_regreso.split("/").reverse().join("-");    // Formato de fecha regreso;
-    $('#motivoE option[value=' + tipo + ']').attr('selected', 'selected');  // Mostrar esa opcion como seleccionada
-    $('#regresoE').attr('min', document.getElementById("salidaE").value.split("/").reverse().join("-"));            // Evitar ingresar una fecha de regreso que este antes de la de salida
-
-    document.getElementById("idUsuario").value = idUsuario;
-    document.getElementById("idAusencia").value = idAusencia;
-
-    btnFilaAusencia = btn;
 }
 
-
-
-
-
-
-
-
-
-// Establece que la fecha limite de regreso es la de salida
-function fechaRegresoValidacion() {
-    $('#regresoE').attr('min', document.getElementById("salidaE").value.split("/").reverse().join("-"));
-    
-}
 
 
 
@@ -130,16 +95,21 @@ function fechaRegresoValidacion() {
 
 function editarHisAusencia() {
 
-    var envio = {
-        // id Datos a cambiar
-        idAusencia : document.getElementById("idAusencia").value,
 
-        // Nuevos datos
-        idUsuario: document.getElementById("idUsuario").value,
-        tipoNuevo: document.getElementById("motivoE").value,
-        fechaSalidaNuevo: document.getElementById("salidaE").value ,
-        fechaRegresoNuevo: document.getElementById("regresoE").value
+    var rango = document.getElementById("fechaFomat").value;
+    var codigo = document.getElementById("idAusencia").value;
+    var motivoAusencia = document.getElementById("motivoE").value;
+    var empleado = document.getElementById("idEmpleado").value; 
+
+    var envio = {
+        idAusencia: codigo,
+        codEmpelado : empleado,
+        tipo: motivoAusencia,
+        fechaSalida: separarRangoFechas(rango)[0],
+        fechaRegreso: separarRangoFechas(rango)[1]
     };
+
+   
     $.ajax({
         url: "/Historico_Ausencias/Editar",    // Nombre del controlador/ accion del controlador
         type: "post",
@@ -156,20 +126,7 @@ function editarHisAusencia() {
                 })
 
 
-
-                dateSalida = new Date(document.getElementById("salidaE").value);
-                dateSalidaFinal = (dateSalida.getDate()+1) + "/" + (dateSalida.getMonth()+1) + "/" + dateSalida.getFullYear();
-
-                dateRegreso = new Date(document.getElementById("regresoE").value);
-                dateRegresoFinal = (dateRegreso.getDate()+1) + "/" + (dateRegreso.getMonth()+1) + "/" + dateRegreso.getFullYear();
-                console.log(dateSalidaFinal + "," + dateRegresoFinal);
-
-                var row = $(btnFilaAusencia).closest('tr'); // Obtener la fila
-                // Editar las columnas de la fila seleccionada
-                row.find("td").eq(4).html(document.getElementById("motivoE").value);
-                row.find("td").eq(5).html(dateSalidaFinal);
-                row.find("td").eq(6).html(dateRegresoFinal);
-
+                refrescarHistoricoAusencias();
             }
             else { // No se se elimino
                 Swal.fire({
@@ -193,3 +150,88 @@ function editarHisAusencia() {
 }
 
 
+
+
+
+
+
+
+/*
+ *
+ * Refrescar tabla
+ *
+ * */
+function refrescarHistoricoAusencias() {
+    $.ajax({
+        url: "/Historico_Ausencias/Refrescar",    // Nombre del controlador/ accion del controlador
+        type: "post",
+        success: function (response) {
+
+            var lista = JSON.parse(response.resultado);
+
+            $('#contenidoTabla tr').remove();      // Eliminar contenido de la tabla
+            // Construir la nueva fila
+
+            for (x = 0; x < lista.length; x++) {
+                var info = '<tr> <td>' + lista[x].empleado.TC_Identificacion + '</td>' +
+                    '<td>' + lista[x].empleado.TC_Nombre_Usuario + '</td>' +
+                    '<td>' + lista[x].empleado.TC_Primer_Apellido + '</td>' +
+                    '<td>' + lista[x].empleado.TC_Segundo_Apellido + '</td>' +
+                    '<td>' + lista[x].tipoAusencia.TC_Tipo_Ausencia + '</td>' +
+                    '<td>' + lista[x].TF_Fecha_Salida + '</td>' +
+                    '<td>' + lista[x].TF_Fecha_Regreso + '</td>' +
+                    ' <td><div class="d-flex justify-content-center">' +
+                    '<a data-toggle="modal" data-target="#modal-editar" href= "#" onclick="cargarEditHisAusencia(' + lista[x].TN_Id_Ausencia + ', ' + lista[x].tipoAusencia.TN_Id_Tipo_Ausencia + ')"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>' +
+                    '<a onclick="eliminarHAusencia(' + lista[x].TN_Id_Ausencia + ', this)" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>' +
+                    '</div > </td> </tr>';
+
+                $("#contenidoTabla").append(info);
+            }
+
+        },
+        error: function () {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error inesperado',
+                text: 'Ocurrió un error en la operación. Recargue la página',
+            })
+        }
+    });
+    return false; // Permitir el uso de HTML5
+}
+
+
+
+
+
+
+// Formato del calendario para fecha de salida y fecha de regreso de la ausencia
+$('#fechaFomat').daterangepicker();
+
+$('#fechaFomat').daterangepicker({
+    locale: {
+        format: 'YYYY/MM/DD'
+    }
+});
+
+
+$('#fechaFomatFiltro').daterangepicker();
+
+$('#fechaFomatFiltro').daterangepicker({
+    locale: {
+        format: 'YYYY/MM/DD'
+    }
+});
+
+
+
+
+
+
+
+function separarRangoFechas(rango) {
+    var separador = rango.indexOf('-');
+    var fechaSalida = rango.substring(0, separador - 1)
+    var fechaRegreso = rango.substring(separador + 2, rango.length);
+    return [fechaSalida, fechaRegreso];
+}

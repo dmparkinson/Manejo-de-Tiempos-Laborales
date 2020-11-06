@@ -1,4 +1,4 @@
-﻿using Entidad;
+using Entidad;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,5 +30,6 @@ namespace Entidad
         public string TC_Tipo_Ausencia { set; get; }
         public int TN_Id_Usuario { set; get; }
         public Empleado empleado { set; get; }
+        public TipoAusencia tipoAusencia { set; get; }
     }
 }

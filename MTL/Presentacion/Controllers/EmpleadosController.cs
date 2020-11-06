@@ -1,4 +1,5 @@
-﻿using Microsoft.SqlServer.Server;
+﻿using Entidad;
+using Microsoft.SqlServer.Server;
 using Newtonsoft.Json;
 using ReglasNegocios;
 using System;
@@ -91,6 +92,18 @@ namespace Presentacion.Controllers
                 return Json(new { success = false });
             }
 
+        }
+
+
+
+        [HttpPost]
+        public JsonResult Obtener(int codigo)
+        {
+            EmpleadoRN empleadoRN = new EmpleadoRN();
+            Empleado empleado= new Empleado();
+            empleado.TN_Id_Usuario = codigo;
+
+            return Json(new { resultado = empleadoRN.ObtenerEmpleado(empleado) }); // Retornar el dato solicitado
         }
 
 

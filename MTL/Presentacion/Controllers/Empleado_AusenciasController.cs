@@ -15,11 +15,14 @@ namespace Presentacion.Controllers
         // GET: Empleado_Ausencias
         public ActionResult Listar_de_Admin()
         {
+
+            
             AusenciaRN a = new AusenciaRN();
-            TipoAusenciaLN tAusencia = new TipoAusenciaLN();
+            TipoAusenciaRN tAusencia = new TipoAusenciaRN();
             ViewBag.Lista = a.ListarAusenciasEmpleado(int.Parse(Session["EmpAus"].ToString()));
-            List<TipoAusencia> tipos = JsonConvert.DeserializeObject<List<TipoAusencia>>(tAusencia.ListarTipoAusencia());
+            List<TipoAusencia> tipos = JsonConvert.DeserializeObject<List<TipoAusencia>>(tAusencia.ListarTiposAusencia());
             ViewBag.Tipos = tipos;
+            
             return View();
         }
 
