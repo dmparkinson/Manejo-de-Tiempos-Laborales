@@ -105,7 +105,7 @@
                     <div class="form-group">
                         <label class="font-weight-normal" for="circuito">Circuito:</label>
                         <select class="form-control form-control-sm" id="Ocircuito">
-                            @foreach (Entidad.Circuito c in ViewBag.Circuitos)
+                            @foreach (Entidades.Circuito c in ViewBag.Circuitos)
                             {
                                 <option value="@c.TN_Id_Circuito">@c.TC_Desc_Circuito</option>
                             }
@@ -184,7 +184,7 @@
                     <div class="form-group">
                         <label class="font-weight-normal" for="circuito">Circuito:</label>
                         <select class="form-control form-control-sm" id="acircuito">
-                            @foreach (Entidad.Circuito c in ViewBag.Circuitos)
+                            @foreach (Entidades.Circuito c in ViewBag.Circuitos)
                             {
                                 <option value="@c.TN_Id_Circuito">@c.TC_Desc_Circuito</option>
                             }
