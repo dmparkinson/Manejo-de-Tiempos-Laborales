@@ -22,3 +22,9 @@ D:\UCR\Documentos\Analisis\Manejo-de-Tiempos-Laborales\MTL\Entidades\obj\Debug\E
 D:\UCR\Documentos\Analisis\Manejo-de-Tiempos-Laborales\MTL\Entidades\obj\Debug\Entidad.csproj.CoreCompileInputs.cache
 D:\UCR\Documentos\Analisis\Manejo-de-Tiempos-Laborales\MTL\Entidades\obj\Debug\Entidades.dll
 D:\UCR\Documentos\Analisis\Manejo-de-Tiempos-Laborales\MTL\Entidades\obj\Debug\Entidades.pdb
+D:\Documents\Universidad\Analisis\PROGRAMA\Manejo-de-Tiempos-Laborales\MTL\Entidades\bin\Debug\Entidades.dll
+D:\Documents\Universidad\Analisis\PROGRAMA\Manejo-de-Tiempos-Laborales\MTL\Entidades\bin\Debug\Entidades.pdb
+D:\Documents\Universidad\Analisis\PROGRAMA\Manejo-de-Tiempos-Laborales\MTL\Entidades\obj\Debug\Entidad.csprojAssemblyReference.cache
+D:\Documents\Universidad\Analisis\PROGRAMA\Manejo-de-Tiempos-Laborales\MTL\Entidades\obj\Debug\Entidad.csproj.CoreCompileInputs.cache
+D:\Documents\Universidad\Analisis\PROGRAMA\Manejo-de-Tiempos-Laborales\MTL\Entidades\obj\Debug\Entidades.dll
+D:\Documents\Universidad\Analisis\PROGRAMA\Manejo-de-Tiempos-Laborales\MTL\Entidades\obj\Debug\Entidades.pdb
