@@ -151,6 +151,7 @@ namespace AccesosDatos.Implementaciones
                 t.horario = new Horario();
                 t.horario.TN_Id_Horario = int.Parse(dataReader["TN_Id_Horario"].ToString());
                 t.horario.TC_Horario = dataReader["TC_Horario"].ToString();
+                t.TC_Horario = dataReader["TC_Horario"].ToString();
 
                 lista.Add(t);
             }

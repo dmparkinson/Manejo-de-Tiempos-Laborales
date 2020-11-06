@@ -23,6 +23,10 @@ namespace Presentacion.Controllers
         }
         public ActionResult Listar_de_Jefatura()
         {
+            EmpleadoRN e = new EmpleadoRN();
+            ViewBag.Oficinas = e.listarOficinasEmpleado();
+            ViewBag.Puestos = e.listarPuestosEmpleado();
+            ViewBag.Lista = e.ListarEmpleados();
             ViewBag.Message = "Empleados";
             return View();
         }
