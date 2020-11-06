@@ -67,11 +67,11 @@ namespace Presentacion.Controllers
 
         // EDIT: Historico_Ausencias
         [HttpPost]
-        public JsonResult Editar(string idAusencia, string idUsuario, string tipoNuevo, string fechaSalidaNuevo, string fechaRegresoNuevo)
+        public JsonResult Editar(string idAusencia, string codEmpelado, string tipo, string fechaSalida, string fechaRegreso)
         {
             AusenciaRN ausenciaRN = new AusenciaRN();
 
-            int respuesta = ausenciaRN.EditarAusencia( idAusencia, idUsuario, tipoNuevo, fechaSalidaNuevo, fechaRegresoNuevo);
+            int respuesta = ausenciaRN.EditarAusencia( idAusencia, codEmpelado, tipo, fechaSalida, fechaRegreso);
             if (respuesta == 1) // la ausencia se modifico exitosamente 
             {
                 return Json(new { success = true});
