@@ -41,9 +41,13 @@ function registrarTiemposEmpleado() {
     for (i = 0; i < document.tiemposF.optradio.length; i++) {
         if (document.tiemposF.optradio[i].checked) {
             select = document.tiemposF.optradio[i].value;
+            selectId = document.tiemposF.optradio[i].id;
             break;
         }
     }
+
+    alert("select= " + select);
+    alert("select id= " + selectId);
 
     if (select == "") {
         Swal.fire({
@@ -52,7 +56,7 @@ function registrarTiemposEmpleado() {
             text: message
         })
     } else {
-        parametros = { "tiempo": select };
+        parametros = { "idTiempo": selectId, "tiempo": select };
         $.ajax(
             {
                 data: parametros,
