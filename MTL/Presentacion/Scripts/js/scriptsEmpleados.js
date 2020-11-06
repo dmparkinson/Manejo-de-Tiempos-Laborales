@@ -289,7 +289,46 @@ function eliminarEmpleado(id) {
 }
 
 function prepararEdit(id) {
-    $('#hiddenID').val(id);
+
+    $('#acedula').val("");
+    $('#anombre').val("");
+    $('#aapUno').val("");
+    $('#aapDos').val("");
+    $('#acorreo').val("");
+
+
+    var envio = {
+        codigo: id
+    };
+    $.ajax({
+        url: "/Empleados/Obtener",    // Nombre del controlador/ accion del controlador
+        type: "post",
+        data: envio,
+        success: function (response) {
+            var dato = JSON.parse(response.resultado);
+            $('#hiddenID').val(dato.TN_Id_Usuario);
+            $('#acedula').val(dato.TC_Identificacion);
+            $('#anombre').val(dato.TC_Nombre_Usuario);
+            $('#aapUno').val(dato.TC_Primer_Apellido);
+            $('#aapDos').val(dato.TC_Segundo_Apellido);
+            $('#acorreo').val(dato.TC_Correo);
+            $("#atipo option[value=" + dato.TC_Tipo_Usuario + "]").attr("selected", true); 
+            $("#aestado option[value=" + dato.TB_Activo + "]").attr("selected", true);
+            $("#apuesto option[value=" + dato.TN_Id_Puesto + "]").attr("selected", true);
+            $("#aoficina option[value=" + dato.TN_Id_Oficina + "]").attr("selected", true);
+
+        },
+        error: function () {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error inesperado',
+                text: 'Ocurrió un error en la operación.',
+            })
+        }
+    });
+    return false; // Permitir el uso de HTML5
+
+
 }
 
 function actualizarEmpleado() {

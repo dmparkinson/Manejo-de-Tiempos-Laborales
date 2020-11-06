@@ -158,5 +158,41 @@ namespace AccesosDatos.Implementaciones
             closeCon();
             return JsonConvert.SerializeObject(lista);
         }
+
+
+        // Obtener un empleado
+        public string getEmpleado(Empleado _empleado)
+        {
+            Empleado emp = null;
+            try
+            {
+                SqlDataReader dataReader = consultar("EXEC sp_consultar_empleado '" + _empleado.TN_Id_Usuario+ "'");
+                if (dataReader != null)
+                {
+                    while (dataReader.Read())
+                    {
+                        emp = new Empleado();
+                        emp.TN_Id_Usuario = int.Parse(dataReader[0].ToString());
+                        emp.TC_Usuario = dataReader[1].ToString();
+                        emp.TC_Contrasena = dataReader[2].ToString();
+                        emp.TC_Identificacion = dataReader[3].ToString();
+                        emp.TC_Nombre_Usuario = dataReader[4].ToString();
+                        emp.TC_Primer_Apellido = dataReader[5].ToString();
+                        emp.TC_Segundo_Apellido = dataReader[6].ToString();
+                        emp.TC_Tipo_Usuario = dataReader[7].ToString();
+                        emp.TC_Correo = dataReader[8].ToString();
+                        emp.TB_Activo = int.Parse(dataReader[9].ToString());
+                        emp.TC_Nombre_Puesto = dataReader[11].ToString();
+                        emp.TC_Nombre_Oficina = dataReader[10].ToString();
+                        emp.TB_Eliminado = int.Parse(dataReader[12].ToString());
+                    }
+                }
+            }
+            catch (SqlException e)
+            {
+                emp = null;
+            }
+            return JsonConvert.SerializeObject(emp);
+        }
     }
 }
