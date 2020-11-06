@@ -308,10 +308,10 @@ function prepararEdit(id) {
             $('#aapUno').val(dato.TC_Primer_Apellido);
             $('#aapDos').val(dato.TC_Segundo_Apellido);
             $('#acorreo').val(dato.TC_Correo);
-            $("#atipo option[value=" + dato.TC_Tipo_Usuario + "]").attr("selected", true); 
-            $("#aestado option[value=" + dato.TB_Activo + "]").attr("selected", true);
-            $("#apuesto option[value=" + dato.TN_Id_Puesto + "]").attr("selected", true);
-            $("#aoficina option[value=" + dato.TN_Id_Oficina + "]").attr("selected", true);
+            $("#atipo").val(dato.TC_Tipo_Usuario);
+            $("#aestado").val(dato.TB_Activo );
+            $("#apuesto").val(dato.puesto.TN_Id_Puesto);
+            $("#aoficina").val(dato.oficina.TN_Id_Oficina);
 
         },
         error: function () {
