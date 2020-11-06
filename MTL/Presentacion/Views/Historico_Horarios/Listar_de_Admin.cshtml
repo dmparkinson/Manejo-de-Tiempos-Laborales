@@ -75,7 +75,7 @@
                         <td>@item.horario.TC_Horario </td>
                         <td>
                             <div class="d-flex justify-content-center">
-                                <a data-toggle="modal" data-target="#modal-editar" href="#" onclick="cargarEditHHorario('@item.TF_Fecha','@item.TH_Hora','@item.TC_Horario', this)"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
+                                <a data-toggle="modal" data-target="#modal-editar" href="#" onclick="cargarEditHHorario('@item.TF_Fecha','@item.TH_Hora','@item.horario.TN_Id_Horario', this)"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
                                 <a onclick="eliminarHHorario('@item.TF_Fecha', this)" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
                             </div>
                         </td>
