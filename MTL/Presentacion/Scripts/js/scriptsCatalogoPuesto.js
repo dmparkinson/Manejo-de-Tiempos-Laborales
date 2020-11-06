@@ -129,6 +129,10 @@ function agregarPuesto() {
 
 // Cargar los datos a editar en el modal
 function cargarEditPuesto(codigo) {
+
+    $('#nombreEdit').val("");
+    $('#salarioEdit').val("");
+
     var envio = {
         codigo: codigo
     };

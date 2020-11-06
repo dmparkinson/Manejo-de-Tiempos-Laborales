@@ -129,6 +129,7 @@ function agregarTipoAusencia() {
 
 // Cargar los datos a editar en el modal
 function cargarEditCAusencia(idTAusencia) {
+    $('#motivoEdit').val("");
     var envio = {
         codigo : idTAusencia
     };

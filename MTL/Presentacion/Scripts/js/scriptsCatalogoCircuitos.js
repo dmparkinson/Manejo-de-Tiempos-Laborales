@@ -128,6 +128,7 @@ function agregarCircuito() {
 
 // Cargar los datos a editar en el modal
 function cargarEditCircuito(codigo) {
+    $('#nombreEdit').val("");
     var envio = {
         codigo: codigo
     };

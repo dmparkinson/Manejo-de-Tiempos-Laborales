@@ -128,6 +128,7 @@ function agregarRol() {
 
 // Cargar los datos a editar en el modal
 function cargarEditRol(codigo) {
+    $('#nombreEdit').val("");
     var envio = {
         codigo: codigo
     };

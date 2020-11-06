@@ -154,5 +154,26 @@ namespace ReglasNegocios
             }
             return respuesta;
         }
+
+
+        // Obtener un empleado  solicitado
+        public string ObtenerEmpleado(Empleado _empleado)
+        {
+            EmpleadoAD empleadoAD = new EmpleadoAD();
+            string respuesta = null;
+
+            //Llamado a accedo de datos
+            try
+            {
+                respuesta = empleadoAD.getEmpleado(_empleado); // Resultado de la operacion
+
+                Console.WriteLine(respuesta);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            return respuesta;
+        }
     }
 }
