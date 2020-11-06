@@ -47,8 +47,9 @@ namespace AccesosDatos.Implementaciones
             while (dataReader.Read())
             {
                 Horario h = new Horario();
+                h.TN_Id_Horario = int.Parse(dataReader["TN_Id_Horario"].ToString());
                 h.TC_Horario = dataReader["TC_Horario"].ToString();
-                //h.TH_Duracion = int.Parse(dataReader["TH_Duracion"].ToString());
+                h.TH_Duracion = dataReader["TH_Duracion"].ToString();
                 lista.Add(h);
             }
             this.conectar();
