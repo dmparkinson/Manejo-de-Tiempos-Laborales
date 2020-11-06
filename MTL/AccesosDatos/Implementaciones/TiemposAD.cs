@@ -11,7 +11,7 @@ namespace AccesosDatos.Implementaciones
     public class TiemposAD : ConexionAD.ConexionAD
     {
         public int registrarTiempo(Tiempo tiempo) {
-            return executing($"exec sp_registrar_tiempo_usuario '{tiempo.TC_Tipo}', '{tiempo.TN_Id_Tiempo}', {tiempo.TN_Id_Usuario}");
+            return executing($"exec sp_registrar_tiempo_usuario '{tiempo.TC_Tipo}', {tiempo.TN_Id_Horario}, {tiempo.TN_Id_Usuario}");
         }
 
         public int eliminarTiempo(int idTiempo){
@@ -20,7 +20,7 @@ namespace AccesosDatos.Implementaciones
 
         public int actualizarTiempo(Tiempo tiempo)
         {
-            return executing($"exec sp_eliminar_tiempo_usuario '{tiempo.TC_Tipo}', '{tiempo.TN_Id_Tiempo}', {tiempo.TN_Id_Usuario}");
+            return executing($"exec sp_eliminar_tiempo_usuario '{tiempo.TC_Tipo}', {tiempo.TN_Id_Tiempo}, {tiempo.TN_Id_Usuario}");
         }
 
         //lista todos los tiempos de un solo usuario
@@ -33,11 +33,12 @@ namespace AccesosDatos.Implementaciones
             {
                 Tiempo t = new Tiempo();
                 string[] fechas = dataReader["TF_Fecha"].ToString().Split(' ');
+                t.TN_Id_Tiempo = int.Parse(dataReader["TN_Id_Tiempo"].ToString());
+                t.TN_Id_Usuario = int.Parse(dataReader["TN_Id_Usuario"].ToString());
                 t.TF_Fecha = fechas[0];
                 t.TH_Hora = dataReader["TH_Hora"].ToString();
                 t.TC_Tipo = dataReader["TC_Tipo"].ToString();
-                t.TN_Id_Tiempo = int.Parse(dataReader["TN_Id_Tiempo"].ToString());
-                t.TN_Id_Usuario = int.Parse(dataReader["TN_Id_Usuario"].ToString());
+                t.TC_Horario = dataReader["TC_Horario"].ToString();
                 lista.Add(t);
             }
 
@@ -101,6 +102,7 @@ namespace AccesosDatos.Implementaciones
             return JsonConvert.SerializeObject(lista);
         }
 
+        //lista los tiempos de un usuario en una fecha específica
         public string listarPorFechaTiempoUsuario(int idEmpleado, string fechaActual) {
             List<Tiempo> lista = new List<Tiempo>();
             SqlDataReader dataReader = consultar($"exec sp_listar_tiempo_usuario_byFecha {idEmpleado}, '{fechaActual}'");
@@ -109,11 +111,13 @@ namespace AccesosDatos.Implementaciones
             {
                 Tiempo t = new Tiempo();
                 string[] fechas = dataReader["TF_Fecha"].ToString().Split(' ');
+                t.TN_Id_Tiempo = int.Parse(dataReader["TN_Id_Tiempo"].ToString());
+                t.TN_Id_Horario = int.Parse(dataReader["TN_Id_Horario"].ToString());
+                t.TN_Id_Usuario = int.Parse(dataReader["TN_Id_Usuario"].ToString());
                 t.TF_Fecha = fechas[0];
                 t.TH_Hora = dataReader["TH_Hora"].ToString();
                 t.TC_Tipo = dataReader["TC_Tipo"].ToString();
-                t.TN_Id_Horario = int.Parse(dataReader["TN_Id_Horario"].ToString());
-                t.TN_Id_Usuario = int.Parse(dataReader["TN_Id_Usuario"].ToString());
+                t.TC_Horario = dataReader["TC_Horario"].ToString();
 
                 lista.Add(t);
             }
