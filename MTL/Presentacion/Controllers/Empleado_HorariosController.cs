@@ -16,9 +16,25 @@ namespace Presentacion.Controllers
         // GET: Empleados_Horarios
         public ActionResult Listar_de_Admin()
         {
+            //debo listar el catalogo de tiempos
+            string listaH = new HorarioAD().listarHorarios();
+            List<Horario> lista = JsonConvert.DeserializeObject<List<Horario>>(listaH);
 
-            ViewBag.Message = "Horarios de Empleado";
+            string lisT = new TiemposAD().consultarTiemposUsuario(int.Parse(Session["UserIdAdminMarcas"].ToString()));
+            List<Tiempo> listaT = JsonConvert.DeserializeObject<List<Tiempo>>(lisT);
+
+            string sEmp = new EmpleadoAD().consultarEmpleado(int.Parse(Session["UserIdAdminMarcas"].ToString()));
+            Empleado emp = JsonConvert.DeserializeObject<Empleado>(sEmp);
+
+            ViewBag.listaHorario = lista;
+            ViewBag.listaTiempo = listaT;
+            ViewBag.Message = emp.TC_Nombre_Usuario + " " + emp.TC_Primer_Apellido + " " + emp.TC_Segundo_Apellido;
             return View();
+        }
+
+        public JsonResult seleccionAdminEmpleadoMarcas(int idEmpleado) {
+            Session["UserIdAdminMarcas"] = idEmpleado;
+            return Json(new { success = true, url = Url.Action("Listar_de_Admin", "Empleado_Horarios") });
         }
 
         public ActionResult Listar_de_Jefatura()
@@ -37,7 +53,6 @@ namespace Presentacion.Controllers
             List<Tiempo> listaT = new List<Tiempo>();
             string lisT = new TiemposAD().listarPorFechaTiempoUsuario(int.Parse(Session["UsserID"].ToString()), DateTime.Now.ToString("dd-MM-yyyy"));
             listaT = JsonConvert.DeserializeObject<List<Tiempo>>(lisT);
-
 
             ViewBag.listaHorario = lista;
             ViewBag.listaTiempo = listaT;
@@ -69,6 +84,12 @@ namespace Presentacion.Controllers
             return res;
         }
 
+
+        //refrescamos las marcas de tiempo del usuario
+        public string refrescarMarcasTiempo() {
+            List<Tiempo> listaT = new List<Tiempo>();
+            return new TiemposAD().listarPorFechaTiempoUsuario(int.Parse(Session["UsserID"].ToString()), DateTime.Now.ToString("dd-MM-yyyy"));
+        }
 
 
         // GET: Empleados_Horarios/Details/5
