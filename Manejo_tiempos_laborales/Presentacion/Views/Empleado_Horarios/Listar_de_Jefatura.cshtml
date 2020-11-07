@@ -15,7 +15,7 @@
 <body>
 
 
-    @Html.Partial("_Header_Admin");
+    @Html.Partial("_Header_Jefatura");
 
     <div class="container flex-column">
         <h3 id="tituloReportes">@ViewBag.Title</h3>
@@ -132,36 +132,18 @@
                         </tr>
                     </thead>
                     <tbody id="contenidoTabla">
-                        <tr>
-                            <td>Motivo</td>
-                            <td>06-08-2020</td>
-                            <td>06-09-2020</td>
-                            
-                        </tr>
-                        <tr id="contenidoTabla">
-                            <td>Enfermedad</td>
-                            <td> 06-08-2020</td>
-                            <td>06-09-2020</td>
-                            
-                        </tr>
-                        <tr>
-                            <td>Enfermedad</td>
-                            <td>06-08-2020</td>
-                            <td>06-09-2020</td>
-                            
-                        </tr>
-                        <tr>
-                            <td>Enfermedad</td>
-                            <td>06-08-2020</td>
-                            <td>06-09-2020</td>
-                            
-                        </tr>
-                        <tr>
-                            <td> Enfermedad</td>
-                            <td>06-08-2020</td>
-                            <td>06-09-2020</td>
-                            
-                        </tr>
+                        @foreach (Entidad.Tiempo temp in ViewBag.listaTiempo)
+                        {
+                            <tr>
+                                <td>@temp.TC_Horario</td>
+                                <td>@temp.TF_Fecha</td>
+                                <td>@temp.TH_Hora</td>
+                                <td class="d-flex justify-content-center">
+                                    <a data-toggle="modal" data-target="#modal-editar" > <i class="fas fa-edit text-dark pointer" style="font-size: 1.2em;"></i></a>
+                                    <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" > <i class="fas fa-trash text-dark pointer" style="font-size: 1.2em;"></i></a>
+                                </td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>
