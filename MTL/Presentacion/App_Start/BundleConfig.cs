@@ -93,7 +93,6 @@ namespace Presentacion
                       "~/Scripts/js/scriptsHistoricoAusencias.js",
                       "~/Scripts/js/scriptsHistoricoHorarios.js"));
 
-
             
         }
     }
