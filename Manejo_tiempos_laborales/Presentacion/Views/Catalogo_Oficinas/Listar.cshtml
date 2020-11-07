@@ -16,10 +16,10 @@
 
 
     @Html.Partial("_Header_Admin");
-    <script type="text/javascript" src="~/Scripts/jquery.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/moment.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/daterangepicker.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="~/Scripts/daterangepicker.css" />
+    <script type="text/javascript" src="~/Scripts/jquery-3.4.1.js"></script>
+    <script type="text/javascript" src="~/Scripts/moment.js"></script>
+    <script type="text/javascript" src="~/Scripts/daterangepicker.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/Scripts/daterangepicker.js" />
 
 
     <div class="container">
@@ -72,7 +72,7 @@
                                 <td>@o.TF_Inicio_Vigencia</td>
                                 <td>@o.TF_Fin_Vigencia</td>
                                 <td class="d-flex justify-content-center">
-                                    <a data-toggle="modal" data-target="#modal-editar" onclick="prepararEditOficina(@o.TN_Id_Oficina)" > <i class="fas fa-edit text-dark pointer" style="font-size: 1.2em;"></i></a>
+                                    <a data-toggle="modal" data-target="#modal-editar" onclick="prepararEditOficina(@o.TN_Id_Oficina)"> <i class="fas fa-edit text-dark pointer" style="font-size: 1.2em;"></i></a>
                                     <a onclick="eliminarOficinas(@o.TN_Id_Oficina)"> <i class="fas fa-trash text-dark pointer" style="font-size: 1.2em;"></i></a>
                                 </td>
                             </tr>
