@@ -256,16 +256,19 @@ function filtrarAusencias() {
     var motivoValue = document.getElementById("motivoFiltro");
     var fechaValue = document.getElementById("fechaFomatFiltro").value;
 
+
+    var valueMotivo = "";
     if (motivoValue.length > 0) { // Si se filtra por motivo
         
-        var valueMotivo = motivoValue.options[motivoValue.selectedIndex].text.toLowerCase();
-        $("#contenidoTabla tr").filter(function () {
-            $(this).toggle($(this).text().toLowerCase().indexOf(valueMotivo) > -1)
-        })
+        valueMotivo = motivoValue.options[motivoValue.selectedIndex].text.toLowerCase();
+        
     }
     if (fechaValue.length > 0) {//A,B,D
 
     }
+    $("#contenidoTabla tr").filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(valueMotivo) > -1)
+    })
 }
 
 
