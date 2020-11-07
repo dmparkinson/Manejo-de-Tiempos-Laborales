@@ -70,7 +70,7 @@
                             <th>Motivo</th>
                             <th>Fecha salida</th>
                             <th>Fecha regreso</th>
-                            <th></th>
+                            
                         </tr>
                     </thead>
                     <tbody id="contenidoTabla">
@@ -84,12 +84,7 @@
                                 <td>@item.TC_Tipo_Ausencia</td>
                                 <td>@item.TF_Fecha_Salida</td>
                                 <td>@item.TF_Fecha_Regreso</td>
-                                <td>
-                                    <div class="d-flex justify-content-center">
-                                        <a data-toggle="modal" data-target="#modal-editar"  onclick="cargarEditHAusencia('@item.TC_Tipo_Ausencia','@item.TF_Fecha_Salida','@item.TF_Fecha_Regreso', this)"> <i class="fas fa-edit text-dark pointer" style="font-size: 1.2em;"></i></a>
-                                        <a onclick="eliminarHAusencia('@item.TN_Id_Ausencia', this)"> <i class="fas fa-trash text-dark pointer" style="font-size: 1.2em;"></i></a>
-                                    </div>
-                                </td>
+                               
                             </tr>
                         }
                     </tbody>
