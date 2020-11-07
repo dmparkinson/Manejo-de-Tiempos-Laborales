@@ -3,9 +3,13 @@
     ViewBag.Title = "Catálogo Tiempos Laborales";
 }
 
+<script type="text/javascript" src="~/Scripts/js/jspdf.min.js"></script>
+<script type="text/javascript" src="~/Scripts/js/ReportesPDF.js"></script>
+<script type="text/javascript" src="~/Scripts/js/jspdf.plugin.autotable.min.js"></script>
+
 <div class="container">
     <div class="row mt-2">
-        <h3>@ViewBag.Message</h3>
+        <h3 id="tituloReportes">@ViewBag.Message</h3>
     </div>
 
 
@@ -46,10 +50,10 @@
                     <input type="search" id="search" placeholder="Buscar" class="form-control form-control-sm">
                 </div>
                 <div>
-                    <input type="button" value="Reporte" class="btn btn-secondary btn-sm">
+                    <input type="button" value="Reporte" class="btn btn-secondary btn-sm" onclick="exportPDF('Catálogo Tiempos Laborales')" />
                 </div>
             </div>
-            <table id="example1" class="table table-bordered table-hover">
+            <table id="table" class="table table-bordered table-hover">
                 <thead class="thead-dark text-center">
                     <tr>
                         <th>Tipo</th>
@@ -58,7 +62,7 @@
                 </thead>
 
                 @model Entidad.Horario
-                <tbody>
+                <tbody id="contenidoTabla">
                     @foreach (Entidad.Horario temp in ViewBag.ListaTiempos)
                     {
 

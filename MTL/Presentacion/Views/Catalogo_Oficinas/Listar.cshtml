@@ -8,10 +8,14 @@
 <script type="text/javascript" src="~/Scripts/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css" href="~/Scripts/daterangepicker.css" />
 
+<script type="text/javascript" src="~/Scripts/js/jspdf.min.js"></script>
+<script type="text/javascript" src="~/Scripts/js/ReportesPDF.js"></script>
+<script type="text/javascript" src="~/Scripts/js/jspdf.plugin.autotable.min.js"></script>
+
 <div class="container">
 
     <div class="row mt-2">
-        <h3>@ViewBag.Message</h3>
+        <h3 id="tituloReportes">@ViewBag.Message</h3>
     </div>
 
     <div class="row mt-3">
@@ -19,6 +23,9 @@
             <div class="d-flex justify-content-between mt-3">
                 <div class="col-6">
                     <input type="search" id="searchInput" placeholder="Buscar" class="form-control form-control-sm">
+                </div>
+                <div>
+                    <input type="button" value="Reporte" class="btn btn-secondary" onclick="exportPDF('Catálogo Oficinas')" />
                 </div>
                 <div>
                     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-agregar"><i class="fa fa-plus-square"></i> </button>
@@ -163,7 +170,7 @@
                 </button>
             </div>
             <form onsubmit="return actualizarOficina(this)">
-                <input type="hidden" id="hiddenIDOf" value=""/>
+                <input type="hidden" id="hiddenIDOf" value="" />
                 <div class="modal-body">
 
                     <div class="form-group">

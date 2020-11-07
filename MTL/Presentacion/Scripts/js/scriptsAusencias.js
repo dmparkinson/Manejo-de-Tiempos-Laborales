@@ -58,6 +58,28 @@ function ausenciasEmpleado(idEmpleado, nombre, apUno, apDos) {
     return false;
 }
 
+function ausenciasEmpleadoJ(idEmpleado, nombre, apUno, apDos) {
+    var data = { idEmpleado: idEmpleado, nombre: nombre, apUno: apUno, apDos: apDos }
+    $.ajax({
+        url: '/Empleado_Ausencias/EmpleadoAusenciaJ',
+        type: 'POST',
+        data: data,
+        success: function (response) {
+            window.location.href = response.url;
+        },
+        error: function () {
+            Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'Error de conexión',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
+    });
+    return false;
+}
+
 
 function InsertarAusencia(){
     var rango = document.getElementById("rangoAusenciasIns").value;

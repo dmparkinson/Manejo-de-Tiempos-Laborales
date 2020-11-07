@@ -1,13 +1,16 @@
 ﻿@{
-    ViewBag.Title = "Horarios de";
+    ViewBag.Title = "Horarios de ";
 
     string formatDay = "dd-MM-yyyy";
     string formatHour = "HH:mm:ss";
 }
 
+<script type="text/javascript" src="~/Scripts/js/jspdf.min.js"></script>
+<script type="text/javascript" src="~/Scripts/js/ReportesPDF.js"></script>
+<script type="text/javascript" src="~/Scripts/js/jspdf.plugin.autotable.min.js"></script>
 
 <div class="container flex-column">
-    <h3>@ViewBag.Title</h3>
+    <h3 id="tituloReportes">@ViewBag.Title</h3>
     <h5 class="text-secondary">@ViewBag.Message</h5>
 </div>
 
@@ -108,7 +111,7 @@
                     <input type="button" value="Limpiar" class="btn btn-danger btn-sm">
                 </div>
                 <div>
-                    <input type="button" value="Reporte" class="btn btn-secondary">
+                    <input type="button" value="Reporte" class="btn btn-secondary" onclick="exportPDF('Horarios de @ViewBag.Message')" />
                 </div>
             </div>
             <table id="table" class="table table-bordered table-hover">
