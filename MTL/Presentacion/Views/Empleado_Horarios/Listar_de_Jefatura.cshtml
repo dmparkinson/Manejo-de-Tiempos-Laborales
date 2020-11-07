@@ -10,8 +10,8 @@
 <script type="text/javascript" src="~/Scripts/js/jspdf.plugin.autotable.min.js"></script>
 
 <div class="container flex-column">
-    <h3 id="tituloReportes">@ViewBag.Title</h3>
-    <h5 class="text-secondary">@ViewBag.Message</h5>
+    <h3 id="tituloReportes">@ViewBag.Title@ViewBag.Message</h3>
+    
 </div>
 
 <div class="row justify-content-around ">
@@ -120,7 +120,7 @@
                         <th>Motivo</th>
                         <th>Fecha salida</th>
                         <th>Fecha regreso</th>
-                        <th>Acciones</th>
+                        <th id="acc">Acciones</th>
                     </tr>
                 </thead>
                 <tbody id="contenidoTabla">

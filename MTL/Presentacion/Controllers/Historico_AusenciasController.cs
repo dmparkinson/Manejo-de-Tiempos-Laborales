@@ -38,12 +38,9 @@ namespace Presentacion.Controllers
         {
 
             AusenciaRN ausencias = new AusenciaRN();
-            TipoAusenciaRN tAusencia = new TipoAusenciaRN();
-
-            List<TipoAusencia> listaTipoA = JsonConvert.DeserializeObject<List<TipoAusencia>>(tAusencia.ListarTiposAusencia());
+      
             List<Ausencia> lista = JsonConvert.DeserializeObject<List<Ausencia>>(ausencias.ListarHistoricoAusencias());
             ViewBag.ListaHistoricAusencias = lista;
-            ViewBag.ListaTipoAusencias = listaTipoA;
             ViewBag.Respuesta = "";
             ViewBag.Message = "Histórico de Ausencias";
             
