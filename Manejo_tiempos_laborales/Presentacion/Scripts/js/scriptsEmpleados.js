@@ -46,9 +46,6 @@ function registrarTiemposEmpleado() {
         }
     }
 
-    alert("select= " + select);
-    alert("select id= " + selectId);
-
     if (select == "") {
         Swal.fire({
             type: 'warning',
@@ -86,8 +83,11 @@ function registrarTiemposEmpleado() {
                         Swal.fire({
                             type: 'success',
                             title: 'Registrado',
-                            text: 'Registro realizado correctamente, recargue la página para ver los cambios'
+                            text: 'Registro realizado correctamente'
                         })
+
+                        //acá se debe refrescar la tabla de registros del empleado
+                        refreshMarcasTiempoEmpleado()
                     } else {
                         if (response == 0) {
                             Swal.fire({
@@ -149,7 +149,48 @@ function registrarTiemposEmpleado() {
     }
 }
 
-function insertarEmpleado () {
+function refreshMarcasTiempoEmpleado() {
+    $.ajax({
+
+        url: '/Empleado_Horarios/refrescarMarcasTiempo',
+        type: 'POST',
+        success: function (response) {
+            var array = JSON.parse(response);
+            document.getElementById('contenidoTabla').innerHTML = '';
+            for (i = 0; i < array.length; i++) {
+
+                var tr = document.createElement('tr')
+
+                var td1 = document.createElement('td');
+                td1.innerHTML = array[i].TC_Horario
+
+                var td2 = document.createElement('td');
+                td2.innerHTML = array[i].TF_Fecha
+
+                var td3 = document.createElement('td');
+                td3.innerHTML = array[i].TH_Hora
+
+                tr.appendChild(td1)
+                tr.appendChild(td2)
+                tr.appendChild(td3)
+
+                document.getElementById('contenidoTabla').appendChild(tr);
+            }
+            //$('#rangoAusenciasIns').val('');
+            //$('#rangoAusenciasIns').attr("placeholder", "Rango de Fechas");
+        },
+        error: function (response) {
+            Swal.fire({
+                type: 'warning',
+                title: 'Error',
+                text: 'Error al refrescar las marcas de tiempo. Inténtelo más tarde'
+            })
+        }
+
+    })
+}
+
+function insertarEmpleado() {
 
     var usuario = document.getElementById("usuario").value;
     var password = document.getElementById("password").value;
@@ -164,7 +205,7 @@ function insertarEmpleado () {
     var oficina = document.getElementById("oficina").value;
     var data = { usuario: usuario, password: password, cedula: cedula, nombre: nombre, apUno: apUno, apDos: apDos, correo: correo, tipo: tipo, estado: estado, puesto: puesto, oficina: oficina };
     $.ajax({
-        url:'/Empleados/Insertar',
+        url: '/Empleados/Insertar',
         type: 'POST',
         data: data,
         success: function (response) {
@@ -230,7 +271,7 @@ function eliminarEmpleado(id) {
             // Proceso de eliminacion de datos
 
             var data = {
-               id: id
+                id: id
             };
             $.ajax({
                 url: "/Empleados/Eliminar",    // Nombre del controlador/ accion del controlador
@@ -313,7 +354,7 @@ function prepararEdit(id) {
             $('#aapDos').val(dato.TC_Segundo_Apellido);
             $('#acorreo').val(dato.TC_Correo);
             $("#atipo").val(dato.TC_Tipo_Usuario);
-            $("#aestado").val(dato.TB_Activo );
+            $("#aestado").val(dato.TB_Activo);
             $("#apuesto").val(dato.puesto.TN_Id_Puesto);
             $("#aoficina").val(dato.oficina.TN_Id_Oficina);
 
@@ -343,7 +384,7 @@ function actualizarEmpleado() {
     var estado = document.getElementById("aestado").value;
     var puesto = document.getElementById("apuesto").value;
     var oficina = document.getElementById("aoficina").value;
-    var data = { id:id,cedula: cedula, nombre: nombre, apUno: apUno, apDos: apDos, correo: correo, tipo: tipo, estado: estado, puesto: puesto, oficina: oficina };
+    var data = { id: id, cedula: cedula, nombre: nombre, apUno: apUno, apDos: apDos, correo: correo, tipo: tipo, estado: estado, puesto: puesto, oficina: oficina };
     $.ajax({
         url: '/Empleados/Actualizar',
         type: 'POST',
@@ -402,9 +443,9 @@ function refrescarEmpleados() {
                 html += '<td>' + array[i].TC_Segundo_Apellido + '</td>';
                 html += '<td>' + array[i].TC_Correo + '</td>';
                 if (array[i].TB_Activo == "1") {
-                    html+='<td>Activo</td>';
+                    html += '<td>Activo</td>';
                 } else {
-                    html+='<td>Inactivo</td>';
+                    html += '<td>Inactivo</td>';
                 }
                 html += '<td>' + array[i].TC_Tipo_Usuario + '</td>';
                 html += '<td>' + array[i].TC_Nombre_Puesto + '</td>';
@@ -428,3 +469,25 @@ function refrescarEmpleados() {
 }
 
 
+//"Listar_de_Admin", "Empleado_Horarios"
+function listarTiemposEmpleadoAdmin(id_empleado) {
+    parametros = { "idEmpleado": id_empleado }
+    $.ajax({
+        data: parametros,
+        url: '/Empleado_Horarios/seleccionAdminEmpleadoMarcas',
+        type: 'POST',
+        success: function (response) {
+            if (response.success == true) {
+                window.location.href = response.url;
+            }
+            else {
+                Swal.fire({
+                    title: 'Usuario no encontrado',
+                    text: 'Usuario no encontrado, inténtelo de nuevo',
+                    icon: 'warning'
+                })
+            }
+        }
+    })
+
+}
