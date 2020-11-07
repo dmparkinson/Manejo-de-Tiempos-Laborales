@@ -32,14 +32,15 @@ namespace Presentacion.Security
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
+
             base.OnActionExecuting(filterContext);
 
             if (Security.SessionSecurity.ExistUserInSession())
             {
                 filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new
                 {
-                    controller = "Account",
-                    action = "RedirHome"
+                    controller = "Empleado_HorariosController",
+                    action = "Listar_de_Admin"
                 }));
             }
         }
