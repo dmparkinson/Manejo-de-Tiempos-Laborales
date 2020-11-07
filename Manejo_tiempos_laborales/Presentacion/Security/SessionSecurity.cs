@@ -42,7 +42,7 @@ namespace Presentacion.Security
         public static void AddUserToSession(string id)
         {
 
-            bool persist = false;
+            bool persist = true;
             var cookie = FormsAuthentication.GetAuthCookie("usuario", persist);
 
             cookie.Name = FormsAuthentication.FormsCookieName;
