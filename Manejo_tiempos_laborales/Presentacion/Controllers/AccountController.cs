@@ -25,7 +25,7 @@ namespace Presentacion.Controllers
 
 
 
-        [Authorize]
+        [Autenticado]
         public ActionResult Logout()
         {
             Security.SessionSecurity.DestroyUserSession();
@@ -62,7 +62,7 @@ namespace Presentacion.Controllers
 
 
         // Redirecciona a la pagina principal del tipo de usuario y guarda en variables de sesion
-        [Authorize]
+        [Autenticado]
         public RedirectToRouteResult RedirHome()
         {
             // Solicitar el tipo de usuario
