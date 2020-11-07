@@ -85,7 +85,7 @@ namespace Presentacion.Controllers
                 return RedirectToAction("Listar", "Historico_Tiempos_Laborales");
             }
             else if (usuario.TC_Tipo_Usuario == "Estándar") {
-                return RedirectToAction("Index", "Login");
+                return RedirectToAction("Listar_de_Empleado", "Empleado_Horarios");
             }
             else
             {
