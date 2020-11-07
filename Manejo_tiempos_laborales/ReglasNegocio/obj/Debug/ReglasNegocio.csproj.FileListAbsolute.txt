@@ -1,0 +1,26 @@
+D:\Documents\Universidad\Analisis\Proyectos\Seguridad\Manejo_tiempos_laborales\ReglasNegocio\bin\Debug\ReglasNegocio.dll
+D:\Documents\Universidad\Analisis\Proyectos\Seguridad\Manejo_tiempos_laborales\ReglasNegocio\bin\Debug\ReglasNegocio.pdb
+D:\Documents\Universidad\Analisis\Proyectos\Seguridad\Manejo_tiempos_laborales\ReglasNegocio\bin\Debug\AccesoNegocio.dll
+D:\Documents\Universidad\Analisis\Proyectos\Seguridad\Manejo_tiempos_laborales\ReglasNegocio\bin\Debug\Entidad.dll
+D:\Documents\Universidad\Analisis\Proyectos\Seguridad\Manejo_tiempos_laborales\ReglasNegocio\bin\Debug\Newtonsoft.Json.dll
+D:\Documents\Universidad\Analisis\Proyectos\Seguridad\Manejo_tiempos_laborales\ReglasNegocio\bin\Debug\AccesoNegocio.pdb
+D:\Documents\Universidad\Analisis\Proyectos\Seguridad\Manejo_tiempos_laborales\ReglasNegocio\bin\Debug\Entidad.pdb
+D:\Documents\Universidad\Analisis\Proyectos\Seguridad\Manejo_tiempos_laborales\ReglasNegocio\bin\Debug\Newtonsoft.Json.xml
+D:\Documents\Universidad\Analisis\Proyectos\Seguridad\Manejo_tiempos_laborales\ReglasNegocio\obj\Debug\ReglasNegocio.csprojAssemblyReference.cache
+D:\Documents\Universidad\Analisis\Proyectos\Seguridad\Manejo_tiempos_laborales\ReglasNegocio\obj\Debug\ReglasNegocio.csproj.CoreCompileInputs.cache
+D:\Documents\Universidad\Analisis\Proyectos\Seguridad\Manejo_tiempos_laborales\ReglasNegocio\obj\Debug\ReglasNegocio.csproj.CopyComplete
+D:\Documents\Universidad\Analisis\Proyectos\Seguridad\Manejo_tiempos_laborales\ReglasNegocio\obj\Debug\ReglasNegocio.dll
+D:\Documents\Universidad\Analisis\Proyectos\Seguridad\Manejo_tiempos_laborales\ReglasNegocio\obj\Debug\ReglasNegocio.pdb
+D:\UCR\Programación\Codigos Visual\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\ReglasNegocio\bin\Debug\ReglasNegocio.dll
+D:\UCR\Programación\Codigos Visual\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\ReglasNegocio\bin\Debug\ReglasNegocio.pdb
+D:\UCR\Programación\Codigos Visual\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\ReglasNegocio\bin\Debug\AccesoNegocio.dll
+D:\UCR\Programación\Codigos Visual\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\ReglasNegocio\bin\Debug\Entidad.dll
+D:\UCR\Programación\Codigos Visual\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\ReglasNegocio\bin\Debug\Newtonsoft.Json.dll
+D:\UCR\Programación\Codigos Visual\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\ReglasNegocio\bin\Debug\AccesoNegocio.pdb
+D:\UCR\Programación\Codigos Visual\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\ReglasNegocio\bin\Debug\Entidad.pdb
+D:\UCR\Programación\Codigos Visual\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\ReglasNegocio\bin\Debug\Newtonsoft.Json.xml
+D:\UCR\Programación\Codigos Visual\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\ReglasNegocio\obj\Debug\ReglasNegocio.csprojAssemblyReference.cache
+D:\UCR\Programación\Codigos Visual\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\ReglasNegocio\obj\Debug\ReglasNegocio.csproj.CoreCompileInputs.cache
+D:\UCR\Programación\Codigos Visual\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\ReglasNegocio\obj\Debug\ReglasNegocio.csproj.CopyComplete
+D:\UCR\Programación\Codigos Visual\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\ReglasNegocio\obj\Debug\ReglasNegocio.dll
+D:\UCR\Programación\Codigos Visual\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\ReglasNegocio\obj\Debug\ReglasNegocio.pdb

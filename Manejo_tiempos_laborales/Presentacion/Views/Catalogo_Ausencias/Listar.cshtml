@@ -1,0 +1,133 @@
+﻿
+@{
+    ViewBag.Title = "Catálogo Ausencias";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+
+
+    @Html.Partial("_Header_Admin");
+
+    <div class="container">
+        <div class="row mt-2">
+            <h3 id="tituloReportes">@ViewBag.Message</h3>
+        </div>
+
+
+        <div class="row justify-content-center">
+            <div class="col-6 mt-2 ">
+                <div class="card" style="background-color: #FAFAFA">
+                    <div class="card-header">
+                        <h5 class="card-tittle">Añadir nueva ausencia</h5>
+                    </div>
+
+                    <div class="card-body">
+                        <form onsubmit="return agregarTipoAusencia(this)">
+                            <div class="form-group d-flex justify-content-between">
+                                <label class="font-weight-normal" for="motivoA">Motivo:</label>
+                                <input type="text" class="form-control form-control-sm" id="motivoAusencia" placeholder="Ingrese motivo de ausencia" required minlength="2" maxlength="20" pattern="[A-Za-z\s]+">
+                            </div>
+
+                            <div class="row justify-content-center mt-2">
+                                <input type="submit" class="btn btn-primary btn-sm" value="Guardar">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="row mt-3">
+            <div class="col-12">
+                <div class="d-flex justify-content-between mt-3">
+                    <div class="col-6">
+                        <input type="search" id="searchInput" placeholder="Buscar" class="form-control form-control-sm">
+                    </div>
+                    <div>
+                        <input type="button" value="Reporte" class="btn btn-secondary btn-sm" onclick="exportPDF('Catalogo Ausencias')" />
+                    </div>
+                </div>
+                <table id="table" class="table table-bordered table-hover">
+                    <thead class="thead-dark text-center">
+                        <tr>
+                            <th>Motivo</th>
+                            <th id="acc">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="contenidoTabla">
+
+                        @foreach (var item in ViewBag.ListaCatalogoAusencias)
+                        {
+                            <tr>
+                                <td>@item.TC_Tipo_Ausencia</td>
+                                <td>
+                                    <div class="d-flex justify-content-center">
+                                        <a onclick="cargarEditCAusencia('@item.TN_Id_Tipo_Ausencia')" data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark pointer" style="font-size: 1.2em;"></i></a>
+                                        <a onclick="eliminarTipoAusencia('@item.TN_Id_Tipo_Ausencia')"> <i class="fas fa-trash text-dark pointer" style="font-size: 1.2em;"></i></a>
+                                    </div>
+
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    @Html.Partial("_Footer");
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+<!-- Modal de editar -->
+
+
+<div class="modal fade" id="modal-editar">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form onsubmit="return editarTipoAusencia(this)">
+                <div class="modal-header">
+                    <h4 class="modal-title">Modificar Ausencia</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="form-group ">
+                        <label class="font-weight-normal" for="motivo">Motivo:</label>
+                        <input type="hidden" id="idEdit">
+                        <input type="text" class="form-control form-control-sm" id="motivoEdit" required minlength="2" maxlength="20" pattern="[A-Za-z\s]+">
+                    </div>
+
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <div>
+                        <input type="submit" class="btn btn-info" value="Editar">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+

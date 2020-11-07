@@ -1,0 +1,156 @@
+﻿@{
+    ViewBag.Title = "Histórico Ausencias";
+}
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+
+
+    @Html.Partial("_Header_Admin");
+
+    <div class="container">
+        <div class="row mt-2">
+            <h3 id="tituloReportes">@ViewBag.Message</h3>
+        </div>
+
+
+        <div class="container mt-2 row justify-content-center">
+            <div class="flex-column">
+                <div class="d-flex flex-wrap">
+                    <div class="form-group">
+                        <label class="font-weight-normal" for="regreso">Fecha de ausencia:</label>
+                        <input type="text" class="form-control form-control-sm" id="fechaFomatFiltro" onclick="formatoFiltro()" placeholder=" Salida - Regreso">
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-normal" for="motivo">Motivo:</label>
+
+                        <select class="form-control form-control-sm" id="motivoFiltro">
+                            <option value="0"></option>
+                            @foreach (var item in ViewBag.ListaTipoAusencias)
+                            {
+                                <option value="@item.TN_Id_Tipo_Ausencia">@item.TC_Tipo_Ausencia</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <input type="button" value="Filtrar" class="btn btn-info btn-sm" onclick="filtrarAusencias()">
+                    <input type="button" value="Limpiar" onclick="vaciarFiltroAusencias()" class="btn btn-danger btn-sm">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row mt-3">
+            <div class="col-12">
+                <div class="d-flex justify-content-between mt-3">
+                    <div class="col-6">
+                        <input type="search" id="searchInput" placeholder="Buscar" class="form-control form-control-sm">
+                    </div>
+                    <div>
+                        <input type="button" value="Reporte" class="btn btn-secondary btn-sm" onclick="exportPDF('Histórico Ausencias')" />
+                    </div>
+                </div>
+                <table id="table" class="table table-bordered table-hover">
+                    <thead class="thead-dark text-center">
+                        <tr>
+                            <th>Cédula</th>
+                            <th>Nombre</th>
+                            <th>Apellido 1</th>
+                            <th>Apellido 2</th>
+                            <th>Motivo</th>
+                            <th>Fecha salida</th>
+                            <th>Fecha regreso</th>
+                            <th id="acc">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="contenidoTabla">
+                        @foreach (var item in ViewBag.ListaHistoricAusencias)
+                        {
+                            <tr>
+                                <td>@item.empleado.TC_Identificacion</td>
+                                <td>@item.empleado.TC_Nombre_Usuario</td>
+                                <td>@item.empleado.TC_Primer_Apellido </td>
+                                <td>@item.empleado.TC_Segundo_Apellido</td>
+                                <td>@item.tipoAusencia.TC_Tipo_Ausencia</td>
+                                <td>@item.TF_Fecha_Salida</td>
+                                <td>@item.TF_Fecha_Regreso</td>
+                                <td>
+                                    <div class="d-flex justify-content-center">
+                                        <a data-toggle="modal" data-target="#modal-editar" onclick="cargarEditHisAusencia('@item.TN_Id_Ausencia','@item.tipoAusencia.TN_Id_Tipo_Ausencia','@item.empleado.TN_Id_Usuario')"> <i class="fas fa-edit text-dark pointer" style="font-size: 1.2em;"></i></a>
+                                        <a onclick="eliminarHAusencia('@item.TN_Id_Ausencia', this)"> <i class="fas fa-trash text-dark pointer" style="font-size: 1.2em;"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    @Html.Partial("_Footer");
+
+</body>
+</html>
+
+
+
+
+
+
+
+<!-- Modal de editar -->
+
+
+<div class="modal fade" id="modal-editar">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form onsubmit="return editarHisAusencia()">
+                <div class="modal-header">
+                    <h4 class="modal-title">Modificar Ausencia</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <input type="hidden" id="idEmpleado">
+                <input type="hidden" id="idAusencia">
+                <div class="modal-body">
+                    <div class="form-group ">
+                        <label class="font-weight-normal" for="salida">Fecha de ausencia:</label>
+                        <input type="text" class="form-control form-control-sm" id="fechaFomat" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-normal" for="motivo">Motivo:</label>
+                        <select class="form-control form-control-sm" id="motivoE">
+                            @foreach (var item in ViewBag.ListaTipoAusencias)
+                            {
+                                <option value="@item.TN_Id_Tipo_Ausencia">@item.TC_Tipo_Ausencia</option>
+                            }
+                        </select>
+                    </div>
+
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <div>
+                        <button type="submit" class="btn btn-info">Editar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
