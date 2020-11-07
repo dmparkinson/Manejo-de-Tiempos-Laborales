@@ -46,9 +46,6 @@ function registrarTiemposEmpleado() {
         }
     }
 
-    alert("select= " + select);
-    alert("select id= " + selectId);
-
     if (select == "") {
         Swal.fire({
             type: 'warning',
@@ -86,8 +83,11 @@ function registrarTiemposEmpleado() {
                         Swal.fire({
                             type: 'success',
                             title: 'Registrado',
-                            text: 'Registro realizado correctamente, recargue la página para ver los cambios'
+                            text: 'Registro realizado correctamente'
                         })
+
+                        //acá se debe refrescar la tabla de registros del empleado
+                        refreshMarcasTiempoEmpleado()
                     } else {
                         if (response == 0) {
                             Swal.fire({
@@ -147,6 +147,47 @@ function registrarTiemposEmpleado() {
             }
         );
     }
+}
+
+function refreshMarcasTiempoEmpleado() {
+    $.ajax({
+
+        url: '/Empleado_Horarios/refrescarMarcasTiempo',
+        type: 'POST',
+        success: function (response) {
+            var array = JSON.parse(response);
+            document.getElementById('contenidoTabla').innerHTML = '';
+            for (i = 0; i < array.length; i++) {
+
+                var tr = document.createElement('tr')
+
+                var td1 = document.createElement('td');
+                td1.innerHTML = array[i].TC_Horario
+
+                var td2 = document.createElement('td');
+                td2.innerHTML = array[i].TF_Fecha
+
+                var td3 = document.createElement('td');
+                td3.innerHTML = array[i].TH_Hora
+
+                tr.appendChild(td1)
+                tr.appendChild(td2)
+                tr.appendChild(td3)
+
+                document.getElementById('contenidoTabla').appendChild(tr);
+            }
+            //$('#rangoAusenciasIns').val('');
+            //$('#rangoAusenciasIns').attr("placeholder", "Rango de Fechas");
+        },
+        error: function (response) {
+            Swal.fire({
+                type: 'warning',
+                title: 'Error',
+                text: 'Error al refrescar las marcas de tiempo. Inténtelo más tarde'
+            })
+        }
+
+    })
 }
 
 function insertarEmpleado () {
@@ -427,3 +468,25 @@ function refrescarEmpleados() {
 }
 
 
+//"Listar_de_Admin", "Empleado_Horarios"
+function listarTiemposEmpleadoAdmin(id_empleado) {
+    parametros = { "idEmpleado": id_empleado }
+    $.ajax({
+        data: parametros,
+        url: '/Empleado_Horarios/seleccionAdminEmpleadoMarcas',
+        type: 'POST',
+        success: function (response) {
+            if (response.success == true) {
+                window.location.href = response.url;
+            }
+            else {
+                Swal.fire({
+                    title: 'Usuario no encontrado',
+                    text: 'Usuario no encontrado, inténtelo de nuevo',
+                    icon: 'warning'
+                })
+            }
+        }
+    })
+
+}

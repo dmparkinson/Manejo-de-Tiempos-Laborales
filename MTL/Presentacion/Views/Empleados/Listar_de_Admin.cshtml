@@ -63,7 +63,7 @@
                         <td>@e.TC_Nombre_Oficina</td>
                         <td class="d-flex justify-content-center">
                             
-                            <a class="ml-1" onclick="location.href='@Url.Action("Listar_de_Admin", "Empleado_Horarios")'" title="Tiempo de horarios" href="#">
+                            <a class="ml-1" onclick="listarTiemposEmpleadoAdmin(@e.TN_Id_Usuario)" title="Tiempo de horarios" href="#">
                             <i class="fas fa-business-time text-dark" style="font-size: 1.2em;"></i></a>
                             <a class="ml-1" onclick="ausenciasEmpleado(@e.TN_Id_Usuario)" title="Tiempo de ausencias" href="#"><i class="fas fa-calendar-times text-dark" style="font-size: 1.2em;"></i></a>
                             
