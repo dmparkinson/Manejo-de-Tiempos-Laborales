@@ -10,11 +10,10 @@ using System.Web.Mvc;
 
 namespace Presentacion.Controllers
 {
-    [Authorize]
+    [Autenticado]
     public class Empleado_AusenciasController : Controller
     {
         // GET: Empleado_Ausencias
-        [Autenticado]
         public ActionResult Listar()
         {
             AusenciaRN a = new AusenciaRN();
@@ -57,7 +56,6 @@ namespace Presentacion.Controllers
 
 
 
-        [Autenticado]
         public ActionResult Listar_de_Empleado()
         {
 

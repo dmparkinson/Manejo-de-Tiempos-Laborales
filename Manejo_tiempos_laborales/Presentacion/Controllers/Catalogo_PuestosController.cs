@@ -10,11 +10,10 @@ using System.Web.Mvc;
 
 namespace Presentacion.Controllers
 {
+    [Autenticado]
     public class Catalogo_PuestosController : Controller
     {
         // GET: Catalogo_Puestos
-        [Authorize]
-        [Autenticado]
         public ActionResult Listar()
         {
             PuestoRN puestoRN = new PuestoRN();

@@ -11,11 +11,10 @@ using Presentacion.Security;
 
 namespace Presentacion.Controllers
 {
+    [Autenticado]
     public class Empleado_HorariosController : Controller
     {
         // GET: Empleados_Horarios
-        [Authorize]
-        [Autenticado]
         public ActionResult Listar_de_Admin()
         {
             //debo listar el catalogo de tiempos
@@ -39,8 +38,7 @@ namespace Presentacion.Controllers
             return Json(new { success = true, url = Url.Action("Listar_de_Admin", "Empleado_Horarios") });
         }
 
-        [Authorize]
-        [Autenticado]
+
         public ActionResult Listar_de_Jefatura()
         {
 
@@ -48,8 +46,7 @@ namespace Presentacion.Controllers
             return View();
         }
 
-        [Authorize]
-        [Autenticado]
+
         public ActionResult Listar_de_Empleado()
         {
             //debo listar el catalogo de tiempos

@@ -10,12 +10,12 @@ using System.Web.Mvc;
 
 namespace Presentacion.Controllers
 {
-    
+
+    [Autenticado]
     public class Historico_Tiempos_LaboralesController : Controller
     {
         // GET: Historicos_Tiempos
-        [Authorize]
-        [Autenticado]
+
         public ActionResult Listar()
         {
             TiempoRN tiempoUs = new TiempoRN();
