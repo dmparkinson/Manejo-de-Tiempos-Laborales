@@ -14,12 +14,13 @@
 </head>
 <body>
 
+    @Html.Partial("_Header_Admin");
     <script type="text/javascript" src="~/Scripts/jquery.min.js"></script>
     <script type="text/javascript" src="~/Scripts/moment.min.js"></script>
     <script type="text/javascript" src="~/Scripts/daterangepicker.min.js"></script>
     <link rel="stylesheet" type="text/css" href="~/Scripts/daterangepicker.css" />
 
-    @Html.Partial("_Header_Admin");
+
 
     <div class="container">
         <div class="row mt-2 flex-column">
@@ -75,7 +76,7 @@
 
 
 
-        
+
 
 
 
@@ -140,7 +141,7 @@
 
                                 <td class="d-flex justify-content-center">
                                     <a data-toggle="modal" data-target="#modal-editar" onclick="prepararEditAusencia(@a.TN_Id_Ausencia)"> <i class="fas fa-edit text-dark pointer" style="font-size: 1.2em;"></i></a>
-                                    <a onclick="eliminarAusencia(@a.TN_Id_Ausencia)" > <i class="fas fa-trash text-dark pointer" style="font-size: 1.2em;"></i></a>
+                                    <a onclick="eliminarAusencia(@a.TN_Id_Ausencia)"> <i class="fas fa-trash text-dark pointer" style="font-size: 1.2em;"></i></a>
                                 </td>
                             </tr>
 
