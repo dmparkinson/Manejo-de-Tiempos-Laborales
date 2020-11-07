@@ -51,7 +51,7 @@ namespace Presentacion.Controllers
         {
             Session["EmpAus"] = idEmpleado;
             Session["NombreCompleto"] = nombre + " " + apUno + " " + apDos;
-            return Json(new { url = Url.Action("Listar_de_Jefatura", "Empleado_Ausencias") });
+            return Json(new { url = Url.Action("Listar", "Empleado_Ausencias") });
         }
 
 

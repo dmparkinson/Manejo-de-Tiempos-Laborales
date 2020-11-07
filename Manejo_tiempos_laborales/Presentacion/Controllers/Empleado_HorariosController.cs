@@ -14,8 +14,7 @@ namespace Presentacion.Controllers
     [Autenticado]
     public class Empleado_HorariosController : Controller
     {
-        // GET: Empleados_Horarios
-        public ActionResult Listar_de_Admin()
+        public ActionResult Listar()
         {
             //debo listar el catalogo de tiempos
             string listaH = new HorarioAD().listarHorarios();
@@ -30,23 +29,27 @@ namespace Presentacion.Controllers
             ViewBag.listaHorario = lista;
             ViewBag.listaTiempo = listaT;
             ViewBag.Message = emp.TC_Nombre_Usuario + " " + emp.TC_Primer_Apellido + " " + emp.TC_Segundo_Apellido;
-            return View();
+            if (Session["UsserType"].ToString() == "Administración")
+            {
+                return View("Listar_de_Admin");
+            }
+            else if (Session["UsserType"].ToString() == "Jefatura")
+            {
+                return View("Listar_de_Jefatura");
+            }
+            else
+            {
+                return View("Error");
+            }
         }
 
-        public JsonResult seleccionAdminEmpleadoMarcas(int idEmpleado) {
-            Session["UserIdAdminMarcas"] = idEmpleado;
-            return Json(new { success = true, url = Url.Action("Listar_de_Admin", "Empleado_Horarios") });
-        }
-
-
-        public ActionResult Listar_de_Jefatura()
+        public JsonResult seleccionAdminEmpleadoMarcas(int idEmpleado)
         {
-
-            ViewBag.Message = "Horarios de Empleado";
-            return View();
+            Session["UserIdAdminMarcas"] = idEmpleado;
+            return Json(new { success = true, url = Url.Action("Listar", "Empleado_Horarios") });
         }
 
-
+      
         public ActionResult Listar_de_Empleado()
         {
             //debo listar el catalogo de tiempos
@@ -60,13 +63,14 @@ namespace Presentacion.Controllers
 
             ViewBag.listaHorario = lista;
             ViewBag.listaTiempo = listaT;
-            ViewBag.Message = Session["UsserName"].ToString() +" "+ Session["UsserSurname1"].ToString() + " " + Session["UsserSurname2"].ToString();
+            ViewBag.Message = Session["UsserName"].ToString() + " " + Session["UsserSurname1"].ToString() + " " + Session["UsserSurname2"].ToString();
             return View();
         }
 
 
         //registramos el tiempo de un empleado
-        public int registrarTiemposEmpleado(int idTiempo, string tiempo) {
+        public int registrarTiemposEmpleado(int idTiempo, string tiempo)
+        {
             char[] tipo = tiempo.ToCharArray();
             Tiempo t = new Tiempo();
             t.TN_Id_Horario = idTiempo;
@@ -79,7 +83,8 @@ namespace Presentacion.Controllers
             TiempoRN tiempoRN = new TiempoRN();
 
             int res = tiempoRN.verificarRegistro(tiempo, t.TN_Id_Usuario);
-            if (res == 1) {
+            if (res == 1)
+            {
                 return new TiemposAD().registrarTiempo(t);
             }
 
@@ -90,7 +95,8 @@ namespace Presentacion.Controllers
 
 
         //refrescamos las marcas de tiempo del usuario
-        public string refrescarMarcasTiempo() {
+        public string refrescarMarcasTiempo()
+        {
             List<Tiempo> listaT = new List<Tiempo>();
             return new TiemposAD().listarPorFechaTiempoUsuario(int.Parse(Session["UsserID"].ToString()), DateTime.Now.ToString("dd-MM-yyyy"));
         }
