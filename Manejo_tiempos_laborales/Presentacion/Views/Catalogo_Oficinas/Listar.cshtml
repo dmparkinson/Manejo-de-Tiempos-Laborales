@@ -1,0 +1,242 @@
+﻿
+@{
+    ViewBag.Title = "Catálogo Oficinas";
+}
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+
+
+    @Html.Partial("_Header_Admin");
+    <script type="text/javascript" src="~/Scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/moment.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/Scripts/daterangepicker.css" />
+
+
+    <div class="container">
+
+        <div class="row mt-2">
+            <h3 id="tituloReportes">@ViewBag.Message</h3>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-12">
+                <div class="d-flex justify-content-between mt-3">
+                    <div class="col-6">
+                        <input type="search" id="searchInput" placeholder="Buscar" class="form-control form-control-sm">
+                    </div>
+                    <div>
+                        <input type="button" value="Reporte" class="btn btn-secondary" onclick="exportPDF('Catálogo Oficinas')" />
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-agregar"><i class="fa fa-plus-square"></i> </button>
+                    </div>
+                </div>
+                <table id="table" class="table table-bordered table-hover">
+                    <thead class="thead-dark text-center">
+                        <tr>
+                            <th>Código</th>
+                            <th>Nombre</th>
+                            <th>Circuito</th>
+                            <th>Estado</th>
+                            <th>Inicio de vigencia</th>
+                            <th>Final de vigencia</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="contenidoTabla">
+                        @foreach (Entidad.Oficina o in ViewBag.Lista)
+                        {
+                            <tr>
+                                <td>@o.TC_Codigo</td>
+                                <td>@o.TC_Nombre_Oficina</td>
+                                <td>@o.TC_Desc_Circuito</td>
+                                @if (o.TB_Activa == 1)
+                                {
+                                    <td>Activa</td>
+                                }
+                                else
+                                {
+                                    <td>Inactiva</td>
+                                }
+
+                                <td>@o.TF_Inicio_Vigencia</td>
+                                <td>@o.TF_Fin_Vigencia</td>
+                                <td class="d-flex justify-content-center">
+                                    <a data-toggle="modal" data-target="#modal-editar" onclick="prepararEditOficina(@o.TN_Id_Oficina)" > <i class="fas fa-edit text-dark pointer" style="font-size: 1.2em;"></i></a>
+                                    <a onclick="eliminarOficinas(@o.TN_Id_Oficina)"> <i class="fas fa-trash text-dark pointer" style="font-size: 1.2em;"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    @Html.Partial("_Footer");
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+<!-- Modal de agregar -->
+
+
+<div class="modal fade" id="modal-agregar">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Añadir nueva oficina</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form onsubmit="return insertarOficina(this)">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="font-weight-normal" for="codigo">Código:</label>
+                        <input type="text" class="form-control form-control-sm" id="Ocodigo" placelaceholder="Ingrese codigo" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-normal" for="nombre">Nombre:</label>
+                        <input type="text" class="form-control form-control-sm" id="Onombre" placelaceholder="Ingrese nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-normal" for="estado">Estado:</label>
+                        <select class="form-control form-control-sm" id="Oestado">
+                            <option value="1">Activo</option>
+                            <option value="0">Inactivo</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-normal" for="circuito">Circuito:</label>
+                        <select class="form-control form-control-sm" id="Ocircuito">
+                            @foreach (Entidad.Circuito c in ViewBag.Circuitos)
+                            {
+                                <option value="@c.TN_Id_Circuito">@c.TC_Desc_Circuito</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group ">
+                        <label class="font-weight-normal" for="fechaVigencia">Rango de vigencia:</label>
+                        <input type="text" class="form-control form-control-sm" id="OfechaVigencia" onkeypress="return false;" required>
+                        <script>
+                            $('#OfechaVigencia').daterangepicker({
+                                locale: {
+                                    format: 'YYYY/MM/DD'
+                                }
+                            });
+                            $('#OfechaVigencia').val('');
+                            $('#OfechaVigencia').attr("placeholder", "Rango de Fechas");
+                        </script>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <div>
+
+                        <input type="submit" class="btn btn-info" value="Agregar" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Modal de editar -->
+
+
+<div class="modal fade" id="modal-editar">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Modificar Oficina</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form onsubmit="return actualizarOficina(this)">
+                <input type="hidden" id="hiddenIDOf" value="" />
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label class="font-weight-normal" for="codigo">Código:</label>
+                        <input type="text" class="form-control form-control-sm" id="acodigo" placelaceholder="Ingrese codigo" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-normal" for="nombre">Nombre:</label>
+                        <input type="text" class="form-control form-control-sm" id="anombre" placelaceholder="Ingrese nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-normal" for="estado">Estado:</label>
+                        <select class="form-control form-control-sm" id="aestado">
+                            <option value="1">Activo</option>
+                            <option value="0">Inactivo</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-normal" for="circuito">Circuito:</label>
+                        <select class="form-control form-control-sm" id="acircuito">
+                            @foreach (Entidad.Circuito c in ViewBag.Circuitos)
+                            {
+                                <option value="@c.TN_Id_Circuito">@c.TC_Desc_Circuito</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group ">
+                        <label class="font-weight-normal" for="afechaVigencia">Rango de vigencia:</label>
+                        <input type="text" class="form-control form-control-sm" id="afechaVigencia">
+                        <script>
+                            $('#afechaVigencia').daterangepicker({
+                                locale: {
+                                    format: 'YYYY/MM/DD'
+                                }
+                            });
+                            $('#afechaVigencia').val('');
+                            $('#afechaVigencia').attr("placeholder", "Rango de Fechas");
+                        </script>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <div>
+                        <input type="submit" class="btn btn-info" value="Editar" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
