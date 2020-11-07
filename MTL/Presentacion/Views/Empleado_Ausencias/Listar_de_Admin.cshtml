@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Ausencias";
+    ViewBag.Title = "Ausencias de ";
 }
 
 
@@ -8,9 +8,13 @@
 <script type="text/javascript" src="~/Scripts/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css" href="~/Scripts/daterangepicker.css" />
 
+<script type="text/javascript" src="~/Scripts/js/jspdf.min.js"></script>
+<script type="text/javascript" src="~/Scripts/js/ReportesPDF.js"></script>
+<script type="text/javascript" src="~/Scripts/js/jspdf.plugin.autotable.min.js"></script>
+
 <div class="container">
     <div class="row mt-2 flex-column">
-        <h3>@ViewBag.Title</h3>
+        <h3 id="tituloReportes">@ViewBag.Title@ViewBag.Nombre</h3>
         <h5 class="text-secondary">@ViewBag.Message</h5>
     </div>
 
@@ -78,7 +82,7 @@
                         $('#rangoAusencias').attr("placeholder", "Rango de Fechas");
                     </script>
                 </div>
-                
+
                 <div class="form-group">
                     <label class="font-weight-normal" for="motivo">Motivo:</label>
 
@@ -104,7 +108,7 @@
                     <input type="button" value="Limpiar" class="btn btn-danger btn-sm">
                 </div>
                 <div>
-                    <input type="button" value="Reporte" class="btn btn-secondary btn-sm">
+                    <input type="button" value="Reporte" class="btn btn-secondary btn-sm" onclick="exportPDF('Ausencias @ViewBag.Nombre')" />
                 </div>
             </div>
             <table id="table" class="table table-bordered table-hover">
@@ -159,7 +163,7 @@
                 </button>
             </div>
             <form onsubmit="return ActualizarAusencia();">
-                <input type="hidden" id="hiddenAusID" value=""/>
+                <input type="hidden" id="hiddenAusID" value="" />
                 <div class="modal-body">
                     <div class="form-group ">
                         <label class="font-weight-normal" for="arango">Fecha de salida:</label>
@@ -190,7 +194,7 @@
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <div>
 
-                        <input type="submit" class="btn btn-info" value="Editar"/>
+                        <input type="submit" class="btn btn-info" value="Editar" />
                     </div>
                 </div>
             </form>

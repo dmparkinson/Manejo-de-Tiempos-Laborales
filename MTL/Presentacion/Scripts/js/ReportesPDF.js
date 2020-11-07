@@ -7,9 +7,11 @@
     var datetime = date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes();
 
     doc.fromHTML('<h5 style="font-family:sans-serif">Fecha del reporte: ' + datetime + '</h5>', 15, 26);
+
     doc.autoTable({
         html: '#table',
         startY: 43
     });
     doc.save(tipo + '.pdf');
 }
+

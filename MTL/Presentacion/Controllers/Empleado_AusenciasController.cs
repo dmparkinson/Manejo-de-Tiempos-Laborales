@@ -22,13 +22,14 @@ namespace Presentacion.Controllers
             ViewBag.Lista = a.ListarAusenciasEmpleado(int.Parse(Session["EmpAus"].ToString()));
             List<TipoAusencia> tipos = JsonConvert.DeserializeObject<List<TipoAusencia>>(tAusencia.ListarTiposAusencia());
             ViewBag.Tipos = tipos;
-            
+            ViewBag.Nombre = Session["NombreCompleto"].ToString();
             return View();
         }
 
-        public JsonResult EmpleadoAusencia(int idEmpleado)
+        public JsonResult EmpleadoAusencia(int idEmpleado, string nombre, string apUno, string apDos)
         {
             Session["EmpAus"] = idEmpleado;
+            Session["NombreCompleto"] = nombre + " " + apUno + " " + apDos;
             return Json(new {url = Url.Action("Listar_de_Admin", "Empleado_Ausencias") });
         }
         public ActionResult Listar_de_Jefatura()
