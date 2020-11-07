@@ -1,6 +1,0 @@
-C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\MTL\Entidades\obj\Debug\Entidades.csprojAssemblyReference.cache
-C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\MTL\Entidades\obj\Debug\Entidades.csproj.CoreCompileInputs.cache
-C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\MTL\Entidades\bin\Debug\Entidades.dll
-C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\MTL\Entidades\bin\Debug\Entidades.pdb
-C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\MTL\Entidades\obj\Debug\Entidades.dll
-C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\MTL\Entidades\obj\Debug\Entidades.pdb
