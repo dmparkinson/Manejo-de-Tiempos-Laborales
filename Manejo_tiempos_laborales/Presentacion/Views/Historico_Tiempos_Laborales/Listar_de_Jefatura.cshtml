@@ -74,7 +74,6 @@
                             <th>Fecha</th>
                             <th>Hora</th>
                             <th>Tiempo</th>
-                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody id="contenidoTabla">
@@ -88,12 +87,7 @@
                                 <td>@item.TF_Fecha</td>
                                 <td>@item.TH_Hora</td>
                                 <td>@item.horario.TC_Horario </td>
-                                <td>
-                                    <div class="d-flex justify-content-center">
-                                        <a data-toggle="modal" data-target="#modal-editar"  onclick="cargarEditHTiempo('@item.TF_Fecha','@item.TH_Hora','@item.horario.TN_Id_Horario', this)"> <i class="fas fa-edit text-dark pointer" style="font-size: 1.2em;"></i></a>
-                                        <a onclick="eliminarHTiempo('@item.TF_Fecha', this)" > <i class="fas fa-trash text-dark pointer" style="font-size: 1.2em;"></i></a>
-                                    </div>
-                                </td>
+                                
                             </tr>
                         }
                     </tbody>

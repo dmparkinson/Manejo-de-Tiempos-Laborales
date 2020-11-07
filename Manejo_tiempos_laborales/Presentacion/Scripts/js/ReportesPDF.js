@@ -8,10 +8,20 @@
 
     doc.fromHTML('<h5 style="font-family:sans-serif">Fecha del reporte: ' + datetime + '</h5>', 15, 26);
 
+    var acc = document.getElementById('acc');
+    if (acc) {
+        acc.style.display = 'none';
+    }
+
     doc.autoTable({
         html: '#table',
         startY: 43
     });
+
+    if (acc) {
+        acc.style.display = '';
+    }
+
     doc.save(tipo + '.pdf');
 }
 
