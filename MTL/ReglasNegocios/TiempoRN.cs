@@ -35,19 +35,19 @@ namespace ReglasNegocios
             if (listaT.Count>0) {
                 for (int i=0; i<listaT.Count; i++) {
                     //si la salida del trabajo fue marcada, entonces no se pueden realizar más registros
-                    if (listaT[i].horario.TC_Horario.Equals("Salida")) {
+                    if (listaT[i].TC_Horario.Equals("Salida")) {
                         return -2;
                     }
 
                     //verificamos si la marca de tiempo ya existe
-                    if (listaT[i].horario.TC_Horario.Equals(tiempo)){
+                    if (listaT[i].TC_Horario.Equals(tiempo)){
                         return -3;
                     }
                 }
 
                 //se debe verificar que la marca anterior se haya cerrado para realizar otra de tipo entrada
                 int q = listaT.Count - 1;
-                if (!listaT[q].horario.TC_Horario.Equals("Entrada")) {
+                if (!listaT[q].TC_Horario.Equals("Entrada")) {
                     if (listaT[q].TC_Tipo.Equals("E") && (tiempo.ToCharArray()[0].Equals('E') || tiempo.Equals("Salida"))) {
                         return -4;
                     }
@@ -69,7 +69,7 @@ namespace ReglasNegocios
 
                         for (int i = 0; i < listaT.Count; i++)
                         {
-                            if (listaT[i].horario.TC_Horario.Equals(temp))
+                            if (listaT[i].TC_Horario.Equals(temp))
                             {
                                 return 1;
                             }

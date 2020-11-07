@@ -232,7 +232,7 @@ function refrescarCatalogoRol() {
                     '<a onclick="eliminarRol(' + lista[x].TN_Id_Rol + ')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>' +
                     '</div > </td> </tr>';
 
-                $("#contenidoTabla").append(info);
+                document.getElementById("contenidoTabla").innerHTML += info;
             }
         },
         error: function () {

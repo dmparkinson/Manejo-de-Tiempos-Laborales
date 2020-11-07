@@ -23,9 +23,6 @@ namespace Presentacion.Controllers
             return View();
         }
 
-
-
-
         public ActionResult Listar_de_Jefatura()
         {
             TiempoRN tiempoUs = new TiempoRN();
@@ -33,14 +30,9 @@ namespace Presentacion.Controllers
             List<Tiempo> lista = JsonConvert.DeserializeObject<List<Tiempo>>(tiempoUs.ListarHistoricoTiempos());
             ViewBag.Message = "Histórico de Horarios";
             ViewBag.ListaHistoricoHorarios = lista;
-            ViewBag.Message = "Histórico de Horarios";
+            ViewBag.Respuesta = "";
             return View();
         }
-
-
-
-
-
 
 
         [HttpPost]

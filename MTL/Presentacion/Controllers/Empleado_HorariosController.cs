@@ -47,10 +47,12 @@ namespace Presentacion.Controllers
 
 
         //registramos el tiempo de un empleado
-        public int registrarTiemposEmpleado(string tiempo) {
+        public int registrarTiemposEmpleado(int idTiempo, string tiempo) {
             char[] tipo = tiempo.ToCharArray();
             Tiempo t = new Tiempo();
-            t.horario.TC_Horario= tiempo;
+            t.TN_Id_Horario = idTiempo;
+            t.TC_Horario = tiempo;
+            //t.horario.TC_Horario= tiempo;
             t.TC_Tipo = tipo[0].ToString();
             t.TN_Id_Usuario = int.Parse(Session["UsserID"].ToString());
 
