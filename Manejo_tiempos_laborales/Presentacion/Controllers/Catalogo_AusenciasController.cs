@@ -11,11 +11,11 @@ using System.Web.Mvc;
 
 namespace Presentacion.Controllers
 {
+    [Autenticado]
     public class Catalogo_AusenciasController : Controller
     {
         // GET: Catalogo_Ausencias
-        [Authorize]
-        [Autenticado]
+        
         public ActionResult Listar()
         {
             TipoAusenciaRN tAusenciaNR = new TipoAusenciaRN();

@@ -11,11 +11,11 @@ using System.Web.Mvc;
 
 namespace Presentacion.Controllers
 {
+    [Autenticado]
     public class EmpleadosController : Controller
     {
         // GET: Empleados
-        [Authorize]
-        [Autenticado]
+
         public ActionResult Listar()
         {
             EmpleadoRN e = new EmpleadoRN();

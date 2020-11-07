@@ -1,6 +1,7 @@
 ﻿using AccesoDatos.Implementaciones;
 using Entidad;
 using Newtonsoft.Json;
+using Presentacion.Security;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ using System.Web.Mvc;
 
 namespace Presentacion.Controllers
 {
+    [Autenticado]
     public class Catalogo_HorariosController : Controller
     {
         public ActionResult Agregar(String horario) {

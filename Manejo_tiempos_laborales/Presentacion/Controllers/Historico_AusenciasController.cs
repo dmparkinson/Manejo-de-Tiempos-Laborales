@@ -12,11 +12,11 @@ using System.Windows;
 
 namespace Presentacion.Controllers
 {
+
+    [Autenticado]
     public class Historico_AusenciasController : Controller
     {
         // GET: Historico_Ausencias
-        [Authorize]
-        [Autenticado]
         public ActionResult Listar()
         {
             AusenciaRN ausencias = new AusenciaRN();

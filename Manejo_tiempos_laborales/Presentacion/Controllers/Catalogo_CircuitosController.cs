@@ -10,11 +10,11 @@ using System.Web.Mvc;
 
 namespace Presentacion.Controllers
 {
+    [Autenticado]
     public class Catalogo_CircuitosController : Controller
     {
         // GET: Catalogo_Circuitos
-        [Authorize]
-        [Autenticado]
+
         public ActionResult Listar()
         {
             CircuitoRN circuitoRN = new CircuitoRN();

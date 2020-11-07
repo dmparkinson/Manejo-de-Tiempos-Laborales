@@ -9,11 +9,11 @@ using System.Web.Mvc;
 
 namespace Presentacion.Controllers
 {
+    [Autenticado]
     public class Catalogo_OficinasController : Controller
     {
         // GET: Catalogo_Oficinas
-        [Authorize]
-        [Autenticado]
+
         public ActionResult Listar()
         {
             OficinaRN o = new OficinaRN();
