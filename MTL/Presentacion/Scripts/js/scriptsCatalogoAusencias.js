@@ -233,7 +233,7 @@ function refrescarCatalogoAusencia() {
                     '<a onclick="eliminarTipoAusencia(' + lista[x].TN_Id_Tipo_Ausencia + ', this)" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>' +
                     '</div > </td> </tr>';
 
-                $("#contenidoTabla").append(info);
+                document.getElementById("contenidoTabla").innerHTML += info;
             }
         },
         error: function () {
