@@ -1,0 +1,162 @@
+﻿@{
+    ViewBag.Title = "Histórico de Tiempos Laborales";
+}
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+
+
+    @Html.Partial("_Header_Admin");
+
+
+    <div class="container">
+        <div class="row mt-2">
+            <h3 id="tituloReportes">@ViewBag.Message</h3>
+        </div>
+
+
+        <div class="container mt-2 row justify-content-center">
+            <div class="flex-column">
+                <div class="d-flex flex-wrap">
+                    <div class="form-group ">
+                        <label class="font-weight-normal" for="fecha">Fecha:</label>
+                        <input type="date" class="form-control form-control-sm" id="fechaFiltro">
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-normal" for="hora">Hora:</label>
+                        <input type="time" class="form-control form-control-sm" id="horaFiltro">
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-normal" for="tiempo">Tiempo laboral:</label>
+
+                        <select class="form-control form-control-sm" id="tiempo">
+                            <option>Entrada</option>
+                            <option>Almuerzo</option>
+                            <option>Salida</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <input type="button" value="Filtrar" class="btn btn-info btn-sm" zzzzz>
+                    <input type="button" value="Limpiar" class="btn btn-danger btn-sm">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-12">
+
+                <div class="d-flex justify-content-between mt-3">
+                    <div class="col-6">
+                        <input type="search" id="searchInput" placeholder="Buscar" class="form-control form-control-sm">
+                    </div>
+                    <div>
+                        <input type="button" value="Reporte" class="btn btn-secondary btn-sm" onclick="exportPDF('Histórico de Tiempos Laborales')" />
+                    </div>
+                </div>
+
+                <table id="table" class="table table-bordered table-hover mt-1">
+                    <thead class="thead-dark text-center">
+                        <tr>
+                            <th>Cédula</th>
+                            <th>Nombre</th>
+                            <th>Apellido 1</th>
+                            <th>Apellido 2</th>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Tiempo</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="contenidoTabla">
+                        @foreach (var item in ViewBag.ListaHistoricoTiempos)
+                        {
+                            <tr>
+                                <td>@item.empleado.TC_Identificacion</td>
+                                <td>@item.empleado.TC_Nombre_Usuario</td>
+                                <td>@item.empleado.TC_Primer_Apellido </td>
+                                <td>@item.empleado.TC_Segundo_Apellido</td>
+                                <td>@item.TF_Fecha</td>
+                                <td>@item.TH_Hora</td>
+                                <td>@item.horario.TC_Horario </td>
+                                <td>
+                                    <div class="d-flex justify-content-center">
+                                        <a data-toggle="modal" data-target="#modal-editar"  onclick="cargarEditHTiempo('@item.TF_Fecha','@item.TH_Hora','@item.horario.TN_Id_Horario', this)"> <i class="fas fa-edit text-dark pointer" style="font-size: 1.2em;"></i></a>
+                                        <a onclick="eliminarHTiempo('@item.TF_Fecha', this)" > <i class="fas fa-trash text-dark pointer" style="font-size: 1.2em;"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    @Html.Partial("_Footer");
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+<!-- Modal de editar -->
+
+
+<div class="modal fade" id="modal-editar">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Modificar Tiempo</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+
+            <div class="modal-body">
+                <div class="form-group ">
+                    <label class="font-weight-normal" for="fecha">Fecha:</label>
+                    <input type="date" class="form-control form-control-sm" id="fechaEdit" required>
+                </div>
+                <div class="form-group">
+                    <label class="font-weight-normal" for="hora">Hora:</label>
+                    <input type="time" class="form-control form-control-sm" id="horaEdit" required>
+                </div>
+                <div class="form-group">
+                    <label class="font-weight-normal" for="tiempo">Tiempo laboral:</label>
+                    <select class="form-control form-control-sm" id="tiempoEdit" required>
+                        <option selected="selected">Entrada</option>
+                        <option>Almuerzo</option>
+                        <option>Salida</option>
+                    </select>
+                </div>
+
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <div>
+                    <button class="btn btn-info" onclick="editarHHorario()">Editar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
