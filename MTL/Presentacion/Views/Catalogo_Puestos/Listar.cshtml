@@ -3,9 +3,13 @@
     ViewBag.Title = "Catálogo Puestos";
 }
 
+<script type="text/javascript" src="~/Scripts/js/jspdf.min.js"></script>
+<script type="text/javascript" src="~/Scripts/js/ReportesPDF.js"></script>
+<script type="text/javascript" src="~/Scripts/js/jspdf.plugin.autotable.min.js"></script>
+
 <div class="container">
     <div class="row mt-2">
-        <h3>@ViewBag.Message</h3>
+        <h3 id="tituloReportes">@ViewBag.Message</h3>
     </div>
 
 
@@ -50,7 +54,7 @@
                     <input type="search" id="searchInput" placeholder="Buscar" class="form-control form-control-sm">
                 </div>
                 <div>
-                    <input type="button" value="Reporte" class="btn btn-secondary btn-sm">
+                    <input type="button" value="Reporte" class="btn btn-secondary btn-sm" onclick="exportPDF('Catálogo Puestos')" />
                 </div>
             </div>
             <table id="table" class="table table-bordered table-hover">
@@ -69,7 +73,7 @@
                             <td>@item.TN_Salario_Horario</td>
                             <td>
                                 <div class="d-flex justify-content-center">
-                                    <a onclick="cargarEditPuesto('@item.TN_Id_Puesto')" data-toggle="modal" data-target="#modal-editar" href="#" > <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
+                                    <a onclick="cargarEditPuesto('@item.TN_Id_Puesto')" data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
                                     <a onclick="eliminarPuesto('@item.TN_Id_Puesto')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
                                 </div>
                             </td>

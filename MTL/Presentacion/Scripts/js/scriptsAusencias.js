@@ -36,14 +36,36 @@ function eliminar(titleText, message) {
     })
 }
 
-function ausenciasEmpleado(idEmpleado) {
-    var data = { idEmpleado: idEmpleado} 
+function ausenciasEmpleado(idEmpleado, nombre, apUno, apDos) {
+    var data = { idEmpleado: idEmpleado, nombre: nombre, apUno: apUno, apDos: apDos } 
     $.ajax({
         url: '/Empleado_Ausencias/EmpleadoAusencia',
         type: 'POST',
         data: data,
         success: function (response) {
             window.location.href = response.url; 
+        },
+        error: function () {
+            Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'Error de conexión',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
+    });
+    return false;
+}
+
+function ausenciasEmpleadoJ(idEmpleado, nombre, apUno, apDos) {
+    var data = { idEmpleado: idEmpleado, nombre: nombre, apUno: apUno, apDos: apDos }
+    $.ajax({
+        url: '/Empleado_Ausencias/EmpleadoAusenciaJ',
+        type: 'POST',
+        data: data,
+        success: function (response) {
+            window.location.href = response.url;
         },
         error: function () {
             Swal.fire({
@@ -257,20 +279,22 @@ function refrescarAusencias() {
         type: 'POST',
         success: function (response) {
             var array = JSON.parse(response);
-            $('#contenidoTabla').html('');
+            var contenido = document.getElementById("contenidoTabla");
+            contenido.innerHTML = "";
+            var html = "";
             for (i = 0; i < array.length; i++) {
-                $('#contenidoTabla').append('<tr>');
-                $('#contenidoTabla').append('<td>' + array[i].TC_Tipo_Ausencia + '</td>');
-                $('#contenidoTabla').append('<td>' + array[i].TF_Fecha_Salida + '</td>');
-                $('#contenidoTabla').append('<td>' + array[i].TF_Fecha_Regreso + '</td>');
-                $('#contenidoTabla').append('<td class="d-flex justify-content-center">\
+                html += '<tr>';
+                html += '<td>' + array[i].TC_Tipo_Ausencia + '</td>';
+                html += '<td>' + array[i].TF_Fecha_Salida + '</td>';
+                html += '<td>' + array[i].TF_Fecha_Regreso + '</td>';
+                html += '<td class="d-flex justify-content-center">\
                 <a data-toggle="modal" data-target="#modal-editar" onclick="prepararEditAusencia('+ array[i].TN_Id_Ausencia+')" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>\
                     <a onclick="eliminarAusencia('+array[i].TN_Id_Ausencia+')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>\
-                </td>');
-                $('#contenidoTabla').append('</tr>');
+                </td>';
+                html += '</tr>';
             }
-            //$('#rangoAusenciasIns').val('');
-            //$('#rangoAusenciasIns').attr("placeholder", "Rango de Fechas");
+
+            contenido.innerHTML = html;
         },
         error: function (response) {
             alert('Error refrescando ausencias')

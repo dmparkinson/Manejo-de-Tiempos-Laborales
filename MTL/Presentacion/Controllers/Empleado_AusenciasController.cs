@@ -19,18 +19,46 @@ namespace Presentacion.Controllers
             TipoAusenciaRN tAusencia = new TipoAusenciaRN();
             ViewBag.Lista = a.ListarAusenciasEmpleado(int.Parse(Session["EmpAus"].ToString()));
             List<TipoAusencia> tipos = JsonConvert.DeserializeObject<List<TipoAusencia>>(tAusencia.ListarTiposAusencia());
+
+            ViewBag.Tipos = tipos;
+            ViewBag.Nombre = Session["NombreCompleto"].ToString();
+
             ViewBag.Tipos = tipos;   
+
             return View();
         }
 
-        public JsonResult EmpleadoAusencia(int idEmpleado)
+        public JsonResult EmpleadoAusencia(int idEmpleado, string nombre, string apUno, string apDos)
         {
             Session["EmpAus"] = idEmpleado;
+            Session["NombreCompleto"] = nombre + " " + apUno + " " + apDos;
             return Json(new {url = Url.Action("Listar_de_Admin", "Empleado_Ausencias") });
+        }
+
+        public JsonResult EmpleadoAusenciaJ(int idEmpleado, string nombre, string apUno, string apDos)
+        {
+            Session["EmpAus"] = idEmpleado;
+            Session["NombreCompleto"] = nombre + " " + apUno + " " + apDos;
+            return Json(new { url = Url.Action("Listar_de_Jefatura", "Empleado_Ausencias") });
         }
 
         public ActionResult Listar_de_Jefatura()
         {
+            AusenciaRN a = new AusenciaRN();
+            TipoAusenciaRN tAusencia = new TipoAusenciaRN();
+            ViewBag.Lista = a.ListarAusenciasEmpleado(int.Parse(Session["EmpAus"].ToString()));
+            List<TipoAusencia> tipos = JsonConvert.DeserializeObject<List<TipoAusencia>>(tAusencia.ListarTiposAusencia());
+
+            ViewBag.Tipos = tipos;
+            ViewBag.Nombre = Session["NombreCompleto"].ToString();
+
+            ViewBag.Tipos = tipos;
+
+            return View();
+        }
+        public ActionResult Listar_de_Empleado()
+        {
+
             AusenciaRN a = new AusenciaRN();
             TipoAusenciaRN tAusencia = new TipoAusenciaRN();
             ViewBag.Lista = a.ListarAusenciasEmpleado(int.Parse(Session["UsserID"].ToString()));
@@ -38,12 +66,6 @@ namespace Presentacion.Controllers
             ViewBag.Tipos = tipos;
             ViewBag.Message = Session["UsserName"].ToString() + " " + Session["UsserSurname1"].ToString() + " " + Session["UsserSurname2"].ToString();
 
-            return View();
-        }
-        public ActionResult Listar_de_Empleado()
-        {
-
-            ViewBag.Message = Session["UsserName"].ToString() + " " + Session["UsserSurname1"].ToString() + " " + Session["UsserSurname2"].ToString();
             return View();
         }
 

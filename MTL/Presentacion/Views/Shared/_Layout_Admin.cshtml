@@ -17,54 +17,58 @@
     @Styles.Render("~/Content/sweetalert2")
     @Styles.Render("~/Content/fontawesome")
     @Styles.Render("~/Content/daterangepicker")
+
     <link rel="stylesheet" href="@Url.Content("https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css")">
 </head>
 
 <body>
 
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-between">
-        <ul class="navbar-nav">
-            <li class="navbar-brand">
-                <img src="~/Content/images/Escudo OIJ.png" alt="logo" style="width:32px" />
-            </li>
-            <li class="nav-item dropdown ">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Históricos</a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="@Url.Action("Listar_de_Admin", "Historico_Horarios")">Horarios </a>
-                    <a class="dropdown-item" href="@Url.Action("Listar_de_Admin", "Historico_Ausencias")">Ausencias</a>
-                </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Catálogos</a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="@Url.Action("Listar", "Catalogo_Ausencias")">Ausencias</a>
-                    <a class="dropdown-item" href="@Url.Action("Listar", "Catalogo_Tiempos_Laborales")">Tiempos Laborales</a>
-                    <a class="dropdown-item" href="@Url.Action("Listar", "Catalogo_Roles")">Roles</a>
-                    <a class="dropdown-item" href="@Url.Action("Listar", "Catalogo_Puestos")">Puestos</a>
-                    <a class="dropdown-item" href="@Url.Action("Listar", "Catalogo_Circuitos")">Circuitos</a>
-                    <a class="dropdown-item" href="@Url.Action("Listar", "Catalogo_Oficinas")">Oficinas</a>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("Listar_de_Admin", "Empleados")">Empleados</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("Listar_de_Empleado", "Empleado_Horarios")">Horarios</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("Listar_de_Empleado", "Empleado_Ausencias")">Ausencias</a>
-            </li>
-            <li class="nav-item">
-                <a cl
-            <li class="nav-item">
-                <a class="nav-link" href="#">Ayuda</a>
-            </li>
-        </ul>
-        <div class="nav-item">
-            <a class="nav-link text-white" href="@Url.Action("Logout", "Login")">Cerrar Sesión</a>
-        </div>
 
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark mb-3">
+        <img src="~/Content/images/Escudo OIJ.png" alt="logo" style="width:32px" />
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMTL" aria-controls="navbarMTL" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarMTL">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item dropdown ">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Históricos</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="@Url.Action("Listar_de_Admin", "Historico_Horarios")">Horarios </a>
+                        <a class="dropdown-item" href="@Url.Action("Listar_de_Admin", "Historico_Ausencias")">Ausencias</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Catálogos</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="@Url.Action("Listar", "Catalogo_Ausencias")">Ausencias</a>
+                        <a class="dropdown-item" href="@Url.Action("Listar", "Catalogo_Tiempos_Laborales")">Tiempos Laborales</a>
+                        <a class="dropdown-item" href="@Url.Action("Listar", "Catalogo_Roles")">Roles</a>
+                        <a class="dropdown-item" href="@Url.Action("Listar", "Catalogo_Puestos")">Puestos</a>
+                        <a class="dropdown-item" href="@Url.Action("Listar", "Catalogo_Circuitos")">Circuitos</a>
+                        <a class="dropdown-item" href="@Url.Action("Listar", "Catalogo_Oficinas")">Oficinas</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Listar_de_Admin", "Empleados")">Empleados</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Listar_de_Empleado", "Empleado_Horarios")">Horarios</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Listar_de_Empleado", "Empleado_Ausencias")">Ausencias</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Ayuda</a>
+                </li>
+            </ul>
+            <div class="nav-item">
+                <a class="mr-sm-2 nav-link text-white " href="@Url.Action("Logout", "Login")">Cerrar Sesión</a>
+            </div>
+        </div>
     </nav>
+
 
 
 

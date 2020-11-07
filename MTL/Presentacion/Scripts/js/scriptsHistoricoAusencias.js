@@ -78,7 +78,7 @@ function eliminarHAusencia(codigo) {
 function cargarEditHisAusencia(codigoA, codigoTipo, codigoEmpleado) {
     $('#idAusencia').val(codigoA);
     $('#idEmpleado').val(codigoEmpleado);
-    $("#motivoE option[value=" + codigoTipo + "]").attr("selected", true);
+    $("#motivoE").val(codigoTipo);
     $('#fechaFomat').val('');
     $('#fechaFomat').attr("placeholder", "Rango de Fechas");
 
@@ -185,7 +185,7 @@ function refrescarHistoricoAusencias() {
                     '<a onclick="eliminarHAusencia(' + lista[x].TN_Id_Ausencia + ', this)" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>' +
                     '</div > </td> </tr>';
 
-                $("#contenidoTabla").append(info);
+                document.getElementById("contenidoTabla").innerHTML += info;
             }
 
         },
@@ -215,15 +215,6 @@ $('#fechaFomat').daterangepicker({
 });
 
 
-$('#fechaFomatFiltro').daterangepicker();
-
-$('#fechaFomatFiltro').daterangepicker({
-    locale: {
-        format: 'YYYY/MM/DD'
-    }
-});
-
-
 
 
 
@@ -235,3 +226,60 @@ function separarRangoFechas(rango) {
     var fechaRegreso = rango.substring(separador + 2, rango.length);
     return [fechaSalida, fechaRegreso];
 }
+
+
+/* -----------------------------------------------------
+ *               Seccion de filtros
+ *------------------------------------------------------                     
+*/
+
+
+
+
+function formatoFiltro() {
+    $('#fechaFomatFiltro').daterangepicker();
+    $('#fechaFomatFiltro').daterangepicker({
+        locale: {
+            format: 'YYYY/MM/DD'
+        }
+    });
+
+}
+
+
+
+
+
+
+function filtrarAusencias() {
+    filter();
+    var motivoValue = document.getElementById("motivoFiltro");
+    var fechaValue = document.getElementById("fechaFomatFiltro").value;
+
+
+    var valueMotivo = "";
+    if (motivoValue.length > 0) { // Si se filtra por motivo
+        
+        valueMotivo = motivoValue.options[motivoValue.selectedIndex].text.toLowerCase();
+        
+    }
+    if (fechaValue.length > 0) {//A,B,D
+
+    }
+    $("#contenidoTabla tr").filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(valueMotivo) > -1)
+    })
+}
+
+
+
+
+function vaciarFiltroAusencias() {
+    $("#contenidoTabla tr").filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf("") > -1)
+    })
+
+    $('#fechaFomatFiltro').val("");
+    $("#motivoFiltro").val(0);
+}
+

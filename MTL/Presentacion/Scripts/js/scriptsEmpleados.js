@@ -353,10 +353,10 @@ function prepararEdit(id) {
             $('#aapUno').val(dato.TC_Primer_Apellido);
             $('#aapDos').val(dato.TC_Segundo_Apellido);
             $('#acorreo').val(dato.TC_Correo);
-            $("#atipo option[value=" + dato.TC_Tipo_Usuario + "]").attr("selected", true); 
-            $("#aestado option[value=" + dato.TB_Activo + "]").attr("selected", true);
-            $("#apuesto option[value=" + dato.TN_Id_Puesto + "]").attr("selected", true);
-            $("#aoficina option[value=" + dato.TN_Id_Oficina + "]").attr("selected", true);
+            $("#atipo").val(dato.TC_Tipo_Usuario);
+            $("#aestado").val(dato.TB_Activo );
+            $("#apuesto").val(dato.puesto.TN_Id_Puesto);
+            $("#aoficina").val(dato.oficina.TN_Id_Oficina);
 
         },
         error: function () {
@@ -432,32 +432,33 @@ function refrescarEmpleados() {
         type: 'POST',
         success: function (response) {
             var array = JSON.parse(response);
-            $('#contenidoTabla').html('');
+            var contenido = document.getElementById("contenidoTabla");
+            contenido.innerHTML = "";
+            var html = "";
             for (i = 0; i < array.length; i++) {
-                $('#contenidoTabla').append('<tr>');
-                $('#contenidoTabla').append('<td>' + array[i].TC_Identificacion + '</td>');
-                $('#contenidoTabla').append('<td>' + array[i].TC_Nombre_Usuario + '</td>');
-                $('#contenidoTabla').append('<td>' + array[i].TC_Primer_Apellido + '</td>');
-                $('#contenidoTabla').append('<td>' + array[i].TC_Segundo_Apellido + '</td>');
-                $('#contenidoTabla').append('<td>' + array[i].TC_Correo + '</td>');
+                html += '<tr>';
+                html += '<td>' + array[i].TC_Identificacion + '</td>';
+                html += '<td>' + array[i].TC_Nombre_Usuario + '</td>';
+                html += '<td>' + array[i].TC_Primer_Apellido + '</td>';
+                html += '<td>' + array[i].TC_Segundo_Apellido + '</td>';
+                html += '<td>' + array[i].TC_Correo + '</td>';
                 if (array[i].TB_Activo == "1") {
-                    $('#contenidoTabla').append('<td>Activo</td>');
+                    html+='<td>Activo</td>';
                 } else {
-                    $('#contenidoTabla').append('<td>Inactivo</td>');
+                    html+='<td>Inactivo</td>';
                 }
-                
-                $('#contenidoTabla').append('<td>' + array[i].TC_Tipo_Usuario + '</td>');
-                $('#contenidoTabla').append('<td>' + array[i].TC_Nombre_Puesto + '</td>');
-                $('#contenidoTabla').append('<td>' + array[i].TC_Nombre_Oficina + '</td>');
-                $('#contenidoTabla').append('<td class="d-flex justify-content-center">\
+                html += '<td>' + array[i].TC_Tipo_Usuario + '</td>';
+                html += '<td>' + array[i].TC_Nombre_Puesto + '</td>';
+                html += '<td>' + array[i].TC_Nombre_Oficina + '</td>';
+                html += '<td class="d-flex justify-content-center">\
                     <a class="ml-1" onclick="location.href=&quot@Url.Action("Listar_de_Admin", "Empleado_Horarios") &quot" title="Tiempo de horarios" href="#">\
                         <i class="fas fa-business-time text-dark" style="font-size: 1.2em;"></i></a>\
-                    <a class="ml-1" onclick="ausenciasEmpleado('+ array[i].TN_Id_Usuario +')" title="Tiempo de ausencias" href="#"><i class="fas fa-calendar-times text-dark" style="font-size: 1.2em;"></i></a>\
-                        <a class="ml-1" data-toggle="modal" data-target="#modal-editar" onclick="prepararEdit('+ array[i].TN_Id_Usuario +')" href="#" title="Editar empleado"> <i class="fas fa-edit text-info" style="font-size: 1.2em;"></i></a>\
-                        <a class="ml-1" onclick="eliminarEmpleado('+ array[i].TN_Id_Usuario +')" title="Eliminar empleado" href="#"> <i class="fas fa-trash text-red" style="font-size: 1.2em;"></i></a>\
-                    </td>');
-                $('#contenidoTabla').append('</tr>');
+                    <a class="ml-1" onclick="ausenciasEmpleado('+ array[i].TN_Id_Usuario + ',' + ("'" + array[i].TC_Nombre_Usuario + "'") + ',' + ("'" + array[i].TC_Primer_Apellido + "'") + ',' + ("'" + array[i].TC_Segundo_Apellido + "'") + ')" title="Tiempo de ausencias" href="#"><i class="fas fa-calendar-times text-dark" style="font-size: 1.2em;"></i></a>\
+                        <a class="ml-1" data-toggle="modal" data-target="#modal-editar" onclick="prepararEdit('+ array[i].TN_Id_Usuario + ')" href="#" title="Editar empleado"> <i class="fas fa-edit text-info" style="font-size: 1.2em;"></i></a>\
+                        <a class="ml-1" onclick="eliminarEmpleado('+ array[i].TN_Id_Usuario + ')" title="Eliminar empleado" href="#"> <i class="fas fa-trash text-red" style="font-size: 1.2em;"></i></a>\
+                    </td>';
             }
+            contenido.innerHTML = html;
         },
         error: function (response) {
             alert('Error refrescando empleados')

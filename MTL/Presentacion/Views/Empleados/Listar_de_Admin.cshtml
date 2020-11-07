@@ -22,7 +22,7 @@
                 </div>
                 <div>
                     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-agregar"><i class="fa fa-plus-square"></i> Nuevo</button>
-                    <input type="button" value="Reporte" class="btn btn-secondary btn-sm" onclick="exportPDF('Empleados')">
+                    <input type="button" value="Reporte" class="btn btn-secondary btn-sm" onclick="exportPDF('Empleados')" />
                 </div>
             </div>
             <table id="table" class="table table-bordered table-hover">
@@ -37,7 +37,7 @@
                         <th>Tipo de usuario</th>
                         <th>Puesto</th>
                         <th>Oficina</th>
-                        <th>Acciones</th>
+                        <th id="acc">Acciones</th>
                     </tr>
                 </thead>
                 <tbody id="contenidoTabla">
@@ -65,7 +65,7 @@
                             
                             <a class="ml-1" onclick="listarTiemposEmpleadoAdmin(@e.TN_Id_Usuario)" title="Tiempo de horarios" href="#">
                             <i class="fas fa-business-time text-dark" style="font-size: 1.2em;"></i></a>
-                            <a class="ml-1" onclick="ausenciasEmpleado(@e.TN_Id_Usuario)" title="Tiempo de ausencias" href="#"><i class="fas fa-calendar-times text-dark" style="font-size: 1.2em;"></i></a>
+                            <a class="ml-1" onclick="ausenciasEmpleado(@e.TN_Id_Usuario, '@e.TC_Nombre_Usuario', '@e.TC_Primer_Apellido', '@e.TC_Segundo_Apellido')" title="Tiempo de ausencias" href="#"><i class="fas fa-calendar-times text-dark" style="font-size: 1.2em;"></i></a>
                             
                             <a class="ml-1" data-toggle="modal" data-target="#modal-editar" onclick="prepararEdit(@e.TN_Id_Usuario)" href="#" title="Editar empleado"> <i class="fas fa-edit text-info" style="font-size: 1.2em;"></i></a>
                             <a class="ml-1" onclick="eliminarEmpleado(@e.TN_Id_Usuario)" title="Eliminar empleado" href="#"> <i class="fas fa-trash text-red" style="font-size: 1.2em;"></i></a>
