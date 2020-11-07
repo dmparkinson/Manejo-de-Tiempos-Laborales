@@ -238,25 +238,28 @@ function refrescarOficinas() {
         type: 'POST',
         success: function (response) {
             var array = JSON.parse(response);
-            $('#contenidoTabla').html('');
+            var contenido = document.getElementById("contenidoTabla");
+            contenido.innerHTML = "";
+            var html = "";
             for (i = 0; i < array.length; i++) {
-                $('#contenidoTabla').append('<tr>');
-                $('#contenidoTabla').append('<td>' + array[i].TC_Codigo + '</td>');
-                $('#contenidoTabla').append('<td>' + array[i].TC_Nombre_Oficina + '</td>');
-                $('#contenidoTabla').append('<td>' + array[i].TC_Desc_Circuito + '</td>');
+                html += '<tr>';
+                html += '<td>' + array[i].TC_Codigo + '</td>';
+                html += '<td>' + array[i].TC_Nombre_Oficina + '</td>';
+                html +='<td>' + array[i].TC_Desc_Circuito + '</td>';
                 if (array[i].TB_Activa == 1) {
-                    $('#contenidoTabla').append('<td>Activa</td>');
+                    html += '<td>Activa</td>';
                 } else {
-                    $('#contenidoTabla').append('<td>Inactiva</td>');
+                    html += '<td>Inactiva</td>';
                 }
-                $('#contenidoTabla').append('<td>' + array[i].TF_Inicio_Vigencia + '</td>');
-                $('#contenidoTabla').append('<td>' + array[i].TF_Fin_Vigencia + '</td>');
-                $('#contenidoTabla').append('<td class="d-flex justify-content-center">\
+                html += '<td>' + array[i].TF_Inicio_Vigencia + '</td>';
+                html += '<td>' + array[i].TF_Fin_Vigencia + '</td>';
+                html += '<td class="d-flex justify-content-center">\
                 <a data-toggle="modal" data-target="#modal-editar" onclick="prepararEditOficina('+ array[i].TN_Id_Oficina +')" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>\
                     <a onclick="eliminarOficinas('+ array[i].TN_Id_Oficina +')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>\
-                </td>');
-                $('#contenidoTabla').append('</tr>');
+                </td>';
+                html += '</tr>';
             }
+            contenido.innerHTML = html;
         },
         error: function (response) {
             alert('Error refrescando ausencias')

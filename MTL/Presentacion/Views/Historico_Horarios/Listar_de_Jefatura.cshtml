@@ -4,9 +4,12 @@
 
 <div class="container">
     <div class="row mt-2">
-        <h3>@ViewBag.Message</h3>
+        <h3 id="tituloReportes">@ViewBag.Message</h3>
     </div>
 
+    <script type="text/javascript" src="~/Scripts/js/jspdf.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/js/ReportesPDF.js"></script>
+    <script type="text/javascript" src="~/Scripts/js/jspdf.plugin.autotable.min.js"></script>
 
     <div class="container mt-2 row justify-content-center">
         <div class="flex-column">
@@ -45,7 +48,7 @@
                     <input type="search" id="searchInput" placeholder="Buscar" class="form-control form-control-sm">
                 </div>
                 <div>
-                    <input type="button" value="Reporte" class="btn btn-secondary btn-sm">
+                    <input type="button" value="Reporte" class="btn btn-secondary btn-sm" onclick= "exportPDF('Histórico Horarios')" />
                 </div>
             </div>
 

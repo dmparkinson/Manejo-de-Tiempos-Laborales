@@ -2,9 +2,13 @@
     ViewBag.Title = "Histórico Ausencias";
 }
 
+<script type="text/javascript" src="~/Scripts/js/jspdf.min.js"></script>
+<script type="text/javascript" src="~/Scripts/js/ReportesPDF.js"></script>
+<script type="text/javascript" src="~/Scripts/js/jspdf.plugin.autotable.min.js"></script>
+
 <div class="container">
     <div class="row mt-2">
-        <h3>@ViewBag.Message</h3>
+        <h3 id="tituloReportes">@ViewBag.Message</h3>
     </div>
 
 
@@ -18,7 +22,7 @@
                 <div class="form-group">
                     <label class="font-weight-normal" for="motivo">Motivo:</label>
 
-                    <select class="form-control form-control-sm" id="motivoFiltro" >
+                    <select class="form-control form-control-sm" id="motivoFiltro">
                         <option value="0"></option>
                         @foreach (var item in ViewBag.ListaTipoAusencias)
                         {
@@ -42,7 +46,7 @@
                     <input type="search" id="searchInput" placeholder="Buscar" class="form-control form-control-sm">
                 </div>
                 <div>
-                    <input type="button" value="Reporte" class="btn btn-secondary btn-sm">
+                    <input type="button" value="Reporte" class="btn btn-secondary btn-sm" onclick="exportPDF('Histórico Ausencias')" />
                 </div>
             </div>
             <table id="table" class="table table-bordered table-hover">
