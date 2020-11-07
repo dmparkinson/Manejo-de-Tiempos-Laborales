@@ -3,12 +3,12 @@
 }
 
 
-<div class="container">
-    <div class="row mt-2 flex-column">
-        <h3>@ViewBag.Title</h3>
-        <h5 class="text-secondary">@ViewBag.Message</h5>
-    </div>
-
+    <div class="container">
+        <div class="row mt-2 flex-column">
+            <h3>@ViewBag.Title</h3>
+            <h5 class="text-secondary">@ViewBag.Message</h5>
+        </div>
+    <!--
     <div class="row justify-content-center">
         <div class="col-9 mt-2 ">
             <div class="card" style="background-color: #FAFAFA">
@@ -41,107 +41,79 @@
             </div>
         </div>
     </div>
+    -->
 
 
 
 
+        <div class="container mt-2 row justify-content-center">
+            <div class="flex-column">
+                <div class="d-flex flex-wrap">
+                    <div class="form-group ">
+                        <label class="font-weight-normal" for="salida">Fecha salida:</label>
+                        <input type="date" class="form-control form-control-sm" id="salida">
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-normal" for="regreso">Fecha regreso:</label>
+                        <input type="date" class="form-control form-control-sm" id="regreso">
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-normal" for="motivo">Motivo:</label>
 
-    <div class="container mt-2 row justify-content-center">
-        <div class="flex-column">
-            <div class="d-flex flex-wrap">
-                <div class="form-group ">
-                    <label class="font-weight-normal" for="salida">Fecha salida:</label>
-                    <input type="date" class="form-control form-control-sm" id="salida">
-                </div>
-                <div class="form-group">
-                    <label class="font-weight-normal" for="regreso">Fecha regreso:</label>
-                    <input type="date" class="form-control form-control-sm" id="regreso">
-                </div>
-                <div class="form-group">
-                    <label class="font-weight-normal" for="motivo">Motivo:</label>
-
-                    <select class="form-control form-control-sm" id="motivo">
-                        <option>Enfermedad</option>
-                    </select>
+                        <select class="form-control form-control-sm" id="motivo">
+                            @foreach (Entidad.TipoAusencia item in ViewBag.Tipos)
+                            {
+                                <option id="@item.TN_Id_Tipo_Ausencia">@item.TC_Tipo_Ausencia</option>
+                            }
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
 
 
 
-    <div class="row mt-3">
-        <div class="col-12">
-            <div class="d-flex justify-content-between mt-3">
-                <div class="col-6">
-                    <input type="button" value="Filtrar" class="btn btn-info btn-sm">
-                    <input type="button" value="Limpiar" class="btn btn-danger btn-sm">
+        <div class="row mt-3">
+            <div class="col-12">
+                <div class="d-flex justify-content-between mt-3">
+                    <div class="col-6">
+                        <input type="button" value="Filtrar" class="btn btn-info btn-sm">
+                        <input type="button" value="Limpiar" class="btn btn-danger btn-sm">
+                    </div>
+                    <div>
+                        <input type="button" value="Reporte" class="btn btn-secondary btn-sm">
+                    </div>
                 </div>
-                <div>
-                    <input type="button" value="Reporte" class="btn btn-secondary btn-sm">
-                </div>
+                <table id="table" class="table table-bordered table-hover">
+                    <thead class="thead-dark text-center">
+                        <tr>
+                            <th>Motivo</th>
+                            <th>Fecha salida</th>
+                            <th>Fecha regreso</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="contenidoTabla">
+
+                        @foreach (Entidad.Ausencia item in ViewBag.Lista) { 
+                            <tr>
+                                <td>@item.TC_Tipo_Ausencia</td>
+                                <td>@item.TF_Fecha_Salida</td>
+                                <td>@item.TF_Fecha_Regreso</td>
+
+                                <td class="d-flex justify-content-center">
+                                    <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
+                                    <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
+                                </td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
-            <table id="table" class="table table-bordered table-hover">
-                <thead class="thead-dark text-center">
-                    <tr>
-                        <th>Motivo</th>
-                        <th>Fecha salida</th>
-                        <th>Fecha regreso</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody id="contenidoTabla">
-                    <tr>
-                        <td>Enfermedad</td>
-                        <td>06-08-2020</td>
-                        <td>06-09-2020</td>
-                        <td class="d-flex justify-content-center">
-                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
-                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Enfermedad</td>
-                        <td> 06-08-2020</td>
-                        <td>06-09-2020</td>
-                        <td class="d-flex justify-content-center">
-                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
-                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Enfermedad</td>
-                        <td>06-08-2020</td>
-                        <td>06-09-2020</td>
-                        <td class="d-flex justify-content-center">
-                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
-                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Enfermedad</td>
-                        <td>06-08-2020</td>
-                        <td>06-09-2020</td>
-                        <td class="d-flex justify-content-center">
-                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
-                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td> Enfermedad</td>
-                        <td>06-08-2020</td>
-                        <td>06-09-2020</td>
-                        <td class="d-flex justify-content-center">
-                            <a data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
-                            <a onclick="eliminar('¿Seguro?','Está acción es irreversible')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
         </div>
     </div>
-</div>
 
 
 

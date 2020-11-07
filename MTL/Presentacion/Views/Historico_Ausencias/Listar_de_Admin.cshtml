@@ -12,13 +12,14 @@
         <div class="flex-column">
             <div class="d-flex flex-wrap">
                 <div class="form-group">
-                    <label class="font-weight-normal" for="regreso">Fecha de ausencai:</label>
-                    <input type="text" class="form-control form-control-sm" id="fechaFomatFiltro" required>
+                    <label class="font-weight-normal" for="regreso">Fecha de ausencia:</label>
+                    <input type="text" class="form-control form-control-sm" id="fechaFomatFiltro" onclick="formatoFiltro()" placeholder=" Salida - Regreso">
                 </div>
                 <div class="form-group">
                     <label class="font-weight-normal" for="motivo">Motivo:</label>
 
-                    <select class="form-control form-control-sm" id="motivo" required>
+                    <select class="form-control form-control-sm" id="motivoFiltro" >
+                        <option value="0"></option>
                         @foreach (var item in ViewBag.ListaTipoAusencias)
                         {
                             <option value="@item.TN_Id_Tipo_Ausencia">@item.TC_Tipo_Ausencia</option>
@@ -27,13 +28,11 @@
                 </div>
             </div>
             <div class="row justify-content-center">
-                <input type="button" value="Filtrar" class="btn btn-info btn-sm">
-                <input type="button" value="Limpiar" onclick="vaciarDate()" class="btn btn-danger btn-sm">
+                <input type="button" value="Filtrar" class="btn btn-info btn-sm" onclick="filtrarAusencias()">
+                <input type="button" value="Limpiar" onclick="vaciarFiltroAusencias()" class="btn btn-danger btn-sm">
             </div>
         </div>
     </div>
-
-
 
 
     <div class="row mt-3">
@@ -62,21 +61,21 @@
                 <tbody id="contenidoTabla">
                     @foreach (var item in ViewBag.ListaHistoricAusencias)
                     {
-                    <tr>
-                        <td>@item.empleado.TC_Identificacion</td>
-                        <td>@item.empleado.TC_Nombre_Usuario</td>
-                        <td>@item.empleado.TC_Primer_Apellido </td>
-                        <td>@item.empleado.TC_Segundo_Apellido</td>
-                        <td>@item.tipoAusencia.TC_Tipo_Ausencia</td>
-                        <td>@item.TF_Fecha_Salida</td>
-                        <td>@item.TF_Fecha_Regreso</td>
-                        <td>
-                            <div class="d-flex justify-content-center">
-                                <a data-toggle="modal" data-target="#modal-editar" href="#" onclick="cargarEditHisAusencia('@item.TN_Id_Ausencia','@item.tipoAusencia.TN_Id_Tipo_Ausencia','@item.empleado.TN_Id_Usuario')"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
-                                <a onclick="eliminarHAusencia('@item.TN_Id_Ausencia', this)" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
-                            </div>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>@item.empleado.TC_Identificacion</td>
+                            <td>@item.empleado.TC_Nombre_Usuario</td>
+                            <td>@item.empleado.TC_Primer_Apellido </td>
+                            <td>@item.empleado.TC_Segundo_Apellido</td>
+                            <td>@item.tipoAusencia.TC_Tipo_Ausencia</td>
+                            <td>@item.TF_Fecha_Salida</td>
+                            <td>@item.TF_Fecha_Regreso</td>
+                            <td>
+                                <div class="d-flex justify-content-center">
+                                    <a data-toggle="modal" data-target="#modal-editar" href="#" onclick="cargarEditHisAusencia('@item.TN_Id_Ausencia','@item.tipoAusencia.TN_Id_Tipo_Ausencia','@item.empleado.TN_Id_Usuario')"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>
+                                    <a onclick="eliminarHAusencia('@item.TN_Id_Ausencia', this)" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>
+                                </div>
+                            </td>
+                        </tr>
                     }
                 </tbody>
             </table>

@@ -15,14 +15,16 @@ namespace Presentacion.Controllers
         // GET: Empleado_Ausencias
         public ActionResult Listar_de_Admin()
         {
-
-            
             AusenciaRN a = new AusenciaRN();
             TipoAusenciaRN tAusencia = new TipoAusenciaRN();
             ViewBag.Lista = a.ListarAusenciasEmpleado(int.Parse(Session["EmpAus"].ToString()));
             List<TipoAusencia> tipos = JsonConvert.DeserializeObject<List<TipoAusencia>>(tAusencia.ListarTiposAusencia());
+<<<<<<< HEAD
             ViewBag.Tipos = tipos;
             ViewBag.Nombre = Session["NombreCompleto"].ToString();
+=======
+            ViewBag.Tipos = tipos;   
+>>>>>>> master
             return View();
         }
 
@@ -32,8 +34,15 @@ namespace Presentacion.Controllers
             Session["NombreCompleto"] = nombre + " " + apUno + " " + apDos;
             return Json(new {url = Url.Action("Listar_de_Admin", "Empleado_Ausencias") });
         }
+
         public ActionResult Listar_de_Jefatura()
         {
+            AusenciaRN a = new AusenciaRN();
+            TipoAusenciaRN tAusencia = new TipoAusenciaRN();
+            ViewBag.Lista = a.ListarAusenciasEmpleado(int.Parse(Session["UsserID"].ToString()));
+            List<TipoAusencia> tipos = JsonConvert.DeserializeObject<List<TipoAusencia>>(tAusencia.ListarTiposAusencia());
+            ViewBag.Tipos = tipos;
+            ViewBag.Message = Session["UsserName"].ToString() + " " + Session["UsserSurname1"].ToString() + " " + Session["UsserSurname2"].ToString();
 
             return View();
         }
