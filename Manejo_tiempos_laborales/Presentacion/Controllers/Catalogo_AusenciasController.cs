@@ -23,6 +23,7 @@ namespace Presentacion.Controllers
 
             ViewBag.ListaCatalogoAusencias = lista;
             ViewBag.Respuesta = "";
+            ViewBag.Message = "Catalogo Ausencias";
 
             if (Session["UsserType"].ToString() == "Administración")
             {
