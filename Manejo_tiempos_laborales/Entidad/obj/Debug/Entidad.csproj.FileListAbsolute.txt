@@ -10,3 +10,9 @@ D:\UCR\Programación\Codigos Visual\Manejo-de-Tiempos-Laborales\Manejo_tiempos_l
 D:\UCR\Programación\Codigos Visual\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Entidad\obj\Debug\Entidad.csproj.CoreCompileInputs.cache
 D:\UCR\Programación\Codigos Visual\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Entidad\obj\Debug\Entidad.dll
 D:\UCR\Programación\Codigos Visual\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Entidad\obj\Debug\Entidad.pdb
+C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Entidad\bin\Debug\Entidad.dll
+C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Entidad\bin\Debug\Entidad.pdb
+C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Entidad\obj\Debug\Entidad.csprojAssemblyReference.cache
+C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Entidad\obj\Debug\Entidad.csproj.CoreCompileInputs.cache
+C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Entidad\obj\Debug\Entidad.dll
+C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Entidad\obj\Debug\Entidad.pdb
