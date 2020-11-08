@@ -69,8 +69,8 @@ namespace Presentacion.Controllers
 
 
             if ((Session["UsserType"].ToString() == "Administración") ||
-                (Session["UsserType"].ToString() == "Jefatura") ||
-                (Session["UsserType"].ToString() == "Estándar"))
+                 (Session["UsserType"].ToString() == "Jefatura") ||
+                 (Session["UsserType"].ToString() == "Estándar"))
             {
                 return View();
             }

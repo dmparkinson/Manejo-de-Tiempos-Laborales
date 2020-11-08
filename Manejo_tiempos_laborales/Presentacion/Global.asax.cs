@@ -18,7 +18,7 @@ namespace Presentacion
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
 
-
+        
         protected void Application_Error(object sender, EventArgs e)
         {
             Exception exception = Server.GetLastError();
@@ -50,12 +50,13 @@ namespace Presentacion
             }
             Server.ClearError();
             Response.Redirect("~/Error/"+ruta);
-
-
-
-
         }
 
+
+
+
+
+        
 
     }
 }
