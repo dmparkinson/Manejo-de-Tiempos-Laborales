@@ -21,15 +21,15 @@
 
         if (Session["UsserType"].ToString() == "Administración")
         {
-            @Html.Partial("_Header_Admin");
+            @Html.Partial("_Header_Admin")
         }
         else if (Session["UsserType"].ToString() == "Jefatura")
         {
-            @Html.Partial("_Header_Jefatura");
+            @Html.Partial("_Header_Jefatura")
         }
         else if (Session["UsserType"].ToString() == "Estándar")
         {
-            @Html.Partial("_Header_Estandar");
+            @Html.Partial("_Header_Estandar")
         }
 
     }
@@ -112,7 +112,7 @@
         </div>
     </div>
 
-    @Html.Partial("_Footer");
+    @Html.Partial("_Footer")
 
 </body>
 </html>

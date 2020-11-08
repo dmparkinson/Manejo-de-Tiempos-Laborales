@@ -36,7 +36,7 @@ namespace Presentacion.Controllers
             }
             else
             {
-                return View("Error");
+                return RedirectToAction("Error403", "Error");
             }
         }
 
@@ -66,7 +66,17 @@ namespace Presentacion.Controllers
             ViewBag.Tipos = tipos;
             ViewBag.Message = Session["UsserName"].ToString() + " " + Session["UsserSurname1"].ToString() + " " + Session["UsserSurname2"].ToString();
 
-            return View();
+            if ( (Session["UsserType"].ToString() == "Administración") ||
+                (Session["UsserType"].ToString() == "Jefatura") ||
+                (Session["UsserType"].ToString() == "Estándar") )
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Error403", "Error");
+            }
+
         }
 
         public JsonResult InsertarAusencia(string fechai, string fechaf, int motivo)
