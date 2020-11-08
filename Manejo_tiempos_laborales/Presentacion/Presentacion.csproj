@@ -46,6 +46,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -130,6 +131,7 @@
     <Compile Include="Controllers\EmpleadosController.cs" />
     <Compile Include="Controllers\Empleado_AusenciasController.cs" />
     <Compile Include="Controllers\Empleado_HorariosController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\Historico_AusenciasController.cs" />
     <Compile Include="Controllers\Historico_Tiempos_LaboralesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -490,6 +492,10 @@
     <Content Include="Views\Empleado_Ausencias\Listar_de_Admin.cshtml" />
     <Content Include="Views\Empleado_Ausencias\Listar_de_Empleado.cshtml" />
     <Content Include="Views\Empleado_Ausencias\Listar_de_Jefatura.cshtml" />
+    <Content Include="Views\Error\Error403.cshtml" />
+    <Content Include="Views\Error\Error.cshtml" />
+    <Content Include="Views\Error\Error404.cshtml" />
+    <Content Include="Views\Error\Unknown.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

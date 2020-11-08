@@ -90,7 +90,6 @@ D:\Documents\Universidad\Analisis\Proyectos\Seguridad\Manejo_tiempos_laborales\P
 D:\Documents\Universidad\Analisis\Proyectos\Seguridad\Manejo_tiempos_laborales\Presentacion\obj\Debug\Presentacion.csproj.CopyComplete
 D:\Documents\Universidad\Analisis\Proyectos\Seguridad\Manejo_tiempos_laborales\Presentacion\obj\Debug\Presentacion.dll
 D:\Documents\Universidad\Analisis\Proyectos\Seguridad\Manejo_tiempos_laborales\Presentacion\obj\Debug\Presentacion.pdb
-<<<<<<< HEAD
 D:\UCR\Programación\Codigos Visual\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Presentacion\bin\Presentacion.dll.config
 D:\UCR\Programación\Codigos Visual\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Presentacion\bin\Presentacion.dll
 D:\UCR\Programación\Codigos Visual\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Presentacion\bin\Presentacion.pdb
@@ -183,7 +182,6 @@ D:\UCR\Programación\Codigos Visual\Manejo-de-Tiempos-Laborales\Manejo_tiempos_l
 D:\UCR\Programación\Codigos Visual\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Presentacion\obj\Debug\Presentacion.csproj.CopyComplete
 D:\UCR\Programación\Codigos Visual\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Presentacion\obj\Debug\Presentacion.dll
 D:\UCR\Programación\Codigos Visual\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Presentacion\obj\Debug\Presentacion.pdb
-=======
 D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Presentacion\bin\Presentacion.dll.config
 D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Presentacion\bin\Presentacion.dll
 D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Presentacion\bin\Presentacion.pdb
@@ -276,4 +274,4 @@ D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\Manejo_t
 D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Presentacion\obj\Debug\Presentacion.csproj.CopyComplete
 D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Presentacion\obj\Debug\Presentacion.dll
 D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Presentacion\obj\Debug\Presentacion.pdb
->>>>>>> master
+

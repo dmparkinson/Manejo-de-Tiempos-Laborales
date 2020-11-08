@@ -15,6 +15,7 @@ namespace Presentacion.Controllers
     public class AccountController : Controller
     {
         // GET: Init
+        [NoLogin]
         public ActionResult Login()
         {
             ViewBag.Message = "Manejo de tiempos laborales.";
@@ -25,7 +26,7 @@ namespace Presentacion.Controllers
 
 
 
-        [Autenticado]
+        [Authorize]
         public ActionResult Logout()
         {
             Security.SessionSecurity.DestroyUserSession();
@@ -43,9 +44,7 @@ namespace Presentacion.Controllers
             // Llamado a negocio
             LoginLN login = new LoginLN();
             Empleado usuario = JsonConvert.DeserializeObject<Empleado>(login.LoginUsser(name, password));
-            if (usuario.TC_Tipo_Usuario == "Administración"
-                || usuario.TC_Tipo_Usuario == "Jefatura"
-                || usuario.TC_Tipo_Usuario == "Estándar") // Si el usuario existe
+            if (usuario != null) // Si el usuario existe
             {
                 Security.SessionSecurity.AddUserToSession(usuario.TN_Id_Usuario.ToString());
                 return Json(new { success = true, url = Url.Action("RedirHome") });
@@ -62,7 +61,7 @@ namespace Presentacion.Controllers
 
 
         // Redirecciona a la pagina principal del tipo de usuario y guarda en variables de sesion
-        [Autenticado]
+        [Authorize]
         public RedirectToRouteResult RedirHome()
         {
             // Solicitar el tipo de usuario
@@ -89,7 +88,8 @@ namespace Presentacion.Controllers
             }
             else
             {
-                return RedirectToAction("Error");
+                Security.SessionSecurity.DestroyUserSession(); // Eliminarle la sesion al usuario malicioso
+                return RedirectToAction("Error403", "Error");
             }
         }
 

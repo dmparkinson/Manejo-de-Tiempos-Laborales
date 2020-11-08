@@ -20,3 +20,14 @@ D:\UCR\Programación\Codigos Visual\Manejo-de-Tiempos-Laborales\Manejo_tiempos_l
 D:\UCR\Programación\Codigos Visual\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\AccesoNegocio\obj\Debug\AccesoDatos.csproj.CopyComplete
 D:\UCR\Programación\Codigos Visual\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\AccesoNegocio\obj\Debug\AccesoNegocio.dll
 D:\UCR\Programación\Codigos Visual\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\AccesoNegocio\obj\Debug\AccesoNegocio.pdb
+D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\AccesoNegocio\bin\Debug\AccesoNegocio.dll
+D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\AccesoNegocio\bin\Debug\AccesoNegocio.pdb
+D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\AccesoNegocio\bin\Debug\Entidad.dll
+D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\AccesoNegocio\bin\Debug\Newtonsoft.Json.dll
+D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\AccesoNegocio\bin\Debug\Entidad.pdb
+D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\AccesoNegocio\bin\Debug\Newtonsoft.Json.xml
+D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\AccesoNegocio\obj\Debug\AccesoDatos.csprojAssemblyReference.cache
+D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\AccesoNegocio\obj\Debug\AccesoDatos.csproj.CoreCompileInputs.cache
+D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\AccesoNegocio\obj\Debug\AccesoDatos.csproj.CopyComplete
+D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\AccesoNegocio\obj\Debug\AccesoNegocio.dll
+D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\AccesoNegocio\obj\Debug\AccesoNegocio.pdb

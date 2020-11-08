@@ -15,6 +15,8 @@ namespace Presentacion.Controllers
     public class Catalogo_AusenciasController : Controller
     {
         // GET: Catalogo_Ausencias
+
+        
         
         public ActionResult Listar()
         {
@@ -30,7 +32,7 @@ namespace Presentacion.Controllers
             }
             else
             {
-                return View("Error");
+                return RedirectToAction("Error403", "Error");
             }
         }
 

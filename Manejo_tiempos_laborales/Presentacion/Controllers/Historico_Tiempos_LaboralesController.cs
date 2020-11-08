@@ -11,7 +11,7 @@ using System.Web.Mvc;
 namespace Presentacion.Controllers
 {
 
-    [Autenticado]
+    [Authorize]
     public class Historico_Tiempos_LaboralesController : Controller
     {
         // GET: Historicos_Tiempos
@@ -33,7 +33,7 @@ namespace Presentacion.Controllers
                 return View("Listar_de_Jefatura");
             }
             else {
-                return View("Error");
+                return RedirectToAction("Error403", "Error");
             }
         }
 

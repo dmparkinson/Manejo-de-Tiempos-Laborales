@@ -39,8 +39,8 @@ namespace Presentacion.Security
             {
                 filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new
                 {
-                    controller = "Empleado_HorariosController",
-                    action = "Listar_de_Admin"
+                    controller = "Account",
+                    action = "RedirHome"
                 }));
             }
         }
