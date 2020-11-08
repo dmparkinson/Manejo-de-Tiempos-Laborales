@@ -51,6 +51,11 @@ namespace Presentacion
             Server.ClearError();
             Response.Redirect("~/Error/"+ruta);
         }
+
+
+
+
+
         
 
     }
