@@ -16,10 +16,7 @@
 
 
     @Html.Partial("_Header_Admin")
-    <script type="text/javascript" src="~/Scripts/jquery.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/moment.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/daterangepicker.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="~/Scripts/daterangepicker.css" />
+
 
 
     <div class="container">
@@ -35,10 +32,8 @@
                         <input type="search" id="searchInput" placeholder="Buscar" class="form-control form-control-sm">
                     </div>
                     <div>
-                        <input type="button" value="Reporte" class="btn btn-secondary" onclick="exportPDF('Catálogo Oficinas')" />
-                    </div>
-                    <div>
                         <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-agregar"><i class="fa fa-plus-square"></i> </button>
+                        <input type="button" value="Reporte" class="btn btn-secondary btn-sm" onclick="exportPDF('Catálogo Oficinas')" />
                     </div>
                 </div>
                 <table id="table" class="table table-bordered table-hover">
