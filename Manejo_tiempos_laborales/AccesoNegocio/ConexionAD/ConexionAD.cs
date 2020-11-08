@@ -97,8 +97,8 @@ namespace AccesoDatos.ConexionAD
                 salida = 0;
                 this.con.Close();
             }
-            
 
+            this.closeCon();
             return salida;
         }
 
