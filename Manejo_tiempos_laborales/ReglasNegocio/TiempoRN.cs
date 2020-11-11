@@ -102,5 +102,31 @@ namespace ReglasNegocio
             }
             return respuesta;
         }
+
+        public string consultarTiempoHistoricoUsuarioRN(Tiempo t) {
+
+            string respuesta = null;
+            //Llamado a accedo de datos
+            try
+            {
+                respuesta = new TiemposAD().consultarTiempoUsuario(t);
+                Console.WriteLine(respuesta);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+
+            return respuesta;
+        }
+
+        public int actualizarTiempoHistoricoUsuarioRN(Tiempo t) {
+            return new TiemposAD().actualizarTiempoHistorico(t);
+        }
+
+        public int eliminarTiempoHistoricoUsuarioRN(int idTiempo) {
+            return new TiemposAD().eliminarTiempo(idTiempo);
+        }
     }
 }

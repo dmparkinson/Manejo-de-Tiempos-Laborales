@@ -23,6 +23,11 @@ namespace AccesoDatos.Implementaciones
             return executing($"exec sp_eliminar_tiempo_usuario '{tiempo.TC_Tipo}', {tiempo.TN_Id_Tiempo}, {tiempo.TN_Id_Usuario}");
         }
 
+        public int actualizarTiempoHistorico(Tiempo tiempo) {
+            //@TN_ID_TIEMPO INT, @TN_ID_HORARIO INT, @TC_TIPO VARCHAR(1), @TF_FECHA DATE, @TH_HORA TIME
+            return executing($"exec sp_actualizar_tiempo_usuario_historico {tiempo.TN_Id_Tiempo}, {tiempo.TN_Id_Horario}, '{tiempo.TC_Tipo}', '{tiempo.TF_Fecha}', '{tiempo.TH_Hora}'");
+        }
+
         //lista todos los tiempos de un solo usuario
         public string consultarTiemposUsuario(int idEmpleado)
         {
@@ -41,7 +46,7 @@ namespace AccesoDatos.Implementaciones
                 t.TC_Horario = dataReader["TC_Horario"].ToString();
                 lista.Add(t);
             }
-
+            this.closeCon();
             return JsonConvert.SerializeObject(lista);
         }
 
@@ -50,17 +55,19 @@ namespace AccesoDatos.Implementaciones
         public string consultarTiempoUsuario(Tiempo tiempo)
         {
             Tiempo t = new Tiempo();
-            SqlDataReader dataReader = consultar($"exec sp_consultar_tiempo_usuario '{tiempo.TF_Fecha}', '{tiempo.TN_Id_Tiempo}', {tiempo.TN_Id_Usuario}");
+            SqlDataReader dataReader = consultar($"exec sp_consultar_tiempo_usuario {tiempo.TN_Id_Tiempo}");
 
             while (dataReader.Read())
             {
+                t.TN_Id_Tiempo = int.Parse(dataReader["TN_Id_Tiempo"].ToString());
+                t.TN_Id_Usuario = int.Parse(dataReader["TN_Id_Usuario"].ToString());
+                t.TN_Id_Horario = int.Parse(dataReader["TN_Id_Horario"].ToString());
+                t.TC_Horario = dataReader["TC_Horario"].ToString();
                 t.TF_Fecha = dataReader["TF_Fecha"].ToString();
                 t.TH_Hora = dataReader["TH_Hora"].ToString();
                 t.TC_Tipo = dataReader["TC_Tipo"].ToString();
-                t.TN_Id_Horario = int.Parse(dataReader["TN_Id_Horario"].ToString());
-                t.TN_Id_Usuario = int.Parse(dataReader["TN_Id_Usuario"].ToString());
             }
-
+            this.closeCon();
             return JsonConvert.SerializeObject(t);
         }
 
@@ -98,7 +105,7 @@ namespace AccesoDatos.Implementaciones
 
                 lista.Add(t);
             }
-
+            this.closeCon();
             return JsonConvert.SerializeObject(lista);
         }
 
@@ -141,6 +148,7 @@ namespace AccesoDatos.Implementaciones
                 t.TF_Fecha = fechas[0];
                 t.TH_Hora = dataReader["TH_Hora"].ToString();
                 t.TC_Tipo = dataReader["TC_Tipo"].ToString();
+                t.TN_Id_Tiempo = int.Parse(dataReader["TN_Id_Tiempo"].ToString());
                 t.TN_Id_Horario = int.Parse(dataReader["TN_Id_Horario"].ToString());
                 t.TN_Id_Usuario = int.Parse(dataReader["TN_Id_Usuario"].ToString());
                 t.empleado = new Empleado();
@@ -155,7 +163,7 @@ namespace AccesoDatos.Implementaciones
 
                 lista.Add(t);
             }
-
+            this.closeCon();
             return JsonConvert.SerializeObject(lista);
         }
 
