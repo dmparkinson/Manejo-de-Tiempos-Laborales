@@ -13,7 +13,7 @@
 <body>
     <!--<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">-->
 
-    @Html.Partial("_Header_Admin");
+    @Html.Partial("_Header_Admin")
 
     <div class="container">
         <div class="row mt-2">
@@ -76,12 +76,8 @@
                                 <td>@temp.TC_Horario</td>
                                 <td class="d-flex justify-content-center">
                                     <div class="row">
-                                        <div class="col-md-6">
-                                            <button id="@temp.TC_Horario" type="button" class="btn btn-success btn-sm" onclick="editMyModal(this)" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-edit pointer" style="font-size:1.5em;"></i> </button>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <button id="@temp.TC_Horario" class="btn btn-danger btn-sm" onclick="alertAdvertenciaEliminarTiempos(this)"><i class="fa fa-trash pointer" style="font-size:1.5em;"></i> </button>
-                                        </div>
+                                        <a id="@temp.TC_Horario" data-toggle="modal" data-target="#modal-editar" onclick="editMyModal(this)"> <i class="fas fa-edit text-dark pointer" style="font-size: 1.2em;"></i></a>
+                                        <a id="@temp.TC_Horario" onclick="alertAdvertenciaEliminarTiempos(this)"> <i class="fas fa-trash text-dark pointer" style="font-size: 1.2em;"></i></a>
                                     </div>
                                 </td>
                             </tr>
@@ -94,7 +90,7 @@
     </div>
 
 
-    @Html.Partial("_Footer");
+    @Html.Partial("_Footer")
 
 
 

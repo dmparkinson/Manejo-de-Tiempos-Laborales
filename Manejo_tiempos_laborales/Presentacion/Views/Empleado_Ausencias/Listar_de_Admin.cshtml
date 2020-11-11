@@ -14,7 +14,7 @@
 </head>
 <body>
 
-    @Html.Partial("_Header_Admin");
+    @Html.Partial("_Header_Admin")
     <script type="text/javascript" src="~/Scripts/jquery-3.4.1.js"></script>
     <script type="text/javascript" src="~/Scripts/moment.js"></script>
     <script type="text/javascript" src="~/Scripts/daterangepicker.js"></script>
@@ -54,6 +54,7 @@
                                 <div class="form-group d-flex justify-content-between">
                                     <label class="font-weight-normal" for="motivoIns">Motivo:</label>
                                     <select class="form-control form-control-sm" id="motivoIns" name="motivoIns">
+                                        <option value="0"></option>
                                         @foreach (Entidad.TipoAusencia t in ViewBag.Tipos)
                                         {
                                             <option value="@t.TN_Id_Tipo_Ausencia">@t.TC_Tipo_Ausencia</option>
@@ -74,49 +75,33 @@
 
 
 
-
-
-
-
-
-
-
         <div class="row mt-3">
             <div class="col-12">
-                <div class="d-flex justify-content-between mt-3">
-                    <div class="col-6">
-                        <div class="container mt-2 row justify-content-center">
-                            <div class="flex-column">
-                                <div class="d-flex flex-wrap">
-                                    <div class="form-group ">
-                                        <label class="font-weight-normal" for="rango">Fechas Ausencia:</label>
-                                        <input type="text" class="form-control form-control-sm" id="rangoAusencias" name="rango" onkeypress="return false;" required>
-                                        <script>
-                                            $('#rangoAusencias').daterangepicker({
-                                                locale: {
-                                                    format: 'YYYY/MM/DD'
-                                                }
-                                            });
-                                            $('#rangoAusencias').val('');
-                                            $('#rangoAusencias').attr("placeholder", "Rango de Fechas");
-                                        </script>
-                                    </div>
+                <div class="container mt-2 row justify-content-center">
+                    <div class="flex-column">
+                        <div class="d-flex flex-wrap">
+                            <div class="form-group ">
+                                <label class="font-weight-normal" for="rango">Fechas Ausencia:</label>
+                                <input type="text" class="form-control form-control-sm" name="rango" id="fechaFomatFiltro"/>
+                            </div>
 
-                                    <div class="form-group">
-                                        <label class="font-weight-normal" for="motivo">Motivo:</label>
+                            <div class="form-group">
+                                <label class="font-weight-normal" for="motivo">Motivo:</label>
 
-                                        <select class="form-control form-control-sm" id="motivo">
-                                            @foreach (Entidad.TipoAusencia t in ViewBag.Tipos)
-                                            {
-                                                <option value="@t.TN_Id_Tipo_Ausencia">@t.TC_Tipo_Ausencia</option>
-                                            }
-                                        </select>
-                                    </div>
-                                </div>
+                                <select class="form-control form-control-sm" id="motivoFiltro">
+                                    @foreach (Entidad.TipoAusencia t in ViewBag.Tipos)
+                                    {
+                                        <option value="@t.TN_Id_Tipo_Ausencia">@t.TC_Tipo_Ausencia</option>
+                                    }
+                                </select>
                             </div>
                         </div>
-                        <input type="button" value="Filtrar" class="btn btn-info btn-sm">
-                        <input type="button" value="Limpiar" class="btn btn-danger btn-sm">
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end mt-3">
+                    <div class="col-6">
+                        <input type="button" value="Filtrar" class="btn btn-info btn-sm" onclick="filtrarAusencias()">
+                        <input type="button" value="Limpiar" onclick="vaciarFiltroAusencias()" class="btn btn-danger btn-sm">
                     </div>
                     <div>
                         <input type="button" value="Reporte" class="btn btn-secondary btn-sm" onclick="exportPDF('Ausencias @ViewBag.Nombre')" />
@@ -153,7 +138,7 @@
         </div>
     </div>
 
-    @Html.Partial("_Footer");
+    @Html.Partial("_Footer")
 
 </body>
 </html>

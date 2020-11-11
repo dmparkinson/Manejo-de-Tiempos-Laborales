@@ -14,7 +14,7 @@
 <body>
 
 
-    @Html.Partial("_Header_Admin");
+    @Html.Partial("_Header_Admin")
 
     <div class="container">
         <div class="row mt-2">
@@ -27,7 +27,7 @@
                 <div class="d-flex flex-wrap">
                     <div class="form-group">
                         <label class="font-weight-normal" for="regreso">Fecha de ausencia:</label>
-                        <input type="text" class="form-control form-control-sm" id="fechaFomatFiltro" onclick="formatoFiltro()" placeholder=" Salida - Regreso">
+                        <input type="text" class="form-control form-control-sm" id="fechaFomatFiltro">
                     </div>
                     <div class="form-group">
                         <label class="font-weight-normal" for="motivo">Motivo:</label>
@@ -80,9 +80,9 @@
                                 <td>@item.empleado.TC_Nombre_Usuario</td>
                                 <td>@item.empleado.TC_Primer_Apellido </td>
                                 <td>@item.empleado.TC_Segundo_Apellido</td>
-                                <td>@item.tipoAusencia.TC_Tipo_Ausencia</td>
-                                <td>@item.TF_Fecha_Salida</td>
-                                <td>@item.TF_Fecha_Regreso</td>
+                                <td class="colFilter1">@item.tipoAusencia.TC_Tipo_Ausencia</td>
+                                <td class="colFilter2">@item.TF_Fecha_Salida</td>
+                                <td class="colFilter3">@item.TF_Fecha_Regreso</td>
                                 <td>
                                     <div class="d-flex justify-content-center">
                                         <a data-toggle="modal" data-target="#modal-editar" onclick="cargarEditHisAusencia('@item.TN_Id_Ausencia','@item.tipoAusencia.TN_Id_Tipo_Ausencia','@item.empleado.TN_Id_Usuario')"> <i class="fas fa-edit text-dark pointer" style="font-size: 1.2em;"></i></a>

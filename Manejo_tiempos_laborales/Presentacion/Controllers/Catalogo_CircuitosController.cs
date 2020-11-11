@@ -31,7 +31,7 @@ namespace Presentacion.Controllers
             }
             else
             {
-                return View("Error");
+                return RedirectToAction("Error403", "Error");
             }
         }
 

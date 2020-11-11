@@ -71,10 +71,11 @@ namespace AccesoDatos.Implementaciones
 
         public string loguearEmpeado(string _usuario, string _contrasenia)
         {
-            Empleado empleado = new Empleado();
+            Empleado empleado = null;
             SqlDataReader dataReader = consultar($"exec sp_login_usuario '{_usuario}','{_contrasenia}' ");
             while (dataReader.Read())
-            {
+                {
+                empleado = new Empleado();
                 empleado.TN_Id_Usuario = int.Parse(dataReader["TN_Id_Usuario"].ToString());
                 empleado.TC_Usuario = dataReader["TC_Usuario"].ToString();
                 empleado.TC_Contrasena = dataReader["TC_Contrasena"].ToString();

@@ -16,7 +16,7 @@
     <script type="text/javascript" src="~/Scripts/daterangepicker.js"></script>
     <link rel="stylesheet" type="text/css" href="~/Scripts/daterangepicker.js" />
 
-    @Html.Partial("_Header_Jefatura");
+    @Html.Partial("_Header_Jefatura")
 
     <div class="container">
         <div class="row mt-2 flex-column">
@@ -60,44 +60,37 @@
 
 
 
-        <div class="container mt-2 row justify-content-center">
+        <div class="container mt-3 row ">
             <div class="flex-column">
                 <div class="d-flex flex-wrap">
                     <div class="form-group ">
-                        <label class="font-weight-normal" for="salida">Fecha salida:</label>
-                        <input type="date" class="form-control form-control-sm" id="salida">
+                        <label class="font-weight-normal" for="rango">Fechas Ausencia:</label>
+                        <input type="text" class="form-control form-control-sm" name="rango" id="fechaFomatFiltro" />
                     </div>
-                    <div class="form-group">
-                        <label class="font-weight-normal" for="regreso">Fecha regreso:</label>
-                        <input type="date" class="form-control form-control-sm" id="regreso">
-                    </div>
+
                     <div class="form-group">
                         <label class="font-weight-normal" for="motivo">Motivo:</label>
 
-                        <select class="form-control form-control-sm" id="motivo">
-                            @foreach (Entidad.TipoAusencia item in ViewBag.Tipos)
+                        <select class="form-control form-control-sm" id="motivoFiltro">
+                            <option value="0"></option>
+                            @foreach (Entidad.TipoAusencia t in ViewBag.Tipos)
                             {
-                                <option id="@item.TN_Id_Tipo_Ausencia">@item.TC_Tipo_Ausencia</option>
+                                <option value="@t.TN_Id_Tipo_Ausencia">@t.TC_Tipo_Ausencia</option>
                             }
                         </select>
+                    </div>
+                    <div class="col-6">
+                        <input type="button" value="Filtrar" class="btn btn-info btn-sm" onclick="filtrarAusencias()">
+                        <input type="button" value="Limpiar" onclick="vaciarFiltroAusencias()" class="btn btn-danger btn-sm">
                     </div>
                 </div>
             </div>
         </div>
-
-
-
-
         <div class="row mt-3">
             <div class="col-12">
-                <div class="d-flex justify-content-between mt-3">
-                    <div class="col-6">
-                        <input type="button" value="Filtrar" class="btn btn-info btn-sm">
-                        <input type="button" value="Limpiar" class="btn btn-danger btn-sm">
-                    </div>
-                    <div>
-                        <input type="button" value="Reporte" class="btn btn-secondary btn-sm" onclick="exportPDF('Ausencias @ViewBag.Nombre')" />
-                    </div>
+                <div class="d-flex justify-content-end mt-3">
+                    
+                    <input type="button" value="Reporte" class="btn btn-secondary btn-sm" onclick="exportPDF('Ausencias @ViewBag.Nombre')" />
                 </div>
                 <table id="table" class="table table-bordered table-hover">
                     <thead class="thead-dark text-center">
@@ -117,8 +110,6 @@
                                 <td>@item.TF_Fecha_Salida</td>
                                 <td>@item.TF_Fecha_Regreso</td>
 
-
-
                             </tr>
                         }
                     </tbody>
@@ -126,7 +117,7 @@
             </div>
         </div>
     </div>
-    @Html.Partial("_Footer");
+    @Html.Partial("_Footer")
 
 </body>
 </html>

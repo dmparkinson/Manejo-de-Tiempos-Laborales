@@ -21,15 +21,15 @@
 
         if (Session["UsserType"].ToString() == "Administración")
         {
-            @Html.Partial("_Header_Admin");
+            @Html.Partial("_Header_Admin")
         }
         else if (Session["UsserType"].ToString() == "Jefatura")
         {
-            @Html.Partial("_Header_Jefatura");
+            @Html.Partial("_Header_Jefatura")
         }
         else if (Session["UsserType"].ToString() == "Estándar")
         {
-            @Html.Partial("_Header_Estandar");
+            @Html.Partial("_Header_Estandar")
         }
 
     }
@@ -41,50 +41,39 @@
 
 
 
-        <div class="container mt-2 row justify-content-center">
+        <div class="container mt-3 row ">
             <div class="flex-column">
                 <div class="d-flex flex-wrap">
                     <div class="form-group ">
-                        <label class="font-weight-normal" for="rangoAusencias">Rango Fechas:</label>
-                        <input type="text" class="form-control form-control-sm" id="rangoAusencias" name="rango" onkeypress="return false;" required>
-                        <script>
-                            $('#rangoAusencias').daterangepicker({
-                                locale: {
-                                    format: 'YYYY/MM/DD'
-                                }
-                            });
-                            $('#rangoAusencias').val('');
-                            $('#rangoAusencias').attr("placeholder", "Rango de Fechas");
-                        </script>
+                        <label class="font-weight-normal" for="rango">Fechas Ausencia:</label>
+                        <input type="text" class="form-control form-control-sm" name="rango" id="fechaFomatFiltro" />
                     </div>
+
                     <div class="form-group">
                         <label class="font-weight-normal" for="motivo">Motivo:</label>
 
-                        <select class="form-control form-control-sm" id="motivo">
+                        <select class="form-control form-control-sm" id="motivoFiltro">
+                            <option value="0"></option>
                             @foreach (Entidad.TipoAusencia t in ViewBag.Tipos)
                             {
                                 <option value="@t.TN_Id_Tipo_Ausencia">@t.TC_Tipo_Ausencia</option>
                             }
                         </select>
                     </div>
+                    <div class="col-6">
+                        <input type="button" value="Filtrar" class="btn btn-info btn-sm" onclick="filtrarAusencias()">
+                        <input type="button" value="Limpiar" onclick="vaciarFiltroAusencias()" class="btn btn-danger btn-sm">
+                    </div>
                 </div>
-
             </div>
         </div>
 
 
-
-
         <div class="row mt-3">
             <div class="col-12">
-                <div class="d-flex justify-content-between mt-3">
-                    <div class="col-6">
-                        <input type="button" value="Filtrar" class="btn btn-info btn-sm">
-                        <input type="button" value="Limpiar" class="btn btn-danger btn-sm">
-                    </div>
-                    <div>
-                        <input type="button" value="Reporte" class="btn btn-secondary btn-sm" onclick="exportPDF('Ausencias @ViewBag.Message')" />
-                    </div>
+                <div class="d-flex justify-content-end mt-3">
+                    
+                   <input type="button" value="Reporte" class="btn btn-secondary btn-sm" onclick="exportPDF('Ausencias @ViewBag.Message')" />
                 </div>
                 <table id="table" class="table table-bordered table-hover">
                     <thead class="thead-dark text-center">
@@ -112,7 +101,7 @@
         </div>
     </div>
 
-    @Html.Partial("_Footer");
+    @Html.Partial("_Footer")
 
 </body>
 </html>
