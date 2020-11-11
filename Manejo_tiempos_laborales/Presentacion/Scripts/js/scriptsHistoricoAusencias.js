@@ -105,8 +105,8 @@ function editarHisAusencia() {
         idAusencia: codigo,
         codEmpelado : empleado,
         tipo: motivoAusencia,
-        fechaSalida: separarRangoFechas(rango)[0],
-        fechaRegreso: separarRangoFechas(rango)[1]
+        fechaSalida: separarFechasHistoricoAusencia(rango)[0],
+        fechaRegreso: separarFechasHistoricoAusencia(rango)[1]
     };
 
    
@@ -216,70 +216,4 @@ $('#fechaFomat').daterangepicker({
 
 
 
-
-
-
-
-function separarRangoFechas(rango) {
-    var separador = rango.indexOf('-');
-    var fechaSalida = rango.substring(0, separador - 1)
-    var fechaRegreso = rango.substring(separador + 2, rango.length);
-    return [fechaSalida, fechaRegreso];
-}
-
-
-/* -----------------------------------------------------
- *               Seccion de filtros
- *------------------------------------------------------                     
-*/
-
-
-
-
-function formatoFiltro() {
-    $('#fechaFomatFiltro').daterangepicker();
-    $('#fechaFomatFiltro').daterangepicker({
-        locale: {
-            format: 'YYYY/MM/DD'
-        }
-    });
-
-}
-
-
-
-
-
-
-function filtrarAusencias() {
-    filter();
-    var motivoValue = document.getElementById("motivoFiltro");
-    var fechaValue = document.getElementById("fechaFomatFiltro").value;
-
-
-    var valueMotivo = "";
-    if (motivoValue.length > 0) { // Si se filtra por motivo
-        
-        valueMotivo = motivoValue.options[motivoValue.selectedIndex].text.toLowerCase();
-        
-    }
-    if (fechaValue.length > 0) {//A,B,D
-
-    }
-    $("#contenidoTabla tr").filter(function () {
-        $(this).toggle($(this).text().toLowerCase().indexOf(valueMotivo) > -1)
-    })
-}
-
-
-
-
-function vaciarFiltroAusencias() {
-    $("#contenidoTabla tr").filter(function () {
-        $(this).toggle($(this).text().toLowerCase().indexOf("") > -1)
-    })
-
-    $('#fechaFomatFiltro').val("");
-    $("#motivoFiltro").val(0);
-}
 

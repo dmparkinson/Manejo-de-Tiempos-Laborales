@@ -24,25 +24,25 @@
         <div class="container mt-2 row justify-content-center">
             <div class="flex-column">
                 <div class="d-flex flex-wrap">
-                    <div class="form-group ">
-                        <label class="font-weight-normal" for="salida">Fecha salida:</label>
-                        <input type="date" class="form-control form-control-sm" id="salida" required>
-                    </div>
                     <div class="form-group">
-                        <label class="font-weight-normal" for="regreso">Fecha regreso:</label>
-                        <input type="date" class="form-control form-control-sm" id="regreso" required>
+                        <label class="font-weight-normal" for="regreso">Fecha de ausencia:</label>
+                        <input type="text" class="form-control form-control-sm" id="fechaFomatFiltro">
                     </div>
                     <div class="form-group">
                         <label class="font-weight-normal" for="motivo">Motivo:</label>
 
-                        <select class="form-control form-control-sm" id="motivo" required>
-                            <option>Enfermedad</option>
+                        <select class="form-control form-control-sm" id="motivoFiltro">
+                            <option value="0"></option>
+                            @foreach (var item in ViewBag.ListaTipoAusencias)
+                            {
+                                <option value="@item.TN_Id_Tipo_Ausencia">@item.TC_Tipo_Ausencia</option>
+                            }
                         </select>
                     </div>
                 </div>
                 <div class="row justify-content-center">
-                    <input type="button" value="Filtrar" class="btn btn-info btn-sm">
-                    <input type="button" value="Limpiar" class="btn btn-danger btn-sm">
+                    <input type="button" value="Filtrar" class="btn btn-info btn-sm" onclick="filtrarAusencias()">
+                    <input type="button" value="Limpiar" onclick="vaciarFiltroAusencias()" class="btn btn-danger btn-sm">
                 </div>
             </div>
         </div>
