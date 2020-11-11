@@ -1,4 +1,5 @@
-﻿using Entidad;
+﻿using AccesoDatos.Implementaciones;
+using Entidad;
 using Newtonsoft.Json;
 using Presentacion.Security;
 using ReglasNegocio;
@@ -21,8 +22,11 @@ namespace Presentacion.Controllers
             TiempoRN tiempoUs = new TiempoRN();
 
             List<Tiempo> lista = JsonConvert.DeserializeObject<List<Tiempo>>(tiempoUs.ListarHistoricoTiempos());
+            List<Horario> listaH = JsonConvert.DeserializeObject<List<Horario>>(new HorarioAD().listarHorarios());
+
             ViewBag.Message = "Histórico de Tiempos Laborales";
             ViewBag.ListaHistoricoTiempos = lista;
+            ViewBag.ListaHorarios = listaH;
             ViewBag.Respuesta = "";
             if (Session["UsserType"].ToString() == "Administración")
             {
@@ -40,24 +44,41 @@ namespace Presentacion.Controllers
 
 
         [HttpPost]
-        public JsonResult Editar()
+        public int Editar(int idT, int idU, int idH, string fecha, string hora, string tiempo)
         {
-            
-            return null;
- 
+            Tiempo temp = new Tiempo();
+            temp.TN_Id_Tiempo = idT;
+            temp.TN_Id_Usuario = idU;
+            temp.TN_Id_Horario = idH;
+            temp.TF_Fecha = fecha;
+            temp.TH_Hora = hora;
+            temp.TC_Horario = tiempo;
+            temp.TC_Tipo = tiempo.ToCharArray()[0].ToString();
+
+            //debemos consultar que el tiempo exista
+            Tiempo consulta = JsonConvert.DeserializeObject<Tiempo>(new TiempoRN().consultarTiempoHistoricoUsuarioRN(temp));
+            if (consulta.TC_Horario == null || consulta.TC_Horario.Equals("")){
+                return 0;
+            }
+            else {
+                if (consulta.TN_Id_Tiempo == idT){
+                    return new TiempoRN().actualizarTiempoHistoricoUsuarioRN(temp);
+                    //return idH;
+                }
+                else {
+                    return 0;
+                }
+            }
         }
-
-
-
-
 
         [HttpPost]
-        public JsonResult Eliminar()
+        public int Eliminar(int idTiempo)
         {
-            return null;
+            return new TiempoRN().eliminarTiempoHistoricoUsuarioRN(idTiempo);
         }
 
-
-
+        public string RefrescarTablaHistorico() {
+            return new TiempoRN().ListarHistoricoTiempos();
+        }
     }
 }
