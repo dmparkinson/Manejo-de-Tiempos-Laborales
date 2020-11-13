@@ -40,6 +40,7 @@ namespace AccesoDatos.Implementaciones
                 string[] fechas = dataReader["TF_Fecha"].ToString().Split(' ');
                 t.TN_Id_Tiempo = int.Parse(dataReader["TN_Id_Tiempo"].ToString());
                 t.TN_Id_Usuario = int.Parse(dataReader["TN_Id_Usuario"].ToString());
+                t.TN_Id_Horario = int.Parse(dataReader["TN_Id_Horario"].ToString());
                 t.TF_Fecha = fechas[0];
                 t.TH_Hora = dataReader["TH_Hora"].ToString();
                 t.TC_Tipo = dataReader["TC_Tipo"].ToString();

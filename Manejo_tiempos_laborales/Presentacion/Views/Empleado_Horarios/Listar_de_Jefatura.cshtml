@@ -37,80 +37,30 @@
                     <div>
                         <label class="font-weight-normal">Seleccione un tiempo:</label>
                         <div class="border border-secondary nav-pills" style="background-color: #f6f6f6">
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="optradio">Entrada
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="optradio">Salida café mañana
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="optradio">Regreso café mañana
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="optradio">Salida Almuerzo
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="optradio">Regreso Almuerzo
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="optradio">Salida café tarde
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="optradio">Regreso café tarde
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="optradio">Salida
-                                </label>
-                            </div>
+                            <form name="tiemposF">
+                                @foreach (Entidad.Horario temp in ViewBag.listaHorario)
+                                {
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            <input type="radio" id="@temp.TN_Id_Horario" value="@temp.TC_Horario" class="form-check-input" name="optradio">@temp.TC_Horario
+                                        </label>
+                                    </div>
+                                }
+                            </form>
                         </div>
 
                     </div>
 
                     <div class="row justify-content-center mt-2">
-                        <button type="button" class="btn btn-primary btn-sm" onclick="alertDatosValidos()">Guardar</button>
+                        <button id="botonG" type="button" class="btn btn-primary btn-sm" onclick="registrarTiemposEmpleadoByAdmin()">Guardar</button>
                     </div>
+                    <br /> <span id="respuesta"></span>
                 </div>
             </div>
         </div>
 
 
         <div class="container col-6">
-            <div class=" row justify-content-center">
-                <div class="flex-column">
-                    <div class="d-flex flex-wrap">
-                        <div class="form-group ">
-                            <label class="font-weight-normal" for="salida">Fecha salida:</label>
-                            <input type="date" class="form-control form-control-sm" id="salida">
-                        </div>
-                        <div class="form-group">
-                            <label class="font-weight-normal" for="regreso">Fecha regreso:</label>
-                            <input type="date" class="form-control form-control-sm" id="regreso">
-                        </div>
-                        <div class="form-group">
-                            <label class="font-weight-normal" for="motivo">Motivo:</label>
-
-                            <select class="form-control form-control-sm" id="motivo">
-                                <option>Enfermedad</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div>
                 <div class="d-flex justify-content-between mt-3">
                     <div class="col-6">
@@ -124,10 +74,9 @@
                 <table id="table" class="table table-bordered table-hover">
                     <thead class="thead-dark text-center">
                         <tr>
-                            <th>Motivo</th>
-                            <th>Fecha salida</th>
-                            <th>Fecha regreso</th>
-                            
+                            <th>Registro</th>
+                            <th>Fecha</th>
+                            <th>Hora</th>
                         </tr>
                     </thead>
                     <tbody id="contenidoTabla">
