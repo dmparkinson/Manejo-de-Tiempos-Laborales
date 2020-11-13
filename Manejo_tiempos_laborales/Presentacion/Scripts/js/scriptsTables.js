@@ -42,6 +42,30 @@ function reloadDatatable() {
 */
 
 
+
+
+
+// Input search
+$("#searchInput").on("keyup", function () {
+    filter();
+});
+
+function filter() {
+    var value = $("#searchInput").val().toLowerCase();
+    $("#contenidoTabla tr").filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+}
+
+
+
+/* -----------------------------------------------------
+ *               Filtros de ausencia
+ *------------------------------------------------------
+*/
+
+
+
 //Filtros de fechas
 
 $('#fechaSearch').daterangepicker();
@@ -71,25 +95,6 @@ function vaciarFecha() {
 }
 
 
-// Input search
-$("#searchInput").on("keyup", function () {
-    filter();
-});
-
-function filter() {
-    var value = $("#searchInput").val().toLowerCase();
-    $("#contenidoTabla tr").filter(function () {
-        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-}
-
-
-
-/* -----------------------------------------------------
- *               Filtros de ausencia
- *------------------------------------------------------
-*/
-
 
 
 // Obtetener la fecha de salida y de regreso del datapickerrange
@@ -118,7 +123,6 @@ function filtrarAusencias(colSalida, colRegreso, colMotivo) {
             var tempDate = row.find("td").eq(colSalida).html().split("/");  // Columna del contenido a buscar
 
             var dateSalidaTabla = new Date(tempDate[2], tempDate[1] - 1, tempDate[0]);
-            console.log(dateSalidaTabla)
 
             tempDate = row.find("td").eq(colRegreso).html().split("/");     // Columna del contenido a buscar
             var dateRegresoTabla = new Date(tempDate[2], tempDate[1] - 1, tempDate[0]);
@@ -131,7 +135,6 @@ function filtrarAusencias(colSalida, colRegreso, colMotivo) {
 
     var motivo = motivoValue.options[motivoValue.selectedIndex].text;  // Obtener el contenido del select de motivo
     if (motivo.length > 0) {                                       // Si se filtra por motivo
-        console.log("filtro de motivo");
         for (this_row = 0; this_row < rows.length; this_row++) {
             var row = $(rows[this_row]).closest('tr');                  // Fila actual
             var tipo = row.find("td").eq(colMotivo).html();                     // Columna del contenido a buscar
@@ -164,6 +167,99 @@ function vaciarFiltroAusencias(tipoVaciar) {
 */
 
 
+
+
+
+
+//Filtros de fechas
+
+$('#fechaFiltroHorario').val('');
+$('#fechaFiltroHorario').attr("placeholder", "Fecha");
+
+// Generar datos del datapicker al dar click
+$("#fechaFiltroHorario").click(function () {
+
+    $("#fechaFiltroHorario").datepicker();
+    $('#fechaFiltroHorario').datepicker("setDate", 'now');
+
+});
+
+
+// Vaciar datapicker
+function vaciarFechaHorario() {
+    $('#fechaFiltroHorario').val('');
+    $('#fechaFiltroHorario').attr("placeholder", "Fecha");
+    $('#FiltroHora').val('');
+    $('#FiltroHora').attr("placeholder", "Hora");
+    
+}
+
+
+
+
+// Filtrar la tabla de horario o historico de horario
+function filtrarHorarios(colFecha, colHora, colRegistro) {
+    var registroValue = document.getElementById("registroFiltro");
+    var fechaFiltro = document.getElementById("fechaFiltroHorario").value;
+    var horaFiltro = document.getElementById("FiltroHora").value;
+    let rows = document.querySelectorAll("#contenidoTabla tr");  // Obtener las filas de la tabla
+    let this_row = 0;
+
+    if (fechaFiltro.length > 0) {// Filtrar por fecha si el usuario lo solicito
+        for (this_row = 0; this_row < rows.length; this_row++) {
+            var row = $(rows[this_row]).closest('tr');                  // Fila actual
+            var dateFiltro = new Date(fechaFiltro);
+            var tempDate = row.find("td").eq(colFecha).html().split("/");  // Columna del contenido a buscar
+
+            var dateTabla = new Date(tempDate[2], tempDate[1] - 1, tempDate[0]);
+
+            if (dateFiltro != dateTabla) { // Si la fecha no corresponde
+                rows[this_row].remove();
+            }
+        }
+    }
+
+    if (horaFiltro.length > 0) {// Filtrar por fecha si el usuario lo solicito
+        for (this_row = 0; this_row < rows.length; this_row++) {
+            var row = $(rows[this_row]).closest('tr');                  // Fila actual
+            var timeHora = new Date(horaFiltro);
+            var tempTime = row.find("td").eq(colHora).html().split(":");  // Columna del contenido a buscar
+
+            var timeTabla = new Time(tempTime[2], tempTime[1] - 1, tempTime[0]);
+
+            if (timeHora != timeTabla) { // Si la hora no corresponde
+                rows[this_row].remove();
+            }
+        }
+    }
+
+
+
+    var registro = registroValue.options[registroValue.selectedIndex].text;  // Obtener el contenido del select de registro
+    if (registro.length > 0) {                                       // Si se filtra por registro
+        for (this_row = 0; this_row < rows.length; this_row++) {
+            var row = $(rows[this_row]).closest('tr');                  // Fila actual
+            var tipo = row.find("td").eq(colRegistro).html();                     // Columna del contenido a buscar
+            if (tipo != registro) {  // Si el tipo de la tabla es igual al del filtro entonces remover
+                rows[this_row].remove();
+
+            }
+        }
+    }
+}
+
+
+// Vaciar los filtros de ausencia o historico ausencias
+function vaciarFiltroHorario(tipoVaciar) {
+    if (tipoVaciar == 1) {
+        $("#searchInput").val("");
+        filter();
+    }
+    reloadDatatable();
+    $("#registroFiltro").val(0);
+    vaciarFechaHorario();
+
+}
 
 
 
