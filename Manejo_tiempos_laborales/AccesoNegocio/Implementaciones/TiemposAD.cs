@@ -139,30 +139,37 @@ namespace AccesoDatos.Implementaciones
         public string listarHistoricoHorarios()
         {
             List<Tiempo> lista = new List<Tiempo>();
-            SqlDataReader dataReader = consultar($"exec sp_historico_tiempos");
+            
+            try {
+                SqlDataReader dataReader = consultar($"exec sp_historico_tiempos");
+                while (dataReader.Read())
+                {
+                    Tiempo t = new Tiempo();
+                    string[] fechas = dataReader["TF_Fecha"].ToString().Split(' ');
+                    t.TF_Fecha = fechas[0];
+                    t.TH_Hora = dataReader["TH_Hora"].ToString();
+                    t.TC_Tipo = dataReader["TC_Tipo"].ToString();
+                    t.TN_Id_Tiempo = int.Parse(dataReader["TN_Id_Tiempo"].ToString());
+                    t.TN_Id_Horario = int.Parse(dataReader["TN_Id_Horario"].ToString());
+                    t.TN_Id_Usuario = int.Parse(dataReader["TN_Id_Usuario"].ToString());
+                    t.empleado = new Empleado();
+                    t.empleado.TC_Identificacion = dataReader["TC_Identificacion"].ToString();
+                    t.empleado.TC_Nombre_Usuario = dataReader["TC_Nombre_Usuario"].ToString();
+                    t.empleado.TC_Primer_Apellido = dataReader["TC_Primer_Apellido"].ToString();
+                    t.empleado.TC_Segundo_Apellido = dataReader["TC_Segundo_Apellido"].ToString();
+                    t.horario = new Horario();
+                    t.horario.TN_Id_Horario = int.Parse(dataReader["TN_Id_Horario"].ToString());
+                    t.horario.TC_Horario = dataReader["TC_Horario"].ToString();
+                    t.TC_Horario = dataReader["TC_Horario"].ToString();
 
-            while (dataReader.Read())
-            {
-                Tiempo t = new Tiempo();
-                string[] fechas = dataReader["TF_Fecha"].ToString().Split(' ');
-                t.TF_Fecha = fechas[0];
-                t.TH_Hora = dataReader["TH_Hora"].ToString();
-                t.TC_Tipo = dataReader["TC_Tipo"].ToString();
-                t.TN_Id_Tiempo = int.Parse(dataReader["TN_Id_Tiempo"].ToString());
-                t.TN_Id_Horario = int.Parse(dataReader["TN_Id_Horario"].ToString());
-                t.TN_Id_Usuario = int.Parse(dataReader["TN_Id_Usuario"].ToString());
-                t.empleado = new Empleado();
-                t.empleado.TC_Identificacion = dataReader["TC_Identificacion"].ToString();
-                t.empleado.TC_Nombre_Usuario = dataReader["TC_Nombre_Usuario"].ToString();
-                t.empleado.TC_Primer_Apellido = dataReader["TC_Primer_Apellido"].ToString();
-                t.empleado.TC_Segundo_Apellido = dataReader["TC_Segundo_Apellido"].ToString();
-                t.horario = new Horario();
-                t.horario.TN_Id_Horario = int.Parse(dataReader["TN_Id_Horario"].ToString());
-                t.horario.TC_Horario = dataReader["TC_Horario"].ToString();
-                t.TC_Horario = dataReader["TC_Horario"].ToString();
-
-                lista.Add(t);
+                    lista.Add(t);
+                }
             }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+
             this.closeCon();
             return JsonConvert.SerializeObject(lista);
         }

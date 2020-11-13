@@ -1,4 +1,5 @@
 ﻿
+
 /* 
  * 
  * Eliminar el tipo de ausencia 
@@ -78,9 +79,25 @@ function eliminarHAusencia(codigo) {
 function cargarEditHisAusencia(codigoA, codigoTipo, codigoEmpleado) {
     $('#idAusencia').val(codigoA);
     $('#idEmpleado').val(codigoEmpleado);
-    $("#motivoE").val(codigoTipo);
-    $('#fechaFomat').val('');
-    $('#fechaFomat').attr("placeholder", "Rango de Fechas");
+
+    var data = { id: codigoA }
+    $.ajax({
+        url: '/Empleado_Ausencias/GetAusencia',
+        type: 'POST',
+        data: data,
+        success: function (response) {
+            var o = JSON.parse(response);
+            $('#fechaHistoricoEdit').val(o.TF_Fecha_Salida + ' - ' + o.TF_Fecha_Regreso);
+            $('#motivoE').val(o.TN_Id_Tipo_Ausencia);
+        },
+        error: function (response) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error inesperado',
+                text: 'Ocurrió un error en la operación.',
+            }) 
+        }
+    });
 
 }
 
@@ -205,15 +222,13 @@ function refrescarHistoricoAusencias() {
 
 
 
-// Formato del calendario para fecha de salida y fecha de regreso de la ausencia
-$('#fechaFomat').daterangepicker();
 
-$('#fechaFomat').daterangepicker({
-    locale: {
-        format: 'YYYY/MM/DD'
-    }
+$(document).ready(function () {
+
+    $('#fechaHistoricoEdit').daterangepicker();
+
+    $('#fechaHistoricoEdit').daterangepicker({
+        format: 'dd/mm/yyyy',
+    })
+
 });
-
-
-
-
