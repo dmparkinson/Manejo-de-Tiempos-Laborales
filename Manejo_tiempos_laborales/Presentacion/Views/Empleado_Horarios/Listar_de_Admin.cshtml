@@ -15,7 +15,7 @@
 <body>
 
 
-    @Html.Partial("_Header_Admin");
+    @Html.Partial("_Header_Admin")
 
     <div class="container flex-column">
         <h3 id="tituloReportes">@ViewBag.Title@ViewBag.Message</h3>
@@ -68,7 +68,7 @@
                             <input type="button" value="Limpiar" class="btn btn-danger btn-sm">
                         </div>
                         <div>
-                            <input type="button" value="Reporte" class="btn btn-secondary" onclick="exportPDF('Horarios de @ViewBag.Message')" />
+                            <input type="button" value="Reporte" class="btn btn-secondary btn-sm" onclick="exportPDF('Horarios de @ViewBag.Message')" />
                         </div>
                     </div>
                     <table id="table" class="table table-bordered table-hover">
@@ -100,7 +100,7 @@
 
         </div>
     </div>
-        @Html.Partial("_Footer");
+        @Html.Partial("_Footer")
 
 </body>
 </html>

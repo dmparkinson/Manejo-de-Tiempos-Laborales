@@ -14,7 +14,7 @@
 <body>
 
 
-    @Html.Partial("_Header_Admin");
+    @Html.Partial("_Header_Admin")
 
     <div class="container">
         <div class="row mt-2">
@@ -27,7 +27,7 @@
                 <div class="d-flex flex-wrap">
                     <div class="form-group">
                         <label class="font-weight-normal" for="regreso">Fecha de ausencia:</label>
-                        <input type="text" class="form-control form-control-sm" id="fechaFomatFiltro" onclick="formatoFiltro()" placeholder=" Salida - Regreso">
+                        <input type="text" class="form-control form-control-sm" id="fechaSearch">
                     </div>
                     <div class="form-group">
                         <label class="font-weight-normal" for="motivo">Motivo:</label>
@@ -42,8 +42,8 @@
                     </div>
                 </div>
                 <div class="row justify-content-center">
-                    <input type="button" value="Filtrar" class="btn btn-info btn-sm" onclick="filtrarAusencias()">
-                    <input type="button" value="Limpiar" onclick="vaciarFiltroAusencias()" class="btn btn-danger btn-sm">
+                    <input type="button" value="Filtrar" class="btn btn-info btn-sm" onclick="filtrarAusencias(5, 6, 4)">
+                    <input type="button" value="Limpiar" onclick="vaciarFiltroAusencias(1)" class="btn btn-danger btn-sm">
                 </div>
             </div>
         </div>
@@ -69,7 +69,7 @@
                             <th>Motivo</th>
                             <th>Fecha salida</th>
                             <th>Fecha regreso</th>
-                            <th id="acc">Acciones</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody id="contenidoTabla">
@@ -127,7 +127,7 @@
                 <div class="modal-body">
                     <div class="form-group ">
                         <label class="font-weight-normal" for="salida">Fecha de ausencia:</label>
-                        <input type="text" class="form-control form-control-sm" id="fechaFomat" required>
+                        <input type="text" class="form-control form-control-sm" id="fechaHistoricoEdit" required>
                     </div>
                     <div class="form-group">
                         <label class="font-weight-normal" for="motivo">Motivo:</label>

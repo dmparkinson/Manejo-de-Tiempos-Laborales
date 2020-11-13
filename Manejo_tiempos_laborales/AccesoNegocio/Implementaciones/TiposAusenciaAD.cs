@@ -1,5 +1,6 @@
 ﻿using Entidad;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Runtime.InteropServices;
@@ -22,6 +23,7 @@ namespace AccesoDatos.Implementaciones
                 tAusencia.TC_Tipo_Ausencia = dataReader["TC_Tipo_Ausencia"].ToString();
                 lista.Add(tAusencia);
             }
+            this.closeCon();
             return JsonConvert.SerializeObject(lista);
             
         }
@@ -48,8 +50,10 @@ namespace AccesoDatos.Implementaciones
             }
             catch (SqlException e)
             {
+                Console.WriteLine(e.ToString());
                 tAusencia = null;
             }
+            this.closeCon();
             return JsonConvert.SerializeObject(tAusencia);
         }
 
@@ -69,9 +73,10 @@ namespace AccesoDatos.Implementaciones
             }
             catch (SqlException e)
             {
+                Console.WriteLine(e.ToString());
                 salida = -1;
             }
-
+            this.closeCon();
             return salida;
         }
 
@@ -91,9 +96,10 @@ namespace AccesoDatos.Implementaciones
             }
             catch (SqlException e)
             {
+                Console.WriteLine(e.ToString());
                 salida = -1;
             }
-
+            this.closeCon();
             return salida;
         }
 
@@ -112,8 +118,10 @@ namespace AccesoDatos.Implementaciones
             }
             catch (SqlException e)
             {
+                Console.WriteLine(e.ToString());
                 salida = -1;
             }
+            this.closeCon();
             return salida;
         }
     }

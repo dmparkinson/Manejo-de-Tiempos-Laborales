@@ -14,7 +14,7 @@
 <body>
 
 
-    @Html.Partial("_Header_Jefatura");
+    @Html.Partial("_Header_Jefatura")
 
 
     <div class="container">
@@ -38,14 +38,15 @@
                         <label class="font-weight-normal" for="tiempo">Tiempo laboral:</label>
 
                         <select class="form-control form-control-sm" id="tiempo">
-                            <option>Entrada</option>
-                            <option>Almuerzo</option>
-                            <option>Salida</option>
+                            @foreach (Entidad.Horario item in ViewBag.ListaHorarios)
+                            {
+                                <option id="@item.TN_Id_Horario">@item.TC_Horario</option>
+                            }
                         </select>
                     </div>
                 </div>
                 <div class="row justify-content-center">
-                    <input type="button" value="Filtrar" class="btn btn-info btn-sm" zzzzz>
+                    <input type="button" value="Filtrar" class="btn btn-info btn-sm">
                     <input type="button" value="Limpiar" class="btn btn-danger btn-sm">
                 </div>
             </div>
@@ -98,7 +99,7 @@
 
 
 
-    @Html.Partial("_Footer");
+    @Html.Partial("_Footer")
 
 
 
@@ -148,7 +149,7 @@
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <div>
-                    <button class="btn btn-info" onclick="editarHHorario()">Editar</button>
+                    <!--<button class="btn btn-info" onclick="editarHHorario()">Editar</button>-->
                 </div>
             </div>
         </div>

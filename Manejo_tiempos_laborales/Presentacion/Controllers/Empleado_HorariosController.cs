@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using AccesoDatos.Implementaciones;
 using Newtonsoft.Json;
 using Presentacion.Security;
+using System.Windows;
 
 namespace Presentacion.Controllers
 {
@@ -17,6 +18,7 @@ namespace Presentacion.Controllers
         public ActionResult Listar()
         {
             //debo listar el catalogo de tiempos
+          //  MessageBox.Show(Security.SessionSecurity.GetUser().ToString());
             string listaH = new HorarioAD().listarHorarios();
             List<Horario> lista = JsonConvert.DeserializeObject<List<Horario>>(listaH);
 
@@ -39,7 +41,7 @@ namespace Presentacion.Controllers
             }
             else
             {
-                return View("Error");
+                return RedirectToAction("Error403", "Error");
             }
         }
 
@@ -64,7 +66,18 @@ namespace Presentacion.Controllers
             ViewBag.listaHorario = lista;
             ViewBag.listaTiempo = listaT;
             ViewBag.Message = Session["UsserName"].ToString() + " " + Session["UsserSurname1"].ToString() + " " + Session["UsserSurname2"].ToString();
-            return View();
+
+
+            if ((Session["UsserType"].ToString() == "Administración") ||
+                 (Session["UsserType"].ToString() == "Jefatura") ||
+                 (Session["UsserType"].ToString() == "Estándar"))
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Error403", "Error");
+            }
         }
 
 

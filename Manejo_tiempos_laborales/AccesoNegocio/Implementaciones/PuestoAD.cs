@@ -27,6 +27,7 @@ namespace AccesoDatos.Implementaciones
                 
                 lista.Add(puesto);
             }
+            this.closeCon();
             return JsonConvert.SerializeObject(lista);
 
         }
@@ -54,8 +55,10 @@ namespace AccesoDatos.Implementaciones
             }
             catch (SqlException e)
             {
+                Console.WriteLine(e.ToString());
                 puesto = null;
             }
+            this.closeCon();
             return JsonConvert.SerializeObject(puesto);
         }
 
@@ -75,8 +78,11 @@ namespace AccesoDatos.Implementaciones
             }
             catch (SqlException e)
             {
+
+                Console.WriteLine(e.ToString());
                 salida = -1;
             }
+            this.closeCon();
             return salida;
         }
 
@@ -96,9 +102,10 @@ namespace AccesoDatos.Implementaciones
             }
             catch (SqlException e)
             {
+                Console.WriteLine(e.ToString());
                 salida = -1;
             }
-
+            this.closeCon();
             return salida;
         }
 
@@ -117,8 +124,10 @@ namespace AccesoDatos.Implementaciones
             }
             catch (SqlException e)
             {
+                Console.WriteLine(e.ToString());
                 salida = -1;
             }
+            this.closeCon();
             return salida;
         }
     }

@@ -1,4 +1,5 @@
 ﻿
+
 /* 
  * 
  * Eliminar el tipo de ausencia 
@@ -78,9 +79,25 @@ function eliminarHAusencia(codigo) {
 function cargarEditHisAusencia(codigoA, codigoTipo, codigoEmpleado) {
     $('#idAusencia').val(codigoA);
     $('#idEmpleado').val(codigoEmpleado);
-    $("#motivoE").val(codigoTipo);
-    $('#fechaFomat').val('');
-    $('#fechaFomat').attr("placeholder", "Rango de Fechas");
+
+    var data = { id: codigoA }
+    $.ajax({
+        url: '/Empleado_Ausencias/GetAusencia',
+        type: 'POST',
+        data: data,
+        success: function (response) {
+            var o = JSON.parse(response);
+            $('#fechaHistoricoEdit').val(o.TF_Fecha_Salida + ' - ' + o.TF_Fecha_Regreso);
+            $('#motivoE').val(o.TN_Id_Tipo_Ausencia);
+        },
+        error: function (response) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error inesperado',
+                text: 'Ocurrió un error en la operación.',
+            }) 
+        }
+    });
 
 }
 
@@ -105,8 +122,8 @@ function editarHisAusencia() {
         idAusencia: codigo,
         codEmpelado : empleado,
         tipo: motivoAusencia,
-        fechaSalida: separarRangoFechas(rango)[0],
-        fechaRegreso: separarRangoFechas(rango)[1]
+        fechaSalida: separarFechasHistoricoAusencia(rango)[0],
+        fechaRegreso: separarFechasHistoricoAusencia(rango)[1]
     };
 
    
@@ -205,81 +222,13 @@ function refrescarHistoricoAusencias() {
 
 
 
-// Formato del calendario para fecha de salida y fecha de regreso de la ausencia
-$('#fechaFomat').daterangepicker();
 
-$('#fechaFomat').daterangepicker({
-    locale: {
-        format: 'YYYY/MM/DD'
-    }
+$(document).ready(function () {
+
+    $('#fechaHistoricoEdit').daterangepicker();
+
+    $('#fechaHistoricoEdit').daterangepicker({
+        format: 'dd/mm/yyyy',
+    })
+
 });
-
-
-
-
-
-
-
-function separarRangoFechas(rango) {
-    var separador = rango.indexOf('-');
-    var fechaSalida = rango.substring(0, separador - 1)
-    var fechaRegreso = rango.substring(separador + 2, rango.length);
-    return [fechaSalida, fechaRegreso];
-}
-
-
-/* -----------------------------------------------------
- *               Seccion de filtros
- *------------------------------------------------------                     
-*/
-
-
-
-
-function formatoFiltro() {
-    $('#fechaFomatFiltro').daterangepicker();
-    $('#fechaFomatFiltro').daterangepicker({
-        locale: {
-            format: 'YYYY/MM/DD'
-        }
-    });
-
-}
-
-
-
-
-
-
-function filtrarAusencias() {
-    filter();
-    var motivoValue = document.getElementById("motivoFiltro");
-    var fechaValue = document.getElementById("fechaFomatFiltro").value;
-
-
-    var valueMotivo = "";
-    if (motivoValue.length > 0) { // Si se filtra por motivo
-        
-        valueMotivo = motivoValue.options[motivoValue.selectedIndex].text.toLowerCase();
-        
-    }
-    if (fechaValue.length > 0) {//A,B,D
-
-    }
-    $("#contenidoTabla tr").filter(function () {
-        $(this).toggle($(this).text().toLowerCase().indexOf(valueMotivo) > -1)
-    })
-}
-
-
-
-
-function vaciarFiltroAusencias() {
-    $("#contenidoTabla tr").filter(function () {
-        $(this).toggle($(this).text().toLowerCase().indexOf("") > -1)
-    })
-
-    $('#fechaFomatFiltro').val("");
-    $("#motivoFiltro").val(0);
-}
-

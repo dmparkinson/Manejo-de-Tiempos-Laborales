@@ -221,7 +221,11 @@ function prepararEditAusencia(id) {
             $('#amotivo').val(o.TN_Id_Tipo_Ausencia);
         },
         error: function (response) {
-            alert('Error recuperando datos de Ausencia')
+            Swal.fire({
+                icon: 'error',
+                title: 'Error inesperado',
+                text: 'Ocurrió un error en la operación.',
+            }) 
         }
     });
     return false;
@@ -312,7 +316,11 @@ function refrescarAusencias() {
             contenido.innerHTML = html;
         },
         error: function (response) {
-            alert('Error refrescando ausencias')
+            Swal.fire({
+                icon: 'error',
+                title: 'Error inesperado',
+                text: 'Ocurrió un error en la operación.',
+            }) 
         }
     });
 
