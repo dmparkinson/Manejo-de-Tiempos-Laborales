@@ -137,9 +137,9 @@ namespace Presentacion.Controllers
             return Json(new {resultado = tAusenciaNR.ListarTiposAusencia() });          
         }
 
-
-
         
+
+
 
     }
         

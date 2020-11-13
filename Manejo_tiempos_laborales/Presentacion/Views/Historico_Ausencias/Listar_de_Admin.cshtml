@@ -27,7 +27,7 @@
                 <div class="d-flex flex-wrap">
                     <div class="form-group">
                         <label class="font-weight-normal" for="regreso">Fecha de ausencia:</label>
-                        <input type="text" class="form-control form-control-sm" id="fechaFomatFiltro">
+                        <input type="text" class="form-control form-control-sm" id="fechaSearch">
                     </div>
                     <div class="form-group">
                         <label class="font-weight-normal" for="motivo">Motivo:</label>
@@ -42,8 +42,8 @@
                     </div>
                 </div>
                 <div class="row justify-content-center">
-                    <input type="button" value="Filtrar" class="btn btn-info btn-sm" onclick="filtrarAusencias()">
-                    <input type="button" value="Limpiar" onclick="vaciarFiltroAusencias()" class="btn btn-danger btn-sm">
+                    <input type="button" value="Filtrar" class="btn btn-info btn-sm" onclick="filtrarAusencias(5, 6, 4)">
+                    <input type="button" value="Limpiar" onclick="vaciarFiltroAusencias(1)" class="btn btn-danger btn-sm">
                 </div>
             </div>
         </div>
@@ -69,7 +69,7 @@
                             <th>Motivo</th>
                             <th>Fecha salida</th>
                             <th>Fecha regreso</th>
-                            <th id="acc">Acciones</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody id="contenidoTabla">
@@ -80,9 +80,9 @@
                                 <td>@item.empleado.TC_Nombre_Usuario</td>
                                 <td>@item.empleado.TC_Primer_Apellido </td>
                                 <td>@item.empleado.TC_Segundo_Apellido</td>
-                                <td class="colFilter1">@item.tipoAusencia.TC_Tipo_Ausencia</td>
-                                <td class="colFilter2">@item.TF_Fecha_Salida</td>
-                                <td class="colFilter3">@item.TF_Fecha_Regreso</td>
+                                <td>@item.tipoAusencia.TC_Tipo_Ausencia</td>
+                                <td>@item.TF_Fecha_Salida</td>
+                                <td>@item.TF_Fecha_Regreso</td>
                                 <td>
                                     <div class="d-flex justify-content-center">
                                         <a data-toggle="modal" data-target="#modal-editar" onclick="cargarEditHisAusencia('@item.TN_Id_Ausencia','@item.tipoAusencia.TN_Id_Tipo_Ausencia','@item.empleado.TN_Id_Usuario')"> <i class="fas fa-edit text-dark pointer" style="font-size: 1.2em;"></i></a>
@@ -127,7 +127,7 @@
                 <div class="modal-body">
                     <div class="form-group ">
                         <label class="font-weight-normal" for="salida">Fecha de ausencia:</label>
-                        <input type="text" class="form-control form-control-sm" id="fechaFomat" required>
+                        <input type="text" class="form-control form-control-sm" id="fechaHistoricoEdit" required>
                     </div>
                     <div class="form-group">
                         <label class="font-weight-normal" for="motivo">Motivo:</label>

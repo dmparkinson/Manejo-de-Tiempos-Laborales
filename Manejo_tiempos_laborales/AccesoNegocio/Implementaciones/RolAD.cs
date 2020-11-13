@@ -25,6 +25,7 @@ namespace AccesoDatos.Implementaciones
                 rol.TC_Nombre_Rol = dataReader["TC_Nombre_Rol"].ToString();
                 lista.Add(rol);
             }
+            this.closeCon();
             return JsonConvert.SerializeObject(lista);
 
         }
@@ -51,8 +52,10 @@ namespace AccesoDatos.Implementaciones
             }
             catch (SqlException e)
             {
+                Console.WriteLine(e.ToString());
                 rol = null;
             }
+            this.closeCon();
             return JsonConvert.SerializeObject(rol);
         }
 
@@ -72,8 +75,10 @@ namespace AccesoDatos.Implementaciones
             }
             catch (SqlException e)
             {
+                Console.WriteLine(e.ToString());
                 salida = -1;
             }
+            this.closeCon();
             return salida;
         }
 
@@ -93,9 +98,10 @@ namespace AccesoDatos.Implementaciones
             }
             catch (SqlException e)
             {
+                Console.WriteLine(e.ToString());
                 salida = -1;
             }
-
+            this.closeCon();
             return salida;
         }
 
@@ -114,8 +120,10 @@ namespace AccesoDatos.Implementaciones
             }
             catch (SqlException e)
             {
+                Console.WriteLine(e.ToString());
                 salida = -1;
             }
+            this.closeCon();
             return salida;
         }
     }

@@ -102,5 +102,11 @@ namespace Presentacion.Controllers
             return JsonConvert.SerializeObject(o.listarOficinas(""));
         }
 
+        public string GetOficina(int id)
+        {
+            OficinaRN o = new OficinaRN();
+            return JsonConvert.SerializeObject(o.getOficina(id));
+        }
+
     }
 }

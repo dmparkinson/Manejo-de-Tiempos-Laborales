@@ -1,33 +1,30 @@
 ﻿
-var listado = []; // Aqui los datos recuperados de DB
-var listadoFiltro = []; // Datos filtardos de la pagina( inician con el listado completo)
-var listadoBuscar = []; // Datos del buscador, buscan en la listaFiltro
+let TablaOriginal = ""; // Aqui los datos recuperados de DB
+let contenidoOriginal = ""
+
 
 $(document).ready(function () {
 
-     $('#table').DataTable({
+    var tabla = $('#table').DataTable({
         "searching": false,
         "paging": true,
         "info": false,
         "lengthChange": false,
         "responsive": true,
         "autoWidth": false,
-
-
     });
 
+    TablaOriginal = tabla;
+    contenidoOriginal = document.getElementById("contenidoTabla");
 
 });
 
 
-$("#searchInput").on("keyup", function () {
- 
-    filter();
-});
 
-
+// Recargar tabla
 function reloadDatatable() {
-     $('#table').DataTable({
+    $('#table').DataTable().destroy();
+    $('#table').DataTable({
         "searching": false,
         "paging": true,
         "info": false,
@@ -35,21 +32,49 @@ function reloadDatatable() {
         "responsive": true,
         "autoWidth": false,
     });
+    document.getElementById("contenidoTabla").value = contenidoOriginal;
 }
-
-
-
-
-
-
 
 
 /* -----------------------------------------------------
  *               Seccion de filtros
- *------------------------------------------------------                     
+ *------------------------------------------------------
 */
 
 
+//Filtros de fechas
+
+$('#fechaSearch').daterangepicker();
+
+$('#fechaSearch').daterangepicker({
+    format: 'dd/mm/yyyy',
+});
+
+$('#fechaSearch').val('');
+$('#fechaSearch').attr("placeholder", "Rango de Fechas");
+
+// Generar datos del datapicker al dar click
+$("#fechaSearch").click(function () {
+
+    if ($('#fechaSearch').val == '') {
+        $('#fechaSearch').daterangepicker();
+
+        $('#fechaSearch').daterangepicker("setDate", 'now');
+    }
+});
+
+
+// Vaciar datapicker
+function vaciarFecha() {
+    $('#fechaSearch').val('');
+    $('#fechaSearch').attr("placeholder", "Rango de Fechas");
+}
+
+
+// Input search
+$("#searchInput").on("keyup", function () {
+    filter();
+});
 
 function filter() {
     var value = $("#searchInput").val().toLowerCase();
@@ -60,89 +85,83 @@ function filter() {
 
 
 
+/* -----------------------------------------------------
+ *               Filtros de ausencia
+ *------------------------------------------------------
+*/
 
 
-function filtrarAusencias() {
 
-    $("#contenidoTabla tr").filter(function () {
-        var motivoValue = document.getElementById("motivoFiltro");
-        valueMotivo = motivoValue.options[motivoValue.selectedIndex].text.toLowerCase();
-        $(this).toggle($(this).text().toLowerCase().indexOf(valueMotivo) > -1)
-    })
+// Obtetener la fecha de salida y de regreso del datapickerrange
+function separarFechas(rango) {
+    var separador = rango.indexOf('-');
+    var fechaI = rango.substring(0, separador - 1)
+    var fechaF = rango.substring(separador + 2, rango.length);
+    return [fechaI, fechaF];
+}
 
 
-    /*
-     var fechaFiltro = document.getElementById("fechaFomatFiltro").value;
-     let rows = document.querySelectorAll("#contenidoTabla tr");  // Obtener las filas de la tabla
+// Filtrar la tabla de ausencias o historico de ausencias
+function filtrarAusencias(colSalida, colRegreso, colMotivo) {
+    var motivoValue = document.getElementById("motivoFiltro");
+    var fechaFiltro = document.getElementById("fechaSearch").value;
+    let rows = document.querySelectorAll("#contenidoTabla tr");  // Obtener las filas de la tabla
+    let this_row = 0;
 
-    
-    for (let this_row = 0; this_row < rows.length; this_row++) {
-        if (motivoFiltro.length > 0) { // Si se filtra por motivo
+    if (fechaFiltro.length > 0) {// Filtrar por fecha si el usuario lo solicito
+        for (this_row = 0; this_row < rows.length; this_row++) {
+            var row = $(rows[this_row]).closest('tr');                  // Fila actual
+            var fechaSalida = separarFechas(fechaFiltro)[0];
+            var fechaRegreso = separarFechas(fechaFiltro)[1];
+            var dateSalidaFiltro = new Date(fechaSalida);
+            var dateRegresoFiltro = new Date(fechaRegreso);
+            var tempDate = row.find("td").eq(colSalida).html().split("/");  // Columna del contenido a buscar
 
-            var motivo = motivoValue.options[motivoValue.selectedIndex].text;
-            var row = $(rows[this_row]).closest('tr');
-            var tipo = row.find("td").eq(4).html();            
+            var dateSalidaTabla = new Date(tempDate[2], tempDate[1] - 1, tempDate[0]);
+            console.log(dateSalidaTabla)
 
-            if (tipo != motivo ) {  // Si el tipo de la tabla es igual al del filtro entonces no ocul
-                //rows[this_row].style.visibility = "hidden"; // Ocultar elemento
-                rows[this_row].hide();
-                
+            tempDate = row.find("td").eq(colRegreso).html().split("/");     // Columna del contenido a buscar
+            var dateRegresoTabla = new Date(tempDate[2], tempDate[1] - 1, tempDate[0]);
+
+            if ((dateSalidaFiltro > dateSalidaTabla) || (dateRegresoFiltro < dateRegresoTabla)) { // Si las fechas no estan dentro del rango entonces remover fila
+                rows[this_row].remove();
             }
         }
+    }
 
-        if (fechaFiltro.length > 0) {//A,B,D
-            var fechaSalida = separarFechasHistoricoAusencia(fechaValue)[0];
-            var fechaRegreso = separarFechasHistoricoAusencia(fechaValue)[1];
+    var motivo = motivoValue.options[motivoValue.selectedIndex].text;  // Obtener el contenido del select de motivo
+    if (motivo.length > 0) {                                       // Si se filtra por motivo
+        console.log("filtro de motivo");
+        for (this_row = 0; this_row < rows.length; this_row++) {
+            var row = $(rows[this_row]).closest('tr');                  // Fila actual
+            var tipo = row.find("td").eq(colMotivo).html();                     // Columna del contenido a buscar
+            if (tipo != motivo) {  // Si el tipo de la tabla es igual al del filtro entonces remover
+                rows[this_row].remove();
 
-            document.getElementById("fechaSalida").style.visibility = "hidden";
-            document.getElementById("fechaRegreso").style.visibility = "hidden";
+            }
         }
     }
-
-    $('#table').DataTable().destroy();
-
-    //$("#contenidoTabla tr").filter(function () {
-    //    $(this).toggle($(this).text().toLowerCase().indexOf(getComputedStyle().visibility === "hidden") > -1)
-   // })
- 
-
-    /*
-
-    $("#contenidoTabla tr").filter(function () {
-        $(this).toggle($(this).text().toLowerCase().indexOf(valueMotivo) > -1)
-    })
-    */
 }
 
 
-$('#fechaFomatFiltro').daterangepicker();
-
-$('#fechaFomatFiltro').daterangepicker({
-    locale: {
-        format: 'YYYY/MM/DD'
+// Vaciar los filtros de ausencia o historico ausencias
+function vaciarFiltroAusencias(tipoVaciar) {
+    if (tipoVaciar == 1) {
+        $("#searchInput").val("");
+        filter();
     }
-});
-$('#fechaFomatFiltro').val('');
-$('#fechaFomatFiltro').attr("placeholder", "Rango de Fechas");
-
-
-
-
-function vaciarFiltroAusencias() {
-    $("#contenidoTabla tr").filter(function () {
-        $(this).toggle($(this).text().toLowerCase().indexOf("") > -1)
-    })
+    reloadDatatable();
     $("#motivoFiltro").val(0);
-
     vaciarFecha();
+
 }
 
 
-function vaciarFecha() {
-    $('#fechaFomatFiltro').val('');
-    $('#fechaFomatFiltro').attr("placeholder", "Rango de Fechas");
-}
 
+/* -----------------------------------------------------
+ *               Filtros de horarios
+ *------------------------------------------------------
+*/
 
 
 

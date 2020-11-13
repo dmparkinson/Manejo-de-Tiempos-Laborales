@@ -26,7 +26,7 @@ namespace ReglasNegocio
             }
             catch (Exception e)
             {
-
+                Console.WriteLine(e.ToString());
             }
             return list;
         }
@@ -45,7 +45,7 @@ namespace ReglasNegocio
             }
             catch (Exception e)
             {
-
+                Console.WriteLine(e.ToString());
             }
             return list;
         }
@@ -67,6 +67,7 @@ namespace ReglasNegocio
             }
             catch (Exception e)
             {
+                Console.WriteLine(e.ToString());
                 respuesta = -1;
             }
             return respuesta;
@@ -90,6 +91,7 @@ namespace ReglasNegocio
             }
             catch (Exception e)
             {
+                Console.WriteLine(e.ToString());
                 respuesta = -1;
             }
             return respuesta;
@@ -105,9 +107,30 @@ namespace ReglasNegocio
             }
             catch (Exception e)
             {
+                Console.WriteLine(e.ToString());
                 respuesta = -1;
             }
             return respuesta;
+        }
+
+        public Oficina getOficina(int id)
+        {
+            OficinaAD data = new OficinaAD();
+            string respuesta = null;
+            Oficina a = new Oficina();
+            try
+            {
+                respuesta = data.getOficina(id);
+                if (respuesta != null)
+                {
+                    a = JsonConvert.DeserializeObject<Oficina>(respuesta);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+            return a;
         }
     }
 }
