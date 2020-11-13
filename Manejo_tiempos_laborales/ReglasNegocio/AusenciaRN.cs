@@ -151,6 +151,26 @@ namespace ReglasNegocio
             return respuesta;
         }
 
+        public Ausencia getAusencia(int id)
+        {
+            AusenciaAD data = new AusenciaAD();
+            string respuesta = null;
+            Ausencia a = new Ausencia();
+            try
+            {
+                respuesta = data.getAusencia(id);
+                if (respuesta != null)
+                {
+                    a = JsonConvert.DeserializeObject<Ausencia>(respuesta);
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
+            return a;
+        }
+
 
     }
 }
