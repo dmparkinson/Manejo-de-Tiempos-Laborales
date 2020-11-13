@@ -201,5 +201,21 @@ namespace AccesoDatos.Implementaciones
             }
             return JsonConvert.SerializeObject(ausencia);
         }
+
+        public string getAusencia(int id)
+        {
+            Ausencia a = new Ausencia();
+            SqlDataReader dr = consultar($"EXEC sp_get_ausencia {id}");
+            dr.Read();
+            int aux = dr[0].ToString().IndexOf(" ");
+            String aux2 = dr[0].ToString().Substring(0, aux);
+            a.TF_Fecha_Salida = DateTime.Parse(aux2).ToString("yyyy/MM/dd");
+            aux = dr[1].ToString().IndexOf(" ");
+            aux2 = dr[1].ToString().Substring(0, aux);
+            a.TF_Fecha_Regreso = DateTime.Parse(aux2).ToString("yyyy/MM/dd");
+            a.TN_Id_Tipo_Ausencia = int.Parse(dr[2].ToString());
+            closeCon();
+            return JsonConvert.SerializeObject(a);
+        }
     }
 }

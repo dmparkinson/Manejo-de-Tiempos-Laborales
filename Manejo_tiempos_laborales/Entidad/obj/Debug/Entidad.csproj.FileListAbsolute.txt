@@ -10,9 +10,9 @@ D:\UCR\Programación\Codigos Visual\Manejo-de-Tiempos-Laborales\Manejo_tiempos_l
 D:\UCR\Programación\Codigos Visual\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Entidad\obj\Debug\Entidad.csproj.CoreCompileInputs.cache
 D:\UCR\Programación\Codigos Visual\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Entidad\obj\Debug\Entidad.dll
 D:\UCR\Programación\Codigos Visual\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Entidad\obj\Debug\Entidad.pdb
-D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Entidad\bin\Debug\Entidad.dll
-D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Entidad\bin\Debug\Entidad.pdb
-D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Entidad\obj\Debug\Entidad.csprojAssemblyReference.cache
-D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Entidad\obj\Debug\Entidad.csproj.CoreCompileInputs.cache
-D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Entidad\obj\Debug\Entidad.dll
-D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Entidad\obj\Debug\Entidad.pdb
+D:\UCR\Documentos\Analisis\MTL ACTUAL\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Entidad\bin\Debug\Entidad.dll
+D:\UCR\Documentos\Analisis\MTL ACTUAL\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Entidad\bin\Debug\Entidad.pdb
+D:\UCR\Documentos\Analisis\MTL ACTUAL\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Entidad\obj\Debug\Entidad.csprojAssemblyReference.cache
+D:\UCR\Documentos\Analisis\MTL ACTUAL\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Entidad\obj\Debug\Entidad.csproj.CoreCompileInputs.cache
+D:\UCR\Documentos\Analisis\MTL ACTUAL\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Entidad\obj\Debug\Entidad.dll
+D:\UCR\Documentos\Analisis\MTL ACTUAL\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Entidad\obj\Debug\Entidad.pdb

@@ -210,6 +210,21 @@ function eliminarAusencia(id) {
 
 function prepararEditAusencia(id) {
     $('#hiddenAusID').val(id);
+    var data = { id: id }
+    $.ajax({
+        url: '/Empleado_Ausencias/GetAusencia',
+        type: 'POST',
+        data: data,
+        success: function (response) {
+            var o = JSON.parse(response);
+            $('#arangoAusencias').val(o.TF_Fecha_Salida + ' - ' + o.TF_Fecha_Regreso);
+            $('#amotivo').val(o.TN_Id_Tipo_Ausencia);
+        },
+        error: function (response) {
+            alert('Error recuperando datos de Ausencia')
+        }
+    });
+    return false;
 }
 
 function ActualizarAusencia() {

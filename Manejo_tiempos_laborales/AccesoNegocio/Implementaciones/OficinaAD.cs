@@ -81,5 +81,24 @@ namespace AccesoDatos.Implementaciones
             return salida;
         }
 
+        public string getOficina(int id)
+        {
+            Oficina a = new Oficina();
+            SqlDataReader dr = consultar($" EXEC sp_get_oficina {id}");
+            dr.Read();
+            a.TC_Codigo = dr[0].ToString();
+            a.TC_Nombre_Oficina = dr[1].ToString();
+            a.TN_Id_Circuito = int.Parse(dr[2].ToString());
+            a.TB_Activa = int.Parse(dr[3].ToString());
+            int aux = dr[4].ToString().IndexOf(" ");
+            String aux2 = dr[4].ToString().Substring(0, aux);
+            a.TF_Inicio_Vigencia = DateTime.Parse(aux2).ToString("yyyy/MM/dd");
+            aux = dr[5].ToString().IndexOf(" ");
+            aux2 = dr[5].ToString().Substring(0, aux);
+            a.TF_Fin_Vigencia = DateTime.Parse(aux2).ToString("yyyy/MM/dd");               
+            closeCon();
+            return JsonConvert.SerializeObject(a);
+        }
+
     }
 }

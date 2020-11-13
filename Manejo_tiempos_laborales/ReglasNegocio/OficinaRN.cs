@@ -109,5 +109,25 @@ namespace ReglasNegocio
             }
             return respuesta;
         }
+
+        public Oficina getOficina(int id)
+        {
+            OficinaAD data = new OficinaAD();
+            string respuesta = null;
+            Oficina a = new Oficina();
+            try
+            {
+                respuesta = data.getOficina(id);
+                if (respuesta != null)
+                {
+                    a = JsonConvert.DeserializeObject<Oficina>(respuesta);
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
+            return a;
+        }
     }
 }

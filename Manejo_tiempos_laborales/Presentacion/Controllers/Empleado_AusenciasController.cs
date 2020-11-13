@@ -219,5 +219,12 @@ namespace Presentacion.Controllers
                 return View();
             }
         }
+
+        public string GetAusencia(int id)
+        {
+            AusenciaRN a = new AusenciaRN();
+
+            return JsonConvert.SerializeObject(a.getAusencia(id));
+        }
     }
 }

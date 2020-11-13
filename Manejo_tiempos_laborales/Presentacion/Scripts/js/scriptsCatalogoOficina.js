@@ -97,6 +97,24 @@ function insertarOficina() {
 
 function prepararEditOficina(id) {
     $('#hiddenIDOf').val(id);
+    var data = { id: id }
+    $.ajax({
+        url: '/Catalogo_Oficinas/GetOficina',
+        type: 'POST',
+        data: data,
+        success: function (response) {
+            var o = JSON.parse(response);
+            $('#acodigo').val(o.TC_Codigo);
+            $('#anombre').val(o.TC_Nombre_Oficina);
+            $('#aestado').val(o.TB_Activa);
+            $('#acircuito').val(o.TN_Id_Circuito);
+            $('#afechaVigencia').val(o.TF_Inicio_Vigencia + ' - ' + o.TF_Fin_Vigencia);
+        },
+        error: function (response) {
+            alert('Error recuperando datos de Oficina')
+        }
+    });
+    return false;
 }
 
 function actualizarOficina() {
