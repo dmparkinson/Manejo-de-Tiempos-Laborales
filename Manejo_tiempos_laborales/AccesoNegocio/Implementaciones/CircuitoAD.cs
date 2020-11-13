@@ -25,6 +25,7 @@ namespace AccesoDatos
                 circuito.TC_Desc_Circuito = dataReader["TC_Desc_Circuito"].ToString();
                 lista.Add(circuito);
             }
+            this.closeCon();
             return JsonConvert.SerializeObject(lista);
 
         }
@@ -51,8 +52,10 @@ namespace AccesoDatos
             }
             catch (SqlException e)
             {
+                Console.WriteLine(e.ToString());
                 circuito = null;
             }
+            this.closeCon();
             return JsonConvert.SerializeObject(circuito);
         }
 
@@ -72,8 +75,10 @@ namespace AccesoDatos
             }
             catch (SqlException e)
             {
+                Console.WriteLine(e.ToString());
                 salida = -1;
             }
+            this.closeCon();
             return salida;
         }
 
@@ -93,9 +98,10 @@ namespace AccesoDatos
             }
             catch (SqlException e)
             {
+                Console.WriteLine(e.ToString());
                 salida = -1;
             }
-
+            this.closeCon();
             return salida;
         }
 
@@ -114,8 +120,10 @@ namespace AccesoDatos
             }
             catch (SqlException e)
             {
+                Console.WriteLine(e.ToString());
                 salida = -1;
             }
+            this.closeCon();
             return salida;
         }
     

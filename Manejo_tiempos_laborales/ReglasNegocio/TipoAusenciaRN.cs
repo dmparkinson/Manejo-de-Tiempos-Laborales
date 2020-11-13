@@ -114,6 +114,7 @@ namespace ReglasNegocio
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.ToString());
                 respuesta = -1;
             }
             return respuesta;

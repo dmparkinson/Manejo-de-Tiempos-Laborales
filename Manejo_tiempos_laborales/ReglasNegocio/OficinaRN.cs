@@ -26,7 +26,7 @@ namespace ReglasNegocio
             }
             catch (Exception e)
             {
-
+                Console.WriteLine(e.ToString());
             }
             return list;
         }
@@ -45,7 +45,7 @@ namespace ReglasNegocio
             }
             catch (Exception e)
             {
-
+                Console.WriteLine(e.ToString());
             }
             return list;
         }
@@ -67,6 +67,7 @@ namespace ReglasNegocio
             }
             catch (Exception e)
             {
+                Console.WriteLine(e.ToString());
                 respuesta = -1;
             }
             return respuesta;
@@ -90,6 +91,7 @@ namespace ReglasNegocio
             }
             catch (Exception e)
             {
+                Console.WriteLine(e.ToString());
                 respuesta = -1;
             }
             return respuesta;
@@ -105,6 +107,7 @@ namespace ReglasNegocio
             }
             catch (Exception e)
             {
+                Console.WriteLine(e.ToString());
                 respuesta = -1;
             }
             return respuesta;
@@ -125,7 +128,7 @@ namespace ReglasNegocio
             }
             catch (Exception e)
             {
-
+                Console.WriteLine(e.ToString());
             }
             return a;
         }

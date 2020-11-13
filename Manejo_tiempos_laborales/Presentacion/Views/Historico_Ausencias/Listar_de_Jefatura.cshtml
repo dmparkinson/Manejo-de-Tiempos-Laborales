@@ -26,7 +26,7 @@
                 <div class="d-flex flex-wrap">
                     <div class="form-group">
                         <label class="font-weight-normal" for="regreso">Fecha de ausencia:</label>
-                        <input type="text" class="form-control form-control-sm" id="fechaFomatFiltro">
+                        <input type="text" class="form-control form-control-sm" id="fechaSearch">
                     </div>
                     <div class="form-group">
                         <label class="font-weight-normal" for="motivo">Motivo:</label>
@@ -41,8 +41,8 @@
                     </div>
                 </div>
                 <div class="row justify-content-center">
-                    <input type="button" value="Filtrar" class="btn btn-info btn-sm" onclick="filtrarAusencias()">
-                    <input type="button" value="Limpiar" onclick="vaciarFiltroAusencias()" class="btn btn-danger btn-sm">
+                    <input type="button" value="Filtrar" class="btn btn-info btn-sm" onclick="filtrarAusencias(5, 6, 4)">
+                    <input type="button" value="Limpiar" onclick="vaciarFiltroAusencias(1)" class="btn btn-danger btn-sm">
                 </div>
             </div>
         </div>

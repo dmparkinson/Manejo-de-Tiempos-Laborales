@@ -109,6 +109,7 @@ namespace ReglasNegocio
             }
             catch (IOException e)
             {
+                Console.WriteLine(e.ToString());
                 Console.WriteLine("Error Insertando Empleado");
             }
             return respuesta;
@@ -124,6 +125,7 @@ namespace ReglasNegocio
             }
             catch (IOException e)
             {
+                Console.WriteLine(e.ToString());
                 Console.WriteLine("Error eliminando Empleado");
             }
             return respuesta;
@@ -150,6 +152,7 @@ namespace ReglasNegocio
             }
             catch (IOException e)
             {
+                Console.WriteLine(e.ToString());
                 Console.WriteLine("Error actualizando Empleado");
             }
             return respuesta;

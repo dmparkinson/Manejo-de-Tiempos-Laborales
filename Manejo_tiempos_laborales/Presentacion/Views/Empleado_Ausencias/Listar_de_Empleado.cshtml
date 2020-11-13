@@ -46,9 +46,8 @@
                 <div class="d-flex flex-wrap">
                     <div class="form-group ">
                         <label class="font-weight-normal" for="rango">Fechas Ausencia:</label>
-                        <input type="text" class="form-control form-control-sm" name="rango" id="fechaFomatFiltro" />
+                        <input type="text" class="form-control form-control-sm" name="rango" id="fechaSearch" />
                     </div>
-
                     <div class="form-group">
                         <label class="font-weight-normal" for="motivo">Motivo:</label>
 
@@ -61,8 +60,8 @@
                         </select>
                     </div>
                     <div class="col-6">
-                        <input type="button" value="Filtrar" class="btn btn-info btn-sm" onclick="filtrarAusencias()">
-                        <input type="button" value="Limpiar" onclick="vaciarFiltroAusencias()" class="btn btn-danger btn-sm">
+                        <input type="button" value="Filtrar" class="btn btn-info btn-sm" onclick="filtrarAusencias(1, 2, 0)">
+                        <input type="button" value="Limpiar" onclick="vaciarFiltroAusencias(0)" class="btn btn-danger btn-sm">
                     </div>
                 </div>
             </div>
@@ -72,8 +71,8 @@
         <div class="row mt-3">
             <div class="col-12">
                 <div class="d-flex justify-content-end mt-3">
-                    
-                   <input type="button" value="Reporte" class="btn btn-secondary btn-sm" onclick="exportPDF('Ausencias @ViewBag.Message')" />
+
+                    <input type="button" value="Reporte" class="btn btn-secondary btn-sm" onclick="exportPDF('Ausencias @ViewBag.Message')" />
                 </div>
                 <table id="table" class="table table-bordered table-hover">
                     <thead class="thead-dark text-center">
