@@ -130,10 +130,10 @@ namespace AccesoDatos.Implementaciones
                 a.TB_Activa = int.Parse(dr[3].ToString());
                 int aux = dr[4].ToString().IndexOf(" ");
                 String aux2 = dr[4].ToString().Substring(0, aux);
-                a.TF_Inicio_Vigencia = DateTime.Parse(aux2).ToString("dd-MM-yyyy");
+                a.TF_Inicio_Vigencia = DateTime.Parse(aux2).ToString("dd/MM/yyyy");
                 aux = dr[5].ToString().IndexOf(" ");
                 aux2 = dr[5].ToString().Substring(0, aux);
-                a.TF_Fin_Vigencia = DateTime.Parse(aux2).ToString("dd-MM-yyyy");
+                a.TF_Fin_Vigencia = DateTime.Parse(aux2).ToString("dd/MM/yyyy");
                 
             } catch (SqlException e) {
                 Console.WriteLine(e.ToString());
