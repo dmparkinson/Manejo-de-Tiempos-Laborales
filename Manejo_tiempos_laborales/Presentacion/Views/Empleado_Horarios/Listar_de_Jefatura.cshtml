@@ -61,15 +61,35 @@
 
 
         <div class="container col-6">
-            <div>
-                <div class="d-flex justify-content-between mt-3">
+            <div class="flex-column">
+                <div class="d-flex flex-wrap">
+                    <div class="form-group ">
+                        <label class="font-weight-normal" for="fecha">Fecha:</label>
+                        <input type="date" class="form-control form-control-sm" id="fechaFiltroHorario" />
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-normal" for="hora">Hora:</label>
+                        <input type="time" class="form-control form-control-sm" id="FiltroHora" />
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-normal" for="motivo">Motivo:</label>
+                        <select class="form-control form-control-sm" id="registroFiltro">
+                            <option value="0"></option>
+                            @foreach (Entidad.Horario item in ViewBag.ListaHorario)
+                            {
+                                <option id="@item.TN_Id_Horario">@item.TC_Horario</option>
+                            }
+                        </select>
+                    </div>
                     <div class="col-6">
-                        <input type="button" value="Filtrar" class="btn btn-info btn-sm">
-                        <input type="button" value="Limpiar" class="btn btn-danger btn-sm">
+                        <input type="button" value="Filtrar" class="btn btn-info btn-sm" onclick="filtrarHorarios(1, 2, 0)">
+                        <input type="button" value="Limpiar" onclick="vaciarFiltroHorario(0)" class="btn btn-danger btn-sm">
                     </div>
-                    <div>
-                        <input type="button" value="Reporte" class="btn btn-secondary btn-sm" onclick="exportPDF('Horarios de @ViewBag.Message')" />
-                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="d-flex justify-content-end">
+                    <input type="button" value="Reporte" class="btn btn-secondary btn-sm" onclick="exportPDF('Horarios de @ViewBag.Message')" />
                 </div>
                 <table id="table" class="table table-bordered table-hover">
                     <thead class="thead-dark text-center">

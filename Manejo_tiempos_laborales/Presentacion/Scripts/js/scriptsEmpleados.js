@@ -90,51 +90,52 @@ function registrarTiemposEmpleado() {
                         refreshMarcasTiempoEmpleado()
                     } else {
                         if (response == 0) {
-                            Swal.fire({
-                                type: 'warning',
-                                title: 'Error',
-                                text: 'Ha ocurrido un error interno. Inténtelo dentro de unos minutos'
-                            })
+
+                            Swal.fire(
+                                'warning',
+                                'Error',
+                                'Ha ocurrido un error interno. Inténtelo dentro de unos minutos'
+                            )
                         } else {
                             if (response == -1) {
                                 //aun no se ha marcado la entrada
-                                Swal.fire({
-                                    type: 'warning',
-                                    title: 'Error',
-                                    text: 'Para realizar cualquier marca de tiempo, primero debe registrar su entrada al trabajo'
-                                })
+                                Swal.fire(
+                                    'warning',
+                                    'Error',
+                                    'Para realizar cualquier marca de tiempo, primero debe registrar su entrada al trabajo'
+                                )
                             } else {
                                 if (response == -2) {
                                     //se desea realizar cualquier registro, pero ya se marcó la salida del trabajo
-                                    Swal.fire({
-                                        type: 'warning',
-                                        title: 'Error',
-                                        text: 'Ya ha marcado la salida de su trabajo. No se pueden realizar más marcas.'
-                                    })
+                                    Swal.fire(
+                                        'warning',
+                                        'Error',
+                                        'Ya ha marcado la salida de su trabajo. No se pueden realizar más marcas.'
+                                    )
                                 } else {
                                     if (response == -3) {
                                         //se desea realizar cualquier registro, pero ya se marcó la salida del trabajo
-                                        Swal.fire({
-                                            type: 'warning',
-                                            title: 'Error',
-                                            text: 'La marca de tiempo ya existe. Seleccione otra'
-                                        })
+                                        Swal.fire(
+                                            'warning',
+                                            'Error',
+                                            'La marca de tiempo ya existe. Seleccione otra'
+                                        )
                                     } else {
                                         if (response == -4) {
                                             //se desea realizar cualquier registro, pero ya se marcó la salida del trabajo
-                                            Swal.fire({
-                                                type: 'warning',
-                                                title: 'Error',
-                                                text: 'La última marca de tiempo no se ha cerrado. Realice la marca de salida correspondiente'
-                                            })
+                                            Swal.fire(
+                                                'warning',
+                                                'Error',
+                                                'La última marca de tiempo no se ha cerrado. Realice la marca de salida correspondiente'
+                                            )
                                         } else {
                                             if (response == -5) {
                                                 //se desea realizar cualquier registro, pero ya se marcó la salida del trabajo
-                                                Swal.fire({
-                                                    type: 'warning',
-                                                    title: 'Error',
-                                                    text: 'Para registrar una marca de salida, primero debe existir la marca de entrada'
-                                                })
+                                                Swal.fire(
+                                                    'warning',
+                                                    'Error',
+                                                    'Para registrar una marca de salida, primero debe existir la marca de entrada'
+                                                )
                                             }
                                         }
                                     }
@@ -180,11 +181,11 @@ function refreshMarcasTiempoEmpleado() {
             //$('#rangoAusenciasIns').attr("placeholder", "Rango de Fechas");
         },
         error: function (response) {
-            Swal.fire({
-                type: 'warning',
-                title: 'Error',
-                text: 'Error al refrescar las marcas de tiempo. Inténtelo más tarde'
-            })
+            Swal.fire(
+                'warning',
+                'Error',
+                'Error al refrescar las marcas de tiempo. Inténtelo más tarde'
+            )
         }
 
     })
