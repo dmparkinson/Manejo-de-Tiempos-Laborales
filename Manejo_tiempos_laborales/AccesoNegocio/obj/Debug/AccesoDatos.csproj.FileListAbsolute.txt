@@ -42,3 +42,14 @@ D:\Documents\Universidad\Analisis\Proyectos\Original\Manejo-de-Tiempos-Laborales
 D:\Documents\Universidad\Analisis\Proyectos\Original\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\AccesoNegocio\obj\Debug\AccesoDatos.csproj.CopyComplete
 D:\Documents\Universidad\Analisis\Proyectos\Original\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\AccesoNegocio\obj\Debug\AccesoNegocio.dll
 D:\Documents\Universidad\Analisis\Proyectos\Original\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\AccesoNegocio\obj\Debug\AccesoNegocio.pdb
+D:\UCR\Documentos\Analisis\MTL ACTUAL 2\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\AccesoNegocio\bin\Debug\AccesoNegocio.dll
+D:\UCR\Documentos\Analisis\MTL ACTUAL 2\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\AccesoNegocio\bin\Debug\AccesoNegocio.pdb
+D:\UCR\Documentos\Analisis\MTL ACTUAL 2\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\AccesoNegocio\bin\Debug\Entidad.dll
+D:\UCR\Documentos\Analisis\MTL ACTUAL 2\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\AccesoNegocio\bin\Debug\Newtonsoft.Json.dll
+D:\UCR\Documentos\Analisis\MTL ACTUAL 2\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\AccesoNegocio\bin\Debug\Entidad.pdb
+D:\UCR\Documentos\Analisis\MTL ACTUAL 2\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\AccesoNegocio\bin\Debug\Newtonsoft.Json.xml
+D:\UCR\Documentos\Analisis\MTL ACTUAL 2\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\AccesoNegocio\obj\Debug\AccesoDatos.csprojAssemblyReference.cache
+D:\UCR\Documentos\Analisis\MTL ACTUAL 2\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\AccesoNegocio\obj\Debug\AccesoDatos.csproj.CoreCompileInputs.cache
+D:\UCR\Documentos\Analisis\MTL ACTUAL 2\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\AccesoNegocio\obj\Debug\AccesoDatos.csproj.CopyComplete
+D:\UCR\Documentos\Analisis\MTL ACTUAL 2\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\AccesoNegocio\obj\Debug\AccesoNegocio.dll
+D:\UCR\Documentos\Analisis\MTL ACTUAL 2\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\AccesoNegocio\obj\Debug\AccesoNegocio.pdb
