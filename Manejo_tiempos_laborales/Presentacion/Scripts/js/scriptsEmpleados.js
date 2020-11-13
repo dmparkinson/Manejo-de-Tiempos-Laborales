@@ -491,3 +491,112 @@ function listarTiemposEmpleadoAdmin(id_empleado) {
     })
 
 }
+
+
+//listar de los horarios del empleado desde el admin
+function cargarModalListaHorarioEmpleadoAdmin(idT, idU, idH, fecha, hora, tiempo) {
+    window.localStorage.setItem('idT', idT);
+    window.localStorage.setItem('idU', idU);
+    window.localStorage.setItem('idH', idH);
+    document.getElementById('fechaEdit').value = fecha;
+    document.getElementById('horaEdit').value = hora;
+    document.getElementById('tiempoEdit').value = tiempo;
+}
+
+function editarListaHorarioEmpleadoAdmin() {
+
+    var option = document.getElementById('tiempoEdit');
+    var select = option.options[option.selectedIndex].id;
+
+    parametros = {
+        "idT": window.localStorage.getItem('idT'),
+        "idU": window.localStorage.getItem('idU'),
+        "idH": select,
+        "fecha": document.getElementById('fechaEdit').value,
+        "hora": document.getElementById('horaEdit').value,
+        "tiempo": document.getElementById('tiempoEdit').value
+    };
+
+    $.ajax(
+        {
+            data: parametros,
+            url: '/Historico_Tiempos_Laborales/Editar',
+            type: "POST",
+            success: function (response) {
+
+                if (response == 1) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Datos modificados exitosamente',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+
+                    //actualizarTablaTiemposHistorico()
+                } else {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'warning',
+                        title: 'Error al modificar',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+            }
+        }
+    );
+
+}
+
+function eliminarListaHorarioEmpleadoAdmin(idTiempo) {
+
+    Swal.fire({
+        title: '¿Seguro?',
+        text: 'No se podrán revertir los cambios',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Si, eliminar',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.value) {
+            // Proceso de eliminacion de datos
+
+            var dataHorario = {
+                "idTiempo": idTiempo
+            };
+            $.ajax({
+                url: "/Historico_Tiempos_Laborales/Eliminar",    // Nombre del controlador/ accion del controlador
+                type: "POST",
+                data: dataHorario,
+                success: function (response) {
+                    if (response == 1) // Si el tiempo de horario se elimino correctamente
+                    {
+                        Swal.fire(
+                            'Eliminado!',
+                            'El tiempo de horario se elimino correctamente.',
+                            'success'
+                        )
+
+                        //actualizarTablaTiemposHistorico()
+                    }
+                    else { // si no se elimino
+                        Swal.fire(
+                            'No eliminado',
+                            'El tiempo de horario seleccionado no se puede eliminar.',
+                            'warning'
+                        )
+                    }
+                },
+                error: function () {
+                    Swal.fire(
+                        'Error inesperado',
+                        'Ocurrió un error en la operación.',
+                        'error'
+                    )
+                }
+            });
+
+        }
+    })
+}

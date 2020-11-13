@@ -37,3 +37,16 @@ D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\Manejo_t
 D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\ReglasNegocio\obj\Debug\ReglasNegocio.csproj.CopyComplete
 D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\ReglasNegocio\obj\Debug\ReglasNegocio.dll
 D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\ReglasNegocio\obj\Debug\ReglasNegocio.pdb
+C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\ReglasNegocio\bin\Debug\ReglasNegocio.dll
+C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\ReglasNegocio\bin\Debug\ReglasNegocio.pdb
+C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\ReglasNegocio\bin\Debug\AccesoNegocio.dll
+C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\ReglasNegocio\bin\Debug\Entidad.dll
+C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\ReglasNegocio\bin\Debug\Newtonsoft.Json.dll
+C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\ReglasNegocio\bin\Debug\AccesoNegocio.pdb
+C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\ReglasNegocio\bin\Debug\Entidad.pdb
+C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\ReglasNegocio\bin\Debug\Newtonsoft.Json.xml
+C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\ReglasNegocio\obj\Debug\ReglasNegocio.csprojAssemblyReference.cache
+C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\ReglasNegocio\obj\Debug\ReglasNegocio.csproj.CoreCompileInputs.cache
+C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\ReglasNegocio\obj\Debug\ReglasNegocio.csproj.CopyComplete
+C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\ReglasNegocio\obj\Debug\ReglasNegocio.dll
+C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\ReglasNegocio\obj\Debug\ReglasNegocio.pdb
