@@ -182,7 +182,7 @@ namespace AccesoDatos.Implementaciones
 
         }
 
-
+        
 
         // Obtener una ausencia
         public string getAusencia(Ausencia _ausencia)
