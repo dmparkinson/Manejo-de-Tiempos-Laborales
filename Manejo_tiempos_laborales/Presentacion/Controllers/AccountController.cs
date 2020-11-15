@@ -93,6 +93,11 @@ namespace Presentacion.Controllers
             }
         }
 
+        public ActionResult RedirectoToHelp()
+        {
+            return View();
+        }
+
     }
 
         
