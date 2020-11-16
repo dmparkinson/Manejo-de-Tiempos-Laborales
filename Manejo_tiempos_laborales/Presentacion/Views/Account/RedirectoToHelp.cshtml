@@ -327,5 +327,223 @@
             </div>
         </div>
     </div>
+</div>
 
-    @Html.Partial("_Footer")
+<div class="container">
+    <p>
+        <a class="btn btn-dark" data-toggle="collapse" href="#collapseManualGrafico" role="button" aria-expanded="false" aria-controls="collapseManualGrafico">
+            Manual Gráfico
+        </a>
+    </p>
+    <div class="collapse" id="collapseManualGrafico">
+        <div class="card card-body">
+            <div class="container">
+                <p>
+                    <a class="btn btn-dark" data-toggle="collapse" href="#collapseTiempos" role="button" aria-expanded="false" aria-controls="collapseTiempos">
+                        ¿Cómo Marcar mis Tiempos?
+                    </a>
+                </p>
+                <div class="collapse" id="collapseTiempos">
+                    <div class="card card-body">
+                        <p>
+                            - Para marcar un tiempo laboral es necesario escoger un horario en la ventana izquierda y presionar el botón. <b class="btn btn-primary btn-sm">Guardar</b>.
+                            Previo a esto podremos visualizar nuestro tiempo marcado en la tabla derecha.
+                            <img src="~/Content/images/time1.png" style="max-width:100%; height:auto" />
+                        </p>
+                    </div>
+                    <div class="card card-body">
+                        <p>
+                            - A la hora de marcar tiempos laborales, debemos tener en cuenta realizar el flujo de trabajo correcto, de lo contrario podemos cometer <b class="text-danger">
+                                Errores
+                            </b> como realizar una marca de tiempo de <b>Salida</b>, mientras que no existe previamente una de <b>Entrada</b>.
+                            <img src="~/Content/images/timeError1.png" style="max-width:100%; height:auto" />
+                        </p>
+                    </div>
+                    <div class="card card-body">
+                        <p>
+                            - Otro <b class="text-danger">Error</b> que puede ser muy común, es realizar una marca de tiempo de <b>Entrada</b>, sin haber <b>Finalizado</b> otra marca pendiente.
+                            <img src="~/Content/images/timeError2.png" style="max-width:100%; height:auto" />
+                        </p>
+                    </div>
+                    <div class="card card-body">
+                        <p>
+                            - Un flujo de marcas de tiempo <b class="text-success">Correcto</b> debe ser similar al siguiente.
+                            <img src="~/Content/images/time3.png" style="max-width:100%; height:auto" />
+                        </p>
+                    </div>
+                 </div>
+             </div>
+            <div class="container">
+                <p>
+                    <a class="btn btn-dark" data-toggle="collapse" href="#collapseAusencias" role="button" aria-expanded="false" aria-controls="collapseAusencias">
+                        ¿Cómo Ver mis Ausencias?
+                    </a>
+                </p>
+                <div class="collapse" id="collapseAusencias">
+                    <div class="card card-body">
+                        <p>
+                            - Para ver nuestras ausencias propias simplemente debemos seleccionar la pestaña <b>Ausencias</b>, marcada en el recuadro rojo.
+                            <img src="~/Content/images/aus1.png" style="max-width:100%; height:auto" />
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <p>
+                    <a class="btn btn-dark" data-toggle="collapse" href="#collapseReportes" role="button" aria-expanded="false" aria-controls="collapseReportes">
+                        ¿Cómo Realizar Reportes?
+                    </a>
+                </p>
+                <div class="collapse" id="collapseReportes">
+                    <div class="card card-body">
+                        <p>
+                            - Es posible realizar un reporte PDF de la tabla de empleados, dando click en el botón <b class="btn btn-secondary btn-sm">Reporte</b>, marcado en el recuadro rojo.
+                            <img src="~/Content/images/Reporte1.png" style="max-width:100%; height:auto" />
+                        </p>
+                    </div>
+                    <div class="card card-body">
+                        <p>
+                            - Seleccionamos la ubicación donde deseamos guardar el reporte PDF y seleccionamos <b>Guardar</b>, marcado en el recuadro rojo.
+                            <img src="~/Content/images/Reporte2.png" style="max-width:100%; height:auto" />
+                        </p>
+                    </div>
+                    <div class="card card-body">
+                        <p>
+                            - El reporte debe visualizarse similar al del ejemplo, correspondiente a la tabla de la cual se hizo el reporte.
+                            <img src="~/Content/images/Reporte3.png" style="max-width:100%; height:auto" />
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <p>
+                    <a class="btn btn-dark" data-toggle="collapse" href="#collapseFiltros" role="button" aria-expanded="false" aria-controls="collapseFiltros">
+                        ¿Cómo Filtrar Tablas?
+                    </a>
+                </p>
+                <div class="collapse" id="collapseFiltros">
+                    <div class="card card-body">
+                        <p>
+                            - Algunas tablas nos permiten filtrarlas con un campo de texto, acontinuación se demuestra un ejemplo.
+                            <img src="~/Content/images/filtroB1.png" style="max-width:100%; height:auto" />
+                        </p>
+                        <p>
+                            - Rellenamos el campo de texto búsqueda, marcado en el recuadro rojo y la tabla se filtra según lo escrito.
+                            <img src="~/Content/images/FiltroB2.png" style="max-width:100%; height:auto" />
+                        </p>
+                    </div>
+                    <div class="card card-body">
+                        <p>
+                            - Otras tablas nos permiten filtrarlas mediante datos más específicos, acontinuación se demuestra un ejemplo.
+                            <img src="~/Content/images/Filtro1.png" style="max-width:100%; height:auto" />
+                        </p>
+                        <p>
+                            - Rellenamos los campos requeridos, marcados en el recuadro rojo y seleccionamos el botón <b class="btn btn-info btn-sm">Filtrar</b>.
+                            <img src="~/Content/images/Filtro2.png" style="max-width:100%; height:auto" />
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <p>
+                    <a class="btn btn-dark" data-toggle="collapse" href="#collapseAdmin" role="button" aria-expanded="false" aria-controls="collapseAdmin">
+                        Funciones Administrativas y Jefatura
+                    </a>
+                </p>
+                <div class="collapse" id="collapseAdmin">
+                    <div class="card card-body">
+                        <div class="container">
+                            <p>
+                                <a class="btn btn-dark" data-toggle="collapse" href="#collapseRegistrar" role="button" aria-expanded="false" aria-controls="collapseRegistrar">
+                                    Nuevos Registros
+                                </a>
+                            </p>
+                            <div class="collapse" id="collapseRegistrar">
+                                <div class="card card-body">
+                                    <p>
+                                        - El sistema nos permite agregar nuevos registros de todo tipo, rellenando los campos de la ventana superior <b>Añadir Nuevo</b> y presionando el botón
+                                        <b class="btn btn-primary btn-sm">Guardar</b>.
+                                        <img src="~/Content/images/ins1.png" style="max-width:100%; height:auto" />
+                                    </p>
+                                </div>
+                                <div class="card card-body">
+                                    <p>
+                                        - El sistema nos muestra una alerta confirmando el registro o denegandolo.
+                                        <img src="~/Content/images/ins2.png" style="max-width:100%; height:auto" />
+                                    </p>
+                                </div>
+                            </div>
+                            </div>
+                        <div class="container">
+                            <p>
+                                <a class="btn btn-dark" data-toggle="collapse" href="#collapseActDel" role="button" aria-expanded="false" aria-controls="collapseActDel">
+                                    Actualizar y Eliminar Registros
+                                </a>
+                            </p>
+                            <div class="collapse" id="collapseActDel">
+                                <div class="card card-body">
+                                    <p>
+                                        - Para <i class="fas fa-edit text-dark pointer"></i><b>Editar</b> o <i class="fas fa-trash text-dark pointer"></i>
+                                        <b>Eliminar</b> de una tabla, debemos dar click en dichos botones de la fila a modificar, marcados en el recuadro rojo.
+                                        <img src="~/Content/images/editdel1.png" style="max-width:100%; height:auto" />
+                                    </p>
+                                </div>
+                                <div class="card card-body">
+                                    <p>
+                                        - Para Editar la tupla seleccionada, rellenamos los campos de la ventana emergente con los datos deseados y presionamos el botón <b class="btn btn-info btn-sm">Editar</b>.
+
+                                    </p>
+                                    <img src="~/Content/images/edit1.png" style="max-width:100%; height:auto" />
+                                    <p>
+                                        - Posteriormente se nos mostrará la alerta correspondiente y se harán los respectivos cambios.
+                                        <img src="~/Content/images/edit2.png" style="max-width:100%; height:auto" />
+                                    </p>
+                                </div>
+                                <div class="card card-body">
+                                    <p>
+                                        - Para Eliminar la tupla seleccionada, simplemente confirmar o no la eliminación dando click en <b class="btn btn-primary btn-sm">Si, Eliminar</b> o
+                                        <b class="btn btn-secondary btn-sm">Cancelar</b>.
+                                        <img src="~/Content/images/del1.png" style="max-width:100%; height:auto" />
+                                    </p>
+                                    <p>
+                                        - Posteriormente se nos mostrará la alerta correspondiente y se harán los respectivos cambios.
+                                        <img src="~/Content/images/del2.png" style="max-width:100%; height:auto" />
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container">
+                            <p>
+                                <a class="btn btn-dark" data-toggle="collapse" href="#collapseAusTime" role="button" aria-expanded="false" aria-controls="collapseAusTime">
+                                    Ausencias y Tiempos de Empleados
+                                </a>
+                            </p>
+                            <div class="collapse" id="collapseAusTime">
+                                <div class="card card-body">
+                                    <p>
+                                        - Para ingresar a <i class="fas fa-business-time text-dark pointer"></i><b>Ausencias</b> o <i class="fas fa-calendar-times text-dark pointer"></i><b>Tiempos</b>
+                                        de un Empleado, debemos dar click en dichos botones de la fila deseada, marcados en el recuadro rojo.
+                                        <img src="~/Content/images/austime.png" style="max-width:100%; height:auto" />
+                                    </p>
+                                </div>
+                                <div class="card card-body">
+                                    <p>
+                                        - Al ingresar a <i class="fas fa-business-time text-dark pointer"></i><b>Ausencias</b>, se nos muestra la siguiente pantalla.
+                                        <img src="~/Content/images/ausAdmin.png" style="max-width:100%; height:auto" />
+                                    </p>
+                                </div>
+                                <div class="card card-body">
+                                    <p>
+                                        - Al ingresar a <i class="fas fa-calendar-times text-dark pointer"></i><b>Tiempos</b>, se nos muestra la siguiente pantalla.
+                                        <img src="~/Content/images/timeAdmin.png" style="max-width:100%; height:auto" />
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+           </div>
+    </div>
+</div>
+
+        @Html.Partial("_Footer")
