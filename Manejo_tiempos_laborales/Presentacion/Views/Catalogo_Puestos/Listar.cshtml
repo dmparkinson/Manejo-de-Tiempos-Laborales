@@ -70,6 +70,7 @@
                 <table id="table" class="table table-bordered table-hover">
                     <thead class="thead-dark text-center">
                         <tr>
+                            <th>Código</th>
                             <th>Nombre</th>
                             <th>Salario</th>
                             <th id="acc">Acciones</th>
@@ -78,16 +79,17 @@
                     <tbody id="contenidoTabla">
                         @foreach (var item in ViewBag.ListaCatalogoPuestos)
                         {
-                            <tr>
-                                <td>@item.TC_Nombre_Puesto</td>
-                                <td>@item.TN_Salario_Horario</td>
-                                <td>
-                                    <div class="d-flex justify-content-center">
-                                        <a onclick="cargarEditPuesto('@item.TN_Id_Puesto')" data-toggle="modal" data-target="#modal-editar" > <i class="fas fa-edit text-dark pointer" style="font-size: 1.2em;"></i></a>
-                                        <a onclick="eliminarPuesto('@item.TN_Id_Puesto')" > <i class="fas fa-trash text-dark pointer" style="font-size: 1.2em;"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>@item.TN_Id_Puesto</td>
+                            <td>@item.TC_Nombre_Puesto</td>
+                            <td>@item.TN_Salario_Horario</td>
+                            <td>
+                                <div class="d-flex justify-content-center">
+                                    <a onclick="cargarEditPuesto('@item.TN_Id_Puesto')" data-toggle="modal" data-target="#modal-editar"> <i class="fas fa-edit text-dark pointer" style="font-size: 1.2em;"></i></a>
+                                    <a onclick="eliminarPuesto('@item.TN_Id_Puesto')"> <i class="fas fa-trash text-dark pointer" style="font-size: 1.2em;"></i></a>
+                                </div>
+                            </td>
+                        </tr>
                         }
                     </tbody>
                 </table>

@@ -59,6 +59,7 @@
                 <table id="table" class="table table-bordered table-hover">
                     <thead class="thead-dark text-center">
                         <tr>
+                            <th>Código</th>
                             <th>Motivo</th>
                             <th id="acc">Acciones</th>
                         </tr>
@@ -67,16 +68,17 @@
 
                         @foreach (var item in ViewBag.ListaCatalogoAusencias)
                         {
-                            <tr>
-                                <td>@item.TC_Tipo_Ausencia</td>
-                                <td>
-                                    <div class="d-flex justify-content-center">
-                                        <a onclick="cargarEditCAusencia('@item.TN_Id_Tipo_Ausencia')" data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark pointer" style="font-size: 1.2em;"></i></a>
-                                        <a onclick="eliminarTipoAusencia('@item.TN_Id_Tipo_Ausencia')"> <i class="fas fa-trash text-dark pointer" style="font-size: 1.2em;"></i></a>
-                                    </div>
+                        <tr>
+                            <td>@item.TN_Id_Tipo_Ausencia</td>
+                            <td>@item.TC_Tipo_Ausencia</td>
+                            <td>
+                                <div class="d-flex justify-content-center">
+                                    <a onclick="cargarEditCAusencia('@item.TN_Id_Tipo_Ausencia')" data-toggle="modal" data-target="#modal-editar" href="#"> <i class="fas fa-edit text-dark pointer" style="font-size: 1.2em;"></i></a>
+                                    <a onclick="eliminarTipoAusencia('@item.TN_Id_Tipo_Ausencia')"> <i class="fas fa-trash text-dark pointer" style="font-size: 1.2em;"></i></a>
+                                </div>
 
-                                </td>
-                            </tr>
+                            </td>
+                        </tr>
                         }
                     </tbody>
                 </table>

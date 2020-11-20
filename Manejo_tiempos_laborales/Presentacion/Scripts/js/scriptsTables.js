@@ -106,8 +106,10 @@ function separarFechas(rango) {
 }
 
 
-// Filtrar la tabla de ausencias o historico de ausencias
-function filtrarAusencias(colSalida, colRegreso, colMotivo) {
+
+
+// Filtrar historico de ausencias
+function filtrarAusencias(colSalida, colRegreso, colMotivo, tipoSplit) {
     var motivoValue = document.getElementById("motivoFiltro");
     var fechaFiltro = document.getElementById("fechaSearch").value;
     let rows = document.querySelectorAll("#contenidoTabla tr");  // Obtener las filas de la tabla
@@ -120,19 +122,30 @@ function filtrarAusencias(colSalida, colRegreso, colMotivo) {
             var fechaRegreso = separarFechas(fechaFiltro)[1];
             var dateSalidaFiltro = new Date(fechaSalida);
             var dateRegresoFiltro = new Date(fechaRegreso);
-            var tempDate = row.find("td").eq(colSalida).html().split("/");  // Columna del contenido a buscar
 
-            var dateSalidaTabla = new Date(tempDate[2], tempDate[1] - 1, tempDate[0]);
+            var tempDate = "";
+            var dateSalidaTabla = "";
+            var dateRegresoTabla = "";
 
-            tempDate = row.find("td").eq(colRegreso).html().split("/");     // Columna del contenido a buscar
-            var dateRegresoTabla = new Date(tempDate[2], tempDate[1] - 1, tempDate[0]);
+            // Determina el split a utilizar, si la fecha usa - o / en su division
+            if (tipoSplit == 1) {
+                tempDate = row.find("td").eq(colSalida).html().split("/");
+                dateSalidaTabla = new Date(tempDate[2], tempDate[1] - 1, tempDate[0]);
+                tempDate = row.find("td").eq(colRegreso).html().split("/");  
+                dateRegresoTabla = new Date(tempDate[2], tempDate[1] - 1, tempDate[0]);
+            }
+            else if (tipoSplit == 2) {
+                tempDate = row.find("td").eq(colSalida).html().split("-");  
+                dateSalidaTabla = new Date(tempDate[2], tempDate[1] - 1, tempDate[0]);
+                tempDate = row.find("td").eq(colRegreso).html().split("-");    
+                dateRegresoTabla = new Date(tempDate[2], tempDate[1] - 1, tempDate[0]);
+            }
 
             if ((dateSalidaFiltro > dateSalidaTabla) || (dateRegresoFiltro < dateRegresoTabla)) { // Si las fechas no estan dentro del rango entonces remover fila
                 rows[this_row].remove();
             }
         }
     }
-
     var motivo = motivoValue.options[motivoValue.selectedIndex].text;  // Obtener el contenido del select de motivo
     if (motivo.length > 0) {                                       // Si se filtra por motivo
         for (this_row = 0; this_row < rows.length; this_row++) {
@@ -145,6 +158,8 @@ function filtrarAusencias(colSalida, colRegreso, colMotivo) {
         }
     }
 }
+
+
 
 
 // Vaciar los filtros de ausencia o historico ausencias
