@@ -24,10 +24,10 @@ namespace AccesoDatos.Implementaciones
                         a.TN_Id_Ausencia = int.Parse(dr[0].ToString());
                         int aux = dr[1].ToString().IndexOf(" ");
                         String aux2 = dr[1].ToString().Substring(0, aux);
-                        a.TF_Fecha_Salida = DateTime.Parse(aux2).ToString("dd-MM-yyyy");
+                        a.TF_Fecha_Salida = DateTime.Parse(aux2).ToString("dd/MM/yyyy");
                         aux = dr[2].ToString().IndexOf(" ");
                         aux2 = dr[2].ToString().Substring(0, aux);
-                        a.TF_Fecha_Regreso = DateTime.Parse(aux2).ToString("dd-MM-yyyy");
+                        a.TF_Fecha_Regreso = DateTime.Parse(aux2).ToString("dd/MM/yyyy");
                         a.TC_Tipo_Ausencia = dr[3].ToString();
                         
                         data.Add(a);

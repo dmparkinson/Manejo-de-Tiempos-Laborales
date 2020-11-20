@@ -41,6 +41,7 @@
                 <table id="table" class="table table-bordered table-hover">
                     <thead class="thead-dark text-center">
                         <tr>
+                            <th>ID</th>
                             <th>Cédula</th>
                             <th>Nombre</th>
                             <th>Apellido 1</th>
@@ -56,37 +57,37 @@
                     <tbody id="contenidoTabla">
                         @foreach (Entidad.Empleado e in ViewBag.Lista)
                         {
-                            <tr>
+                        <tr>
+                            <td>@e.TN_Id_Usuario</td>
+                            <td>@e.TC_Identificacion</td>
+                            <td>@e.TC_Nombre_Usuario</td>
+                            <td>@e.TC_Primer_Apellido</td>
+                            <td>@e.TC_Segundo_Apellido</td>
+                            <td>@e.TC_Correo</td>
 
-                                <td>@e.TC_Identificacion</td>
-                                <td>@e.TC_Nombre_Usuario</td>
-                                <td>@e.TC_Primer_Apellido</td>
-                                <td>@e.TC_Segundo_Apellido</td>
-                                <td>@e.TC_Correo</td>
+                            @if (e.TB_Activo.Equals(1))
+                            {
+                                <td>Activo</td>
+                            }
+                            else
+                            {
+                                <td>Inactivo</td>
+                            }
 
-                                @if (e.TB_Activo.Equals(1))
-                                {
-                                    <td>Activo</td>
-                                }
-                                else
-                                {
-                                    <td>Inactivo</td>
-                                }
+                            <td>@e.TC_Tipo_Usuario</td>
+                            <td>@e.TC_Nombre_Puesto</td>
+                            <td>@e.TC_Nombre_Oficina</td>
+                            <td class="d-flex justify-content-center">
 
-                                <td>@e.TC_Tipo_Usuario</td>
-                                <td>@e.TC_Nombre_Puesto</td>
-                                <td>@e.TC_Nombre_Oficina</td>
-                                <td class="d-flex justify-content-center">
-
-                                    <a class="ml-1" onclick="listarTiemposEmpleadoAdmin(@e.TN_Id_Usuario)" title="Tiempo de horarios" >
-                                        <i class="fas fa-business-time text-dark pointer" style="font-size: 1.2em; "></i>
-                                    </a>
-                                    <a class="ml-1" onclick="ausenciasEmpleadoJ(@e.TN_Id_Usuario,'@e.TC_Nombre_Usuario','@e.TC_Primer_Apellido','@e.TC_Segundo_Apellido')" title="Tiempo de ausencias"><i class="fas fa-calendar-times text-dark pointer" style="font-size: 1.2em;"></i></a>
+                                <a class="ml-1" onclick="listarTiemposEmpleadoAdmin(@e.TN_Id_Usuario)" title="Tiempo de horarios">
+                                    <i class="fas fa-business-time text-dark pointer" style="font-size: 1.2em; "></i>
+                                </a>
+                                <a class="ml-1" onclick="ausenciasEmpleadoJ(@e.TN_Id_Usuario,'@e.TC_Nombre_Usuario','@e.TC_Primer_Apellido','@e.TC_Segundo_Apellido')" title="Tiempo de ausencias"><i class="fas fa-calendar-times text-dark pointer" style="font-size: 1.2em;"></i></a>
 
 
 
-                                </td>
-                            </tr>
+                            </td>
+                        </tr>
                         }
                     </tbody>
                 </table>

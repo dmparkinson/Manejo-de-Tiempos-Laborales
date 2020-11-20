@@ -37,6 +37,7 @@
                 <table id="table" class="table table-bordered table-hover">
                     <thead class="thead-dark text-center">
                         <tr>
+                            <th>ID</th>
                             <th>Cédula</th>
                             <th>Nombre</th>
                             <th>Apellido 1</th>
@@ -53,6 +54,7 @@
                         @foreach (Entidad.Empleado e in ViewBag.Lista)
                         {
                             <tr>
+                                <td>@e.TN_Id_Usuario</td>
                                 <td>@e.TC_Identificacion</td>
                                 <td>@e.TC_Nombre_Usuario</td>
                                 <td>@e.TC_Primer_Apellido</td>

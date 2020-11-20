@@ -188,5 +188,10 @@ namespace Presentacion.Controllers
                 return View();
             }
         }
+
+        public string getOficina()
+        {
+            return Session["UsserOffice"].ToString();
+        }
     }
 }
