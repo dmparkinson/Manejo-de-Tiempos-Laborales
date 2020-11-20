@@ -79,6 +79,7 @@
                 <table id="table" class="table table-bordered table-hover">
                     <thead class="thead-dark text-center">
                         <tr>
+                            <th>ID</th>
                             <th>Motivo</th>
                             <th>Fecha salida</th>
                             <th>Fecha regreso</th>
@@ -88,6 +89,7 @@
                         @foreach (Entidad.Ausencia a in ViewBag.Lista)
                         {
                             <tr>
+                                <td>@a.TN_Id_Ausencia</td>
                                 <td>@a.TC_Tipo_Ausencia</td>
                                 <td>@a.TF_Fecha_Salida</td>
                                 <td>@a.TF_Fecha_Regreso</td>

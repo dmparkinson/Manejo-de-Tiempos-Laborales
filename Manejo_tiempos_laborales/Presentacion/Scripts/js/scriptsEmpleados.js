@@ -438,6 +438,7 @@ function refrescarEmpleados() {
             var html = "";
             for (i = 0; i < array.length; i++) {
                 html += '<tr>';
+                html += '<td>' + array[i].TN_Id_Usuario + '</td>';
                 html += '<td>' + array[i].TC_Identificacion + '</td>';
                 html += '<td>' + array[i].TC_Nombre_Usuario + '</td>';
                 html += '<td>' + array[i].TC_Primer_Apellido + '</td>';
