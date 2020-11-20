@@ -62,6 +62,7 @@
                 <table id="table" class="table table-bordered table-hover">
                     <thead class="thead-dark text-center">
                         <tr>
+                            <th>Código</th>
                             <th>Tipo</th>
                             <th id="acc">Acciones</th>
                         </tr>
@@ -72,15 +73,16 @@
                         @foreach (Entidad.Horario temp in ViewBag.ListaTiempos)
                         {
 
-                            <tr>
-                                <td>@temp.TC_Horario</td>
-                                <td class="d-flex justify-content-center">
-                                    <div class="row">
-                                        <a id="@temp.TC_Horario" data-toggle="modal" data-target="#modal-editar" onclick="editMyModal(this)"> <i class="fas fa-edit text-dark pointer" style="font-size: 1.2em;"></i></a>
-                                        <a id="@temp.TC_Horario" onclick="alertAdvertenciaEliminarTiempos(this)"> <i class="fas fa-trash text-dark pointer" style="font-size: 1.2em;"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>@temp.TN_Id_Horario</td>
+                            <td>@temp.TC_Horario</td>
+                            <td class="d-flex justify-content-center">
+                                <div class="row">
+                                    <a id="@temp.TC_Horario" data-toggle="modal" data-target="#modal-editar" onclick="editMyModal(this)"> <i class="fas fa-edit text-dark pointer" style="font-size: 1.2em;"></i></a>
+                                    <a id="@temp.TC_Horario" onclick="alertAdvertenciaEliminarTiempos(this)"> <i class="fas fa-trash text-dark pointer" style="font-size: 1.2em;"></i></a>
+                                </div>
+                            </td>
+                        </tr>
 
                         }
                     </tbody>

@@ -58,6 +58,7 @@
                 <table id="table" class="table table-bordered table-hover">
                     <thead class="thead-dark text-center">
                         <tr>
+                            <th>Código</th>
                             <th>Motivo</th>
                             <th>Fecha salida</th>
                             <th>Fecha regreso</th>
@@ -68,12 +69,13 @@
 
                         @foreach (Entidad.Ausencia item in ViewBag.Lista)
                         {
-                            <tr>
-                                <td>@item.TC_Tipo_Ausencia</td>
-                                <td>@item.TF_Fecha_Salida</td>
-                                <td>@item.TF_Fecha_Regreso</td>
+                        <tr>
+                            <td>@a.TN_Id_Ausencia</td>
+                            <td>@item.TC_Tipo_Ausencia</td>
+                            <td>@item.TF_Fecha_Salida</td>
+                            <td>@item.TF_Fecha_Regreso</td>
 
-                            </tr>
+                        </tr>
                         }
                     </tbody>
                 </table>

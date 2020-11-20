@@ -68,6 +68,7 @@
                 <table id="table" class="table table-bordered table-hover mt-1">
                     <thead class="thead-dark text-center">
                         <tr>
+                            <th>Código</th>
                             <th>Cédula</th>
                             <th>Nombre</th>
                             <th>Apellido 1</th>
@@ -80,16 +81,17 @@
                     <tbody id="contenidoTabla">
                         @foreach (var item in ViewBag.ListaHistoricoTiempos)
                         {
-                            <tr>
-                                <td>@item.empleado.TC_Identificacion</td>
-                                <td>@item.empleado.TC_Nombre_Usuario</td>
-                                <td>@item.empleado.TC_Primer_Apellido </td>
-                                <td>@item.empleado.TC_Segundo_Apellido</td>
-                                <td>@item.TF_Fecha</td>
-                                <td>@item.TH_Hora</td>
-                                <td>@item.horario.TC_Horario </td>
-                                
-                            </tr>
+                        <tr>
+                            <td>@item.TN_Id_Tiempo</td>
+                            <td>@item.empleado.TC_Identificacion</td>
+                            <td>@item.empleado.TC_Nombre_Usuario</td>
+                            <td>@item.empleado.TC_Primer_Apellido </td>
+                            <td>@item.empleado.TC_Segundo_Apellido</td>
+                            <td>@item.TF_Fecha</td>
+                            <td>@item.TH_Hora</td>
+                            <td>@item.horario.TC_Horario </td>
+
+                        </tr>
                         }
                     </tbody>
                 </table>

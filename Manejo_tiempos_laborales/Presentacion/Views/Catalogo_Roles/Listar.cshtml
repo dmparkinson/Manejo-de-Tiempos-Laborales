@@ -62,6 +62,7 @@
                 <table id="table" class="table table-bordered table-hover">
                     <thead class="thead-dark text-center">
                         <tr>
+                            <th>Código</th>
                             <th>Nombre</th>
                             <th id="acc">Acciones</th>
                         </tr>
@@ -69,15 +70,16 @@
                     <tbody id="contenidoTabla">
                         @foreach (var item in ViewBag.ListaCatalogoRoles)
                         {
-                            <tr>
-                                <td>@item.TC_Nombre_Rol</td>
-                                <td>
-                                    <div class="d-flex justify-content-center">
-                                        <a data-toggle="modal" data-target="#modal-editar" onclick="cargarEditRol('@item.TN_Id_Rol')"> <i class="fas fa-edit text-dark pointer" style="font-size: 1.2em;"></i></a>
-                                        <a onclick="eliminarRol('@item.TN_Id_Rol')"> <i class="fas fa-trash text-dark pointer" style="font-size: 1.2em;"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>@item.TN_Id_Rol</td>
+                            <td>@item.TC_Nombre_Rol</td>
+                            <td>
+                                <div class="d-flex justify-content-center">
+                                    <a data-toggle="modal" data-target="#modal-editar" onclick="cargarEditRol('@item.TN_Id_Rol')"> <i class="fas fa-edit text-dark pointer" style="font-size: 1.2em;"></i></a>
+                                    <a onclick="eliminarRol('@item.TN_Id_Rol')"> <i class="fas fa-trash text-dark pointer" style="font-size: 1.2em;"></i></a>
+                                </div>
+                            </td>
+                        </tr>
                         }
                     </tbody>
                 </table>
