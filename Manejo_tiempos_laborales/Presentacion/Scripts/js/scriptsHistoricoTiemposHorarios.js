@@ -256,3 +256,13 @@ function actualizarTablaTiemposHistorico() {
         }
     );
 }
+
+
+function cargarModalListaHorarioEmpleadoAdmin(idT, idU, idH, fecha, hora, tiempo) {
+    window.localStorage.setItem('idT', idT);
+    window.localStorage.setItem('idU', idU);
+    window.localStorage.setItem('idH', idH);
+    document.getElementById('fechaEdit').value = fecha;
+    document.getElementById('horaEdit').value = hora;
+    document.getElementById('tiempoEdit').value = tiempo;
+}

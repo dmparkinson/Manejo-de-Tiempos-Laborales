@@ -92,6 +92,7 @@
                 <table id="table" class="table table-bordered table-hover">
                     <thead class="thead-dark text-center">
                         <tr>
+                            <th>Id</th>
                             <th>Registro</th>
                             <th>Fecha</th>
                             <th>Hora</th>
@@ -101,6 +102,7 @@
                         @foreach (Entidad.Tiempo temp in ViewBag.listaTiempo)
                         {
                             <tr>
+                                <td>@temp.TN_Id_Tiempo</td>
                                 <td>@temp.TC_Horario</td>
                                 <td>@temp.TF_Fecha</td>
                                 <td>@temp.TH_Hora</td>

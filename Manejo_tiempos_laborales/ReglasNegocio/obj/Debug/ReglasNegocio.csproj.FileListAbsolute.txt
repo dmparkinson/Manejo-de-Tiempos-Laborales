@@ -24,7 +24,6 @@ D:\UCR\Programación\Codigos Visual\Manejo-de-Tiempos-Laborales\Manejo_tiempos_l
 D:\UCR\Programación\Codigos Visual\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\ReglasNegocio\obj\Debug\ReglasNegocio.csproj.CopyComplete
 D:\UCR\Programación\Codigos Visual\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\ReglasNegocio\obj\Debug\ReglasNegocio.dll
 D:\UCR\Programación\Codigos Visual\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\ReglasNegocio\obj\Debug\ReglasNegocio.pdb
-<<<<<<< HEAD
 D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\ReglasNegocio\bin\Debug\ReglasNegocio.dll
 D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\ReglasNegocio\bin\Debug\ReglasNegocio.pdb
 D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\ReglasNegocio\bin\Debug\AccesoNegocio.dll
@@ -51,7 +50,6 @@ C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\Manejo_ti
 C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\ReglasNegocio\obj\Debug\ReglasNegocio.csproj.CopyComplete
 C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\ReglasNegocio\obj\Debug\ReglasNegocio.dll
 C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\ReglasNegocio\obj\Debug\ReglasNegocio.pdb
-=======
 D:\UCR\Documentos\Analisis\MTL ACTUAL\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\ReglasNegocio\bin\Debug\ReglasNegocio.dll
 D:\UCR\Documentos\Analisis\MTL ACTUAL\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\ReglasNegocio\bin\Debug\ReglasNegocio.pdb
 D:\UCR\Documentos\Analisis\MTL ACTUAL\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\ReglasNegocio\bin\Debug\AccesoNegocio.dll
@@ -91,4 +89,3 @@ D:\UCR\Documentos\Analisis\MTL ACTUAL 2\Manejo-de-Tiempos-Laborales\Manejo_tiemp
 D:\UCR\Documentos\Analisis\MTL ACTUAL 2\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\ReglasNegocio\obj\Debug\ReglasNegocio.csproj.CopyComplete
 D:\UCR\Documentos\Analisis\MTL ACTUAL 2\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\ReglasNegocio\obj\Debug\ReglasNegocio.dll
 D:\UCR\Documentos\Analisis\MTL ACTUAL 2\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\ReglasNegocio\obj\Debug\ReglasNegocio.pdb
->>>>>>> master

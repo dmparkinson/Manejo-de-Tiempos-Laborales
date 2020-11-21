@@ -274,7 +274,6 @@ D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\Manejo_t
 D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Presentacion\obj\Debug\Presentacion.csproj.CopyComplete
 D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Presentacion\obj\Debug\Presentacion.dll
 D:\Documents\Universidad\Analisis\Proyectos\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Presentacion\obj\Debug\Presentacion.pdb
-<<<<<<< HEAD
 C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Presentacion\bin\Presentacion.dll.config
 C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Presentacion\bin\Presentacion.dll
 C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Presentacion\bin\Presentacion.pdb
@@ -367,7 +366,6 @@ C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\Manejo_ti
 C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Presentacion\obj\Debug\Presentacion.csproj.CopyComplete
 C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Presentacion\obj\Debug\Presentacion.dll
 C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Presentacion\obj\Debug\Presentacion.pdb
-=======
 D:\UCR\Documentos\Analisis\MTL ACTUAL\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Presentacion\bin\Presentacion.dll.config
 D:\UCR\Documentos\Analisis\MTL ACTUAL\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Presentacion\bin\Presentacion.dll
 D:\UCR\Documentos\Analisis\MTL ACTUAL\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Presentacion\bin\Presentacion.pdb
@@ -644,4 +642,3 @@ D:\UCR\Documentos\Analisis\MTL ACTUAL 2\Manejo-de-Tiempos-Laborales\Manejo_tiemp
 D:\UCR\Documentos\Analisis\MTL ACTUAL 2\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Presentacion\obj\Debug\Presentacion.csproj.CopyComplete
 D:\UCR\Documentos\Analisis\MTL ACTUAL 2\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Presentacion\obj\Debug\Presentacion.dll
 D:\UCR\Documentos\Analisis\MTL ACTUAL 2\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Presentacion\obj\Debug\Presentacion.pdb
->>>>>>> master

@@ -22,3 +22,9 @@ D:\UCR\Documentos\Analisis\MTL ACTUAL 2\Manejo-de-Tiempos-Laborales\Manejo_tiemp
 D:\UCR\Documentos\Analisis\MTL ACTUAL 2\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Entidad\obj\Debug\Entidad.csproj.CoreCompileInputs.cache
 D:\UCR\Documentos\Analisis\MTL ACTUAL 2\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Entidad\obj\Debug\Entidad.dll
 D:\UCR\Documentos\Analisis\MTL ACTUAL 2\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Entidad\obj\Debug\Entidad.pdb
+C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Entidad\bin\Debug\Entidad.dll
+C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Entidad\bin\Debug\Entidad.pdb
+C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Entidad\obj\Debug\Entidad.csproj.CoreCompileInputs.cache
+C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Entidad\obj\Debug\Entidad.dll
+C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Entidad\obj\Debug\Entidad.pdb
+C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Entidad\obj\Debug\Entidad.csprojAssemblyReference.cache

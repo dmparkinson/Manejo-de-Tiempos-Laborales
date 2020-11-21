@@ -49,8 +49,11 @@ function registrarTiemposEmpleado() {
     if (select == "") {
         Swal.fire({
             type: 'warning',
-            title: 'Seleccione un tiempo',
-            text: message
+            title: 'Error',
+            text: 'Seleccione un tiempo para registrar',
+            icon: 'warning',
+            showConfirmButton: false,
+            timer: 3000
         })
     } else {
         parametros = { "idTiempo": selectId, "tiempo": select };
@@ -83,7 +86,10 @@ function registrarTiemposEmpleado() {
                         Swal.fire({
                             type: 'success',
                             title: 'Registrado',
-                            text: 'Registro realizado correctamente'
+                            text: 'Registro realizado correctamente',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            timer: 3000
                         })
 
                         //acá se debe refrescar la tabla de registros del empleado
@@ -93,7 +99,10 @@ function registrarTiemposEmpleado() {
                             Swal.fire({
                                 type: 'warning',
                                 title: 'Error',
-                                text: 'Ha ocurrido un error interno. Inténtelo dentro de unos minutos'
+                                text: 'Ha ocurrido un error interno. Inténtelo dentro de unos minutos',
+                                icon: 'warning',
+                                showConfirmButton: false,
+                                timer: 3000
                             })
                         } else {
                             if (response == -1) {
@@ -101,7 +110,10 @@ function registrarTiemposEmpleado() {
                                 Swal.fire({
                                     type: 'warning',
                                     title: 'Error',
-                                    text: 'Para realizar cualquier marca de tiempo, primero debe registrar su entrada al trabajo'
+                                    text: 'Para realizar cualquier marca de tiempo, primero debe registrar su entrada al trabajo',
+                                    icon: 'warning',
+                                    showConfirmButton: false,
+                                    timer: 3000
                                 })
                             } else {
                                 if (response == -2) {
@@ -109,7 +121,10 @@ function registrarTiemposEmpleado() {
                                     Swal.fire({
                                         type: 'warning',
                                         title: 'Error',
-                                        text: 'Ya ha marcado la salida de su trabajo. No se pueden realizar más marcas.'
+                                        text: 'Ya ha marcado la salida de su trabajo. No se pueden realizar más marcas.',
+                                        icon: 'warning',
+                                        showConfirmButton: false,
+                                        timer: 3000
                                     })
                                 } else {
                                     if (response == -3) {
@@ -117,7 +132,10 @@ function registrarTiemposEmpleado() {
                                         Swal.fire({
                                             type: 'warning',
                                             title: 'Error',
-                                            text: 'La marca de tiempo ya existe. Seleccione otra'
+                                            text: 'La marca de tiempo ya existe. Seleccione otra',
+                                            icon: 'warning',
+                                            showConfirmButton: false,
+                                            timer: 3000
                                         })
                                     } else {
                                         if (response == -4) {
@@ -125,7 +143,10 @@ function registrarTiemposEmpleado() {
                                             Swal.fire({
                                                 type: 'warning',
                                                 title: 'Error',
-                                                text: 'La última marca de tiempo no se ha cerrado. Realice la marca de salida correspondiente'
+                                                text: 'La última marca de tiempo no se ha cerrado. Realice la marca de salida correspondiente',
+                                                icon: 'warning',
+                                                showConfirmButton: false,
+                                                timer: 3000
                                             })
                                         } else {
                                             if (response == -5) {
@@ -133,7 +154,10 @@ function registrarTiemposEmpleado() {
                                                 Swal.fire({
                                                     type: 'warning',
                                                     title: 'Error',
-                                                    text: 'Para registrar una marca de salida, primero debe existir la marca de entrada'
+                                                    text: 'Para registrar una marca de salida, primero debe existir la marca de entrada',
+                                                    icon: 'warning',
+                                                    showConfirmButton: false,
+                                                    timer: 3000
                                                 })
                                             }
                                         }
@@ -161,6 +185,9 @@ function refreshMarcasTiempoEmpleado() {
 
                 var tr = document.createElement('tr')
 
+                var td0 = document.createElement('td');
+                td0.innerHTML = array[i].TN_Id_Tiempo;
+
                 var td1 = document.createElement('td');
                 td1.innerHTML = array[i].TC_Horario
 
@@ -170,9 +197,85 @@ function refreshMarcasTiempoEmpleado() {
                 var td3 = document.createElement('td');
                 td3.innerHTML = array[i].TH_Hora
 
+                tr.appendChild(td0)
                 tr.appendChild(td1)
                 tr.appendChild(td2)
                 tr.appendChild(td3)
+
+                document.getElementById('contenidoTabla').appendChild(tr);
+            }
+            //$('#rangoAusenciasIns').val('');
+            //$('#rangoAusenciasIns').attr("placeholder", "Rango de Fechas");
+        },
+        error: function (response) {
+            Swal.fire({
+                type: 'warning',
+                title: 'Error',
+                text: 'Error al refrescar las marcas de tiempo. Inténtelo más tarde',
+                showConfirmButton: false
+            })
+        }
+
+    })
+}
+
+///
+function refreshMarcasTiempoEmpleadoByAdmin() {
+    $.ajax({
+
+        url: '/Empleado_Horarios/refrescarTiempoMarcasByAdmin',
+        type: 'POST',
+        success: function (response) {
+            var array = JSON.parse(response);
+            document.getElementById('contenidoTabla').innerHTML = '';
+            for (i = 0; i < array.length; i++) {
+
+                var tr = document.createElement('tr')
+
+                var td0 = document.createElement('td');
+                td0.innerHTML = array[i].TN_Id_Tiempo;
+
+                var td1 = document.createElement('td');
+                td1.innerHTML = array[i].TC_Horario
+
+                var td2 = document.createElement('td');
+                td2.innerHTML = array[i].TF_Fecha
+
+                var td3 = document.createElement('td');
+                td3.innerHTML = array[i].TH_Hora
+
+                var td4 = document.createElement('td');
+                td4.setAttribute('class', 'd-flex justify-content-center');
+
+                var a1 = document.createElement('a');
+                a1.setAttribute('data-toggle', 'modal');
+                a1.setAttribute('data-target', '#modal-editar');
+                var onclick = 'cargarModalListaHorarioEmpleadoAdmin(' + array[i].TN_Id_Tiempo + ',' + array[i].TN_Id_Usuario + ',' + array[i].TN_Id_Horario + ',' + array[i].TF_Fecha + ',' + array[i].TH_Hora + ',' + array[i].TC_Horario + ')';
+                a1.setAttribute('onclick', onclick);
+
+                var i1 = document.createElement('i');
+                i1.setAttribute('class', 'fas fa-edit text-dark pointer');
+                i1.setAttribute('style', 'font-size: 1.2em;');
+
+                var a2 = document.createElement('a');
+                var onclick1 = 'eliminarListaHorarioEmpleadoAdmin(' + array[i].TN_Id_Tiempo + ')';
+                a2.setAttribute('onclick', onclick1);
+
+                var i2 = document.createElement('i');
+                i2.setAttribute('class', 'fas fa-trash text-dark pointer');
+                i2.setAttribute('style', 'font-size: 1.2em;');
+
+                a1.appendChild(i1);
+                a2.appendChild(i2);
+
+                td4.appendChild(a1)
+                td4.appendChild(a2)
+
+                tr.appendChild(td0)
+                tr.appendChild(td1)
+                tr.appendChild(td2)
+                tr.appendChild(td3)
+                tr.appendChild(td4)
 
                 document.getElementById('contenidoTabla').appendChild(tr);
             }
@@ -213,43 +316,43 @@ function insertarEmpleado() {
                 if (response.success == true) { // Si se elimino
                     if (response.inserted == true) {
                         Swal.fire({
-                            position: 'top-end',
+                            position: 'center',
                             icon: 'success',
                             title: 'Datos registrador exitosamente.',
                             showConfirmButton: false,
-                            timer: 1500
+                            timer: 3000
                         })
 
                         refrescarEmpleados();
 
                     } else {
                         Swal.fire({
-                            position: 'top-end',
+                            position: 'center',
                             icon: 'error',
                             title: 'Identificación o Usuario existente',
                             showConfirmButton: false,
-                            timer: 1500
+                            timer: 3000
                         })
                     }
 
                 } else { // No se se elimino
                     Swal.fire({
-                        position: 'top-end',
+                        position: 'center',
                         icon: 'error',
                         title: 'Error en la Base de Datos',
                         showConfirmButton: false,
-                        timer: 1500
+                        timer: 3000
                     })
                 }
             }
         },
         error: function (response) {
             Swal.fire({
-                position: 'top-end',
+                position: 'center',
                 icon: 'error',
                 title: 'Error en la conexión',
                 showConfirmButton: false,
-                timer: 1500
+                timer: 3000
             })
         }
     });
@@ -283,11 +386,11 @@ function eliminarEmpleado(id) {
                         if (response.deleted == true) // Si el tipo de ausencia se elimino correctamente
                         {
                             Swal.fire({
-                                position: 'top-end',
+                                position: 'center',
                                 icon: 'success',
                                 title: 'Empleado Eliminado',
                                 showConfirmButton: false,
-                                timer: 1500
+                                timer: 3000
                             })
 
 
@@ -296,30 +399,34 @@ function eliminarEmpleado(id) {
                         }
                         else { // si no se elimino
                             Swal.fire({
-                                position: 'top-end',
+                                position: 'center',
                                 icon: 'error',
                                 title: 'Imposible Eliminar, registros relacionados',
                                 showConfirmButton: false,
-                                timer: 1500
+                                timer: 3000
                             })
                         }
 
                     }
                     else { // No se encontro la ausencia
                         Swal.fire({
-                            position: 'top-end',
+                            position: 'center',
                             icon: 'error',
                             title: 'Empleado Inexistente',
                             showConfirmButton: false,
-                            timer: 1500
+                            timer: 3000
                         })
                     }
                 },
                 error: function () {
                     Swal.fire(
-                        'Error inesperado',
-                        'Ocurrió un error en la operación.',
-                        'error'
+                        {
+                            position: 'center',
+                            icon: 'error',
+                            title: 'Error en la operación',
+                            showConfirmButton: false,
+                            timer: 3000
+                        }
                     )
                 }
             });
@@ -392,11 +499,11 @@ function actualizarEmpleado() {
         success: function (response) {
             if (response.success == true) { // Si se elimino
                 Swal.fire({
-                    position: 'top-end',
+                    position: 'center',
                     icon: 'success',
                     title: 'Empleado Actualizado',
                     showConfirmButton: false,
-                    timer: 1500
+                    timer: 3000
                 })
 
 
@@ -404,21 +511,21 @@ function actualizarEmpleado() {
 
             } else {
                 Swal.fire({
-                    position: 'top-end',
+                    position: 'center',
                     icon: 'error',
                     title: 'Error Actualizando',
                     showConfirmButton: false,
-                    timer: 1500
+                    timer: 3000
                 })
             }
         },
         error: function (response) {
             Swal.fire({
-                position: 'top-end',
+                position: 'center',
                 icon: 'error',
                 title: 'Error en la conexión',
                 showConfirmButton: false,
-                timer: 1500
+                timer: 3000
             })
         }
     });
@@ -461,7 +568,13 @@ function refrescarEmpleados() {
             contenido.innerHTML = html;
         },
         error: function (response) {
-            alert('Error refrescando empleados')
+            Swal.fire({
+                position: 'center',
+                title: 'Error',
+                text: 'Error al refrescar los datos',
+                icon: 'warning',
+                timer: 3000
+            })
         }
     });
 
@@ -482,9 +595,12 @@ function listarTiemposEmpleadoAdmin(id_empleado) {
             }
             else {
                 Swal.fire({
+                    position: 'center',
                     title: 'Usuario no encontrado',
                     text: 'Usuario no encontrado, inténtelo de nuevo',
-                    icon: 'warning'
+                    icon: 'warning',
+                    showConfirmButton: false,
+                    timer: 3000
                 })
             }
         }
@@ -492,8 +608,145 @@ function listarTiemposEmpleadoAdmin(id_empleado) {
 
 }
 
+function registrarTiemposEmpleadoByAdmin() {
+    var i
+    var select = "";
+    for (i = 0; i < document.tiemposF.optradio.length; i++) {
+        if (document.tiemposF.optradio[i].checked) {
+            select = document.tiemposF.optradio[i].value;
+            selectId = document.tiemposF.optradio[i].id;
+            break;
+        }
+    }
 
-//listar de los horarios del empleado desde el admin
+    if (select == "") {
+        Swal.fire({
+            type: 'warning',
+            title: 'Error',
+            text: 'Seleccione un tiempo para registrar',
+            icon: 'error',
+            showConfirmButton: false,
+            timer: 3000
+        })
+    } else {
+        parametros = { "idTiempo": selectId, "tiempo": select };
+        $.ajax(
+            {
+                data: parametros,
+                url: '/Empleado_Horarios/registrarTiemposEmpleadoByAdmin',
+                type: 'post',
+                beforeSend: function () {
+                    var div = document.createElement('div');
+                    div.setAttribute('class', 'd-flex align-items-center justify-content-center');
+
+                    var divSpin = document.createElement('div');
+                    divSpin.setAttribute('class', 'spinner-grow text-primary');
+                    divSpin.setAttribute('style', 'width: 2em; height: 2em;');
+                    divSpin.setAttribute('role', 'status');
+
+                    var newSpan = document.createElement('strong');
+                    //newSpan.setAttribute('class', 'sr-only');
+                    newSpan.innerHTML = 'Registrando...';
+
+                    div.appendChild(divSpin);
+                    div.appendChild(newSpan);
+
+                    document.getElementById('respuesta').appendChild(div);
+                }, //antes de enviar
+                success: function (response) {
+                    document.getElementById('respuesta').innerHTML = "";
+                    if (response == 1) {
+                        Swal.fire({
+                            type: 'success',
+                            title: 'Registrado',
+                            text: 'Registro realizado correctamente',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            timer: 3000
+                        })
+
+                        //acá se debe refrescar la tabla de registros del empleado
+                        refreshMarcasTiempoEmpleadoByAdmin()
+                    } else {
+                        if (response == 0) {
+                            Swal.fire({
+                                type: 'warning',
+                                title: 'Error',
+                                text: 'Ha ocurrido un error interno. Inténtelo dentro de unos minutos',
+                                icon: 'warning',
+                                showConfirmButton: false,
+                                timer: 3000
+                            })
+                        } else {
+                            if (response == -1) {
+                                //aun no se ha marcado la entrada
+                                Swal.fire({
+                                    type: 'warning',
+                                    title: 'Error',
+                                    text: 'Para realizar cualquier marca de tiempo, primero debe registrar su entrada al trabajo',
+                                    icon: 'warning',
+                                    showConfirmButton: false,
+                                    timer: 3000
+                                })
+                            } else {
+                                if (response == -2) {
+                                    //se desea realizar cualquier registro, pero ya se marcó la salida del trabajo
+                                    Swal.fire({
+                                        type: 'warning',
+                                        title: 'Error',
+                                        text: 'Ya ha marcado la salida de su trabajo. No se pueden realizar más marcas.',
+                                        icon: 'warning',
+                                        showConfirmButton: false,
+                                        timer: 3000
+                                    })
+                                } else {
+                                    if (response == -3) {
+                                        //se desea realizar cualquier registro, pero ya se marcó la salida del trabajo
+                                        Swal.fire({
+                                            type: 'warning',
+                                            title: 'Error',
+                                            text: 'La marca de tiempo ya existe. Seleccione otra',
+                                            icon: 'warning',
+                                            showConfirmButton: false,
+                                            timer: 3000
+                                        })
+                                    } else {
+                                        if (response == -4) {
+                                            //se desea realizar cualquier registro, pero ya se marcó la salida del trabajo
+                                            Swal.fire({
+                                                type: 'warning',
+                                                title: 'Error',
+                                                text: 'La última marca de tiempo no se ha cerrado. Realice la marca de salida correspondiente',
+                                                icon: 'warning',
+                                                showConfirmButton: false,
+                                                timer: 3000
+                                            })
+                                        } else {
+                                            if (response == -5) {
+                                                //se desea realizar cualquier registro, pero ya se marcó la salida del trabajo
+                                                Swal.fire({
+                                                    type: 'warning',
+                                                    title: 'Error',
+                                                    text: 'Para registrar una marca de salida, primero debe existir la marca de entrada',
+                                                    icon: 'warning',
+                                                    showConfirmButton: false,
+                                                    timer: 3000
+                                                })
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                } //se ha enviado
+            }
+        );
+    }
+}
+
+
 function cargarModalListaHorarioEmpleadoAdmin(idT, idU, idH, fecha, hora, tiempo) {
     window.localStorage.setItem('idT', idT);
     window.localStorage.setItem('idU', idU);
@@ -508,45 +761,55 @@ function editarListaHorarioEmpleadoAdmin() {
     var option = document.getElementById('tiempoEdit');
     var select = option.options[option.selectedIndex].id;
 
-    parametros = {
-        "idT": window.localStorage.getItem('idT'),
-        "idU": window.localStorage.getItem('idU'),
-        "idH": select,
-        "fecha": document.getElementById('fechaEdit').value,
-        "hora": document.getElementById('horaEdit').value,
-        "tiempo": document.getElementById('tiempoEdit').value
-    };
+    if (document.getElementById('fechaEdit').value == '') {
+        Swal.fire({
+            position: 'center',
+            icon: 'Error',
+            title: 'Seleccione una fecha válida',
+            showConfirmButton: false,
+            timer: 3000
+        })
+    } else {
+        parametros = {
+            "idT": window.localStorage.getItem('idT'),
+            "idU": window.localStorage.getItem('idU'),
+            "idH": select,
+            "fecha": document.getElementById('fechaEdit').value,
+            "hora": document.getElementById('horaEdit').value,
+            "tiempo": document.getElementById('tiempoEdit').value
+        };
 
-    $.ajax(
-        {
-            data: parametros,
-            url: '/Historico_Tiempos_Laborales/Editar',
-            type: "POST",
-            success: function (response) {
+        $.ajax(
+            {
+                data: parametros,
+                url: '/Historico_Tiempos_Laborales/Editar',
+                type: "POST",
+                success: function (response) {
 
-                if (response == 1) {
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'Datos modificados exitosamente',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
+                    if (response == 1) {
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Datos modificados exitosamente',
+                            showConfirmButton: false,
+                            timer: 3000
+                        })
 
-                    //actualizarTablaTiemposHistorico()
-                } else {
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'warning',
-                        title: 'Error al modificar',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
+                        //acá se debe refrescar la tabla de registros del empleado
+                        refreshMarcasTiempoEmpleadoByAdmin()
+                    } else {
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'warning',
+                            title: 'Error al modificar',
+                            showConfirmButton: false,
+                            timer: 3000
+                        })
+                    }
                 }
             }
-        }
-    );
-
+        );
+    }
 }
 
 function eliminarListaHorarioEmpleadoAdmin(idTiempo) {
@@ -573,27 +836,38 @@ function eliminarListaHorarioEmpleadoAdmin(idTiempo) {
                     if (response == 1) // Si el tiempo de horario se elimino correctamente
                     {
                         Swal.fire(
-                            'Eliminado!',
-                            'El tiempo de horario se elimino correctamente.',
-                            'success'
+                            {
+                                position: 'center',
+                                icon: 'success',
+                                title: 'Eliminado exitosamente',
+                                showConfirmButton: false,
+                                timer: 3000
+                            }
                         )
 
-                        //actualizarTablaTiemposHistorico()
+                        //acá se debe refrescar la tabla de registros del empleado
+                        refreshMarcasTiempoEmpleadoByAdmin()
                     }
                     else { // si no se elimino
-                        Swal.fire(
-                            'No eliminado',
-                            'El tiempo de horario seleccionado no se puede eliminar.',
-                            'warning'
-                        )
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'warning',
+                            title: 'No se ha eliminado',
+                            //text: 'No se ha eliminado',
+                            showConfirmButton: false,
+                            timer: 3000
+                        })
                     }
                 },
                 error: function () {
-                    Swal.fire(
-                        'Error inesperado',
-                        'Ocurrió un error en la operación.',
-                        'error'
-                    )
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'warning',
+                        title: 'Ha ocurrido un error',
+                        //text: 'No se ha eliminado',
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
                 }
             });
 
