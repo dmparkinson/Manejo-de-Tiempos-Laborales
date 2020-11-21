@@ -233,10 +233,8 @@ function refreshTableCatalogoHorarios(){
                 var div3 = document.createElement('div');
                 div3.setAttribute('class', 'col-md-6');
 
-                var btn1 = document.createElement('button');
+                var btn1 = document.createElement('a');
                 btn1.setAttribute('id', array[i].TC_Horario);
-                btn1.setAttribute('type', 'button');
-                btn1.setAttribute('class', 'btn btn-success btn-sm');
                 btn1.setAttribute('data-toggle', 'modal');
                 btn1.setAttribute('data_target', '#modal-editar');
                 var i1 = document.createElement('i');
@@ -245,10 +243,8 @@ function refreshTableCatalogoHorarios(){
                 btn1.appendChild(i1);
 
                 //<button id="@temp.TC_Horario" class="btn btn-danger btn-sm" onclick="alertAdvertenciaEliminarTiempos(this)"><i class="fa fa-trash pointer" style="font-size:1.5em;"></i> </button>
-                var btn2 = document.createElement('button');
+                var btn2 = document.createElement('a');
                 btn2.setAttribute('id', array[i].TC_Horario);
-                btn2.setAttribute('type', 'button');
-                btn2.setAttribute('class', 'btn btn-danger btn-sm');
                 btn2.setAttribute('onclick', 'alertAdvertenciaEliminarTiempos(this)');
                 var i2 = document.createElement('i');
                 i2.setAttribute('class', 'fas fa-trash text-dark pointer');

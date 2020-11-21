@@ -188,9 +188,10 @@ function refrescarHistoricoAusencias() {
 
             $('#contenidoTabla tr').remove();      // Eliminar contenido de la tabla
             // Construir la nueva fila
-
+            
             for (x = 0; x < lista.length; x++) {
-                var info = '<tr> <td>' + lista[x].empleado.TC_Identificacion + '</td>' +
+                var info = '<tr> <td>' + lista[x].TN_Id_Ausencia + '</td>' +
+                    '<td>' + lista[x].empleado.TC_Identificacion + '</td>' +
                     '<td>' + lista[x].empleado.TC_Nombre_Usuario + '</td>' +
                     '<td>' + lista[x].empleado.TC_Primer_Apellido + '</td>' +
                     '<td>' + lista[x].empleado.TC_Segundo_Apellido + '</td>' +
