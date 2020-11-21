@@ -227,8 +227,9 @@ function refrescarCatalogoAusencia() {
             // Construir la nueva fila
 
             for (x = 0; x < lista.length; x++) {
-                var info = '<tr> <td>' + lista[x].TC_Tipo_Ausencia + '</td>'+
-                    ' <td><div class="d-flex justify-content-center">' +
+                var info = '<tr> <td>' + lista[x].TN_Id_Tipo_Ausencia + '</td>' +
+                    '<td>' + lista[x].TC_Tipo_Ausencia + '</td>' +
+                    '<td><div class="d-flex justify-content-center">' +
                     '<a data-toggle="modal" data-target="#modal-editar" href= "#" onclick="cargarEditCAusencia(' + lista[x].TN_Id_Tipo_Ausencia + ', this)"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>' +
                     '<a onclick="eliminarTipoAusencia(' + lista[x].TN_Id_Tipo_Ausencia + ', this)" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>' +
                     '</div > </td> </tr>';

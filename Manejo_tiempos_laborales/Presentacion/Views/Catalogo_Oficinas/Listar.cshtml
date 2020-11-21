@@ -39,7 +39,6 @@
                 <table id="table" class="table table-bordered table-hover">
                     <thead class="thead-dark text-center">
                         <tr>
-                            <th>ID</th>
                             <th>Código</th>
                             <th>Nombre</th>
                             <th>Circuito</th>
@@ -53,7 +52,6 @@
                         @foreach (Entidad.Oficina o in ViewBag.Lista)
                         {
                             <tr>
-                                <td>@o.TN_Id_Oficina</td>
                                 <td>@o.TC_Codigo</td>
                                 <td>@o.TC_Nombre_Oficina</td>
                                 <td>@o.TC_Desc_Circuito</td>

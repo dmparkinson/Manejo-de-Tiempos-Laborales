@@ -28,3 +28,8 @@ C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\Manejo_ti
 C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Entidad\obj\Debug\Entidad.dll
 C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Entidad\obj\Debug\Entidad.pdb
 C:\Users\congr\Documents\Proyecto Analisis\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Entidad\obj\Debug\Entidad.csprojAssemblyReference.cache
+D:\Documents\Universidad\Analisis\Proyectos\Original\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Entidad\bin\Debug\Entidad.dll
+D:\Documents\Universidad\Analisis\Proyectos\Original\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Entidad\bin\Debug\Entidad.pdb
+D:\Documents\Universidad\Analisis\Proyectos\Original\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Entidad\obj\Debug\Entidad.csproj.CoreCompileInputs.cache
+D:\Documents\Universidad\Analisis\Proyectos\Original\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Entidad\obj\Debug\Entidad.dll
+D:\Documents\Universidad\Analisis\Proyectos\Original\Manejo-de-Tiempos-Laborales\Manejo_tiempos_laborales\Entidad\obj\Debug\Entidad.pdb

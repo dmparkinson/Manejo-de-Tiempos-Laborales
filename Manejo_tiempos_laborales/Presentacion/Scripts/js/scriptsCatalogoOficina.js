@@ -261,7 +261,6 @@ function refrescarOficinas() {
             var html = "";
             for (i = 0; i < array.length; i++) {
                 html += '<tr>';
-                html += '<td>' + array[i].TN_Id_Oficina + '</td>';
                 html += '<td>' + array[i].TC_Codigo + '</td>';
                 html += '<td>' + array[i].TC_Nombre_Oficina + '</td>';
                 html +='<td>' + array[i].TC_Desc_Circuito + '</td>';

@@ -44,7 +44,7 @@
                     </div>
                 </div>
                 <div class="row justify-content-center">
-                    <input type="button" value="Filtrar" class="btn btn-info btn-sm" onclick="filtrarHorarios(5, 7)" />
+                    <input type="button" value="Filtrar" class="btn btn-info btn-sm" onclick="filtrarHorarios(4, 6)" />
                     <input type="button" value="Limpiar" class="btn btn-danger btn-sm" onclick="vaciarFiltroHorario(1)" />
                 </div>
             </div>
@@ -66,7 +66,6 @@
                 <table id="table" class="table table-bordered table-hover mt-1">
                     <thead class="thead-dark text-center">
                         <tr>
-                            <th>Código</th>
                             <th>Cédula</th>
                             <th>Nombre</th>
                             <th>Apellido 1</th>
@@ -81,7 +80,6 @@
                         @foreach (var item in ViewBag.ListaHistoricoTiempos)
                         {
                             <tr>
-                                <td>@item.TN_Id_Tiempo</td>
                                 <td>@item.empleado.TC_Identificacion</td>
                                 <td>@item.empleado.TC_Nombre_Usuario</td>
                                 <td>@item.empleado.TC_Primer_Apellido </td>

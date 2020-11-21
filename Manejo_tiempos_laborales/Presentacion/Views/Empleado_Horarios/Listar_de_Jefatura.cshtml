@@ -85,49 +85,39 @@
                             <input type="button" value="Filtrar" class="btn btn-info btn-sm" onclick="filtrarHorarios(2, 1)" />
                             <input type="button" value="Limpiar" class="btn btn-danger btn-sm" onclick="vaciarFiltroHorario(0)" />
                         </div>
-                        </div>
-                        <div class="align-self-end">
-                            <input type="button" value="Reporte" class="btn btn-secondary btn-sm" onclick="exportPDF('Horarios de @ViewBag.Message')" />
-                        </div>
                     </div>
-                    <div>
+                    <div class="align-self-end">
                         <input type="button" value="Reporte" class="btn btn-secondary btn-sm" onclick="exportPDF('Horarios de @ViewBag.Message')" />
                     </div>
                 </div>
-                <table id="table" class="table table-bordered table-hover">
-                    <thead class="thead-dark text-center">
-                        <tr>
-                            <th>Id</th>
-                            <th>Registro</th>
-                            <th>Fecha</th>
-                            <th>Hora</th>
-                        </tr>
-                    </thead>
-                    <tbody id="contenidoTabla">
-                        @foreach (Entidad.Tiempo temp in ViewBag.listaTiempo)
-                        {
-                            <tr>
-                                <td>@temp.TN_Id_Tiempo</td>
-                                <td>@temp.TC_Horario</td>
-                                <td>@temp.TF_Fecha</td>
-                                <td>@temp.TH_Hora</td>
-                            </tr>
-                        </thead>
-                        <tbody id="contenidoTabla">
-                            @foreach (Entidad.Tiempo temp in ViewBag.listaTiempo)
-                            {
-                                <tr>
-                                    <td>@temp.TN_Id_Tiempo</td>
-                                    <td>@temp.TC_Horario</td>
-                                    <td>@temp.TF_Fecha</td>
-                                    <td>@temp.TH_Hora</td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
+                <div>
+                    <input type="button" value="Reporte" class="btn btn-secondary btn-sm" onclick="exportPDF('Horarios de @ViewBag.Message')" />
                 </div>
+            </div>
+            <table id="table" class="table table-bordered table-hover">
+                <thead class="thead-dark text-center">
+                    <tr>
+                        <th>Id</th>
+                        <th>Registro</th>
+                        <th>Fecha</th>
+                        <th>Hora</th>
+                    </tr>
+                </thead>
+                <tbody id="contenidoTabla">
+                    @foreach (Entidad.Tiempo temp in ViewBag.listaTiempo)
+                    {
+                        <tr>
+                            <td>@temp.TN_Id_Tiempo</td>
+                            <td>@temp.TC_Horario</td>
+                            <td>@temp.TF_Fecha</td>
+                            <td>@temp.TH_Hora</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
     </div>
+    
     @Html.Partial("_Footer")
 
 

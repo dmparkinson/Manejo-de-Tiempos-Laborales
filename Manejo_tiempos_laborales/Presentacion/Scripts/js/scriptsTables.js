@@ -193,7 +193,6 @@ function filtrarHorarios(colFecha, colRegistro) {
     var fechaFiltro = document.getElementById("fechaFiltroHrario").value;
     let rows = document.querySelectorAll("#contenidoTabla tr");  // Obtener las filas de la tabla
     let this_row = 0;
-    console.log(fechaFiltro);
     if (fechaFiltro.length > 0) {// Filtrar por fecha si el usuario lo solicito
         for (this_row = 0; this_row < rows.length; this_row++) {
             var row = $(rows[this_row]).closest('tr');                  // Fila actual
