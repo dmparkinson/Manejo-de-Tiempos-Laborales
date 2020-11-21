@@ -147,7 +147,30 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\daterangepicker.css" />
+    <Content Include="Content\images\aus1.png" />
+    <Content Include="Content\images\ausAdmin.png" />
+    <Content Include="Content\images\austime.png" />
+    <Content Include="Content\images\del1.png" />
+    <Content Include="Content\images\del2.png" />
+    <Content Include="Content\images\edit1.png" />
+    <Content Include="Content\images\edit2.png" />
+    <Content Include="Content\images\editdel1.png" />
     <Content Include="Content\images\Escudo OIJ.png" />
+    <Content Include="Content\images\Filtro1.png" />
+    <Content Include="Content\images\Filtro2.png" />
+    <Content Include="Content\images\filtroB1.png" />
+    <Content Include="Content\images\FiltroB2.png" />
+    <Content Include="Content\images\ins1.png" />
+    <Content Include="Content\images\ins2.png" />
+    <Content Include="Content\images\Reporte1.png" />
+    <Content Include="Content\images\Reporte2.png" />
+    <Content Include="Content\images\Reporte3.png" />
+    <Content Include="Content\images\time1.png" />
+    <Content Include="Content\images\time2.png" />
+    <Content Include="Content\images\time3.png" />
+    <Content Include="Content\images\timeAdmin.png" />
+    <Content Include="Content\images\timeError1.png" />
+    <Content Include="Content\images\timeError2.png" />
     <Content Include="Content\Styles.css" />
     <Content Include="dist\css\adminlte.css" />
     <Content Include="dist\css\adminlte.min.css" />
@@ -496,6 +519,7 @@
     <Content Include="Views\Error\Error.cshtml" />
     <Content Include="Views\Error\Error404.cshtml" />
     <Content Include="Views\Error\Unknown.cshtml" />
+    <Content Include="Views\Account\RedirectoToHelp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

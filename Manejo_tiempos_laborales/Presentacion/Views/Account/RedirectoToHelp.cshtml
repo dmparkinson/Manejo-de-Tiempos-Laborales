@@ -1,0 +1,549 @@
+﻿@{
+    ViewBag.Title = "Manuales de Ayuda";
+}
+
+@{
+
+    if (Session["UsserType"].ToString() == "Administración")
+    {
+        @Html.Partial("_Header_Admin")
+    }
+    else if (Session["UsserType"].ToString() == "Jefatura")
+    {
+        @Html.Partial("_Header_Jefatura")
+    }
+    else if (Session["UsserType"].ToString() == "Estándar")
+    {
+        @Html.Partial("_Header_Estandar")
+    }
+
+}
+
+<div class="container ">
+    <div class="row mt-2 justify-content-center">
+        <h3>@ViewBag.Title</h3>
+    </div>
+</div>
+
+<div class="container">
+    <p>
+        <a class="btn btn-dark" data-toggle="collapse" href="#collapseManualEstandar" role="button" aria-expanded="false" aria-controls="collapseManualEstandar">
+            Manual Estándar
+        </a>
+    </p>
+
+    <div class="collapse" id="collapseManualEstandar">
+        <div class="card card-body">
+            <div class="card card-body">
+                En esta sección se dará una breve explicación de como proceder con el sistema para un usuario estándar, en su flujo normal de trabajo.
+            </div>
+
+            <div class="container">
+                <p>
+                    <a class="btn btn-secondary" data-toggle="collapse" href="#collapseHorarios" role="button" aria-expanded="false" aria-controls="collapseHorarios">
+                        Horarios
+                    </a>
+                </p>
+                <div class="collapse" id="collapseHorarios">
+                    <div class="card card-body">
+                        <p>- Para marcar un tiempo laboral es necesario escoger un horario en la ventana izquierda y presionar el botón. <b class="btn btn-primary btn-sm">Guardar</b>. 
+                        Previo a esto podremos visualizar nuestro tiempo marcado en la tabla derecha.</p>
+                        <p>- Podemos filtrar nuestra tabla de tiempos rellenando los campos de <b>Fecha, Hora y Motivo</b> y dando click en el botón <b class="btn btn-info btn-sm">Filtrar</b>.
+                        Además es posible limpiar el filtro realizado con el botón <b class="btn btn-danger btn-sm">Limpiar</b></p>
+                        <p>- Es posible realizar un reporte PDF de nuestra tabla de horarios, dando click en el botón <b class="btn btn-secondary btn-sm">Reporte</b> y se procederá con la descarga 
+                        del documento.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <p>
+                    <a class="btn btn-secondary" data-toggle="collapse" href="#collapseAusencias" role="button" aria-expanded="false" aria-controls="collapseAusencias">
+                        Ausencias
+                    </a>
+                </p>
+                <div class="collapse" id="collapseAusencias">
+                    <div class="card card-body">
+                        <p>
+                            - En esta sección se nos muestran nuestras propias ausencias en la tabla inferior, podemos filtrar nuestra tabla de ausencias rellenando los campos de <b>Fecha Ausencias y Motivo</b> y dando click en el botón 
+                            <b class="btn btn-info btn-sm">Filtrar</b>. Además es posible limpiar el filtro realizado con el botón <b class="btn btn-danger btn-sm">Limpiar</b>
+                        </p>
+                        <p>
+                            - Es posible realizar un reporte PDF de nuestra tabla de ausencias, dando click en el botón <b class="btn btn-secondary btn-sm">Reporte</b> y se procederá con la descarga
+                            del documento.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <p>
+        <a class="btn btn-dark" data-toggle="collapse" href="#collapseManualAdmin" role="button" aria-expanded="false" aria-controls="collapseManualAdmin">
+            Manual Administración
+        </a>
+    </p>
+
+    <div class="collapse" id="collapseManualAdmin">
+        <div class="card card-body">
+            <div class="card card-body">
+                En esta sección se dará una breve explicación de como proceder con el sistema para un usuario administrador, en un flujo alterno de trabajo en el cual puede realizar múltiples funciones, como el manejo de catálogos, empleados e históricos.
+            </div>
+
+            <div class="container">
+                <p>
+                    <a class="btn btn-secondary" data-toggle="collapse" href="#collapseHistoricos" role="button" aria-expanded="false" aria-controls="collapseHistoricos">
+                        Historicos
+                    </a>
+                </p>
+                <div class="collapse" id="collapseHistoricos">
+                    <div class="card card-body">
+                        <p>- En la sección de historicos podemos observar el historial completo tanto de <b>Ausencias</b> como de <b>Tiempos laborales</b>, en ambas secciones nos es posible filtrar las tablas rellenando sus respectivos campos
+                        de texto y presionando el botón <b class="btn btn-info btn-sm">Filtrar</b>, de igual manera podemos limpiar estos filtros con <b class="btn btn-danger btn-sm">Limpiar</b>, también es posible filtrar con el campo de texto
+                        <b>Busqueda</b> escribiendo en este lo deseado.</p>
+                        <p>
+                            - Es posible realizar un reporte PDF de las tablas de históricos, dando click en el botón <b class="btn btn-secondary btn-sm">Reporte</b> y se procederá con la descarga
+                            del documento.
+                        </p>
+                        <p> - Como administradores tenemos la capacidad de <i class="fas fa-edit text-dark pointer"></i><b>Editar</b> y de <i class="fas fa-trash text-dark pointer"></i>
+                        <b>Eliminar</b> los históricos dando click en dichos botones de la fila a modificar.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <p>
+                    <a class="btn btn-secondary" data-toggle="collapse" href="#collapseCatalogos" role="button" aria-expanded="false" aria-controls="collapseCatalogos">
+                        Catálogos
+                    </a>
+                </p>
+                <div class="collapse" id="collapseCatalogos">
+                    <div class="card card-body">
+                        <p>
+                            - En la sección de catálogos podemos observar las tablas de <b>Ausencias, Tiempos laborales, Roles, Puestos, Circuitos y Oficinas</b>, en estas secciones nos es posible filtrar la tabla inferior con el campo de texto
+                            <b>Busqueda</b> escribiendo en este lo deseado.
+                        </p>
+                        <p>
+                            - Es posible realizar un reporte PDF de las tablas de catálogos, dando click en el botón <b class="btn btn-secondary btn-sm">Reporte</b> y se procederá con la descarga
+                            del documento.
+                        </p>
+                        <p>
+                            - Como administradores tenemos la capacidad de <i class="fas fa-edit text-dark pointer"></i><b>Editar</b> y de <i class="fas fa-trash text-dark pointer"></i>
+                            <b>Eliminar</b> los catálogos dando click en dichos botones de la fila a modificar.
+                        </p>
+                        <p>
+                            - El sistema nos permite agregar nuevos registros a los catálogos rellenando los campos de la ventana superior <b>Añadir Nuevo</b> y presionando el botón <b class="btn btn-primary btn-sm">Guardar</b>, sin embargo, para
+                            el catálogo de <b>Oficinas</b>, tenemos un sistema más complejo para hacer un registro, en donde debemos presionar el botón <b class="btn btn-primary btn-sm"><i class="fa fa-plus-square"></i></b>, rellenar los campos de la
+                            ventana emergente y presionar el botón <b class="btn btn-info btn-sm">Agregar</b>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <p>
+                    <a class="btn btn-secondary" data-toggle="collapse" href="#collapseEmpleados" role="button" aria-expanded="false" aria-controls="collapseEmpleados">
+                        Empleados
+                    </a>
+                </p>
+                <div class="collapse" id="collapseEmpleados">
+                    <div class="card card-body">
+                        <p>
+                            - En la sección de catálogos podemos observar la tabla de <b>Empleados</b>, en estas secciones nos es posible filtrar la tabla inferior con el campo de texto
+                            <b>Busqueda</b> escribiendo en este lo deseado.
+                        </p>
+                        <p>
+                            - Es posible realizar un reporte PDF de la tabla de empleados, dando click en el botón <b class="btn btn-secondary btn-sm">Reporte</b> y se procederá con la descarga
+                            del documento.
+                        </p>
+                        <p>
+                            - El sistema nos permite agregar nuevos empleados, debemos presionar el botón <b class="btn btn-primary btn-sm"><i class="fa fa-plus-square"></i>Nuevo</b>, rellenar los campos de la
+                            ventana emergente y presionar el botón <b class="btn btn-info btn-sm">Agregar</b>.
+                        </p>
+                        <p>
+                            - Como administradores tenemos la capacidad de <i class="fas fa-edit text-info pointer"></i><b>Editar</b> y de <i class="fas fa-trash text-danger pointer"></i>
+                            <b>Eliminar</b> los empleados dando click en dichos botones de la fila a modificar.
+                        </p>
+                        <p>
+                            - Además podemos ingresar a las <i class="fas fa-business-time text-dark pointer"></i><b>Ausencias</b> y <i class="fas fa-calendar-times text-dark pointer"></i><b>Tiempos</b> de cada uno de los <b>Empleados</b>,
+                            esto nos redireccionará a sus respectivas ventanas.
+                        </p>
+                    </div>
+                    <div class="container">
+                        <p>
+                            <a class="btn btn-secondary" data-toggle="collapse" href="#collapseTiemposE" role="button" aria-expanded="false" aria-controls="collapseTiemposE">
+                                Tiempos del Empleado
+                            </a>
+                        </p>
+                        <div class="collapse" id="collapseTiemposE">
+                            <div class="card card-body">
+                                <p>
+                                    - En la sección de <b>Tiempos del Empleado</b> podemos observar las marcas de tiempo del empleado seleccionado anteriormente, nos es posible filtrar la tabla derecha rellenando sus respectivos campos
+                                    de texto y presionando el botón <b class="btn btn-info btn-sm">Filtrar</b>, de igual manera podemos limpiar estos filtros con <b class="btn btn-danger btn-sm">Limpiar</b>.
+                                </p>
+                                <p>
+                                    - Es posible realizar un reporte PDF de la tabla de <b>Tiempos del Empleado</b>, dando click en el botón <b class="btn btn-secondary btn-sm">Reporte</b> y se procederá con la descarga
+                                    del documento.
+                                </p>
+                                <p>
+                                    - Como administradores tenemos la capacidad de <i class="fas fa-edit text-dark pointer"></i><b>Editar</b> y de <i class="fas fa-trash text-dark pointer"></i>
+                                    <b>Eliminar</b> los tiempos de empleados dando click en dichos botones de la fila a modificar.
+                                </p>
+                                <p>
+                                    - El sistema nos permite agregar nuevos registros a los tiempos de un empleado, seleccionando el tiempo a registrar en la ventana izquierda y presionando el botón <b class="btn btn-primary btn-sm">Guardar</b>, 
+                                    una vez hecho esto, se reflejará el nuevo registro en la tabla derecha.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <p>
+                            <a class="btn btn-secondary" data-toggle="collapse" href="#collapseAusenciasE" role="button" aria-expanded="false" aria-controls="collapseAusenciasE">
+                                Ausencias del Empleado
+                            </a>
+                        </p>
+                        <div class="collapse" id="collapseAusenciasE">
+                            <div class="card card-body">
+                                <p>
+                                    - En la sección de <b>Ausencias del Empleado</b> podemos observar la tabla de <b>Tiempos laborales</b> del empleado seleccionado previamente, en esta secciones nos es posible filtrar la tabla inferior,
+                                    rellenando los campos <b>Fecha Ausencia y Motivo</b> y presionando el botón <b class="btn btn-info btn-sm">Filtrar</b>, de igual manera podemos limpiar estos filtros con <b class="btn btn-danger btn-sm">Limpiar</b>.                                 
+                                </p>
+                                <p>
+                                    - Es posible realizar un reporte PDF de la tabla de <b>Ausencias del Empleado</b>, dando click en el botón <b class="btn btn-secondary btn-sm">Reporte</b> y se procederá con la descarga
+                                    del documento.
+                                </p>
+                                <p>
+                                    - Como administradores tenemos la capacidad de <i class="fas fa-edit text-dark pointer"></i><b>Editar</b> y de <i class="fas fa-trash text-dark pointer"></i>
+                                    <b>Eliminar</b> las ausencias del empleado dando click en dichos botones de la fila a modificar.
+                                </p>
+                                <p>
+                                    - El sistema nos permite agregar nuevos registros a los catálogos rellenando los campos <b>Fecha Ausencia y Motivo</b> de la ventana superior <b>Añadir Nuevo</b> y presionando el botón 
+                                    <b class="btn btn-primary btn-sm">Guardar</b>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <p>
+        <a class="btn btn-dark" data-toggle="collapse" href="#collapseManualJefatura" role="button" aria-expanded="false" aria-controls="collapseManualJefatura">
+            Manual Jefatura
+        </a>
+    </p>
+
+    <div class="collapse" id="collapseManualJefatura">
+        <div class="card card-body">
+            <div class="card card-body">
+                En esta sección se dará una breve explicación de como proceder con el sistema para un usuario jefatura, en un flujo alterno de trabajo en el cual puede realizar funciones limitadas a la supervisión de empleados e históricos.
+            </div>
+            <div class="container">
+                <p>
+                    <a class="btn btn-secondary" data-toggle="collapse" href="#collapseHistoricosJ" role="button" aria-expanded="false" aria-controls="collapseHistoricosJ">
+                        Historicos
+                    </a>
+                </p>
+                <div class="collapse" id="collapseHistoricosJ">
+                    <div class="card card-body">
+                        <p>
+                            - En la sección de historicos podemos observar el historial completo tanto de <b>Ausencias</b> como de <b>Tiempos laborales</b>, en ambas secciones nos es posible filtrar las tablas rellenando sus respectivos campos
+                            de texto y presionando el botón <b class="btn btn-info btn-sm">Filtrar</b>, de igual manera podemos limpiar estos filtros con <b class="btn btn-danger btn-sm">Limpiar</b>, también es posible filtrar con el campo de texto
+                            <b>Busqueda</b> escribiendo en este lo deseado.
+                        </p>
+                        <p>
+                            - Es posible realizar un reporte PDF de las tablas de históricos, dando click en el botón <b class="btn btn-secondary btn-sm">Reporte</b> y se procederá con la descarga
+                            del documento.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <p>
+                    <a class="btn btn-secondary" data-toggle="collapse" href="#collapseEmpleadosJ" role="button" aria-expanded="false" aria-controls="collapseEmpleadosJ">
+                        Empleados
+                    </a>
+                </p>
+                <div class="collapse" id="collapseEmpleadosJ">
+                    <div class="card card-body">
+                        <p>
+                            - En la sección de catálogos podemos observar la tabla de <b>Empleados</b>, en estas secciones nos es posible filtrar la tabla inferior con el campo de texto
+                            <b>Busqueda</b> escribiendo en este lo deseado.
+                        </p>
+                        <p>
+                            - Es posible realizar un reporte PDF de la tabla de empleados, dando click en el botón <b class="btn btn-secondary btn-sm">Reporte</b> y se procederá con la descarga
+                            del documento.
+                        </p>
+                        <p>
+                            - Además podemos ingresar a las <i class="fas fa-business-time text-dark pointer"></i><b>Ausencias</b> y <i class="fas fa-calendar-times text-dark pointer"></i><b>Tiempos</b> de cada uno de los <b>Empleados</b>,
+                            esto nos redireccionará a sus respectivas ventanas.
+                        </p>
+                    </div>
+                    <div class="container">
+                        <p>
+                            <a class="btn btn-secondary" data-toggle="collapse" href="#collapseTiemposEJ" role="button" aria-expanded="false" aria-controls="collapseTiemposEJ">
+                                Tiempos del Empleado jefatura
+                            </a>
+                        </p>
+                        <div class="collapse" id="collapseTiemposEJ">
+                            <div class="card card-body">
+                                <p>
+                                    - En la sección de <b>Tiempos del Empleado</b> podemos observar las marcas de tiempo del empleado seleccionado anteriormente, nos es posible filtrar la tabla derecha rellenando sus respectivos campos
+                                    de texto y presionando el botón <b class="btn btn-info btn-sm">Filtrar</b>, de igual manera podemos limpiar estos filtros con <b class="btn btn-danger btn-sm">Limpiar</b>.
+                                </p>
+                                <p>
+                                    - Es posible realizar un reporte PDF de la tabla de <b>Tiempos del Empleado</b>, dando click en el botón <b class="btn btn-secondary btn-sm">Reporte</b> y se procederá con la descarga
+                                    del documento.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <p>
+                            <a class="btn btn-secondary" data-toggle="collapse" href="#collapseAusenciasEJ" role="button" aria-expanded="false" aria-controls="collapseAusenciasEJ">
+                                Ausencias del Empleado jefatura
+                            </a>
+                        </p>
+                        <div class="collapse" id="collapseAusenciasEJ">
+                            <div class="card card-body">
+                                <p>
+                                    - En la sección de <b>Ausencias del Empleado</b> podemos observar la tabla de <b>Tiempos laborales</b> del empleado seleccionado previamente, en esta secciones nos es posible filtrar la tabla inferior,
+                                    rellenando los campos <b>Fecha Ausencia y Motivo</b> y presionando el botón <b class="btn btn-info btn-sm">Filtrar</b>, de igual manera podemos limpiar estos filtros con <b class="btn btn-danger btn-sm">Limpiar</b>.
+                                </p>
+                                <p>
+                                    - Es posible realizar un reporte PDF de la tabla de <b>Ausencias del Empleado</b>, dando click en el botón <b class="btn btn-secondary btn-sm">Reporte</b> y se procederá con la descarga
+                                    del documento.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <p>
+        <a class="btn btn-dark" data-toggle="collapse" href="#collapseManualGrafico" role="button" aria-expanded="false" aria-controls="collapseManualGrafico">
+            Manual Gráfico
+        </a>
+    </p>
+    <div class="collapse" id="collapseManualGrafico">
+        <div class="card card-body">
+            <div class="container">
+                <p>
+                    <a class="btn btn-dark" data-toggle="collapse" href="#collapseTiempos" role="button" aria-expanded="false" aria-controls="collapseTiempos">
+                        ¿Cómo Marcar mis Tiempos?
+                    </a>
+                </p>
+                <div class="collapse" id="collapseTiempos">
+                    <div class="card card-body">
+                        <p>
+                            - Para marcar un tiempo laboral es necesario escoger un horario en la ventana izquierda y presionar el botón. <b class="btn btn-primary btn-sm">Guardar</b>.
+                            Previo a esto podremos visualizar nuestro tiempo marcado en la tabla derecha.
+                            <img src="~/Content/images/time1.png" style="max-width:100%; height:auto" />
+                        </p>
+                    </div>
+                    <div class="card card-body">
+                        <p>
+                            - A la hora de marcar tiempos laborales, debemos tener en cuenta realizar el flujo de trabajo correcto, de lo contrario podemos cometer <b class="text-danger">
+                                Errores
+                            </b> como realizar una marca de tiempo de <b>Salida</b>, mientras que no existe previamente una de <b>Entrada</b>.
+                            <img src="~/Content/images/timeError1.png" style="max-width:100%; height:auto" />
+                        </p>
+                    </div>
+                    <div class="card card-body">
+                        <p>
+                            - Otro <b class="text-danger">Error</b> que puede ser muy común, es realizar una marca de tiempo de <b>Entrada</b>, sin haber <b>Finalizado</b> otra marca pendiente.
+                            <img src="~/Content/images/timeError2.png" style="max-width:100%; height:auto" />
+                        </p>
+                    </div>
+                    <div class="card card-body">
+                        <p>
+                            - Un flujo de marcas de tiempo <b class="text-success">Correcto</b> debe ser similar al siguiente.
+                            <img src="~/Content/images/time3.png" style="max-width:100%; height:auto" />
+                        </p>
+                    </div>
+                 </div>
+             </div>
+            <div class="container">
+                <p>
+                    <a class="btn btn-dark" data-toggle="collapse" href="#collapseAusencias" role="button" aria-expanded="false" aria-controls="collapseAusencias">
+                        ¿Cómo Ver mis Ausencias?
+                    </a>
+                </p>
+                <div class="collapse" id="collapseAusencias">
+                    <div class="card card-body">
+                        <p>
+                            - Para ver nuestras ausencias propias simplemente debemos seleccionar la pestaña <b>Ausencias</b>, marcada en el recuadro rojo.
+                            <img src="~/Content/images/aus1.png" style="max-width:100%; height:auto" />
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <p>
+                    <a class="btn btn-dark" data-toggle="collapse" href="#collapseReportes" role="button" aria-expanded="false" aria-controls="collapseReportes">
+                        ¿Cómo Realizar Reportes?
+                    </a>
+                </p>
+                <div class="collapse" id="collapseReportes">
+                    <div class="card card-body">
+                        <p>
+                            - Es posible realizar un reporte PDF de la tabla de empleados, dando click en el botón <b class="btn btn-secondary btn-sm">Reporte</b>, marcado en el recuadro rojo.
+                            <img src="~/Content/images/Reporte1.png" style="max-width:100%; height:auto" />
+                        </p>
+                    </div>
+                    <div class="card card-body">
+                        <p>
+                            - Seleccionamos la ubicación donde deseamos guardar el reporte PDF y seleccionamos <b>Guardar</b>, marcado en el recuadro rojo.
+                            <img src="~/Content/images/Reporte2.png" style="max-width:100%; height:auto" />
+                        </p>
+                    </div>
+                    <div class="card card-body">
+                        <p>
+                            - El reporte debe visualizarse similar al del ejemplo, correspondiente a la tabla de la cual se hizo el reporte.
+                            <img src="~/Content/images/Reporte3.png" style="max-width:100%; height:auto" />
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <p>
+                    <a class="btn btn-dark" data-toggle="collapse" href="#collapseFiltros" role="button" aria-expanded="false" aria-controls="collapseFiltros">
+                        ¿Cómo Filtrar Tablas?
+                    </a>
+                </p>
+                <div class="collapse" id="collapseFiltros">
+                    <div class="card card-body">
+                        <p>
+                            - Algunas tablas nos permiten filtrarlas con un campo de texto, acontinuación se demuestra un ejemplo.
+                            <img src="~/Content/images/filtroB1.png" style="max-width:100%; height:auto" />
+                        </p>
+                        <p>
+                            - Rellenamos el campo de texto búsqueda, marcado en el recuadro rojo y la tabla se filtra según lo escrito.
+                            <img src="~/Content/images/FiltroB2.png" style="max-width:100%; height:auto" />
+                        </p>
+                    </div>
+                    <div class="card card-body">
+                        <p>
+                            - Otras tablas nos permiten filtrarlas mediante datos más específicos, acontinuación se demuestra un ejemplo.
+                            <img src="~/Content/images/Filtro1.png" style="max-width:100%; height:auto" />
+                        </p>
+                        <p>
+                            - Rellenamos los campos requeridos, marcados en el recuadro rojo y seleccionamos el botón <b class="btn btn-info btn-sm">Filtrar</b>.
+                            <img src="~/Content/images/Filtro2.png" style="max-width:100%; height:auto" />
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <p>
+                    <a class="btn btn-dark" data-toggle="collapse" href="#collapseAdmin" role="button" aria-expanded="false" aria-controls="collapseAdmin">
+                        Funciones Administrativas y Jefatura
+                    </a>
+                </p>
+                <div class="collapse" id="collapseAdmin">
+                    <div class="card card-body">
+                        <div class="container">
+                            <p>
+                                <a class="btn btn-dark" data-toggle="collapse" href="#collapseRegistrar" role="button" aria-expanded="false" aria-controls="collapseRegistrar">
+                                    Nuevos Registros
+                                </a>
+                            </p>
+                            <div class="collapse" id="collapseRegistrar">
+                                <div class="card card-body">
+                                    <p>
+                                        - El sistema nos permite agregar nuevos registros de todo tipo, rellenando los campos de la ventana superior <b>Añadir Nuevo</b> y presionando el botón
+                                        <b class="btn btn-primary btn-sm">Guardar</b>.
+                                        <img src="~/Content/images/ins1.png" style="max-width:100%; height:auto" />
+                                    </p>
+                                </div>
+                                <div class="card card-body">
+                                    <p>
+                                        - El sistema nos muestra una alerta confirmando el registro o denegandolo.
+                                        <img src="~/Content/images/ins2.png" style="max-width:100%; height:auto" />
+                                    </p>
+                                </div>
+                            </div>
+                            </div>
+                        <div class="container">
+                            <p>
+                                <a class="btn btn-dark" data-toggle="collapse" href="#collapseActDel" role="button" aria-expanded="false" aria-controls="collapseActDel">
+                                    Actualizar y Eliminar Registros
+                                </a>
+                            </p>
+                            <div class="collapse" id="collapseActDel">
+                                <div class="card card-body">
+                                    <p>
+                                        - Para <i class="fas fa-edit text-dark pointer"></i><b>Editar</b> o <i class="fas fa-trash text-dark pointer"></i>
+                                        <b>Eliminar</b> de una tabla, debemos dar click en dichos botones de la fila a modificar, marcados en el recuadro rojo.
+                                        <img src="~/Content/images/editdel1.png" style="max-width:100%; height:auto" />
+                                    </p>
+                                </div>
+                                <div class="card card-body">
+                                    <p>
+                                        - Para Editar la tupla seleccionada, rellenamos los campos de la ventana emergente con los datos deseados y presionamos el botón <b class="btn btn-info btn-sm">Editar</b>.
+
+                                    </p>
+                                    <img src="~/Content/images/edit1.png" style="max-width:100%; height:auto" />
+                                    <p>
+                                        - Posteriormente se nos mostrará la alerta correspondiente y se harán los respectivos cambios.
+                                        <img src="~/Content/images/edit2.png" style="max-width:100%; height:auto" />
+                                    </p>
+                                </div>
+                                <div class="card card-body">
+                                    <p>
+                                        - Para Eliminar la tupla seleccionada, simplemente confirmar o no la eliminación dando click en <b class="btn btn-primary btn-sm">Si, Eliminar</b> o
+                                        <b class="btn btn-secondary btn-sm">Cancelar</b>.
+                                        <img src="~/Content/images/del1.png" style="max-width:100%; height:auto" />
+                                    </p>
+                                    <p>
+                                        - Posteriormente se nos mostrará la alerta correspondiente y se harán los respectivos cambios.
+                                        <img src="~/Content/images/del2.png" style="max-width:100%; height:auto" />
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container">
+                            <p>
+                                <a class="btn btn-dark" data-toggle="collapse" href="#collapseAusTime" role="button" aria-expanded="false" aria-controls="collapseAusTime">
+                                    Ausencias y Tiempos de Empleados
+                                </a>
+                            </p>
+                            <div class="collapse" id="collapseAusTime">
+                                <div class="card card-body">
+                                    <p>
+                                        - Para ingresar a <i class="fas fa-business-time text-dark pointer"></i><b>Ausencias</b> o <i class="fas fa-calendar-times text-dark pointer"></i><b>Tiempos</b>
+                                        de un Empleado, debemos dar click en dichos botones de la fila deseada, marcados en el recuadro rojo.
+                                        <img src="~/Content/images/austime.png" style="max-width:100%; height:auto" />
+                                    </p>
+                                </div>
+                                <div class="card card-body">
+                                    <p>
+                                        - Al ingresar a <i class="fas fa-business-time text-dark pointer"></i><b>Ausencias</b>, se nos muestra la siguiente pantalla.
+                                        <img src="~/Content/images/ausAdmin.png" style="max-width:100%; height:auto" />
+                                    </p>
+                                </div>
+                                <div class="card card-body">
+                                    <p>
+                                        - Al ingresar a <i class="fas fa-calendar-times text-dark pointer"></i><b>Tiempos</b>, se nos muestra la siguiente pantalla.
+                                        <img src="~/Content/images/timeAdmin.png" style="max-width:100%; height:auto" />
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+           </div>
+    </div>
+</div>
+
+        @Html.Partial("_Footer")

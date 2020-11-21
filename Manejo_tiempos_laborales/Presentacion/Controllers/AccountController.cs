@@ -76,6 +76,7 @@ namespace Presentacion.Controllers
             Session["UsserID"] = usuario.TN_Id_Usuario;
             Session["UsserPassword"] = usuario.TC_Contrasena;
             Session["UsserType"] = usuario.TC_Tipo_Usuario;
+            Session["UsserOffice"] = usuario.TC_Nombre_Oficina;
 
             if (usuario.TC_Tipo_Usuario == "Administración") {
                 return RedirectToAction("Listar", "Historico_Tiempos_Laborales");
@@ -91,6 +92,11 @@ namespace Presentacion.Controllers
                 Security.SessionSecurity.DestroyUserSession(); // Eliminarle la sesion al usuario malicioso
                 return RedirectToAction("Error403", "Error");
             }
+        }
+
+        public ActionResult RedirectoToHelp()
+        {
+            return View();
         }
 
     }

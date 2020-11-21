@@ -41,7 +41,7 @@
                     </div>
                 </div>
                 <div class="row justify-content-center">
-                    <input type="button" value="Filtrar" class="btn btn-info btn-sm" onclick="filtrarAusencias(5, 6, 4)">
+                    <input type="button" value="Filtrar" class="btn btn-info btn-sm" onclick="filtrarHistoricoAusencias(6, 7, 5)">
                     <input type="button" value="Limpiar" onclick="vaciarFiltroAusencias(1)" class="btn btn-danger btn-sm">
                 </div>
             </div>
@@ -63,6 +63,7 @@
                 <table id="table" class="table table-bordered table-hover">
                     <thead class="thead-dark text-center">
                         <tr>
+                            <th>Código</th>
                             <th>Cédula</th>
                             <th>Nombre</th>
                             <th>Apellido 1</th>
@@ -70,22 +71,23 @@
                             <th>Motivo</th>
                             <th>Fecha salida</th>
                             <th>Fecha regreso</th>
-                            
+
                         </tr>
                     </thead>
                     <tbody id="contenidoTabla">
                         @foreach (var item in ViewBag.ListaHistoricAusencias)
                         {
-                            <tr>
-                                <td>@item.empleado.TC_Identificacion</td>
-                                <td>@item.empleado.TC_Nombre_Usuario</td>
-                                <td>@item.empleado.TC_Primer_Apellido </td>
-                                <td>@item.empleado.TC_Segundo_Apellido</td>
-                                <td>@item.tipoAusencia.TC_Tipo_Ausencia</td>
-                                <td>@item.TF_Fecha_Salida</td>
-                                <td>@item.TF_Fecha_Regreso</td>
-                               
-                            </tr>
+                        <tr>
+                            <td>@item.TN_Id_Ausencia</td>
+                            <td>@item.empleado.TC_Identificacion</td>
+                            <td>@item.empleado.TC_Nombre_Usuario</td>
+                            <td>@item.empleado.TC_Primer_Apellido </td>
+                            <td>@item.empleado.TC_Segundo_Apellido</td>
+                            <td>@item.tipoAusencia.TC_Tipo_Ausencia</td>
+                            <td>@item.TF_Fecha_Salida</td>
+                            <td>@item.TF_Fecha_Regreso</td>
+
+                        </tr>
                         }
                     </tbody>
                 </table>

@@ -236,8 +236,8 @@ namespace AccesoDatos.Implementaciones
                         emp.TC_Tipo_Usuario = dataReader[7].ToString();
                         emp.TC_Correo = dataReader[8].ToString();
                         emp.TB_Activo = int.Parse(dataReader[9].ToString());
-                        emp.TC_Nombre_Puesto = dataReader[11].ToString();
-                        emp.TC_Nombre_Oficina = dataReader[10].ToString();
+                        emp.TC_Nombre_Puesto = dataReader[10].ToString();
+                        emp.TC_Nombre_Oficina = dataReader[15].ToString();
                         emp.TB_Eliminado = int.Parse(dataReader[12].ToString());
                     }
                 }

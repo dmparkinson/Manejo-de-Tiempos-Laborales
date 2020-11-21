@@ -303,6 +303,7 @@ function refrescarAusencias() {
             var html = "";
             for (i = 0; i < array.length; i++) {
                 html += '<tr>';
+                html += '<td>' + array[i].TN_Id_Ausencia + '</td>';
                 html += '<td>' + array[i].TC_Tipo_Ausencia + '</td>';
                 html += '<td>' + array[i].TF_Fecha_Salida + '</td>';
                 html += '<td>' + array[i].TF_Fecha_Regreso + '</td>';

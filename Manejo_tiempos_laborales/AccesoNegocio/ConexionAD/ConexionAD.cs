@@ -12,7 +12,9 @@ namespace AccesoDatos.ConexionAD
         private SqlConnection con;
         public ConexionAD()
         {
-            this.conexion = "Data Source=163.178.107.10;Initial Catalog=Manejo_Tiempos_Laborales;Persist Security Info=True;User ID=laboratorios;Password=KmZpo.2796";
+           this.conexion = "Data Source=163.178.107.10;Initial Catalog=Manejo_Tiempos_Laborales;Persist Security Info=True;User ID=laboratorios;Password=KmZpo.2796";
+
+
         }
 
         public void conectar()

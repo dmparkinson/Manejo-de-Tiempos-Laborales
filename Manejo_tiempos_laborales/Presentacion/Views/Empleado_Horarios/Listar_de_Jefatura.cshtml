@@ -61,11 +61,34 @@
 
 
         <div class="container col-6">
-            <div>
+            <div class="flex-column">
                 <div class="d-flex justify-content-between mt-3">
-                    <div class="col-6">
-                        <input type="button" value="Filtrar" class="btn btn-info btn-sm">
-                        <input type="button" value="Limpiar" class="btn btn-danger btn-sm">
+                    <div class="flex-column">
+                        <div class="d-flex flex-wrap">
+                            <div class="form-group ">
+                                <label class="font-weight-normal" for="fecha">Fecha:</label>
+                                <input type="date" class="form-control form-control-sm" id="fechaFiltroHrario" />
+                            </div>
+                            <div class="form-group">
+                                <label class="font-weight-normal" for="tiempo">Tiempo laboral:</label>
+
+                                <select class="form-control form-control-sm" id="registroFiltro">
+                                    <option value="0"></option>
+                                    @foreach (Entidad.Horario item in ViewBag.ListaHorario)
+                                    {
+                                        <option id="@item.TN_Id_Horario">@item.TC_Horario</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row justify-content-start">
+                            <input type="button" value="Filtrar" class="btn btn-info btn-sm" onclick="filtrarHorarios(2, 1)" />
+                            <input type="button" value="Limpiar" class="btn btn-danger btn-sm" onclick="vaciarFiltroHorario(0)" />
+                        </div>
+                        </div>
+                        <div class="align-self-end">
+                            <input type="button" value="Reporte" class="btn btn-secondary btn-sm" onclick="exportPDF('Horarios de @ViewBag.Message')" />
+                        </div>
                     </div>
                     <div>
                         <input type="button" value="Reporte" class="btn btn-secondary btn-sm" onclick="exportPDF('Horarios de @ViewBag.Message')" />
@@ -89,10 +112,20 @@
                                 <td>@temp.TF_Fecha</td>
                                 <td>@temp.TH_Hora</td>
                             </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
+                        </thead>
+                        <tbody id="contenidoTabla">
+                            @foreach (Entidad.Tiempo temp in ViewBag.listaTiempo)
+                            {
+                                <tr>
+                                    <td>@temp.TN_Id_Tiempo</td>
+                                    <td>@temp.TC_Horario</td>
+                                    <td>@temp.TF_Fecha</td>
+                                    <td>@temp.TH_Hora</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
         </div>
     </div>
     @Html.Partial("_Footer")
