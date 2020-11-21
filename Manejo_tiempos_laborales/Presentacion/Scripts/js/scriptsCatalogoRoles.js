@@ -1,6 +1,4 @@
-﻿import { Swal } from "../../plugins/sweetalert2/sweetalert2";
-
-/* 
+﻿/* 
  * 
  * Eliminar un rol
  * 

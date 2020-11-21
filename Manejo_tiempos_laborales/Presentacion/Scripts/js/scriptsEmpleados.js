@@ -748,7 +748,10 @@ function registrarTiemposEmpleadoByAdmin() {
 }
 
 
-function cargarModalListaHorarioEmpleadoAdmin(idT, idU, idH, fecha, hora, tiempo) {
+
+
+
+function cargarModalListaHorarioEmpleado(idT, idU, idH, fecha, hora, tiempo) {
     window.localStorage.setItem('idT', idT);
     window.localStorage.setItem('idU', idU);
     window.localStorage.setItem('idH', idH);
