@@ -110,23 +110,27 @@ function cargarEditHisAusencia(codigoA, codigoTipo, codigoEmpleado) {
  *
  */
 
-function editarHisAusencia() {
 
 
-    var rango = document.getElementById("fechaFomat").value;
+function editarHisoricoAusencia() {
+
+
+
+    var rango = document.getElementById("fechaHistoricoEdit").value;
     var codigo = document.getElementById("idAusencia").value;
     var motivoAusencia = document.getElementById("motivoE").value;
-    var empleado = document.getElementById("idEmpleado").value; 
+    var empleado = document.getElementById("idEmpleado").value;
 
     var envio = {
         idAusencia: codigo,
-        codEmpelado : empleado,
+        codEmpelado: empleado,
         tipo: motivoAusencia,
-        fechaSalida: separarFechasHistoricoAusencia(rango)[0],
-        fechaRegreso: separarFechasHistoricoAusencia(rango)[1]
+        fechaSalida: separarFechas(rango)[0],
+        fechaRegreso: separarFechas(rango)[1]
     };
 
-   
+
+    
     $.ajax({
         url: "/Historico_Ausencias/Editar",    // Nombre del controlador/ accion del controlador
         type: "post",
@@ -147,7 +151,7 @@ function editarHisAusencia() {
             }
             else { // No se se elimino
                 Swal.fire({
-                    
+
                     icon: 'error',
                     title: 'Problemas en el registro',
                     text: 'Los datos no se modificaron.',
@@ -155,18 +159,16 @@ function editarHisAusencia() {
             }
         },
         error: function () {
-            
-             Swal.fire({
+
+            Swal.fire({
                 icon: 'error',
                 title: 'Error inesperado',
                 text: 'Ocurrió un error en la operación.',
-            }) 
+            })
         }
     });
     return false; // Permitir el uso de HTML5
 }
-
-
 
 
 
