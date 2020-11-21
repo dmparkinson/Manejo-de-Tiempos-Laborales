@@ -1,4 +1,5 @@
-﻿
+﻿import { Swal } from "../../plugins/sweetalert2/sweetalert2";
+
 /* 
  * 
  * Eliminar un rol
@@ -92,7 +93,7 @@ function agregarRol() {
         success: function (response) {
             if (response.success == true) { // Si se elimino
                 Swal.fire({
-                    position: 'top-end',
+                    position: 'center',
                     icon: 'success',
                     title: 'Datos registrador exitosamente.',
                     showConfirmButton: false,
@@ -103,6 +104,7 @@ function agregarRol() {
             }
             else { // No se se elimino
                 Swal.fire({
+                    position: 'center',
                     icon: 'error',
                     title: 'Problemas en el registro',
                     text: 'Los datos no se registraron en el sistema.',
@@ -111,6 +113,7 @@ function agregarRol() {
         },
         error: function () {
             Swal.fire({
+                position: 'center',
                 icon: 'error',
                 title: 'Error inesperado',
                 text: 'Ocurrió un error en la operación.',

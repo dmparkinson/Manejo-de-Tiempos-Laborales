@@ -216,6 +216,9 @@ function refreshTableCatalogoHorarios(){
 
                 var tr = document.createElement('tr')
 
+                var td0 = document.createElement('td');
+                td0.innerHTML = array[i].TN_Id_Horario;
+
                 var td1 = document.createElement('td');
                 td1.innerHTML = array[i].TC_Horario
 
@@ -231,7 +234,6 @@ function refreshTableCatalogoHorarios(){
                 var div3 = document.createElement('div');
                 div3.setAttribute('class', 'col-md-6');
 
-                //<button id="@temp.TC_Horario" type="button" class="btn btn-success btn-sm" onclick="editMyModal(this)" data-toggle="modal" data-target="#modal-editar"><i class="fa fa-edit pointer" style="font-size:1.5em;"></i> </button>
                 var btn1 = document.createElement('button');
                 btn1.setAttribute('id', array[i].TC_Horario);
                 btn1.setAttribute('type', 'button');
@@ -262,6 +264,7 @@ function refreshTableCatalogoHorarios(){
 
                 td2.appendChild(div1);
 
+                tr.appendChild(td0);
                 tr.appendChild(td1);
                 tr.appendChild(td2);
 

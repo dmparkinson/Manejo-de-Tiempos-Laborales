@@ -18,7 +18,6 @@ namespace Presentacion.Controllers
         public ActionResult Listar()
         {
             //debo listar el catalogo de tiempos
-          //  MessageBox.Show(Security.SessionSecurity.GetUser().ToString());
             string listaH = new HorarioAD().listarHorarios();
             List<Horario> lista = JsonConvert.DeserializeObject<List<Horario>>(listaH);
 
@@ -43,6 +42,10 @@ namespace Presentacion.Controllers
             {
                 return RedirectToAction("Error403", "Error");
             }
+        }
+
+        public string refrescarTiempoMarcasByAdmin() {
+            return new TiemposAD().consultarTiemposUsuario(int.Parse(Session["UserIdAdminMarcas"].ToString()));
         }
 
         public JsonResult seleccionAdminEmpleadoMarcas(int idEmpleado)
@@ -106,11 +109,33 @@ namespace Presentacion.Controllers
             return res;
         }
 
+        public int registrarTiemposEmpleadoByAdmin(int idTiempo, string tiempo) {
+            char[] tipo = tiempo.ToCharArray();
+            Tiempo t = new Tiempo();
+            t.TN_Id_Horario = idTiempo;
+            t.TC_Horario = tiempo;
+            //t.horario.TC_Horario= tiempo;
+            t.TC_Tipo = tipo[0].ToString();
+            t.TN_Id_Usuario = int.Parse(Session["UserIdAdminMarcas"].ToString());
+
+            //acá hay que aplicar las reglas de negocio
+            TiempoRN tiempoRN = new TiempoRN();
+
+            int res = tiempoRN.verificarRegistro(tiempo, t.TN_Id_Usuario);
+            if (res == 1)
+            {
+                return new TiemposAD().registrarTiempo(t);
+            }
+
+            //si las reglas de negocio dan el aval para registrar
+            //se llama al acceso de datos
+            return res;
+        }
+
 
         //refrescamos las marcas de tiempo del usuario
         public string refrescarMarcasTiempo()
         {
-            List<Tiempo> listaT = new List<Tiempo>();
             return new TiemposAD().listarPorFechaTiempoUsuario(int.Parse(Session["UsserID"].ToString()), DateTime.Now.ToString("dd-MM-yyyy"));
         }
 
