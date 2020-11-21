@@ -229,7 +229,8 @@ function refrescarCatalogoRol() {
             // Construir la nueva fila
 
             for (x = 0; x < lista.length; x++) {
-                var info = '<tr> <td>' + lista[x].TC_Nombre_Rol + '</td>' +
+                var info = '<tr> <td>' + lista[x].TN_Id_Rol + '</td>' +
+                    '<td>' + lista[x].TC_Nombre_Rol + '</td>' +
                     ' <td><div class="d-flex justify-content-center">' +
                     '<a data-toggle="modal" data-target="#modal-editar" href= "#" onclick="cargarEditRol(' + lista[x].TN_Id_Rol + ')"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>' +
                     '<a onclick="eliminarRol(' + lista[x].TN_Id_Rol + ')" href="#"> <i class="fas fa-trash text-dark" style="font-size: 1.2em;"></i></a>' +

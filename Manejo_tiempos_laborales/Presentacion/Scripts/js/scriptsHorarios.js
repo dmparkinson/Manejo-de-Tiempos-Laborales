@@ -89,7 +89,6 @@ function actualizarHorario() {
 
             success: function (response) {
                 document.getElementById('respuestaModalEdit').innerHTML = '';
-                alert(response)
                 if (response == 1) {
                     Swal.fire({
                         type: 'success',

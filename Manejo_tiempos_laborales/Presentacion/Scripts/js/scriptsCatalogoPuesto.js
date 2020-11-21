@@ -232,7 +232,8 @@ function refrescarCatalogoPuesto() {
             // Construir la nueva fila
 
             for (x = 0; x < lista.length; x++) {
-                var info = '<tr> <td>' + lista[x].TC_Nombre_Puesto + '</td>' +
+                var info = '<tr> <td>' + lista[x].TN_Id_Puesto + '</td>' +
+                    '<td>' + lista[x].TC_Nombre_Puesto + '</td>' +
                     '<td>' + lista[x].TN_Salario_Horario + '</td>' +
                     '<td><div class="d-flex justify-content-center">' +
                     '<a data-toggle="modal" data-target="#modal-editar" href= "#" onclick="cargarEditPuesto(' + lista[x].TN_Id_Puesto + ')"> <i class="fas fa-edit text-dark" style="font-size: 1.2em;"></i></a>' +
